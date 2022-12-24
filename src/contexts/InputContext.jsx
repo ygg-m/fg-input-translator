@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { Input236 } from "../components/index";
+import { MotionInput } from "../components/index";
 
 const InputContext = createContext();
 
@@ -22,11 +22,16 @@ export const InputProvider = ({ children }) => {
       const trimmed = substring.trim();
 
       // Check if the substring is a special pattern
-      if (trimmed === "236") tempOutput.push(<Input236 key="236" />);
-      else if (trimmed === "214") tempOutput.push("(QuarterCircleBack)");
-      else if (trimmed === "P" || trimmed === "p") tempOutput.push("Punch");
+      // MOTION INPUTS
+      if (trimmed === "236")
+        tempOutput.push(<MotionInput input="236" key="236" />);
+      else if (trimmed === "214")
+        tempOutput.push(<MotionInput input="236" flip key="214" />);
       else if (trimmed === "41236") tempOutput.push("(FullCircleFoward)");
       else if (trimmed === "63214") tempOutput.push("(FullCircleBack)");
+      
+      // ACTION INPUTS
+      else if (trimmed === "P" || trimmed === "p") tempOutput.push("Punch");
       else if (trimmed === "5") tempOutput.push("(Stand)");
       else if (trimmed === "K") tempOutput.push("Kick");
       else if (trimmed === "c.") tempOutput.push("(Crouch)");

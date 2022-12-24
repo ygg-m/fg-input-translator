@@ -1,7 +1,7 @@
 import "../style/input.css";
 import "../style/output.css";
 
+export { ActionInput } from "./ActionInput";
 export { Input } from "./Input.jsx";
-export { Input236 } from "./Input236";
-export { InputPunch } from "./InputPunch";
+export { MotionInput } from "./MotionInput";
 export { Output } from "./Output.jsx";
