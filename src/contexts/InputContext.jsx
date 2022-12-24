@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { Input } from "../components";
+import { Input236 } from "../components/index";
 
 const InputContext = createContext();
 
@@ -22,7 +22,7 @@ export const InputProvider = ({ children }) => {
       const trimmed = substring.trim();
 
       // Check if the substring is a special pattern
-      if (trimmed === "236") tempOutput.push("(QuarterCircleFoward)");
+      if (trimmed === "236") tempOutput.push(<Input236 key="236" />);
       else if (trimmed === "214") tempOutput.push("(QuarterCircleBack)");
       else if (trimmed === "P" || trimmed === "p") tempOutput.push("Punch");
       else if (trimmed === "41236") tempOutput.push("(FullCircleFoward)");
