@@ -1,7 +1,7 @@
-import React from 'react'
+import React from "react";
+import { useInput } from "../contexts/InputContext";
 
 export const Output = () => {
-  return (
-    <div>Output</div>
-  )
-}
+  const { output } = useInput();
+  return <div className="output-container">{output}</div>;
+};
