@@ -1,4 +1,10 @@
-import quarterCircle from "../images/inputs/236.svg";
+import next from "../images/inputs/ArrowNext.svg";
+import quarterCircle from "../images/inputs/Motion236.svg";
+import halfCircle from "../images/inputs/Motion41236.svg";
+import fullCircle from "../images/inputs/Motion41236987.svg";
+import stand from "../images/inputs/Motion5.svg";
+import foward from "../images/inputs/Motion6.svg";
+import dragonPunch from "../images/inputs/Motion623.svg";
 
 export const MotionInput = ({ input, deg, flip }) => {
   let style = {};
@@ -10,10 +16,20 @@ export const MotionInput = ({ input, deg, flip }) => {
   let inputImg;
 
   if (input === "236") inputImg = quarterCircle;
+  if (input === "41236") inputImg = halfCircle;
+  if (input === "41236987") inputImg = fullCircle;
+  if (input === "6") inputImg = foward;
+  if (input === "623") inputImg = dragonPunch;
+  if (input === "5") inputImg = stand;
+  if (input === ">") inputImg = next;
 
   return (
-    <div className="motion-input-container" style={Object.assign({}, style)}>
-      <img src={inputImg} alt={`${input} Input`} />
+    <div className="motion-input-container">
+      <img
+        src={inputImg}
+        alt={`${input} Input`}
+        style={Object.assign({}, style)}
+      />
     </div>
   );
 };

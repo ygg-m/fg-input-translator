@@ -1,15 +1,19 @@
 .output-container {
+  z-index: 0;
   padding: 0.3rem 1rem;
   min-height: 66px;
+  max-width: 80vw;
 
   border-radius: 1rem;
   outline: 1px solid #444;
 
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
 }
 
 .motion-input-container {
+  z-index: -1;
   width: 3.5rem;
   height: 3.5rem;
 }

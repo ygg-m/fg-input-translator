@@ -1,18 +1,19 @@
-import quarterCircle from "../images/inputs/236.svg";
+import dust from "../images/inputs/ActionDust.svg";
+import highSlash from "../images/inputs/ActionHighSlash.svg";
+import kick from "../images/inputs/ActionKick.svg";
+import punch from "../images/inputs/ActionPunch.svg";
+import slash from "../images/inputs/ActionSlash.svg";
 
-export const ActionInput = ({ input, deg, flip }) => {
-  let style = {};
-  if (deg && flip) style = { transform: `rotate(${deg}deg) scaleX(-1)` };
-  if (deg && !flip) style = { transform: `rotate(${deg}deg)` };
-  if (!deg && flip) style = { transform: `scaleX(-1)` };
-  if (!deg && !flip) style = {};
-
+export const ActionInput = ({ input }) => {
   let inputImg;
-
-  if (input === "236") inputImg = quarterCircle;
+  if (input === "p") inputImg = punch;
+  if (input === "k") inputImg = kick;
+  if (input === "h") inputImg = highSlash;
+  if (input === "s") inputImg = slash;
+  if (input === "d") inputImg = dust;
 
   return (
-    <div className="motion-input-container" style={Object.assign({}, style)}>
+    <div className="motion-input-container">
       <img src={inputImg} alt={`${input} Input`} />
     </div>
   );
