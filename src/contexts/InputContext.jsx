@@ -68,6 +68,23 @@ export const InputProvider = ({ children }) => {
 
       // check if there's no input recognizable
       if (inputObj.name === undefined) {
+        // Regular expression to match numbers followed by a letter
+        const comboRegex = /(\d+)([a-z])/i;
+        const match = input.match(comboRegex);
+        // check if there's a match
+        if (match) {
+          const comboInputs = [match[1], match[2]];
+          const comboInputsMap = comboInputs.map((e) => {
+            // check input of the combo
+            const checkedComboInput = checkInput(e);
+            return checkedComboInput.name;
+          });
+          console.log(comboInputsMap);
+          return comboInputsMap;
+        } else {
+          console.log("String does not match pattern");
+        }
+
         // transform the unrecognizable input in an array
         const remainInputArray = stringToArray(input, true);
         // map the array
@@ -84,6 +101,7 @@ export const InputProvider = ({ children }) => {
       // return the name of the input to array map
       return inputObj.name;
     });
+    console.log(inputArrayMap);
     setOutput(inputArrayMap);
 
     // const substrings = rawInput
