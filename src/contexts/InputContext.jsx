@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { ActionInput, MotionInput } from "../components/index";
 import {
+  arrowLinks,
   ggac_actionInputs,
   ggac_mechInputs,
   moveInputs,
@@ -18,11 +19,11 @@ export const InputProvider = ({ children }) => {
   const [gameMechs, setGameMechs] = useState(ggac_mechInputs);
 
   // GUILTY GEAR AC+R
-  const arrowLinks = [">", "->", "~", ","];
-  const actionInputs = ["p", "k", "s", "h", "d"];
+  const arrowLinkList = [">", "->", "~", ","];
 
-  const stringToArray = (string) => {
-    const regex = new RegExp(`(${arrowLinks.join("|")})`);
+  const stringToArray = (string, isCombo) => {
+    if (isCombo) return string.split("");
+    const regex = new RegExp(`(${arrowLinkList.join("|")})`);
     const inputGroups = string.toLowerCase().replace(/ /g, "").split(regex);
     return inputGroups;
   };
@@ -31,31 +32,45 @@ export const InputProvider = ({ children }) => {
     // search move in JSON file based on input
     const move = array.find((item) => {
       const inputIsArray = Array.isArray(item.input);
-      if (inputIsArray) {
+      const inputIsNumber = typeof item.input === "number";
+      if (inputIsArray)
         return item.input.find((itemInput) => itemInput === input);
-      } else return item.input.toString() === input;
+      else if (inputIsNumber) return item.input.toString() === input;
+      else return item.input === input;
     });
     return move;
   };
 
+  const checkInput = (input) => {
+    if (!input) return input;
+    const isArrowLink = getMove(arrowLinks, input);
+    const isMoveInput = getMove(moveInputs, input);
+    const isSpecialMoveInput = getMove(specialMoveInputs, input);
+    const isActionInput = getMove(gameInputs, input);
+    const isMechInputs = getMove(gameMechs, input);
+
+    if (isArrowLink) return isArrowLink;
+    if (isMoveInput) return isMoveInput;
+    if (isSpecialMoveInput) return isSpecialMoveInput;
+    if (isActionInput) return isActionInput;
+    if (isMechInputs) return isMechInputs;
+    else return input;
+  };
+
   useEffect(() => {
     const inputArray = stringToArray(rawInput);
-    const inputArrayMap = inputArray.map((e, index) => {
-      const isArrowLink = arrowLinks.includes(e);
-      const isMoveInput = getMove(moveInputs, e);
-      const isSpecialMoveInput = getMove(specialMoveInputs, e);
-      const isActionInput = getMove(gameInputs, e);
-      const isMechInputs = getMove(gameMechs, e);
-
-      if (isArrowLink) return "ArrowLink";
-      if (isMoveInput) return isMoveInput.name;
-      if (isSpecialMoveInput) return isSpecialMoveInput.name;
-      if (isActionInput) return isActionInput.name;
-      if (isMechInputs) return isMechInputs.name;
-      else return e;
+    const inputArrayMap = inputArray.map((input, index) => {
+      if (!input) return input;
+      const inputObj = checkInput(input);
+      const inputObjCheck = inputObj?.name?.length === 0;
+      return inputObjCheck
+        ? inputObj?.name
+        : stringToArray(input, true).map(
+            (item) => getMove(moveInputs, item).name
+          );
     });
     console.log(inputArrayMap);
-    setOutput(inputArray);
+    setOutput(inputArrayMap);
 
     // const substrings = rawInput
     //   .toLowerCase()

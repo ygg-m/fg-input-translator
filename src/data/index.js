@@ -1,3 +1,4 @@
+export { arrowLinks } from "./arrow-links";
 export { ggac_actionInputs } from "./ggac-action-inputs";
 export { ggac_mechInputs } from "./ggac-mech-inputs";
 export { moveInputs } from "./move-input";
