@@ -14,12 +14,11 @@
 
 .motion-input-container {
   z-index: -1;
-  width: 3.5rem;
   height: 3.5rem;
 }
 
 .motion-input-container > img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: fit;
 }
