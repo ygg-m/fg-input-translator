@@ -1,6 +1,5 @@
 .output-container {
-  z-index: 0;
-  padding: 0.3rem 1rem;
+  padding: 0.5rem;
   min-height: 66px;
   max-width: 80vw;
 
@@ -13,7 +12,6 @@
 }
 
 .motion-input-container {
-  z-index: -1;
   height: 3.5rem;
 }
 
@@ -21,4 +19,11 @@
   width: 100%;
   height: 100%;
   object-fit: fit;
+}
+
+.combo-container {
+  display: flex;
+  padding: 0.2rem 0.5rem;
+  background-color: #333;
+  border-radius: 0.8rem;
 }

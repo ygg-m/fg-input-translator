@@ -1,5 +1,5 @@
-export const MotionInput = ({ inputObj }) => {
-  const { name, input, description, url, style } = inputObj;
+export const SpecialMoveInput = ({ inputObj }) => {
+  const { name, description, url, style } = inputObj;
   const transform = `rotate(${style[0]}) scaleX(${style[1]})`;
 
   return (
