@@ -60,16 +60,30 @@ export const InputProvider = ({ children }) => {
   useEffect(() => {
     const inputArray = stringToArray(rawInput);
     const inputArrayMap = inputArray.map((input, index) => {
+      // check if input is empty
       if (!input) return input;
+
+      // get input properties
       const inputObj = checkInput(input);
-      const inputObjCheck = inputObj?.name?.length === 0;
-      return inputObjCheck
-        ? inputObj?.name
-        : stringToArray(input, true).map(
-            (item) => getMove(moveInputs, item).name
-          );
+
+      // check if there's no input recognizable
+      if (inputObj.name === undefined) {
+        // transform the unrecognizable input in an array
+        const remainInputArray = stringToArray(input, true);
+        // map the array
+        const remainInputArrayMap = remainInputArray.map((input) => {
+          // check the input of each character
+          const remainInputObj = checkInput(input);
+          return remainInputObj.name;
+        });
+
+        // if the input is recognized, return it
+        return remainInputArrayMap;
+      }
+
+      // return the name of the input to array map
+      return inputObj.name;
     });
-    console.log(inputArrayMap);
     setOutput(inputArrayMap);
 
     // const substrings = rawInput
