@@ -3,8 +3,10 @@ import { v4 as uuidv4 } from "uuid";
 import {
   ActionInput,
   ArrowLink,
+  MechInput,
   MotionInput,
   SpecialMoveInput,
+  UnknownInput,
 } from "../components/index";
 import {
   arrowLinks,
@@ -24,14 +26,65 @@ export const InputProvider = ({ children }) => {
   const [gameInputs, setGameInputs] = useState(ggac_actionInputs);
   const [gameMechs, setGameMechs] = useState(ggac_mechInputs);
 
+  // ==============================================================
+  // ==============================================================
+  // ==============================================================
+
+  // trying to create logic
+  let currentInput; // uses rawInput to isolate the current input
+  let currentCombo; // uses rawInput to isolate the current combo
+  let currentOutput; // uses currentCombo to render the visual input before pushing into output
+
+  function checkInput2(currentInput) {
+    // check if the current input is:
+    // numberSequence
+    // characterSequence
+    // numberSequence + characterSequence
+    // undefinedCharacters
+
+    // return type
+    const inputType = "";
+    return inputType;
+  }
+
+
+  // search for the input inside proper JSON based on inputtType
+  function checkMoveInput(currentInput) {}
+  function checkActionInput(currentInput) {}
+  function checkSpecialInput(currentInput) {}
+
+  // create component based on the input checked above
+  function createMoveInput(inputType) {}
+  function createActionInput(inputType) {}
+  function createSpecialInput(inputType) {}
+
+  // create unknown input when input doesn't exist
+  function createUnknownInput(inputType) {}
+
+  // split the Input when it finds an arrow, based on RegExp
+  function splitInputs() {}
+
+  // 
+
+
+
+
+
+
+  // ==============================================================
+  // ==============================================================
+  // ==============================================================
+
   // GUILTY GEAR AC+R
   const arrowLinkList = [">", "->", "~", ","];
 
   const stringToArray = (string, isCombo) => {
     if (isCombo) return string.split("");
+
+    // create regex with arrowLinkList
+    // split based on regex characters
     const regex = new RegExp(`(${arrowLinkList.join("|")})`);
-    const inputGroups = string.toLowerCase().replace(/ /g, "").split(regex);
-    return inputGroups;
+    return string.toLowerCase().replace(/ /g, "").split(regex);
   };
 
   const getMove = (array, input) => {
@@ -50,7 +103,7 @@ export const InputProvider = ({ children }) => {
 
   const checkCombo = (input) => {
     // Regular expression to match numbers followed by a letter
-    const comboRegex = /(\d+)([a-z])/i;
+    const comboRegex = /(\d+)([a-z])/;
     return input.match(comboRegex);
   };
 
@@ -65,31 +118,39 @@ export const InputProvider = ({ children }) => {
   };
 
   const checkInput = (input) => {
+    // if input is empty, return the input, which should be ('')
     if (!input) return input;
-    const isArrowLink = getMove(arrowLinks, input);
-    const isMoveInput = getMove(moveInputs, input);
-    const isSpecialMoveInput = getMove(specialMoveInputs, input);
-    const isActionInput = getMove(gameInputs, input);
-    const isMechInputs = getMove(gameMechs, input);
+    // get the move from JSON
+    const arrowLink = getMove(arrowLinks, input);
+    const moveInput = getMove(moveInputs, input);
+    const spMoveInput = getMove(specialMoveInputs, input);
+    const actionInput = getMove(gameInputs, input);
+    const mechInputs = getMove(gameMechs, input);
 
-    if (isArrowLink) return <ArrowLink key={uuidv4()} inputObj={isArrowLink} />;
-    if (isMoveInput) {
-      return <MotionInput key={uuidv4()} inputObj={isMoveInput} />;
+    // return the move Object
+    if (arrowLink) return createInputComponent("arrow", arrowLink);
+    if (moveInput) return createInputComponent("move", moveInput);
+    if (spMoveInput) return createInputComponent("spmove", spMoveInput);
+    if (actionInput) return createInputComponent("action", actionInput);
+    if (mechInputs) return createInputComponent("mech", mechInputs);
+  };
+
+  const createInputComponent = (type, obj) => {
+    switch (type) {
+      case "arrow":
+        return <ArrowLink key={uuidv4()} inputObj={obj} />;
+      case "move":
+        return <MotionInput key={uuidv4()} inputObj={obj} />;
+      case "spmove":
+        return <SpecialMoveInput key={uuidv4()} inputObj={obj} />;
+      case "action":
+        return <ActionInput key={uuidv4()} inputObj={obj} />;
+      case "mech":
+        return <MechInput key={uuidv4()} inputObj={obj} />;
+      default:
+        console.log("invalid");
     }
-    if (isSpecialMoveInput)
-      return <SpecialMoveInput key={uuidv4()} inputObj={isSpecialMoveInput} />;
-    if (isActionInput)
-      return <ActionInput key={uuidv4()} inputObj={isActionInput} />;
-    if (isMechInputs) return isMechInputs.name;
-    else if (
-      !isArrowLink &&
-      !isMoveInput &&
-      !isSpecialMoveInput &&
-      !isActionInput &&
-      !isMechInputs
-    )
-      return "unknown input";
-    else return recognizeInputs(input);
+    return;
   };
 
   const recognizeInputs = (input) => {
@@ -98,16 +159,17 @@ export const InputProvider = ({ children }) => {
     // map the array
     const inputArrayMap = inputArray.map((input) => {
       // check the input of each character
-      const remainInputObj = checkInput(input);
-      return remainInputObj;
+      return checkInput(input);
     });
 
     // if the input is recognized, return it
     return inputArrayMap;
+    // else return <UnknownInput />;
   };
 
   useEffect(() => {
     const inputArray = stringToArray(rawInput);
+    console.log(inputArray);
     const inputArrayMap = inputArray.map((input) => {
       // check if input is empty
       if (!input) return input;

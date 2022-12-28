@@ -1,3 +1,9 @@
 export const ArrowLink = ({ inputObj }) => {
-  return <div>ArrowLink</div>;
+  const { name, input, description, url } = inputObj;
+
+  return (
+    <div className="motion-input-container">
+      <img src={url} alt={name} />
+    </div>
+  );
 };
