@@ -10,18 +10,18 @@ const arrowLinks = [
     url: next,
   },
   {
-    name: "Link",
-    input: ",",
-    description:
-      "To perform a second action after the first action completely finishes its animation.",
-    url: link,
-  },
-  {
     name: "Cancel",
     input: ["->", "~"],
     description:
       "Bypass the remaining time or frames in an action by proceeding directly into another action.",
     url: cancel,
+  },
+  {
+    name: "Link",
+    input: ",",
+    description:
+      "To perform a second action after the first action completely finishes its animation.",
+    url: link,
   },
 ];
 

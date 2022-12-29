@@ -1,7 +1,13 @@
-import React from 'react'
+import logo from "../images/ui/Logo.svg";
 
 export const Header = () => {
   return (
-    <div>Header</div>
-  )
-}
+    <header className="header">
+      <img src={logo} alt="Fight Game Translator Logo" />
+      <h1>Fight Game Input Translator</h1>
+      <h3>
+        Translate <i>numpad notations</i> into <i>visual inputs</i>!
+      </h3>
+    </header>
+  );
+};

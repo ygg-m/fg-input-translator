@@ -1,8 +1,8 @@
-import dust from "../images/inputs/ActionDust.svg";
-import heavySlash from "../images/inputs/ActionHeavySlash.svg";
-import kick from "../images/inputs/ActionKick.svg";
-import punch from "../images/inputs/ActionPunch.svg";
-import slash from "../images/inputs/ActionSlash.svg";
+import dust from "../images/inputs/ActionDust.png";
+import heavySlash from "../images/inputs/ActionHeavySlash.png";
+import kick from "../images/inputs/ActionKick.png";
+import punch from "../images/inputs/ActionPunch.png";
+import slash from "../images/inputs/ActionSlash.png";
 
 const ggac_actionInputs = [
   {

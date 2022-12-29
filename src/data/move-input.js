@@ -1,6 +1,8 @@
 // images
+import backDash from "../images/inputs/Motion44.png";
 import neutral from "../images/inputs/Motion5.svg";
 import foward from "../images/inputs/Motion6.svg";
+import dash from "../images/inputs/Motion66.png";
 
 const moveInputs = [
   {
@@ -65,6 +67,20 @@ const moveInputs = [
     description: "",
     url: foward,
     style: ["-45deg", "1"],
+  },
+  {
+    name: "Dash",
+    input: 66,
+    description: "",
+    url: dash,
+    style: ["0deg", "1"],
+  },
+  {
+    name: "Back Dash",
+    input: 44,
+    description: "",
+    url: backDash,
+    style: ["0deg", "1"],
   },
 ];
 

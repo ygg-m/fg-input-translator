@@ -20,171 +20,211 @@ const InputContext = createContext();
 
 export const useInput = () => useContext(InputContext);
 
+const createMoveListRegex = (list) => {
+  // create a regex based on the move lists
+  const moves = list.map((move) => move.input);
+  const fixedMovesForRegex = moves.map((str) => {
+    // fix any special regex characters that need escape
+    const isArray = Array.isArray(str);
+    const isNumber = typeof str === "number";
+    if (isArray) return str.map((str) => str.replace(".", "\\."));
+    if (isNumber) return str;
+    else return str.replace(".", "\\.");
+  });
+
+  return new RegExp(`(${fixedMovesForRegex.join("|")})`);
+};
+const createArrowLinkRegex = (list) => {
+  const moves = list.map((move) => {
+    const { input } = move;
+    if (Array.isArray(input)) return input.join("");
+    else return input;
+  });
+  const regex = new RegExp(`[${moves.join("")}]`);
+  return regex;
+};
+
+// GUILTY GEAR AC+R
+const arrowLinkList = [">", "->", "~", ","];
+const inputRegex__Moves = createMoveListRegex(moveInputs);
+const inputRegex__Action = createMoveListRegex(ggac_actionInputs);
+const inputRegex__Mechs = createMoveListRegex(ggac_mechInputs);
+const inputRegex__SpecialMoves = createMoveListRegex(specialMoveInputs);
+const inputRegex__Arrow = createArrowLinkRegex(arrowLinks);
 export const InputProvider = ({ children }) => {
+  // States
   const [rawInput, setRawInput] = useState("");
   const [output, setOutput] = useState([]);
   const [gameInputs, setGameInputs] = useState(ggac_actionInputs);
   const [gameMechs, setGameMechs] = useState(ggac_mechInputs);
 
-  // ==============================================================
-  // ==============================================================
-  // ==============================================================
+  const [currentInput, setCurrentInput] = useState();
+  const [currentCombo, setCurrentCombo] = useState();
 
-  // trying to create logic
-  let currentInput; // uses rawInput to isolate the current input
-  let currentCombo; // uses rawInput to isolate the current combo
-  let currentOutput; // uses currentCombo to render the visual input before pushing into output
-
-  function checkInput2(currentInput) {
-    // check if the current input is:
-    // numberSequence
-    // characterSequence
-    // numberSequence + characterSequence
-    // undefinedCharacters
-
-    // return type
-    const inputType = "";
-    return inputType;
-  }
-
-
-  // search for the input inside proper JSON based on inputtType
-  function checkMoveInput(currentInput) {}
-  function checkActionInput(currentInput) {}
-  function checkSpecialInput(currentInput) {}
-
-  // create component based on the input checked above
-  function createMoveInput(inputType) {}
-  function createActionInput(inputType) {}
-  function createSpecialInput(inputType) {}
-
-  // create unknown input when input doesn't exist
-  function createUnknownInput(inputType) {}
-
-  // split the Input when it finds an arrow, based on RegExp
-  function splitInputs() {}
-
-  // 
-
-
-
-
-
-
-  // ==============================================================
-  // ==============================================================
-  // ==============================================================
-
-  // GUILTY GEAR AC+R
-  const arrowLinkList = [">", "->", "~", ","];
-
-  const stringToArray = (string, isCombo) => {
-    if (isCombo) return string.split("");
-
-    // create regex with arrowLinkList
-    // split based on regex characters
-    const regex = new RegExp(`(${arrowLinkList.join("|")})`);
-    return string.toLowerCase().replace(/ /g, "").split(regex);
-  };
-
-  const getMove = (array, input) => {
+  // Functions
+  const getMove = (array, userInput) => {
     // search move in JSON file based on input
     return array.find((item) => {
-      const inputIsArray = Array.isArray(item.input);
-      const inputIsNumber = typeof item.input === "number";
+      const { input } = item;
+      const inputIsArray = Array.isArray(input);
+      const inputIsNumber = typeof input === "number";
 
       if (inputIsArray)
-        return item.input.find((itemInput) => itemInput === input);
-      else if (inputIsNumber) return item.input.toString() === input;
-      else if (item.input) return item.input === input;
+        return input.find((itemInput) => itemInput === userInput);
+      else if (inputIsNumber) return input.toString() === userInput;
+      else if (input) return input === userInput;
       else return input;
     });
-  };
-
-  const checkCombo = (input) => {
-    // Regular expression to match numbers followed by a letter
-    const comboRegex = /(\d+)([a-z])/;
-    return input.match(comboRegex);
-  };
-
-  const createCombo = (comboInput) => {
-    // create array with the input
-    const comboInputList = [comboInput[1], comboInput[2]];
-    return (
-      <div className="combo-container" key={uuidv4()}>
-        {comboInputList.map((el) => checkInput(el))}
-      </div>
-    );
   };
 
   const checkInput = (input) => {
     // if input is empty, return the input, which should be ('')
     if (!input) return input;
     // get the move from JSON
-    const arrowLink = getMove(arrowLinks, input);
     const moveInput = getMove(moveInputs, input);
+    const arrowLink = getMove(arrowLinks, input);
     const spMoveInput = getMove(specialMoveInputs, input);
     const actionInput = getMove(gameInputs, input);
     const mechInputs = getMove(gameMechs, input);
+    const isArray = Array.isArray(input);
 
-    // return the move Object
-    if (arrowLink) return createInputComponent("arrow", arrowLink);
+    // // return the move Object
     if (moveInput) return createInputComponent("move", moveInput);
+    if (arrowLink) return createInputComponent("arrow", arrowLink);
     if (spMoveInput) return createInputComponent("spmove", spMoveInput);
     if (actionInput) return createInputComponent("action", actionInput);
     if (mechInputs) return createInputComponent("mech", mechInputs);
+    else if (isArray) return checkInputArray(input);
+    else return input;
   };
 
-  const createInputComponent = (type, obj) => {
+  function createInputComponent(type, obj) {
+    if (!obj) return "not found";
+
     switch (type) {
-      case "arrow":
-        return <ArrowLink key={uuidv4()} inputObj={obj} />;
       case "move":
-        return <MotionInput key={uuidv4()} inputObj={obj} />;
+        return <MotionInput inputObj={obj} key={uuidv4()} />;
       case "spmove":
-        return <SpecialMoveInput key={uuidv4()} inputObj={obj} />;
+        return <SpecialMoveInput inputObj={obj} key={uuidv4()} />;
+      case "arrow":
+        return <ArrowLink inputObj={obj} key={uuidv4()} />;
       case "action":
-        return <ActionInput key={uuidv4()} inputObj={obj} />;
+        return <ActionInput inputObj={obj} key={uuidv4()} />;
       case "mech":
-        return <MechInput key={uuidv4()} inputObj={obj} />;
+        return <MechInput inputObj={obj} key={uuidv4()} />;
       default:
-        console.log("invalid");
+        return <UnknownInput key={uuidv4()} />;
     }
-    return;
-  };
+  }
 
-  const recognizeInputs = (input) => {
-    // transform the unrecognizable input in an array
-    const inputArray = stringToArray(input, true);
-    // map the array
-    const inputArrayMap = inputArray.map((input) => {
-      // check the input of each character
-      return checkInput(input);
+  function checkSpecialInputs(arr) {
+    const characterRegex = new RegExp("[a-z]");
+    const newArray = arr.map((inputs) => {
+      let isSpecial = inputRegex__SpecialMoves.test(inputs);
+      let isMech = inputRegex__Mechs.test(inputs);
+      let isCharacter = characterRegex.test(inputs);
+      if (isSpecial)
+        return inputs
+          .split(inputRegex__SpecialMoves)
+          .filter((str) => str !== "");
+      if (isMech) {
+        return inputs.split(inputRegex__Mechs).filter((str) => {
+          if (typeof str === "undefined") return;
+          else return str !== "";
+        });
+
+        // return inputs.split(inputRegex__Mechs).filter((str) => str !== "");
+      } else if (isCharacter && !isMech && !isSpecial) {
+        return splitSpecialMoves(inputs);
+      } else return inputs;
     });
 
-    // if the input is recognized, return it
-    return inputArrayMap;
-    // else return <UnknownInput />;
-  };
+    return newArray;
+  }
 
+  function checkInputArray(array) {
+    return array.map((input) => checkInput(input));
+  }
+
+  function comboWrapper(arr) {
+    if (!arr) return;
+    const newArray = arr.map((el) => {
+      if (!inputRegex__Arrow.test(el.props?.inputObj?.input))
+        return (
+          <div className="combo-container" key={uuidv4()}>
+            {el}
+          </div>
+        );
+      else return el;
+    });
+
+    return newArray;
+  }
+
+  function splitSpecialMoves(input) {
+    const regex = new RegExp("[a-z]");
+
+    let str = input;
+    let arr = [];
+    let startIndex = 0;
+    let matches = input.match(regex);
+
+    for (let i = 0; i < matches.length; i++) {
+      let index = str.indexOf(matches[i], startIndex);
+      arr.push(str.slice(startIndex, index));
+      arr.push(matches[i]);
+      startIndex = index + 1;
+    }
+    arr.push(str.slice(startIndex));
+    return arr.filter((str) => str !== "");
+  }
+
+  function splitSpecial(str) {
+    let regex = inputRegex__SpecialMoves;
+    let arr = [];
+
+    while (true) {
+      let index = str.search(regex);
+      if (index === -1) {
+        arr.push(str);
+        break;
+      }
+      arr.push(str.slice(0, index));
+      arr.push(str.slice(index, index + 1));
+      str = str.slice(index + 1);
+    }
+
+    return arr;
+  }
+
+  function splitFollowUps(str) {
+    let regex = inputRegex__Arrow;
+    let arr = [];
+
+    // const input = checkInput(currentCombo);
+
+    while (true) {
+      let index = str.search(regex);
+      if (index === -1) {
+        arr.push(str);
+        break;
+      }
+      arr.push(str.slice(0, index));
+      arr.push(str.slice(index, index + 1));
+      str = str.slice(index + 1);
+    }
+
+    return arr;
+  }
+  // Render Effects
   useEffect(() => {
-    const inputArray = stringToArray(rawInput);
-    console.log(inputArray);
-    const inputArrayMap = inputArray.map((input) => {
-      // check if input is empty
-      if (!input) return input;
+    const cleanInputs = rawInput.toLowerCase().replace(/ /g, "");
+    const arr = splitFollowUps(cleanInputs);
+    const checkedSpecials = checkSpecialInputs(arr);
+    const checkedInputs = checkInputArray(checkedSpecials);
+    const comboArray = comboWrapper(checkedInputs);
 
-      // get input properties
-      const inputObj = checkInput(input);
-
-      const combo = checkCombo(input);
-      if (combo) return createCombo(combo);
-
-      // return input to array map
-      return inputObj;
-    });
-
-    setOutput(inputArrayMap);
+    setOutput(comboArray);
   }, [rawInput]);
 
   const value = { setRawInput, output };

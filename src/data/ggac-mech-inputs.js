@@ -1,3 +1,6 @@
+import doubleJump from "../images/inputs/MechDoubleJump.png";
+import iad from "../images/inputs/MechIAD.png";
+
 const ggac_mechInputs = [
   {
     name: "Land",
@@ -81,7 +84,7 @@ const ggac_mechInputs = [
     name: "Instant Air Dash",
     input: "iad",
     description: "",
-    url: "../images/inputs/Mech_InstantAirDash.svg",
+    url: iad,
   },
   {
     name: "Jump Install",
@@ -100,6 +103,13 @@ const ggac_mechInputs = [
     input: "frc",
     description: "",
     url: "../images/inputs/Mech_ForceRomanCancel.svg",
+  },
+  {
+    name: "Double Jump",
+    input: ["88", "dj."],
+    description: "",
+    url: doubleJump,
+    style: ["0deg", "1"],
   },
 ];
 
