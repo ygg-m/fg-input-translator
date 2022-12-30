@@ -1,9 +1,10 @@
+import { Logo } from "../components/Logo";
 import logo from "../images/ui/Logo.svg";
 
 export const Header = () => {
   return (
     <header className="header">
-      <img src={logo} alt="Fight Game Translator Logo" />
+      <Logo color="#444" />
       <h1>Fight Game Input Translator</h1>
       <span>beta 0.2</span>
       <h3>
