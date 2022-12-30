@@ -12,3 +12,12 @@
   justify-content: flex-start;
   gap: 2rem;
 }
+
+.input-container {
+  width: calc(100vw - 3rem);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}

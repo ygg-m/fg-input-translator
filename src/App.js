@@ -6,11 +6,13 @@ function App() {
   return (
     <div className="app-container">
       <Header />
-      <GameSelect />
-      <InputProvider>
-        <Input />
-        <Output />
-      </InputProvider>
+      <div className="input-container">
+        <GameSelect />
+        <InputProvider>
+          <Input />
+          <Output />
+        </InputProvider>
+      </div>
     </div>
   );
 }

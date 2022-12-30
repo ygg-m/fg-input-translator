@@ -1,7 +1,7 @@
 .output-container {
   padding: 0.5rem;
   min-height: 66px;
-  max-width: 80vw;
+  width: fit-content;
 
   border-radius: 1rem;
   outline: 1px solid #444;

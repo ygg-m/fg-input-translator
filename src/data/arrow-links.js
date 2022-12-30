@@ -1,6 +1,6 @@
-import cancel from "../images/inputs/ArrowCancel.svg";
-import link from "../images/inputs/ArrowLink.svg";
-import next from "../images/inputs/ArrowNext.svg";
+import cancel from "../images/inputs/ArrowCancel.png";
+import link from "../images/inputs/ArrowLink.png";
+import next from "../images/inputs/ArrowNext.png";
 
 const arrowLinks = [
   {

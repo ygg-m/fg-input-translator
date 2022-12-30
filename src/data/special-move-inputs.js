@@ -1,7 +1,7 @@
-import quarterCircle from "../images/inputs/Motion236.svg";
-import halfCircle from "../images/inputs/Motion41236.svg";
-import fullCircle from "../images/inputs/Motion41236987.svg";
-import dragonPunch from "../images/inputs/Motion623.svg";
+import quarterCircle from "../images/inputs/Motion236.png";
+import halfCircle from "../images/inputs/Motion41236.png";
+import fullCircle from "../images/inputs/Motion41236987.png";
+import dragonPunch from "../images/inputs/Motion623.png";
 
 const specialMoveInputs = [
   {
