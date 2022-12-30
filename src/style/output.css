@@ -23,6 +23,7 @@
 
 .combo-container {
   display: flex;
+  gap: 0.3rem;
   padding: 0.2rem 0.5rem;
   background-color: #333;
   border-radius: 0.8rem;

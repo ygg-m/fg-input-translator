@@ -87,7 +87,7 @@ export const InputProvider = ({ children }) => {
     const actionInput = getMove(gameInputs, input);
     const mechInputs = getMove(gameMechs, input);
     const isArray = Array.isArray(input);
-
+    const isString = typeof input === "string";
     // // return the move Object
     if (moveInput) return createInputComponent("move", moveInput);
     if (arrowLink) return createInputComponent("arrow", arrowLink);
@@ -95,6 +95,7 @@ export const InputProvider = ({ children }) => {
     if (actionInput) return createInputComponent("action", actionInput);
     if (mechInputs) return createInputComponent("mech", mechInputs);
     else if (isArray) return checkInputArray(input);
+    else if (isString) return checkInputArray(input.split(""));
     else return input;
   };
 
@@ -119,26 +120,31 @@ export const InputProvider = ({ children }) => {
 
   function checkSpecialInputs(arr) {
     const characterRegex = new RegExp("[a-z]");
+    const numberRegex = new RegExp("\\d");
     const newArray = arr.map((inputs) => {
       let isSpecial = inputRegex__SpecialMoves.test(inputs);
       let isMech = inputRegex__Mechs.test(inputs);
       let isCharacter = characterRegex.test(inputs);
+      let isNumber = numberRegex.test(inputs);
       if (isSpecial)
         return inputs
           .split(inputRegex__SpecialMoves)
           .filter((str) => str !== "");
+
       if (isMech) {
         return inputs.split(inputRegex__Mechs).filter((str) => {
           if (typeof str === "undefined") return;
           else return str !== "";
         });
+      }
 
-        // return inputs.split(inputRegex__Mechs).filter((str) => str !== "");
-      } else if (isCharacter && !isMech && !isSpecial) {
+      if (isCharacter && !isMech && !isSpecial)
         return splitSpecialMoves(inputs);
-      } else return inputs;
-    });
 
+      if (isNumber && !isMech && !isSpecial) {
+        return inputs;
+      } else return inputs.split("");
+    });
     return newArray;
   }
 
@@ -222,8 +228,10 @@ export const InputProvider = ({ children }) => {
     const arr = splitFollowUps(cleanInputs);
     const checkedSpecials = checkSpecialInputs(arr);
     const checkedInputs = checkInputArray(checkedSpecials);
+    const doubleCheckInputs = checkInputArray(checkedInputs);
     const comboArray = comboWrapper(checkedInputs);
 
+    console.log(doubleCheckInputs);
     setOutput(comboArray);
   }, [rawInput]);
 

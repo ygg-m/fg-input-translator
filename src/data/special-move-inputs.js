@@ -5,17 +5,17 @@ import dragonPunch from "../images/inputs/Motion623.png";
 
 const specialMoveInputs = [
   {
-    name: "Quarter Circle Foward",
-    input: 236,
+    name: "Full Circle Foward",
+    input: 41236987,
     description: "",
-    url: quarterCircle,
+    url: fullCircle,
     style: ["0deg", "1"],
   },
   {
-    name: "Quarter Circle Back",
-    input: 214,
+    name: "Full Circle Back",
+    input: 63214789,
     description: "",
-    url: quarterCircle,
+    url: fullCircle,
     style: ["0deg", "-1"],
   },
   {
@@ -33,17 +33,17 @@ const specialMoveInputs = [
     style: ["0deg", "-1"],
   },
   {
-    name: "Full Circle Foward",
-    input: 41236987,
+    name: "Quarter Circle Foward",
+    input: 236,
     description: "",
-    url: fullCircle,
+    url: quarterCircle,
     style: ["0deg", "1"],
   },
   {
-    name: "Full Circle Back",
-    input: 63214789,
+    name: "Quarter Circle Back",
+    input: 214,
     description: "",
-    url: fullCircle,
+    url: quarterCircle,
     style: ["0deg", "-1"],
   },
   {
