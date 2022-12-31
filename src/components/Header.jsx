@@ -6,7 +6,7 @@ export const Header = () => {
     <header className="header">
       <Logo color="#444" />
       <h1>Fight Game Input Translator</h1>
-      <span>beta 0.2</span>
+      <span>alpha</span>
       <h3>
         Translate <i>numpad notations</i> into <i>visual inputs</i>!
       </h3>

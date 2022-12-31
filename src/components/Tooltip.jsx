@@ -1,4 +1,4 @@
-export const Tooltip = ({ elRef, obj, visible }) => {
+export const Tooltip = ({ elRef, obj, visible, offset }) => {
   const { description, moreLink, moreName } = obj;
   const haveDescription = description?.length > 0;
   const haveKnowMore = moreLink?.length > 0;
@@ -11,7 +11,7 @@ export const Tooltip = ({ elRef, obj, visible }) => {
           visible ? "tooltip-container show" : "tooltip-container hidden"
         }
         style={{
-          bottom: elRef?.current?.offsetTop + 85,
+          bottom: elRef?.current?.offsetTop + offset,
           left: elRef?.current?.offsetLeft + elRef?.current?.offsetWidth / 2,
         }}
       >

@@ -1,7 +1,6 @@
 .output-container {
   cursor: default;
   padding: 0.5rem;
-  min-height: 66px;
   width: fit-content;
 
   border-radius: 1rem;
@@ -43,7 +42,7 @@
 }
 
 .mech.input-container > .input-name {
-  padding: 0 0.5rem;
+  padding: 0.2rem 0.5rem;
   background-color: #222;
   border-radius: 1rem;
 }

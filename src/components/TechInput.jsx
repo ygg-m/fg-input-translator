@@ -31,8 +31,15 @@ export const TechInput = ({ inputObj }) => {
         onClick={clickShowTooltip}
         className="mech input-container"
       >
-        <div className="input-name" ref={elementRef}>{name}</div>
-        <Tooltip elRef={elementRef} obj={inputObj} visible={tooltipVisible} />
+        <div className="input-name" ref={elementRef}>
+          {name}
+        </div>
+        <Tooltip
+          elRef={elementRef}
+          obj={inputObj}
+          visible={tooltipVisible}
+          offset={45}
+        />
       </div>
     );
 
@@ -46,7 +53,12 @@ export const TechInput = ({ inputObj }) => {
         className="motion input-container"
       >
         <img ref={elementRef} src={url} alt={name} />
-        <Tooltip elRef={elementRef} obj={inputObj} visible={tooltipVisible} />
+        <Tooltip
+          elRef={elementRef}
+          obj={inputObj}
+          visible={tooltipVisible}
+          offset={85}
+        />
       </div>
     );
   }
@@ -67,7 +79,12 @@ export const TechInput = ({ inputObj }) => {
           alt={name}
           style={{ transform: transform }}
         />
-        <Tooltip elRef={elementRef} obj={inputObj} visible={tooltipVisible} />
+        <Tooltip
+          elRef={elementRef}
+          obj={inputObj}
+          visible={tooltipVisible}
+          offset={65}
+        />
       </div>
     );
   }
