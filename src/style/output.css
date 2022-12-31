@@ -1,4 +1,5 @@
 .output-container {
+  cursor: default;
   padding: 0.5rem;
   min-height: 66px;
   width: fit-content;
@@ -12,7 +13,7 @@
 }
 
 .motion-input-container {
-  height: 3.5rem;
+  width: 2.5rem;
 }
 
 .motion-input-container > img {
@@ -23,8 +24,60 @@
 
 .combo-container {
   display: flex;
+  align-items: center;
   gap: 0.3rem;
   padding: 0.2rem 0.5rem;
   background-color: #333;
   border-radius: 0.8rem;
+}
+
+.input-container {
+  position: relative;
+}
+
+.mech.input-container {
+  width: fit-content;
+  padding: 0 0.5rem;
+  background-color: #222;
+  border-radius: 1rem;
+}
+
+.tooltip-container {
+  /* position */
+  position: absolute;
+  transform: translateX(-50%);
+
+  /* design */
+  width: 15rem;
+  height: fit-content;
+  border-radius: 0.5rem;
+  background-color: #111;
+  transition: 200ms;
+}
+
+.tooltip {
+  position: relative;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.tooltip::before {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 10px 10px 0;
+  border-style: solid;
+  border-color: #111 transparent;
+}
+
+.tooltip-container.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.tooltip-container.hidden {
+  visibility: hidden;
+  opacity: 0;
 }
