@@ -15,6 +15,7 @@
 
 .input-container {
   width: calc(100vw - 3rem);
+  max-width: 1200px;
 
   display: flex;
   flex-direction: column;
