@@ -15,13 +15,13 @@ The website is hosted by `GitHub Pages` at: https://ygg-m.github.io/fg-input-tra
 
 # 🎯 Goals
 
-- [ ] Read inputs
-- [ ] Print Inputs
-- [ ] Make Inputs easily shareable
-- [ ] Basic Inputs
-- [ ] Basic Combo Inputs
+- [x] Read inputs
+- [x] Print Inputs
+- [x] Basic Inputs
+- [x] Basic Combo Inputs
 - [ ] Long Combo Inputs
-- [ ] Variables (like air, dash, etc) with Combo Inputs
 - [ ] Complex Combo Inputs
+- [x] Variables (like air, dash, etc) with Combo Inputs
 - [ ] Unique Inputs
 - [ ] Add support to different games
+- [ ] Make Inputs easily shareable
