@@ -1,5 +1,5 @@
 export const Tooltip = ({ elRef, obj, visible, offset }) => {
-  const { description, moreLink, moreName } = obj;
+  const { description, input, moreLink, moreName } = obj;
   const haveDescription = description?.length > 0;
   const haveKnowMore = moreLink?.length > 0;
   const haveKnowMoreName = moreName?.length > 0;
@@ -16,6 +16,9 @@ export const Tooltip = ({ elRef, obj, visible, offset }) => {
         }}
       >
         <div className="tooltip">
+          <div className="tooltip-input">
+            Input: <span>{input}</span>
+          </div>
           <span>{description}</span>
           {haveKnowMore && (
             <a className="more-link" href={moreLink}>

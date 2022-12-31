@@ -75,6 +75,15 @@
   letter-spacing: 0;
 }
 
+.tooltip > .tooltip-input {
+  margin-bottom: 1rem;
+}
+
+.tooltip > .tooltip-input > span {
+  font-weight: bolder;
+  
+}
+
 .tooltip::before {
   content: "";
   position: absolute;
