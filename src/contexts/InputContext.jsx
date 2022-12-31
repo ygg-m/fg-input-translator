@@ -63,17 +63,20 @@ export const InputProvider = ({ children }) => {
 
   // Functions
   const getMove = (array, userInput) => {
+    const userInputIsArray = Array.isArray(userInput);
     // search move in JSON file based on input
     return array.find((item) => {
       const { input } = item;
       const inputIsArray = Array.isArray(input);
       const inputIsNumber = typeof input === "number";
 
-      if (inputIsArray)
-        return input.find((itemInput) => itemInput === userInput);
-      else if (inputIsNumber) return input.toString() === userInput;
-      else if (input) return input === userInput;
-      else return input;
+      if (!userInputIsArray) {
+        if (inputIsArray)
+          return input.find((itemInput) => itemInput === userInput);
+        else if (inputIsNumber) return input.toString() === userInput;
+        else if (input) return input === userInput;
+        else return input;
+      }
     });
   };
 
@@ -87,18 +90,35 @@ export const InputProvider = ({ children }) => {
     const actionInput = getMove(gameInputs, input);
     const mechInputs = getMove(gameMechs, input);
     const isArray = Array.isArray(input);
-    const isString = typeof input === "string";
-    // // return the move Object
+    const isString = typeof input === "string" && input.length > 2;
+    const allFalse =
+      !moveInput && !arrowLink && !spMoveInput && !actionInput && !mechInputs;
+    // return the move Object
     if (moveInput) return createInputComponent("move", moveInput);
     if (arrowLink) return createInputComponent("arrow", arrowLink);
     if (spMoveInput) return createInputComponent("spmove", spMoveInput);
     if (actionInput) return createInputComponent("action", actionInput);
     if (mechInputs) return createInputComponent("mech", mechInputs);
-    else if (isArray) return checkInputArray(input);
+    else if (isArray && allFalse) return checkInputArray(input);
     else if (isString) return checkInputArray(input.split(""));
     else return input;
   };
 
+  function checkInputArray(array) {
+    // get array and use checkInput in every element
+    const newArray = array.map((input) => {
+      const isArray = Array.isArray(input);
+      const isString = typeof input === "string" && input.length > 2;
+
+      if (isArray) return input.map((el) => checkInput(el));
+      if (isString) {
+        const stringToArray = input.split("");
+        return stringToArray.map((el) => checkInput(el));
+      }
+      return checkInput(input);
+    });
+    return newArray;
+  }
   function createInputComponent(type, obj) {
     if (!obj) return "not found";
 
@@ -146,10 +166,6 @@ export const InputProvider = ({ children }) => {
       } else return inputs.split("");
     });
     return newArray;
-  }
-
-  function checkInputArray(array) {
-    return array.map((input) => checkInput(input));
   }
 
   function comboWrapper(arr) {
@@ -228,10 +244,9 @@ export const InputProvider = ({ children }) => {
     const arr = splitFollowUps(cleanInputs);
     const checkedSpecials = checkSpecialInputs(arr);
     const checkedInputs = checkInputArray(checkedSpecials);
-    const doubleCheckInputs = checkInputArray(checkedInputs);
     const comboArray = comboWrapper(checkedInputs);
 
-    console.log(doubleCheckInputs);
+    console.log(checkedInputs);
     setOutput(comboArray);
   }, [rawInput]);
 
