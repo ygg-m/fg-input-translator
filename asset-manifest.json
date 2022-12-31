@@ -1,15 +1,17 @@
 {
   "files": {
-    "main.css": "/fg-input-translator/static/css/main.2100d8ac.css",
-    "main.js": "/fg-input-translator/static/js/main.7dfbdb98.js",
+    "main.css": "/fg-input-translator/static/css/main.f355922c.css",
+    "main.js": "/fg-input-translator/static/js/main.eddad59f.js",
     "static/js/787.9b8d6454.chunk.js": "/fg-input-translator/static/js/787.9b8d6454.chunk.js",
+    "static/media/Logo.svg": "/fg-input-translator/static/media/Logo.d8d7115dcec5e4c646954587658cf6cb.svg",
     "index.html": "/fg-input-translator/index.html",
-    "main.2100d8ac.css.map": "/fg-input-translator/static/css/main.2100d8ac.css.map",
-    "main.7dfbdb98.js.map": "/fg-input-translator/static/js/main.7dfbdb98.js.map",
+    "static/media/chevron-down.svg": "/fg-input-translator/static/media/chevron-down.9051f14edbf0c79188a6ff9fedccc9dd.svg",
+    "main.f355922c.css.map": "/fg-input-translator/static/css/main.f355922c.css.map",
+    "main.eddad59f.js.map": "/fg-input-translator/static/js/main.eddad59f.js.map",
     "787.9b8d6454.chunk.js.map": "/fg-input-translator/static/js/787.9b8d6454.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.2100d8ac.css",
-    "static/js/main.7dfbdb98.js"
+    "static/css/main.f355922c.css",
+    "static/js/main.eddad59f.js"
   ]
 }
