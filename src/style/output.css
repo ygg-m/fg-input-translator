@@ -56,9 +56,16 @@
 }
 
 .tooltip {
+  padding: 1rem 1.5rem;
   position: relative;
-  padding: 0.5rem 1rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.tooltip > span {
+  display: block;
+  width: fit-content;
+  text-transform: none;
+  letter-spacing: 0;
 }
 
 .tooltip::before {
@@ -80,4 +87,21 @@
 .tooltip-container.hidden {
   visibility: hidden;
   opacity: 0;
+}
+
+.more-link {
+  text-align: center;
+  display: block;
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  color: #46c2cb;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  outline: solid 1px #46c2cb;
+  transition: 200ms;
+}
+.more-link:hover {
+  color: #111;
+  background-color: #46c2cb;
 }
