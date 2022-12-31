@@ -10,6 +10,25 @@ header {
   border-bottom: solid 1px #333;
   gap: 1rem;
 }
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding-top: 1rem;
+}
+
+.social-links > a {
+  font-size: 1.5rem;
+  color: #444;
+  transition: 200ms;
+}
+
+.social-links > a:hover {
+  font-size: 1.5rem;
+  color: #46c2cb;
+  filter: drop-shadow(0 0 1rem rgb(72, 195, 203, 1));
+}
+
 .logoSVG {
   overflow: visible;
 }
@@ -28,12 +47,34 @@ header {
     drop-shadow(0 0 1rem rgb(72, 195, 203, 1));
 }
 
-span {
-  text-transform: uppercase;
+.logo-container {
+  position: relative;
+}
+
+.logo-container > .version-tag {
+  position: absolute;
+  top: -5px;
+  right: -28px;
+  padding: 0 0.5rem;
+  font-size: 0.75rem;
   letter-spacing: 2px;
+  text-transform: uppercase;
+  border-radius: 1rem;
+  background-color: #222;
+  outline: 1px solid #444;
+  color: #666;
+  transition: 200ms;
+}
+
+.logo-container:hover > .version-tag {
+  color: #111;
+  background-color: #46c2cb;
+  outline: 1px solid #46c2cb;
+  box-shadow: 0 0 2rem #46c2cb;
 }
 
 h1 {
+  position: relative;
   font-size: clamp(1.5rem, 7vw, 3rem);
   transition: 200ms;
 }
