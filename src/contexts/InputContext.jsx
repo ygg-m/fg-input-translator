@@ -1,13 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import {
-  ActionInput,
-  ArrowLink,
-  MechInput,
-  MotionInput,
-  SpecialMoveInput,
-  UnknownInput,
-} from "../components/index";
+import { TechInput } from "../components/index";
 import {
   arrowLinks,
   ggac_actionInputs,
@@ -94,11 +87,11 @@ export const InputProvider = ({ children }) => {
     const allFalse =
       !moveInput && !arrowLink && !spMoveInput && !actionInput && !mechInputs;
     // return the move Object
-    if (moveInput) return createInputComponent("move", moveInput);
-    if (arrowLink) return createInputComponent("arrow", arrowLink);
-    if (spMoveInput) return createInputComponent("spmove", spMoveInput);
-    if (actionInput) return createInputComponent("action", actionInput);
-    if (mechInputs) return createInputComponent("mech", mechInputs);
+    if (moveInput) return createInputComponent(moveInput);
+    if (arrowLink) return createInputComponent(arrowLink);
+    if (spMoveInput) return createInputComponent(spMoveInput);
+    if (actionInput) return createInputComponent(actionInput);
+    if (mechInputs) return createInputComponent(mechInputs);
     else if (isArray && allFalse) return checkInputArray(input);
     else if (isString) return checkInputArray(input.split(""));
     else return input;
@@ -108,7 +101,7 @@ export const InputProvider = ({ children }) => {
     // get array and use checkInput in every element
     const newArray = array.map((input) => {
       const isArray = Array.isArray(input);
-      const isString = typeof input === "string" && input.length > 2;
+      const isString = typeof input === "string" && input.length > 1;
 
       if (isArray) return input.map((el) => checkInput(el));
       if (isString) {
@@ -119,23 +112,10 @@ export const InputProvider = ({ children }) => {
     });
     return newArray;
   }
-  function createInputComponent(type, obj) {
+  function createInputComponent(obj) {
     if (!obj) return "not found";
 
-    switch (type) {
-      case "move":
-        return <MotionInput inputObj={obj} key={uuidv4()} />;
-      case "spmove":
-        return <SpecialMoveInput inputObj={obj} key={uuidv4()} />;
-      case "arrow":
-        return <ArrowLink inputObj={obj} key={uuidv4()} />;
-      case "action":
-        return <ActionInput inputObj={obj} key={uuidv4()} />;
-      case "mech":
-        return <MechInput inputObj={obj} key={uuidv4()} />;
-      default:
-        return <UnknownInput key={uuidv4()} />;
-    }
+    return <TechInput inputObj={obj} key={uuidv4()} />;
   }
 
   function checkSpecialInputs(arr) {
@@ -171,7 +151,9 @@ export const InputProvider = ({ children }) => {
   function comboWrapper(arr) {
     if (!arr) return;
     const newArray = arr.map((el) => {
-      if (!inputRegex__Arrow.test(el.props?.inputObj?.input))
+      const isArrow = !inputRegex__Arrow.test(el[0]?.props?.inputObj?.input);
+      console.log(el);
+      if (isArrow)
         return (
           <div className="combo-container" key={uuidv4()}>
             {el}

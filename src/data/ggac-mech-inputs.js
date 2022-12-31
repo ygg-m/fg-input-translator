@@ -30,7 +30,6 @@ const ggac_mechInputs = [
     name: "Close",
     input: "c.",
     description: "Player must be close to the target.",
-    url: "../images/inputs/Mech_Close.svg",
     moreLink: "https://www.dustloop.com/w/GGACR/A.B.A",
     moreName: "DustLoop",
   },
