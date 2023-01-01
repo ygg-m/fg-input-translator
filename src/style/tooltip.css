@@ -31,6 +31,7 @@
 
 .tooltip > .tooltip-input > span {
   font-weight: bolder;
+  color: #46c2cb;
 }
 
 .tooltip::before {
