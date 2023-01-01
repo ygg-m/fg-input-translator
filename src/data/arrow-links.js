@@ -6,12 +6,14 @@ const arrowLinks = [
   {
     name: "Normal Followup",
     input: ">",
+    regex: />/,
     description: "Proceed from the previous move to the following move.",
     url: next,
   },
   {
     name: "Cancel",
     input: ["->", "~"],
+    regex: /(->|~)/,
     description:
       "Bypass the remaining time or frames in an action by proceeding directly into another action.",
     url: cancel,
@@ -19,6 +21,7 @@ const arrowLinks = [
   {
     name: "Link",
     input: ",",
+    regex: /,/,
     description:
       "To perform a second action after the first action completely finishes its animation.",
     url: link,

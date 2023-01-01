@@ -7,6 +7,7 @@ const moveInputs = [
   {
     name: "Dash",
     input: 66,
+    regex: /66/,
     description: "",
     url: dash,
     style: ["0deg", "1"],
@@ -14,6 +15,7 @@ const moveInputs = [
   {
     name: "Back Dash",
     input: 44,
+    regex: /44/,
     description: "",
     url: dash,
     style: ["0deg", "-1"],
@@ -21,6 +23,7 @@ const moveInputs = [
   {
     name: "Down Back",
     input: 1,
+    regex: /1/,
     description: "",
     url: foward,
     style: ["-45deg", "-1"],
@@ -28,6 +31,7 @@ const moveInputs = [
   {
     name: "Down",
     input: 2,
+    regex: /2/,
     description: "",
     url: foward,
     style: ["90deg", "1"],
@@ -35,6 +39,7 @@ const moveInputs = [
   {
     name: "Down Foward",
     input: 3,
+    regex: /3/,
     description: "",
     url: foward,
     style: ["45deg", "1"],
@@ -42,6 +47,7 @@ const moveInputs = [
   {
     name: "Back",
     input: 4,
+    regex: /4/,
     description: "",
     url: foward,
     style: ["0deg", "-1"],
@@ -49,6 +55,7 @@ const moveInputs = [
   {
     name: "Stand",
     input: 5,
+    regex: /5/,
     description: "Neutral Stance.",
     url: neutral,
     style: "",
@@ -56,6 +63,7 @@ const moveInputs = [
   {
     name: "Foward",
     input: 6,
+    regex: /6/,
     description: "",
     url: foward,
     style: "",
@@ -63,6 +71,7 @@ const moveInputs = [
   {
     name: "Up Back",
     input: 7,
+    regex: /7/,
     description: "",
     url: foward,
     style: ["45deg", "-1"],
@@ -70,6 +79,7 @@ const moveInputs = [
   {
     name: "Up",
     input: 8,
+    regex: /8/,
     description: "",
     url: foward,
     style: ["-90deg", "1"],
@@ -77,6 +87,7 @@ const moveInputs = [
   {
     name: "Up Foward",
     input: 9,
+    regex: /9/,
     description: "",
     url: foward,
     style: ["-45deg", "1"],

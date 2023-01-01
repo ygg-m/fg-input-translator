@@ -3,32 +3,41 @@ import iad from "../images/inputs/MechIAD.png";
 
 const ggac_mechInputs = [
   {
+    name: "Throw",
+    input: "throw",
+    regex: /throw/,
+    description: "",
+    moreLink: "",
+    moreName: "",
+  },
+  {
     name: "Land",
     input: ["▷", "land"],
+    regex: /(▷|land)/,
     description: "Player must land at that point in the sequence.",
-    url: "../images/inputs/Mech_Land.svg",
     moreLink: "",
     moreName: "",
   },
   {
     name: "Delay",
     input: ["dl.", "delay"],
+    regex: /(dl\.|delay)/,
     description: "Delay the following move.",
-    url: "../images/inputs/Mech_Delay.svg",
     moreLink: "",
     moreName: "",
   },
   {
     name: "Whiff",
     input: ["whiff", "(whiff)"],
-    description: "The move must whiff (not hit).",
-    url: "../images/inputs/Mech_Delay.svg",
+    regex: /(whiff|\(whiff\))/,
+    description: "Whiff (not hit) the following move.",
     moreLink: "",
     moreName: "",
   },
   {
     name: "Close",
     input: "c.",
+    regex: /c\./,
     description: "Player must be close to the target.",
     moreLink: "https://www.dustloop.com/w/GGACR/A.B.A",
     moreName: "DustLoop",
@@ -36,6 +45,7 @@ const ggac_mechInputs = [
   {
     name: "Far",
     input: "f.",
+    regex: /f\./,
     description: "Player must be far from the target.",
     url: "../images/inputs/Mech_Far.svg",
     moreLink: "",
@@ -44,22 +54,16 @@ const ggac_mechInputs = [
   {
     name: "Jump",
     input: "j.",
+    regex: /j\./,
     description: "",
     url: "../images/inputs/Mech_Jump.svg",
     moreLink: "",
     moreName: "",
   },
   {
-    name: "Double Jump",
-    input: "dj.",
-    description: "",
-    url: "../images/inputs/Mech_DoubleJump.svg",
-    moreLink: "",
-    moreName: "",
-  },
-  {
     name: "High Jump / Super Jump",
     input: ["hj.", "sj."],
+    regex: /(hj\.|sj\.)/,
     description: "",
     url: "../images/inputs/Mech_HighJump.svg",
     moreLink: "",
@@ -68,6 +72,7 @@ const ggac_mechInputs = [
   {
     name: "High Jump Cancel / Super Jump Cancel",
     input: ["hjc", "sjc"],
+    regex: /(hjc\.|sjc\.)/,
     description: "",
     url: "../images/inputs/Mech_HighJump.svg",
     moreLink: "",
@@ -76,6 +81,7 @@ const ggac_mechInputs = [
   {
     name: "Dash Cancel",
     input: "dc",
+    regex: /dc/,
     description: "",
     url: "../images/inputs/Mech_DashCancel.svg",
     moreLink: "",
@@ -84,6 +90,7 @@ const ggac_mechInputs = [
   {
     name: "Air Dash Cancel",
     input: "adc",
+    regex: /adc/,
     description: "",
     url: "../images/inputs/Mech_AirDashCancel.svg",
     moreLink: "",
@@ -92,6 +99,7 @@ const ggac_mechInputs = [
   {
     name: "Counter Hit",
     input: "ch",
+    regex: /ch/,
     description: "",
     url: "../images/inputs/Mech_CounterHit.svg",
     moreLink: "",
@@ -100,6 +108,7 @@ const ggac_mechInputs = [
   {
     name: "Anti Air",
     input: "aa",
+    regex: /aa/,
     description: "",
     url: "../images/inputs/Mech_AntiAir.svg",
     moreLink: "",
@@ -108,6 +117,7 @@ const ggac_mechInputs = [
   {
     name: "Instant Air Dash",
     input: "iad",
+    regex: /iad/,
     description: "",
     url: iad,
     moreLink: "",
@@ -116,6 +126,7 @@ const ggac_mechInputs = [
   {
     name: "Jump Install",
     input: "ji",
+    regex: /ji/,
     description: "",
     url: "../images/inputs/Mech_JumpInstall.svg",
     moreLink: "",
@@ -124,6 +135,7 @@ const ggac_mechInputs = [
   {
     name: "Roman Cancel",
     input: "rc",
+    regex: /rc/,
     description: "",
     url: "../images/inputs/Mech_RomanCancel.svg",
     moreLink: "",
@@ -132,6 +144,7 @@ const ggac_mechInputs = [
   {
     name: "Force Roman Cancel",
     input: "frc",
+    regex: /frc/,
     description: "",
     url: "../images/inputs/Mech_ForceRomanCancel.svg",
     moreLink: "",
@@ -140,6 +153,7 @@ const ggac_mechInputs = [
   {
     name: "Double Jump",
     input: ["88", "dj."],
+    regex: /(88|dj\.)/,
     description: "",
     url: doubleJump,
     style: ["0deg", "1"],
