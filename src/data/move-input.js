@@ -5,6 +5,20 @@ import dash from "../images/inputs/Motion66.png";
 
 const moveInputs = [
   {
+    name: "Dash",
+    input: 66,
+    description: "",
+    url: dash,
+    style: ["0deg", "1"],
+  },
+  {
+    name: "Back Dash",
+    input: 44,
+    description: "",
+    url: dash,
+    style: ["0deg", "-1"],
+  },
+  {
     name: "Down Back",
     input: 1,
     description: "",
@@ -66,20 +80,6 @@ const moveInputs = [
     description: "",
     url: foward,
     style: ["-45deg", "1"],
-  },
-  {
-    name: "Dash",
-    input: 66,
-    description: "",
-    url: dash,
-    style: ["0deg", "1"],
-  },
-  {
-    name: "Back Dash",
-    input: 44,
-    description: "",
-    url: dash,
-    style: ["0deg", "-1"],
   },
 ];
 

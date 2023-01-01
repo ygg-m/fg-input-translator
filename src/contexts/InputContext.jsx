@@ -86,6 +86,8 @@ export const InputProvider = ({ children }) => {
     const isString = typeof input === "string" && input.length > 2;
     const allFalse =
       !moveInput && !arrowLink && !spMoveInput && !actionInput && !mechInputs;
+    console.log(input);
+
     // return the move Object
     if (moveInput) return createInputComponent(moveInput);
     if (arrowLink) return createInputComponent(arrowLink);
@@ -101,10 +103,11 @@ export const InputProvider = ({ children }) => {
     // get array and use checkInput in every element
     const newArray = array.map((input) => {
       const isArray = Array.isArray(input);
-      const isString = typeof input === "string" && input.length > 1;
+      const isSpecial = checkInput(input);
+      const isString = typeof input === "string" && input.length >= 2;
 
       if (isArray) return input.map((el) => checkInput(el));
-      if (isString) {
+      if (isString && !isSpecial) {
         const stringToArray = input.split("");
         return stringToArray.map((el) => checkInput(el));
       }
@@ -152,7 +155,6 @@ export const InputProvider = ({ children }) => {
     if (!arr) return;
     const newArray = arr.map((el) => {
       const isArrow = !inputRegex__Arrow.test(el[0]?.props?.inputObj?.input);
-      console.log(el);
       if (isArrow)
         return (
           <div className="combo-container" key={uuidv4()}>
@@ -228,7 +230,7 @@ export const InputProvider = ({ children }) => {
     const checkedInputs = checkInputArray(checkedSpecials);
     const comboArray = comboWrapper(checkedInputs);
 
-    console.log(checkedInputs);
+    console.log(checkedSpecials);
     setOutput(comboArray);
   }, [rawInput]);
 
