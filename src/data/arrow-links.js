@@ -4,19 +4,19 @@ import next from "../images/inputs/ArrowNext.png";
 
 const arrowLinks = [
   {
-    name: "Normal Followup",
-    input: ">",
-    regex: />/,
-    description: "Proceed from the previous move to the following move.",
-    url: next,
-  },
-  {
     name: "Cancel",
     input: ["->", "~"],
     regex: /(->|~)/,
     description:
       "Bypass the remaining time or frames in an action by proceeding directly into another action.",
     url: cancel,
+  },
+  {
+    name: "Normal Followup",
+    input: ">",
+    regex: />/,
+    description: "Proceed from the previous move to the following move.",
+    url: next,
   },
   {
     name: "Link",
