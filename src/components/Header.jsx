@@ -6,10 +6,10 @@ export const Header = () => {
     <header className="header">
       <div className="social-links">
         <a href="https://github.com/ygg-m/fg-input-translator">
-          <i class="fa-brands fa-github"></i>
+          <i className="fa-brands fa-github"></i>
         </a>
         <a href="https://discord.gg/ZapfK82Fjk">
-          <i class="fa-brands fa-discord"></i>
+          <i className="fa-brands fa-discord"></i>
         </a>
       </div>
       <Logo color="#444" />
