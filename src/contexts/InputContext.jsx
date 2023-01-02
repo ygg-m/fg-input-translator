@@ -191,7 +191,8 @@ export const InputProvider = ({ children }) => {
   function comboWrapper(arr) {
     if (!arr) return;
     const newArray = arr.map((el) => {
-      const isArrow = !inputRegex__Arrow.test(el[0]?.props?.inputObj?.input);
+      const regex = /(>|->|~|,)/;
+      const isArrow = !regex.test(el[0]?.props?.inputObj?.input);
       if (isArrow)
         return (
           <div className="combo-container" key={uuidv4()}>
@@ -222,22 +223,93 @@ export const InputProvider = ({ children }) => {
     return arr.filter((str) => str !== "");
   }
 
-  function splitSpecial(str) {
-    let regex = inputRegex__SpecialMoves;
-    let arr = [];
+  // function splitSpecial(str) {
+  //   let regex = inputRegex__SpecialMoves;
+  //   let arr = [];
 
-    while (true) {
-      let index = str.search(regex);
-      if (index === -1) {
-        arr.push(str);
-        break;
+  //   while (true) {
+  //     let index = str.search(regex);
+  //     if (index === -1) {
+  //       arr.push(str);
+  //       break;
+  //     }
+  //     arr.push(str.slice(0, index));
+  //     arr.push(str.slice(index, index + 1));
+  //     str = str.slice(index + 1);
+  //   }
+
+  //   return arr;
+  // }
+
+  function splitSpecial(arr) {
+    const mechs = matchRegex(ggac_mechInputs, arr);
+    const specials = matchRegex(specialMoveInputs, mechs);
+    const action = matchRegex(ggac_actionInputs, specials);
+    const motion = matchMoveRegex(action);
+
+    const result = motion;
+
+    return result;
+  }
+
+  function matchMoveRegex(arr) {
+    const regexp = /(66|44|1|2|3|4|5|6|7|8|9)/;
+    let results = [];
+
+    for (let str of arr) {
+      if (Array.isArray(str)) {
+        results.push(str);
+        continue;
       }
-      arr.push(str.slice(0, index));
-      arr.push(str.slice(index, index + 1));
-      str = str.slice(index + 1);
-    }
 
-    return arr;
+      let parts = [];
+      let index = 0;
+      let matches = str.match(regexp);
+      if (matches)
+        for (let match of matches) {
+          let split = str.slice(index).split(match);
+          parts.push(split[0], match);
+          index += split[0].length + match.length;
+        }
+      parts.push(str.slice(index));
+      const filtered = parts.filter((e) => e !== "");
+      results.push(filtered);
+    }
+    return results;
+  }
+
+  function matchRegex(list, arr) {
+    const regexpList = list.map((e) => e.regex);
+    let results = [];
+    for (let str of arr) {
+      if (Array.isArray(str)) {
+        results.push(str);
+        continue;
+      }
+      let found = false;
+      for (let regexp of regexpList) {
+        let matches = str.match(regexp);
+        if (matches) {
+          console.log(matches);
+          found = true;
+          let parts = [];
+          let index = 0;
+          for (let match of matches) {
+            let split = str.slice(index).split(match);
+            parts.push(split[0], match);
+            index += split[0].length + match.length;
+          }
+          parts.push(str.slice(index));
+          const filtered = parts.filter((e) => e !== "");
+          results.push(filtered);
+          break;
+        }
+      }
+      if (!found) {
+        results.push(str);
+      }
+    }
+    return results;
   }
 
   function splitFollowUps(str) {
@@ -249,24 +321,23 @@ export const InputProvider = ({ children }) => {
       let index = 0;
       for (let match of matches) {
         let split = str.slice(index).split(match);
+
         parts.push(split[0], match);
         index += split[0].length + match.length;
       }
       parts.push(str.slice(index));
-    }
-    console.log(parts);
+    } else parts.push(str);
     return parts;
   }
   // Render Effects
   useEffect(() => {
     const cleanInputs = rawInput.toLowerCase().replace(/ /g, "");
     const arr = splitFollowUps(cleanInputs);
-    const checkedSpecials = checkSpecialInputs(arr);
-    const checkedInputs = checkInputArray(checkedSpecials);
-    const comboArray = comboWrapper(checkedInputs);
-
-    // console.log(arr);
-    setOutput(comboArray);
+    const checkedSpecials = splitSpecial(arr);
+    // const checkedInputs = checkInputArray(checkedSpecials);
+    // const comboArray = comboWrapper(checkedInputs);
+    console.log(checkedSpecials);
+    // setOutput(comboArray);
   }, [rawInput]);
 
   const value = { setRawInput, output };
