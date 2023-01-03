@@ -1,5 +1,7 @@
 import doubleJump from "../images/inputs/MechDoubleJump.png";
+import frc from "../images/inputs/MechForceRomanCancel.png";
 import iad from "../images/inputs/MechIAD.png";
+import rc from "../images/inputs/MechRomanCancel.png";
 
 const ggac_mechInputs = [
   {
@@ -147,7 +149,7 @@ const ggac_mechInputs = [
     input: "frc",
     regex: /frc/,
     description: "",
-    url: "../images/inputs/Mech_ForceRomanCancel.svg",
+    url: frc,
     moreLink: "",
     moreName: "",
   },
@@ -156,7 +158,7 @@ const ggac_mechInputs = [
     input: "rc",
     regex: /rc/,
     description: "",
-    url: "../images/inputs/Mech_RomanCancel.svg",
+    url: rc,
     moreLink: "",
     moreName: "",
   },
