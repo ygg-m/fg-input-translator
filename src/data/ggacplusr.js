@@ -19,8 +19,39 @@ import slash from "../images/inputs/ActionSlash.png";
 //moves
 import neutral from "../images/inputs/Motion5.png";
 import foward from "../images/inputs/Motion6.png";
+// arrow links
+import cancel from "../images/inputs/ArrowCancel.png";
+import link from "../images/inputs/ArrowLink.png";
+import next from "../images/inputs/ArrowNext.png";
 
 const ggacplusr = [
+  // -------------------------------------------------------------------------
+  // arrow links
+  // -------------------------------------------------------------------------
+
+  {
+    name: "Normal Followup",
+    input: ">",
+    regex: />/g,
+    description: "Proceed from the previous move to the following move.",
+    url: next,
+  },
+  {
+    name: "Cancel",
+    input: ["->", "~"],
+    regex: /(->|~)/g,
+    description:
+      "Bypass the remaining time or frames in an action by proceeding directly into another action.",
+    url: cancel,
+  },
+  {
+    name: "Link",
+    input: ",",
+    regex: /,/g,
+    description:
+      "To perform a second action after the first action completely finishes its animation.",
+    url: link,
+  },
   // -------------------------------------------------------------------------
   // mechs
   // -------------------------------------------------------------------------
@@ -202,45 +233,6 @@ const ggacplusr = [
     moreName: "Dustloop",
   },
   // -------------------------------------------------------------------------
-  // actions
-  // -------------------------------------------------------------------------
-  {
-    name: "Punch",
-    input: "p",
-    regex: /p/,
-    description: "",
-    url: punch,
-  },
-  {
-    name: "Kick",
-    input: "k",
-    regex: /k/,
-    description: "",
-    url: kick,
-  },
-  {
-    name: "Slash",
-    input: "s",
-    regex: /s/,
-    description: "",
-    url: slash,
-  },
-  {
-    name: "Heavy Slash",
-    input: "h",
-    regex: /h/,
-    description: "",
-    url: heavySlash,
-  },
-  {
-    name: "Dust",
-    input: "d",
-    regex: /d/,
-    description: "",
-    url: dust,
-  },
-
-  // -------------------------------------------------------------------------
   // specials
   // -------------------------------------------------------------------------
   {
@@ -307,6 +299,45 @@ const ggacplusr = [
     url: dragonPunch,
     style: ["0deg", "-1"],
   },
+  // -------------------------------------------------------------------------
+  // actions
+  // -------------------------------------------------------------------------
+  {
+    name: "Punch",
+    input: "p",
+    regex: /p/,
+    description: "",
+    url: punch,
+  },
+  {
+    name: "Kick",
+    input: "k",
+    regex: /k/,
+    description: "",
+    url: kick,
+  },
+  {
+    name: "Slash",
+    input: "s",
+    regex: /s/,
+    description: "",
+    url: slash,
+  },
+  {
+    name: "Heavy Slash",
+    input: "h",
+    regex: /h/,
+    description: "",
+    url: heavySlash,
+  },
+  {
+    name: "Dust",
+    input: "d",
+    regex: /d/,
+    description: "",
+    url: dust,
+  },
+
   // -------------------------------------------------------------------------
   // moves
   // -------------------------------------------------------------------------
