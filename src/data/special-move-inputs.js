@@ -31,7 +31,7 @@ const specialMoveInputs = [
   {
     name: "Half Circle Back",
     input: 63214,
-    regex: /63214/,
+    regex: /63214/g,
     description: "",
     url: halfCircle,
     style: ["0deg", "-1"],

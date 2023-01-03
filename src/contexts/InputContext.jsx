@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import { TechInput } from "../components/index";
 import {
   arrowLinks,
+  ggacplusr,
   ggac_actionInputs,
   ggac_mechInputs,
   moveInputs,

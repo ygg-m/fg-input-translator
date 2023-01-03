@@ -1,25 +1,8 @@
 // images
 import neutral from "../images/inputs/Motion5.png";
 import foward from "../images/inputs/Motion6.png";
-import dash from "../images/inputs/Motion66.png";
 
 const moveInputs = [
-  {
-    name: "Dash",
-    input: 66,
-    regex: /66/,
-    description: "",
-    url: dash,
-    style: ["0deg", "1"],
-  },
-  {
-    name: "Back Dash",
-    input: 44,
-    regex: /44/,
-    description: "",
-    url: dash,
-    style: ["0deg", "-1"],
-  },
   {
     name: "Down Back",
     input: 1,
