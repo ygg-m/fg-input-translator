@@ -30,19 +30,19 @@ const ggacplusr = [
   // -------------------------------------------------------------------------
 
   {
+    name: "Cancel",
+    input: ["->", "~"],
+    regex: /->|~/g,
+    description:
+      "Bypass the remaining time or frames in an action by proceeding directly into another action.",
+    url: cancel,
+  },
+  {
     name: "Normal Followup",
     input: ">",
     regex: />/g,
     description: "Proceed from the previous move to the following move.",
     url: next,
-  },
-  {
-    name: "Cancel",
-    input: ["->", "~"],
-    regex: /(->|~)/g,
-    description:
-      "Bypass the remaining time or frames in an action by proceeding directly into another action.",
-    url: cancel,
   },
   {
     name: "Link",
