@@ -13,51 +13,6 @@ const InputContext = createContext();
 
 export const useInput = () => useContext(InputContext);
 
-const createMoveListRegex = (list) => {
-  // create a regex based on the move lists
-  const moves = list.map((move) => {
-    const regex = move.regex?.length > 0;
-    if (regex) return move.regex;
-    return move.input;
-  });
-  const fixedMovesForRegex = moves.map((str) => {
-    // fix any special regex characters that need escape
-    const isArray = Array.isArray(str);
-    const isNumber = typeof str === "number";
-    if (isArray) return str.map((str) => str.replace(".", "\\."));
-    if (isNumber) return str;
-    else return str.replace(".", "\\.");
-  });
-
-  return new RegExp(`(${fixedMovesForRegex.join("|")})`);
-};
-
-function fixRegex(input) {
-  const isArray = Array.isArray(input);
-  const isNumber = typeof input === "number";
-  if (isArray) return input.map((str) => str.replace(".", "\\."));
-  if (isNumber) return input;
-  else return input.replace(".", "\\.");
-}
-
-const createArrowLinkRegex = (list) => {
-  const moves = list.map((move) => {
-    const { input } = move;
-    if (Array.isArray(input)) return input.join("");
-    else return input;
-  });
-  const regex = new RegExp(`[${moves.join("")}]`);
-  return regex;
-};
-
-// GUILTY GEAR AC+R
-const arrowLinkList = [">", "->", "~", ","];
-const inputRegex__Moves = createMoveListRegex(moveInputs);
-const inputRegex__Action = createMoveListRegex(ggac_actionInputs);
-const inputRegex__Mechs = createMoveListRegex(ggac_mechInputs);
-const inputRegex__SpecialMoves = createMoveListRegex(specialMoveInputs);
-const inputRegex__Arrow = createArrowLinkRegex(arrowLinks);
-
 export const InputProvider = ({ children }) => {
   // States
   // Input
@@ -66,6 +21,7 @@ export const InputProvider = ({ children }) => {
   const [gameInputs, setGameInputs] = useState(ggac_actionInputs);
   const [gameMechs, setGameMechs] = useState(ggac_mechInputs);
 
+  // Functions
   function testRegex(list, input) {
     return list.find((move) => {
       if (move.regex.test(input)) return move;
@@ -87,105 +43,26 @@ export const InputProvider = ({ children }) => {
     else return;
   }
 
-  // Functions
-  const getMove = (array, userInput) => {
-    const userInputIsArray = Array.isArray(userInput);
-    // search move in JSON file based on input
-    return array.find((item) => {
-      const { input } = item;
-      const inputIsArray = Array.isArray(input);
-      const inputIsNumber = typeof input === "number";
-
-      if (!userInputIsArray) {
-        if (inputIsArray)
-          return input.find((itemInput) => itemInput === userInput);
-        else if (inputIsNumber) return input.toString() === userInput;
-        else if (input) return input === userInput;
-        else return input;
-      }
-    });
-  };
-
-  const checkInput = (input) => {
+  function checkInput(input) {
     // if input is empty, return the input, which should be ('')
     if (!input) return input;
 
-    const isArray = Array.isArray(input);
-    const isString = typeof input === "string" && input.length > 2;
-
-    // new logic
     const move = getMoveObject(input);
     if (move) return createInputComponent(move);
-
-    // get the move from JSON
-    const moveInput = getMove(moveInputs, input);
-    const arrowLink = getMove(arrowLinks, input);
-    const spMoveInput = getMove(specialMoveInputs, input);
-    const actionInput = getMove(gameInputs, input);
-    const mechInputs = getMove(gameMechs, input);
-    const allFalse =
-      !moveInput && !arrowLink && !spMoveInput && !actionInput && !mechInputs;
-    // return the move Object
-    if (moveInput) return createInputComponent(moveInput);
-    if (arrowLink) return createInputComponent(arrowLink);
-    if (spMoveInput) return createInputComponent(spMoveInput);
-    if (actionInput) return createInputComponent(actionInput);
-    if (mechInputs) return createInputComponent(mechInputs);
-    else if (isArray && allFalse) return checkInputArray(input);
-    else if (isString) return checkInputArray(input.split(""));
     else return input;
-  };
+  }
 
   function checkInputArray(array) {
-    // get array and use checkInput in every element
     const newArray = array.map((input) => {
-      const isArray = Array.isArray(input);
-      const isSpecial = checkInput(input);
-      const isString = typeof input === "string" && input.length >= 2;
-      if (isArray && !isSpecial) return input.map((el) => checkInput(el));
-      if (isString && !isSpecial) {
-        const stringToArray = input.split("");
-        return stringToArray.map((el) => checkInput(el));
-      }
-      return checkInput(input);
+      if (Array.isArray(input)) return input.map((e) => checkInput(e));
+      else return checkInput(input);
     });
     return newArray;
   }
+
   function createInputComponent(obj) {
     if (!obj) return "not found";
-
     return <TechInput inputObj={obj} key={uuidv4()} />;
-  }
-
-  function checkSpecialInputs(arr) {
-    const characterRegex = new RegExp("[a-z]");
-    const numberRegex = new RegExp("\\d");
-
-    const newArray = arr.map((inputs) => {
-      let isSpecial = inputRegex__SpecialMoves.test(inputs);
-      let isMech = inputRegex__Mechs.test(inputs);
-      let isCharacter = characterRegex.test(inputs);
-      let isNumber = numberRegex.test(inputs);
-      if (isSpecial && !isMech)
-        return inputs
-          .split(inputRegex__SpecialMoves)
-          .filter((str) => str !== "");
-
-      if (isMech) {
-        return inputs.split(inputRegex__Mechs).filter((str) => {
-          if (typeof str === "undefined") return;
-          else return str !== "";
-        });
-      }
-
-      if (isCharacter && !isMech && !isSpecial)
-        return splitSpecialMoves(inputs);
-
-      if (isNumber && !isMech && !isSpecial) {
-        return inputs;
-      } else return inputs.split("");
-    });
-    return newArray;
   }
 
   function comboWrapper(arr) {
@@ -204,42 +81,6 @@ export const InputProvider = ({ children }) => {
 
     return newArray;
   }
-
-  function splitSpecialMoves(input) {
-    const regex = new RegExp("[a-z]");
-
-    let str = input;
-    let arr = [];
-    let startIndex = 0;
-    let matches = input.match(regex);
-
-    for (let i = 0; i < matches.length; i++) {
-      let index = str.indexOf(matches[i], startIndex);
-      arr.push(str.slice(startIndex, index));
-      arr.push(matches[i]);
-      startIndex = index + 1;
-    }
-    arr.push(str.slice(startIndex));
-    return arr.filter((str) => str !== "");
-  }
-
-  // function splitSpecial(str) {
-  //   let regex = inputRegex__SpecialMoves;
-  //   let arr = [];
-
-  //   while (true) {
-  //     let index = str.search(regex);
-  //     if (index === -1) {
-  //       arr.push(str);
-  //       break;
-  //     }
-  //     arr.push(str.slice(0, index));
-  //     arr.push(str.slice(index, index + 1));
-  //     str = str.slice(index + 1);
-  //   }
-
-  //   return arr;
-  // }
 
   function splitSpecial(arr) {
     const mechs = matchRegex(ggac_mechInputs, arr);
@@ -290,7 +131,6 @@ export const InputProvider = ({ children }) => {
       for (let regexp of regexpList) {
         let matches = str.match(regexp);
         if (matches) {
-          console.log(matches);
           found = true;
           let parts = [];
           let index = 0;
@@ -329,15 +169,15 @@ export const InputProvider = ({ children }) => {
     } else parts.push(str);
     return parts;
   }
+
   // Render Effects
   useEffect(() => {
     const cleanInputs = rawInput.toLowerCase().replace(/ /g, "");
     const arr = splitFollowUps(cleanInputs);
     const checkedSpecials = splitSpecial(arr);
-    // const checkedInputs = checkInputArray(checkedSpecials);
-    // const comboArray = comboWrapper(checkedInputs);
-    console.log(checkedSpecials);
-    // setOutput(comboArray);
+    const checkedInputs = checkInputArray(checkedSpecials);
+    const comboArray = comboWrapper(checkedInputs);
+    setOutput(comboArray);
   }, [rawInput]);
 
   const value = { setRawInput, output };
