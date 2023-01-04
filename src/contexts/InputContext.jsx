@@ -59,6 +59,7 @@ export const InputProvider = ({ children }) => {
     if (!obj) return "not found";
     return <TechInput inputObj={obj} key={uuidv4()} />;
   }
+
   function splitFollowUps(str) {
     let regex = /(>|->|~|,)/g;
     const subStr = str.split(regex);
@@ -130,8 +131,31 @@ export const InputProvider = ({ children }) => {
     return newArray;
   }
 
+  function saveInLocalStorage() {
+    localStorage.setItem("rawInput", rawInput);
+  }
+
+  function extractParentheses(input) {
+    // Split the input string on any character that is not a letter, number, or parentheses
+    const parts = _.split(input, /[^\w()]/);
+
+    // Use map to iterate over the parts and wrap the ones that contain parentheses in a sub-array
+    return _.map(parts, (part) => {
+      if (/[()]/.test(part)) {
+        return [part];
+      }
+      return part;
+    });
+  }
+
   // Render Effects
   useEffect(() => {
+    const retrievedArray = localStorage.getItem("rawInput");
+    setRawInput(retrievedArray);
+  }, []);
+
+  useEffect(() => {
+    saveInLocalStorage();
     // set rawInput to lower case and remove empty spaces
     const cleanInputs = rawInput.toLowerCase().replace(/ /g, "");
     // split the string into an array separated on follow-ups
@@ -142,6 +166,10 @@ export const InputProvider = ({ children }) => {
     const splittedMoves = splitMoves(wrappedCombos);
     // get moves components
     const moves = checkInputArray(splittedMoves);
+
+    const input = "hello (world) 123";
+    const output = extractParentheses(input);
+    console.log(output);
 
     setOutput(moves);
   }, [rawInput]);
