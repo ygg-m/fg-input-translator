@@ -53,6 +53,64 @@ const ggacplusr = [
     url: link,
   },
   // -------------------------------------------------------------------------
+  // complex notations
+  // -------------------------------------------------------------------------
+  {
+    name: "Eddie Regular Shadow Release",
+    input: "-X-",
+    regex: /-.*?-/,
+    description:
+      "Release button with regular shadow (236P/K/S/H). This notation is only for Eddie from Guilty Gear.",
+    url: "",
+    moreLink: "https://www.dustloop.com/w/GGACR/Eddie/Combos#Eddie_Notation",
+    moreName: "Dustloop",
+  },
+  {
+    name: "Eddie Vice Shadow Release",
+    input: "#X#",
+    regex: /#.*?#/,
+    description:
+      "Release button using vice shadow (214H). This notation is only for Eddie from Guilty Gear.",
+    url: "",
+    moreLink: "https://www.dustloop.com/w/GGACR/Eddie/Combos#Eddie_Notation",
+    moreName: "Dustloop",
+  },
+  {
+    name: "Hold",
+    input: "[X]",
+    regex: /\[(.*?)\]/,
+    description: "Hold input.",
+    url: "",
+  },
+  {
+    name: "Release",
+    input: "]X[",
+    regex: /\](.*?)\[/,
+    description: "Release input.",
+    url: "",
+  },
+  {
+    name: "Repeat",
+    input: "[X]xN or [X > 236X]xN",
+    regex: /\[(.+)\]x(\d+)/,
+    description: "Repeat move or sequence N amount of times.",
+    url: "",
+  },
+  {
+    name: "Single / Multiple Hits",
+    input: "(N)",
+    regex: /\(\b\d\b\)/,
+    description: "Hit a move N times or move must deal N amount of hits.",
+    url: "",
+  },
+  {
+    name: "Optional",
+    input: "(X) or (X > 236X)",
+    regex: /\((.*?)\)/,
+    description: "Move or sequence is optional.",
+    url: "",
+  },
+  // -------------------------------------------------------------------------
   // mechs
   // -------------------------------------------------------------------------
   {
@@ -100,7 +158,7 @@ const ggacplusr = [
   {
     name: "Delay",
     input: ["dl.", "delay", "slight delay"],
-    regex: /dl\.|delay|slightdelay/,
+    regex: /dl\.|dl|delay|slightdelay/,
     description: "Delay the following move.",
     moreLink: "",
     moreName: "",
@@ -112,6 +170,15 @@ const ggacplusr = [
     description: "Whiff (not hit) the following move.",
     moreLink: "",
     moreName: "",
+  },
+  {
+    name: "Jump Cancel",
+    input: "jc.",
+    regex: /jc\.|jc/,
+    description: "Canceling a move with a jump.",
+    url: "",
+    moreLink: "https://glossary.infil.net/?t=Jump%20Cancel",
+    moreName: "Fighting Game Glossary",
   },
   {
     name: "Close",
@@ -181,19 +248,20 @@ const ggacplusr = [
     name: "Counter Hit",
     input: "ch",
     regex: /ch/,
-    description: "",
+    description: "Hitting someone while they are in the startup of an attack. ",
     url: "",
-    moreLink: "",
-    moreName: "",
+    moreLink: "https://glossary.infil.net/?t=Counter%20Hit",
+    moreName: "Fighting Game Glossary",
   },
   {
     name: "Anti Air",
     input: "aa",
     regex: /aa/,
-    description: "",
+    description:
+      "Hitting someone who is jumping at you while you are on the ground.",
     url: "",
-    moreLink: "",
-    moreName: "",
+    moreLink: "https://glossary.infil.net/?t=Anti-Air",
+    moreName: "Fighting Game Glossary",
   },
   {
     name: "Instant Air Dash",
@@ -201,8 +269,8 @@ const ggacplusr = [
     regex: /iad/,
     description: "",
     url: iad,
-    moreLink: "",
-    moreName: "",
+    moreLink: "https://www.dustloop.com/w/GGACR/Movement#Air_Movement",
+    moreName: "Dustloop",
   },
   {
     name: "Jump Install",
@@ -210,8 +278,8 @@ const ggacplusr = [
     regex: /ji/,
     description: "",
     url: "",
-    moreLink: "",
-    moreName: "",
+    moreLink: "https://www.dustloop.com/w/GGACR/Movement#Jump_Install",
+    moreName: "Dustloop",
   },
   {
     name: "Force Roman Cancel",
