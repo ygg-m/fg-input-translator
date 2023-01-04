@@ -1,5 +1,5 @@
 import { Logo } from "../components/Logo";
-import logo from "../images/ui/Logo.svg";
+import { ReactComponent as Kofi } from "../images/ui/kofi.svg";
 
 export const Header = () => {
   return (
@@ -10,6 +10,9 @@ export const Header = () => {
         </a>
         <a href="https://discord.gg/ZapfK82Fjk">
           <i className="fa-brands fa-discord"></i>
+        </a>
+        <a href="https://ko-fi.com/yggm_">
+          <Kofi />
         </a>
       </div>
       <Logo color="#444" />

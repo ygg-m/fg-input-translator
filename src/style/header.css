@@ -18,13 +18,24 @@ header {
 }
 
 .social-links > a {
+  width: 2rem;
+  height: 2rem;
   font-size: 1.5rem;
   color: #444;
   transition: 200ms;
 }
 
-.social-links > a:hover {
+.social-links > a > svg {
+  fill: #444;
+  width: 100%;
+  height: 100%;
+  transition: 200ms;
+}
+
+.social-links > a:hover,
+.social-links > a:hover > svg {
   font-size: 1.5rem;
+  fill: #46c2cb;
   color: #46c2cb;
   filter: drop-shadow(0 0 1rem rgb(72, 195, 203, 1));
 }
