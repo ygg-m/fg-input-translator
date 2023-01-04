@@ -130,16 +130,6 @@ const ggacplusr = [
     moreLink: "",
     moreName: "",
   },
-
-  {
-    name: "Jump",
-    input: "j.",
-    regex: /j\./,
-    description: "",
-    url: "",
-    moreLink: "",
-    moreName: "",
-  },
   {
     name: "High Jump / Super Jump",
     input: ["hj.", "sj."],
@@ -149,6 +139,15 @@ const ggacplusr = [
     url: "",
     moreLink: "https://www.dustloop.com/w/GGACR/Mechanics#High_Jump",
     moreName: "Dustloop",
+  },
+  {
+    name: "Jump",
+    input: "j.",
+    regex: /j\./,
+    description: "",
+    url: "",
+    moreLink: "",
+    moreName: "",
   },
   {
     name: "High Jump Cancel / Super Jump Cancel",
