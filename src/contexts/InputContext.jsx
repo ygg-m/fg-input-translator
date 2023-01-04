@@ -167,6 +167,9 @@ export const InputProvider = ({ children }) => {
     // get moves components
     const moves = checkInputArray(splittedMoves);
 
+    // =========================
+    // TESTS
+    // =========================
     const input = "hello (world) 123";
     const output = extractParentheses(input);
     console.log(output);
