@@ -42,26 +42,46 @@ export const InputProvider = ({ children }) => {
     );
   }
 
+  function moveIsComplexCheck(input) {
+    const regexList = [
+      /-.*?-/,
+      /#.*?#/,
+      /\[(.*?)\]/,
+      /\](.*?)\[/,
+      /\[(.+)\]x(\d+)/,
+      /\(\b\d\b\)/,
+      /\((.*?)\)/,
+    ];
+    let isComplex = false;
+    for (let regexp of regexList) {
+      if (regexp.test(input)) isComplex = true;
+    }
+    return isComplex;
+  }
+
   function createInput(input) {
     // if input is empty, return the input, which should be ('')
     if (!input) return input;
-
     // try to get the move object by testing it's regex against the input
     const move = testRegex(gameInputs, input);
+    const complex = moveIsComplexCheck(input);
+
     // if the move is valid, create the component with the object
+    if (complex) return createInputComponent(move, input);
     if (move) return createInputComponent(move);
     // else, return the input as it is
     else return input;
   }
 
-  function createInputComponent(obj) {
+  function createInputComponent(obj, input) {
     // if there's no obj, return not found
     if (!obj) return "not found";
-    return <TechInput inputObj={obj} key={uuidv4()} />;
+    if (!input) return <TechInput inputObj={obj} key={uuidv4()} />;
+    if (input) return <TechInput input={input} inputObj={obj} key={uuidv4()} />;
   }
 
   function splitFollowUps(str) {
-    let regex = /(>|->|~|,)/g;
+    let regex = /(>|(?<!-*?)->|~|,)/g;
     return str.split(regex);
   }
 
@@ -150,8 +170,7 @@ export const InputProvider = ({ children }) => {
     // Use map to iterate over the parts and wrap the ones that contain parentheses in a sub-array
     return _.map(parts, (part) => {
       if (/[()]/.test(part)) {
-        const isNumber = testIfNumber(part);
-        console.log(isNumber);
+        const isNumber_OneDigit = testIfNumber(part);
         return [part];
       }
       return part;
@@ -187,10 +206,7 @@ export const InputProvider = ({ children }) => {
     // =========================
     // TESTS
     // =========================
-    const input = "hello (2) 123";
-    const output = dealWithParenthesis(input);
-    console.log(output);
-
+    console.log(complexSolved);
     setOutput(moves);
   }, [rawInput]);
 
