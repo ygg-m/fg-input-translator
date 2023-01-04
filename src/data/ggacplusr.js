@@ -32,6 +32,7 @@ const ggacplusr = [
   {
     name: "Cancel",
     input: ["->", "~"],
+    type: "follow-up",
     regex: /->|~/g,
     description:
       "Bypass the remaining time or frames in an action by proceeding directly into another action.",
@@ -40,6 +41,7 @@ const ggacplusr = [
   {
     name: "Normal Followup",
     input: ">",
+    type: "follow-up",
     regex: />/g,
     description: "Proceed from the previous move to the following move.",
     url: next,
@@ -47,6 +49,7 @@ const ggacplusr = [
   {
     name: "Link",
     input: ",",
+    type: "follow-up",
     regex: /,/g,
     description:
       "To perform a second action after the first action completely finishes its animation.",
@@ -58,6 +61,7 @@ const ggacplusr = [
   {
     name: "Eddie Regular Shadow Release",
     input: "-X-",
+    type: "mech-complex",
     regex: /-.*?-/,
     description:
       "Release button with regular shadow (236P/K/S/H). This notation is only for Eddie from Guilty Gear.",
@@ -68,6 +72,7 @@ const ggacplusr = [
   {
     name: "Eddie Vice Shadow Release",
     input: "#X#",
+    type: "mech-complex",
     regex: /#.*?#/,
     description:
       "Release button using vice shadow (214H). This notation is only for Eddie from Guilty Gear.",
@@ -76,8 +81,17 @@ const ggacplusr = [
     moreName: "Dustloop",
   },
   {
+    name: "Repeat",
+    input: "[X]xN or [X > 236X]xN",
+    type: "mech-complex",
+    regex: /\[(.+)\]x(\d+)/,
+    description: "Repeat move or sequence N amount of times.",
+    url: "",
+  },
+  {
     name: "Hold",
     input: "[X]",
+    type: "mech-complex",
     regex: /\[(.*?)\]/,
     description: "Hold input.",
     url: "",
@@ -85,20 +99,15 @@ const ggacplusr = [
   {
     name: "Release",
     input: "]X[",
+    type: "mech-complex",
     regex: /\](.*?)\[/,
     description: "Release input.",
     url: "",
   },
   {
-    name: "Repeat",
-    input: "[X]xN or [X > 236X]xN",
-    regex: /\[(.+)\]x(\d+)/,
-    description: "Repeat move or sequence N amount of times.",
-    url: "",
-  },
-  {
     name: "Single / Multiple Hits",
     input: "(N)",
+    type: "mech-complex",
     regex: /\(\b\d\b\)/,
     description: "Hit a move N times or move must deal N amount of hits.",
     url: "",
@@ -106,6 +115,7 @@ const ggacplusr = [
   {
     name: "Optional",
     input: "(X) or (X > 236X)",
+    type: "mech-complex",
     regex: /\((.*?)\)/,
     description: "Move or sequence is optional.",
     url: "",
@@ -116,6 +126,7 @@ const ggacplusr = [
   {
     name: "Dash",
     input: 66,
+    type: "mech",
     regex: /66|\(66\)/,
     description: "",
     url: dash,
@@ -124,6 +135,7 @@ const ggacplusr = [
   {
     name: "Back Dash",
     input: 44,
+    type: "mech",
     regex: /44/,
     description: "",
     url: dash,
@@ -132,6 +144,7 @@ const ggacplusr = [
   {
     name: "Double Jump",
     input: ["88", "dj."],
+    type: "mech",
     regex: /88|dj./,
     description: "",
     url: doubleJump,
@@ -142,6 +155,7 @@ const ggacplusr = [
   {
     name: "Throw",
     input: "throw",
+    type: "mech",
     regex: /throw/,
     description: "4H or 6H within close proximity of an opponent",
     moreLink: "https://www.dustloop.com/w/GGACR/Mechanics#Throws",
@@ -150,6 +164,7 @@ const ggacplusr = [
   {
     name: "Land",
     input: ["▷", "land"],
+    type: "mech",
     regex: /▷|land/,
     description: "Player must land at that point in the sequence.",
     moreLink: "",
@@ -158,6 +173,7 @@ const ggacplusr = [
   {
     name: "Delay",
     input: ["dl.", "delay", "slight delay"],
+    type: "mech",
     regex: /dl\.|dl|delay|slightdelay/,
     description: "Delay the following move.",
     moreLink: "",
@@ -166,6 +182,7 @@ const ggacplusr = [
   {
     name: "Whiff",
     input: ["whiff", "(whiff)"],
+    type: "mech",
     regex: /whiff|\(whiff\)/,
     description: "Whiff (not hit) the following move.",
     moreLink: "",
@@ -174,6 +191,7 @@ const ggacplusr = [
   {
     name: "Jump Cancel",
     input: "jc.",
+    type: "mech",
     regex: /jc\.|jc/,
     description: "Canceling a move with a jump.",
     url: "",
@@ -183,6 +201,7 @@ const ggacplusr = [
   {
     name: "Close",
     input: "c.",
+    type: "mech",
     regex: /c\./,
     description: "Player must be close to the target.",
     moreLink: "https://www.dustloop.com/w/GGACR/A.B.A",
@@ -191,6 +210,7 @@ const ggacplusr = [
   {
     name: "Far",
     input: "f.",
+    type: "mech",
     regex: /f\./,
     description: "Player must be far from the target.",
     url: "",
@@ -200,6 +220,7 @@ const ggacplusr = [
   {
     name: "High Jump / Super Jump",
     input: ["hj.", "sj."],
+    type: "mech",
     regex: /hj\.|sj\./,
     description:
       "Any Downward Direction > Any Upward Direction while on the ground",
@@ -210,6 +231,7 @@ const ggacplusr = [
   {
     name: "Jump",
     input: "j.",
+    type: "mech",
     regex: /j\./,
     description: "",
     url: "",
@@ -219,6 +241,7 @@ const ggacplusr = [
   {
     name: "High Jump Cancel / Super Jump Cancel",
     input: ["hjc", "sjc"],
+    type: "mech",
     regex: /hjc\.|sjc\./,
     description:
       "Any Downward Direction > Any Upward Direction while on the ground",
@@ -229,6 +252,7 @@ const ggacplusr = [
   {
     name: "Dash Cancel",
     input: "dc",
+    type: "mech",
     regex: /dc/,
     description: "",
     url: "",
@@ -238,6 +262,7 @@ const ggacplusr = [
   {
     name: "Air Dash Cancel",
     input: "adc",
+    type: "mech",
     regex: /adc/,
     description: "",
     url: "",
@@ -247,6 +272,7 @@ const ggacplusr = [
   {
     name: "Counter Hit",
     input: "ch",
+    type: "mech",
     regex: /ch/,
     description: "Hitting someone while they are in the startup of an attack. ",
     url: "",
@@ -256,6 +282,7 @@ const ggacplusr = [
   {
     name: "Anti Air",
     input: "aa",
+    type: "mech",
     regex: /aa/,
     description:
       "Hitting someone who is jumping at you while you are on the ground.",
@@ -266,6 +293,7 @@ const ggacplusr = [
   {
     name: "Instant Air Dash",
     input: "iad",
+    type: "mech",
     regex: /iad/,
     description: "",
     url: iad,
@@ -275,6 +303,7 @@ const ggacplusr = [
   {
     name: "Jump Install",
     input: "ji",
+    type: "mech",
     regex: /ji/,
     description: "",
     url: "",
@@ -284,6 +313,7 @@ const ggacplusr = [
   {
     name: "Force Roman Cancel",
     input: "frc",
+    type: "mech",
     regex: /frc/,
     description: "3 Attack Buttons, Except for D, During Valid FRC Window",
     url: frc,
@@ -293,6 +323,7 @@ const ggacplusr = [
   {
     name: "Roman Cancel",
     input: "rc",
+    type: "mech",
     regex: /rc/,
     description: "3 Attack Buttons, Except for D, After an Attack Connects",
     url: rc,
@@ -305,6 +336,7 @@ const ggacplusr = [
   {
     name: "Full Circle Foward",
     input: 41236987,
+    type: "special",
     regex: /41236987/,
     description: "",
     url: fullCircle,
@@ -313,6 +345,7 @@ const ggacplusr = [
   {
     name: "Full Circle Back",
     input: 63214789,
+    type: "special",
     regex: /63214789/,
     description: "",
     url: fullCircle,
@@ -321,6 +354,7 @@ const ggacplusr = [
   {
     name: "Half Circle Foward",
     input: 41236,
+    type: "special",
     regex: /41236/,
     description: "",
     url: halfCircle,
@@ -329,6 +363,7 @@ const ggacplusr = [
   {
     name: "Half Circle Back",
     input: 63214,
+    type: "special",
     regex: /63214/,
     description: "",
     url: halfCircle,
@@ -337,6 +372,7 @@ const ggacplusr = [
   {
     name: "Quarter Circle Foward",
     input: 236,
+    type: "special",
     regex: /236/,
     description: "",
     url: quarterCircle,
@@ -345,6 +381,7 @@ const ggacplusr = [
   {
     name: "Quarter Circle Back",
     input: 214,
+    type: "special",
     regex: /214/,
     description: "",
     url: quarterCircle,
@@ -353,6 +390,7 @@ const ggacplusr = [
   {
     name: "Dragon Punch Foward",
     input: 623,
+    type: "special",
     regex: /623/,
     description: "",
     url: dragonPunch,
@@ -361,6 +399,7 @@ const ggacplusr = [
   {
     name: "Dragon Punch Back",
     input: 421,
+    type: "special",
     regex: /421/,
     description: "",
     url: dragonPunch,
@@ -372,6 +411,7 @@ const ggacplusr = [
   {
     name: "Punch",
     input: "p",
+    type: "action",
     regex: /p/,
     description: "",
     url: punch,
@@ -379,6 +419,7 @@ const ggacplusr = [
   {
     name: "Kick",
     input: "k",
+    type: "action",
     regex: /k/,
     description: "",
     url: kick,
@@ -386,6 +427,7 @@ const ggacplusr = [
   {
     name: "Slash",
     input: "s",
+    type: "action",
     regex: /s/,
     description: "",
     url: slash,
@@ -393,6 +435,7 @@ const ggacplusr = [
   {
     name: "Heavy Slash",
     input: "h",
+    type: "action",
     regex: /h/,
     description: "",
     url: heavySlash,
@@ -400,6 +443,7 @@ const ggacplusr = [
   {
     name: "Dust",
     input: "d",
+    type: "action",
     regex: /d/,
     description: "",
     url: dust,
@@ -411,6 +455,7 @@ const ggacplusr = [
   {
     name: "Down Back",
     input: 1,
+    type: "movement",
     regex: /1/,
     description: "",
     url: foward,
@@ -419,6 +464,7 @@ const ggacplusr = [
   {
     name: "Down",
     input: 2,
+    type: "movement",
     regex: /2/,
     description: "",
     url: foward,
@@ -427,6 +473,7 @@ const ggacplusr = [
   {
     name: "Down Foward",
     input: 3,
+    type: "movement",
     regex: /3/,
     description: "",
     url: foward,
@@ -435,6 +482,7 @@ const ggacplusr = [
   {
     name: "Back",
     input: 4,
+    type: "movement",
     regex: /4/,
     description: "",
     url: foward,
@@ -443,6 +491,7 @@ const ggacplusr = [
   {
     name: "Stand",
     input: 5,
+    type: "movement",
     regex: /5/,
     description: "Neutral Stance.",
     url: neutral,
@@ -451,6 +500,7 @@ const ggacplusr = [
   {
     name: "Foward",
     input: 6,
+    type: "movement",
     regex: /6/,
     description: "",
     url: foward,
@@ -459,6 +509,7 @@ const ggacplusr = [
   {
     name: "Up Back",
     input: 7,
+    type: "movement",
     regex: /7/,
     description: "",
     url: foward,
@@ -467,6 +518,7 @@ const ggacplusr = [
   {
     name: "Up",
     input: 8,
+    type: "movement",
     regex: /8/,
     description: "",
     url: foward,
@@ -475,6 +527,7 @@ const ggacplusr = [
   {
     name: "Up Foward",
     input: 9,
+    type: "movement",
     regex: /9/,
     description: "",
     url: foward,
