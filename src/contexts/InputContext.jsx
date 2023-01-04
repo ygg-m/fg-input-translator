@@ -62,8 +62,7 @@ export const InputProvider = ({ children }) => {
 
   function splitFollowUps(str) {
     let regex = /(>|->|~|,)/g;
-    const subStr = str.split(regex);
-    return subStr;
+    return str.split(regex);
   }
 
   function wrapCombos(arr) {
@@ -135,17 +134,33 @@ export const InputProvider = ({ children }) => {
     localStorage.setItem("rawInput", rawInput);
   }
 
-  function extractParentheses(input) {
+  function checkComplexMechs(array) {
+    const newArr = array.map((e) => {
+      dealWithParenthesis(e);
+      return e;
+    });
+
+    return newArr;
+  }
+
+  function dealWithParenthesis(input) {
     // Split the input string on any character that is not a letter, number, or parentheses
     const parts = _.split(input, /[^\w()]/);
 
     // Use map to iterate over the parts and wrap the ones that contain parentheses in a sub-array
     return _.map(parts, (part) => {
       if (/[()]/.test(part)) {
+        const isNumber = testIfNumber(part);
+        console.log(isNumber);
         return [part];
       }
       return part;
     });
+  }
+
+  function testIfNumber(str) {
+    const match = str.match(/\b\d\b/);
+    if (match) return true;
   }
 
   // Render Effects
@@ -160,8 +175,10 @@ export const InputProvider = ({ children }) => {
     const cleanInputs = rawInput.toLowerCase().replace(/ /g, "");
     // split the string into an array separated on follow-ups
     const arr = splitFollowUps(cleanInputs);
+    // check inputs for complex or notations
+    const complexSolved = checkComplexMechs(arr);
     // wrap everything that's not a followup as a combo
-    const wrappedCombos = wrapCombos(arr);
+    const wrappedCombos = wrapCombos(complexSolved);
     // split the moves
     const splittedMoves = splitMoves(wrappedCombos);
     // get moves components
@@ -170,8 +187,8 @@ export const InputProvider = ({ children }) => {
     // =========================
     // TESTS
     // =========================
-    const input = "hello (world) 123";
-    const output = extractParentheses(input);
+    const input = "hello (2) 123";
+    const output = dealWithParenthesis(input);
     console.log(output);
 
     setOutput(moves);
