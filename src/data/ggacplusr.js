@@ -99,8 +99,8 @@ const ggacplusr = [
   },
   {
     name: "Delay",
-    input: ["dl.", "delay", "slightdelay"],
-    regex: /dl\.|delay|slight delay/,
+    input: ["dl.", "delay", "slight delay"],
+    regex: /dl\.|delay|slightdelay/,
     description: "Delay the following move.",
     moreLink: "",
     moreName: "",
