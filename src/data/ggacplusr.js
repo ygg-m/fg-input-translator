@@ -1,33 +1,19 @@
 // image imports
 // mechs
-import { ReactComponent as ForceRomanCancel } from "../images/inputs/MechForceRomanCancel.svg";
-import { ReactComponent as IstantAirDash } from "../images/inputs/MechIAD.svg";
-import { ReactComponent as RomanCancel } from "../images/inputs/MechRomanCancel.svg";
-import { ReactComponent as Dash } from "../images/inputs/Motion66.svg";
+import { Dash, ForceRomanCancel, IstantAirDash, RomanCancel } from "./index";
 // specials
-import { ReactComponent as QuarterCircle } from "../images/inputs/Motion236.svg";
-import { ReactComponent as HalfCircle } from "../images/inputs/Motion41236.svg";
-import { ReactComponent as FullCircle } from "../images/inputs/Motion41236987.svg";
-import { ReactComponent as DragonPunch } from "../images/inputs/Motion623.svg";
+import { DragonPunch, FullCircle, HalfCircle, QuarterCircle } from "./index";
 // actions
-import { ReactComponent as Dust } from "../images/inputs/ActionDust.svg";
-import { ReactComponent as HeavySlash } from "../images/inputs/ActionHeavySlash.svg";
-import { ReactComponent as Kick } from "../images/inputs/ActionKick.svg";
-import { ReactComponent as Punch } from "../images/inputs/ActionPunch.svg";
-import { ReactComponent as Slash } from "../images/inputs/ActionSlash.svg";
+import { Dust, HeavySlash, Kick, Punch, Slash } from "./index";
 //moves
-import { ReactComponent as Neutral } from "../images/inputs/Motion5.svg";
-import { ReactComponent as Foward } from "../images/inputs/Motion6.svg";
+import { Foward, Neutral } from "./index";
 // arrow links
-import { ReactComponent as Cancel } from "../images/inputs/ArrowCancel.svg";
-import { ReactComponent as Link } from "../images/inputs/ArrowLink.svg";
-import { ReactComponent as Next } from "../images/inputs/ArrowNext.svg";
+import { Cancel, Link, Next } from "./index";
 
 const ggacplusr = [
   // -------------------------------------------------------------------------
   // arrow links
   // -------------------------------------------------------------------------
-
   {
     name: "Cancel",
     input: ["->", "~"],
