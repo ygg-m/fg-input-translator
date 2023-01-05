@@ -1,28 +1,27 @@
 // image imports
 // mechs
-import doubleJump from "../images/inputs/MechDoubleJump.png";
-import frc from "../images/inputs/MechForceRomanCancel.png";
-import iad from "../images/inputs/MechIAD.png";
-import rc from "../images/inputs/MechRomanCancel.png";
-import dash from "../images/inputs/Motion66.png";
+import { ReactComponent as ForceRomanCancel } from "../images/inputs/MechForceRomanCancel.svg";
+import { ReactComponent as IstantAirDash } from "../images/inputs/MechIAD.svg";
+import { ReactComponent as RomanCancel } from "../images/inputs/MechRomanCancel.svg";
+import { ReactComponent as Dash } from "../images/inputs/Motion66.svg";
 // specials
-import quarterCircle from "../images/inputs/Motion236.png";
-import halfCircle from "../images/inputs/Motion41236.png";
-import fullCircle from "../images/inputs/Motion41236987.png";
-import dragonPunch from "../images/inputs/Motion623.png";
+import { ReactComponent as QuarterCircle } from "../images/inputs/Motion236.svg";
+import { ReactComponent as HalfCircle } from "../images/inputs/Motion41236.svg";
+import { ReactComponent as FullCircle } from "../images/inputs/Motion41236987.svg";
+import { ReactComponent as DragonPunch } from "../images/inputs/Motion623.svg";
 // actions
-import dust from "../images/inputs/ActionDust.png";
-import heavySlash from "../images/inputs/ActionHeavySlash.png";
-import kick from "../images/inputs/ActionKick.png";
-import punch from "../images/inputs/ActionPunch.png";
-import slash from "../images/inputs/ActionSlash.png";
+import { ReactComponent as Dust } from "../images/inputs/ActionDust.svg";
+import { ReactComponent as HeavySlash } from "../images/inputs/ActionHeavySlash.svg";
+import { ReactComponent as Kick } from "../images/inputs/ActionKick.svg";
+import { ReactComponent as Punch } from "../images/inputs/ActionPunch.svg";
+import { ReactComponent as Slash } from "../images/inputs/ActionSlash.svg";
 //moves
-import neutral from "../images/inputs/Motion5.png";
-import foward from "../images/inputs/Motion6.png";
+import { ReactComponent as Neutral } from "../images/inputs/Motion5.svg";
+import { ReactComponent as Foward } from "../images/inputs/Motion6.svg";
 // arrow links
-import cancel from "../images/inputs/ArrowCancel.png";
-import link from "../images/inputs/ArrowLink.png";
-import next from "../images/inputs/ArrowNext.png";
+import { ReactComponent as Cancel } from "../images/inputs/ArrowCancel.svg";
+import { ReactComponent as Link } from "../images/inputs/ArrowLink.svg";
+import { ReactComponent as Next } from "../images/inputs/ArrowNext.svg";
 
 const ggacplusr = [
   // -------------------------------------------------------------------------
@@ -36,7 +35,7 @@ const ggacplusr = [
     regex: /->|~/g,
     description:
       "Bypass the remaining time or frames in an action by proceeding directly into another action.",
-    url: cancel,
+    img: <Cancel />,
   },
   {
     name: "Normal Followup",
@@ -44,7 +43,7 @@ const ggacplusr = [
     type: "follow-up",
     regex: />/g,
     description: "Proceed from the previous move to the following move.",
-    url: next,
+    img: <Next />,
   },
   {
     name: "Link",
@@ -53,7 +52,7 @@ const ggacplusr = [
     regex: /,/g,
     description:
       "To perform a second action after the first action completely finishes its animation.",
-    url: link,
+    img: <Link />,
   },
   // -------------------------------------------------------------------------
   // complex notations
@@ -65,7 +64,7 @@ const ggacplusr = [
     regex: /-.*?-/,
     description:
       "Release button with regular shadow (236P/K/S/H). This notation is only for Eddie from Guilty Gear.",
-    url: "",
+    img: "",
     moreLink: "https://www.dustloop.com/w/GGACR/Eddie/Combos#Eddie_Notation",
     moreName: "Dustloop",
   },
@@ -76,7 +75,7 @@ const ggacplusr = [
     regex: /#.*?#/,
     description:
       "Release button using vice shadow (214H). This notation is only for Eddie from Guilty Gear.",
-    url: "",
+    img: "",
     moreLink: "https://www.dustloop.com/w/GGACR/Eddie/Combos#Eddie_Notation",
     moreName: "Dustloop",
   },
@@ -86,7 +85,7 @@ const ggacplusr = [
     type: "mech-complex",
     regex: /\[(.+)\]x(\d+)/,
     description: "Repeat move or sequence N amount of times.",
-    url: "",
+    img: "",
   },
   {
     name: "Hold",
@@ -94,7 +93,7 @@ const ggacplusr = [
     type: "mech-complex",
     regex: /\[(.*?)\]/,
     description: "Hold input.",
-    url: "",
+    img: "",
   },
   {
     name: "Release",
@@ -102,7 +101,7 @@ const ggacplusr = [
     type: "mech-complex",
     regex: /\](.*?)\[/,
     description: "Release input.",
-    url: "",
+    img: "",
   },
   {
     name: "Single / Multiple Hits",
@@ -110,7 +109,7 @@ const ggacplusr = [
     type: "mech-complex",
     regex: /\(\b\d\b\)/,
     description: "Hit a move N times or move must deal N amount of hits.",
-    url: "",
+    img: "",
   },
   {
     name: "Optional",
@@ -118,7 +117,7 @@ const ggacplusr = [
     type: "mech-complex",
     regex: /\((.*?)\)/,
     description: "Move or sequence is optional.",
-    url: "",
+    img: "",
   },
   // -------------------------------------------------------------------------
   // mechs
@@ -129,8 +128,8 @@ const ggacplusr = [
     type: "mech",
     regex: /66|\(66\)/,
     description: "",
-    url: dash,
-    style: ["0deg", "1"],
+    img: <Dash />,
+    style: {},
   },
   {
     name: "Back Dash",
@@ -138,8 +137,8 @@ const ggacplusr = [
     type: "mech",
     regex: /44/,
     description: "",
-    url: dash,
-    style: ["0deg", "-1"],
+    img: <Dash />,
+    style: { transform: "scaleX(-1)" },
   },
   {
     name: "Double Jump",
@@ -147,8 +146,8 @@ const ggacplusr = [
     type: "mech",
     regex: /88|dj./,
     description: "",
-    url: doubleJump,
-    style: ["0deg", "1"],
+    img: <Dash />,
+    style: { transform: "rotate(-90deg)" },
     moreLink: "",
     moreName: "",
   },
@@ -194,7 +193,7 @@ const ggacplusr = [
     type: "mech",
     regex: /jc\.|jc/,
     description: "Canceling a move with a jump.",
-    url: "",
+    img: "",
     moreLink: "https://glossary.infil.net/?t=Jump%20Cancel",
     moreName: "Fighting Game Glossary",
   },
@@ -203,6 +202,7 @@ const ggacplusr = [
     input: "c.",
     type: "mech",
     regex: /c\./,
+    img: "",
     description: "Player must be close to the target.",
     moreLink: "https://www.dustloop.com/w/GGACR/A.B.A",
     moreName: "Dustloop",
@@ -213,7 +213,7 @@ const ggacplusr = [
     type: "mech",
     regex: /f\./,
     description: "Player must be far from the target.",
-    url: "",
+    img: "",
     moreLink: "",
     moreName: "",
   },
@@ -224,7 +224,7 @@ const ggacplusr = [
     regex: /hj\.|sj\./,
     description:
       "Any Downward Direction > Any Upward Direction while on the ground",
-    url: "",
+    img: "",
     moreLink: "https://www.dustloop.com/w/GGACR/Mechanics#High_Jump",
     moreName: "Dustloop",
   },
@@ -234,7 +234,7 @@ const ggacplusr = [
     type: "mech",
     regex: /j\./,
     description: "",
-    url: "",
+    img: "",
     moreLink: "",
     moreName: "",
   },
@@ -245,7 +245,7 @@ const ggacplusr = [
     regex: /hjc\.|sjc\./,
     description:
       "Any Downward Direction > Any Upward Direction while on the ground",
-    url: "",
+    img: "",
     moreLink: "https://www.dustloop.com/w/GGACR/Mechanics#High_Jump",
     moreName: "Dustloop",
   },
@@ -255,7 +255,7 @@ const ggacplusr = [
     type: "mech",
     regex: /dc/,
     description: "",
-    url: "",
+    img: "",
     moreLink: "",
     moreName: "",
   },
@@ -265,7 +265,7 @@ const ggacplusr = [
     type: "mech",
     regex: /adc/,
     description: "",
-    url: "",
+    img: "",
     moreLink: "",
     moreName: "",
   },
@@ -275,7 +275,7 @@ const ggacplusr = [
     type: "mech",
     regex: /ch/,
     description: "Hitting someone while they are in the startup of an attack. ",
-    url: "",
+    img: "",
     moreLink: "https://glossary.infil.net/?t=Counter%20Hit",
     moreName: "Fighting Game Glossary",
   },
@@ -286,7 +286,7 @@ const ggacplusr = [
     regex: /aa/,
     description:
       "Hitting someone who is jumping at you while you are on the ground.",
-    url: "",
+    img: "",
     moreLink: "https://glossary.infil.net/?t=Anti-Air",
     moreName: "Fighting Game Glossary",
   },
@@ -296,7 +296,7 @@ const ggacplusr = [
     type: "mech",
     regex: /iad/,
     description: "",
-    url: iad,
+    img: <IstantAirDash />,
     moreLink: "https://www.dustloop.com/w/GGACR/Movement#Air_Movement",
     moreName: "Dustloop",
   },
@@ -306,7 +306,7 @@ const ggacplusr = [
     type: "mech",
     regex: /ji/,
     description: "",
-    url: "",
+    img: "",
     moreLink: "https://www.dustloop.com/w/GGACR/Movement#Jump_Install",
     moreName: "Dustloop",
   },
@@ -316,7 +316,7 @@ const ggacplusr = [
     type: "mech",
     regex: /frc/,
     description: "3 Attack Buttons, Except for D, During Valid FRC Window",
-    url: frc,
+    img: <ForceRomanCancel />,
     moreLink: "https://www.dustloop.com/w/GGACR/Mechanics#Force_Roman_Cancel",
     moreName: "Dustloop",
   },
@@ -326,7 +326,7 @@ const ggacplusr = [
     type: "mech",
     regex: /rc/,
     description: "3 Attack Buttons, Except for D, After an Attack Connects",
-    url: rc,
+    img: <RomanCancel />,
     moreLink: "https://www.dustloop.com/w/GGACR/Mechanics#Roman_Cancel",
     moreName: "Dustloop",
   },
@@ -339,8 +339,8 @@ const ggacplusr = [
     type: "special",
     regex: /41236987/,
     description: "",
-    url: fullCircle,
-    style: ["0deg", "1"],
+    img: <FullCircle />,
+    style: {},
   },
   {
     name: "Full Circle Back",
@@ -348,8 +348,8 @@ const ggacplusr = [
     type: "special",
     regex: /63214789/,
     description: "",
-    url: fullCircle,
-    style: ["0deg", "-1"],
+    img: <FullCircle />,
+    style: { transform: "scaleX(-1)" },
   },
   {
     name: "Half Circle Foward",
@@ -357,8 +357,8 @@ const ggacplusr = [
     type: "special",
     regex: /41236/,
     description: "",
-    url: halfCircle,
-    style: ["0deg", "1"],
+    img: <HalfCircle />,
+    style: {},
   },
   {
     name: "Half Circle Back",
@@ -366,8 +366,8 @@ const ggacplusr = [
     type: "special",
     regex: /63214/,
     description: "",
-    url: halfCircle,
-    style: ["0deg", "-1"],
+    img: <HalfCircle />,
+    style: { transform: "scaleX(-1)" },
   },
   {
     name: "Quarter Circle Foward",
@@ -375,8 +375,8 @@ const ggacplusr = [
     type: "special",
     regex: /236/,
     description: "",
-    url: quarterCircle,
-    style: ["0deg", "1"],
+    img: <QuarterCircle />,
+    style: {},
   },
   {
     name: "Quarter Circle Back",
@@ -384,8 +384,8 @@ const ggacplusr = [
     type: "special",
     regex: /214/,
     description: "",
-    url: quarterCircle,
-    style: ["0deg", "-1"],
+    img: <QuarterCircle />,
+    style: { transform: "scaleX(-1)" },
   },
   {
     name: "Dragon Punch Foward",
@@ -393,8 +393,8 @@ const ggacplusr = [
     type: "special",
     regex: /623/,
     description: "",
-    url: dragonPunch,
-    style: ["0deg", "1"],
+    img: <DragonPunch />,
+    style: {},
   },
   {
     name: "Dragon Punch Back",
@@ -402,8 +402,8 @@ const ggacplusr = [
     type: "special",
     regex: /421/,
     description: "",
-    url: dragonPunch,
-    style: ["0deg", "-1"],
+    img: <DragonPunch />,
+    style: { transform: "scaleX(-1)" },
   },
   // -------------------------------------------------------------------------
   // actions
@@ -414,7 +414,7 @@ const ggacplusr = [
     type: "action",
     regex: /p/,
     description: "",
-    url: punch,
+    img: <Punch />,
   },
   {
     name: "Kick",
@@ -422,7 +422,7 @@ const ggacplusr = [
     type: "action",
     regex: /k/,
     description: "",
-    url: kick,
+    img: <Kick />,
   },
   {
     name: "Slash",
@@ -430,7 +430,7 @@ const ggacplusr = [
     type: "action",
     regex: /s/,
     description: "",
-    url: slash,
+    img: <Slash />,
   },
   {
     name: "Heavy Slash",
@@ -438,7 +438,7 @@ const ggacplusr = [
     type: "action",
     regex: /h/,
     description: "",
-    url: heavySlash,
+    img: <HeavySlash />,
   },
   {
     name: "Dust",
@@ -446,7 +446,7 @@ const ggacplusr = [
     type: "action",
     regex: /d/,
     description: "",
-    url: dust,
+    img: <Dust />,
   },
 
   // -------------------------------------------------------------------------
@@ -458,8 +458,8 @@ const ggacplusr = [
     type: "movement",
     regex: /1/,
     description: "",
-    url: foward,
-    style: ["-45deg", "-1"],
+    img: <Foward />,
+    style: { transform: "rotate(-45deg) scaleX(-1)" },
   },
   {
     name: "Down",
@@ -467,8 +467,8 @@ const ggacplusr = [
     type: "movement",
     regex: /2/,
     description: "",
-    url: foward,
-    style: ["90deg", "1"],
+    img: <Foward />,
+    style: { transform: "rotate(90deg)" },
   },
   {
     name: "Down Foward",
@@ -476,8 +476,8 @@ const ggacplusr = [
     type: "movement",
     regex: /3/,
     description: "",
-    url: foward,
-    style: ["45deg", "1"],
+    img: <Foward />,
+    style: { transform: "rotate(45deg)" },
   },
   {
     name: "Back",
@@ -485,8 +485,8 @@ const ggacplusr = [
     type: "movement",
     regex: /4/,
     description: "",
-    url: foward,
-    style: ["0deg", "-1"],
+    img: <Foward />,
+    style: { transform: "scaleX(-1)" },
   },
   {
     name: "Stand",
@@ -494,7 +494,7 @@ const ggacplusr = [
     type: "movement",
     regex: /5/,
     description: "Neutral Stance.",
-    url: neutral,
+    img: <Neutral />,
     style: "",
   },
   {
@@ -503,7 +503,7 @@ const ggacplusr = [
     type: "movement",
     regex: /6/,
     description: "",
-    url: foward,
+    img: <Foward />,
     style: "",
   },
   {
@@ -512,8 +512,8 @@ const ggacplusr = [
     type: "movement",
     regex: /7/,
     description: "",
-    url: foward,
-    style: ["45deg", "-1"],
+    img: <Foward />,
+    style: { transform: "rotate(45deg) scaleX(-1)" },
   },
   {
     name: "Up",
@@ -521,8 +521,8 @@ const ggacplusr = [
     type: "movement",
     regex: /8/,
     description: "",
-    url: foward,
-    style: ["-90deg", "1"],
+    img: <Foward />,
+    style: { transform: "rotate(-90deg)" },
   },
   {
     name: "Up Foward",
@@ -530,8 +530,8 @@ const ggacplusr = [
     type: "movement",
     regex: /9/,
     description: "",
-    url: foward,
-    style: ["-45deg", "1"],
+    img: <Foward />,
+    style: { transform: "rotate(-45deg)" },
   },
 ];
 

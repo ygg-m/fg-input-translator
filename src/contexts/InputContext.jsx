@@ -1,7 +1,7 @@
 import _ from "lodash";
 import { createContext, useContext, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { TechInput } from "../components/index";
+import { SubTechInput, TechInput } from "../components/index";
 import { ggacplusr } from "../data/index";
 
 const InputContext = createContext();
@@ -42,42 +42,81 @@ export const InputProvider = ({ children }) => {
     );
   }
 
-  function moveIsComplexCheck(input) {
-    const regexList = [
-      /-.*?-/,
-      /#.*?#/,
-      /\[(.*?)\]/,
-      /\](.*?)\[/,
-      /\[(.+)\]x(\d+)/,
-      /\(\b\d\b\)/,
-      /\((.*?)\)/,
-    ];
-    let isComplex = false;
-    for (let regexp of regexList) {
-      if (regexp.test(input)) isComplex = true;
+  function solveWrappedMechs(input) {
+    if (input.includes("#")) return input.replace(/[#]/g, "");
+    if (input.includes("-")) return input.replace(/[-]/g, "");
+    if (input.includes("(")) return input.replace(/[\(\)]/g, "");
+    if (input.includes("[")) {
+      const newArr = input.replace(/[\[\]]/g, "");
+      // if the input have more than 2 characters at this point,
+      // it must be a Single / Multiple Hits so it'll return "xN"
+      if (newArr.length > 2) return newArr.slice(-2);
+      // else return it
+      else return newArr;
     }
-    return isComplex;
+  }
+
+  function inputExtract(move, input) {
+    if (!move) return false;
+
+    const { name } = move;
+    const wrappedMechs = [
+      "Eddie Regular Shadow Release",
+      "Eddie Vice Shadow Release",
+      "Hold",
+      "Release",
+      "Optional",
+      "Single / Multiple Hits",
+      "Repeat",
+    ];
+
+    for (let mech of wrappedMechs) {
+      if (name === mech) return solveWrappedMechs(input);
+    }
   }
 
   function createInput(input) {
     // if input is empty, return the input, which should be ('')
     if (!input) return input;
     // try to get the move object by testing it's regex against the input
-    const move = testRegex(gameInputs, input);
-    const complex = moveIsComplexCheck(input);
+    const moveObj = testRegex(gameInputs, input);
+    // action input will have the value of complex inputs like [x], (x), etc
+    const actionInput = inputExtract(moveObj, input);
 
     // if the move is valid, create the component with the object
-    if (complex) return createInputComponent(move, input);
-    if (move) return createInputComponent(move);
+    // if actionInput in longer than 1 that means it's most probably a "xN"
+    // or check is to see if it's a single digit number so it means it's a single/multi hit
+    if (actionInput?.length > 1 || testIfNumber(actionInput)) {
+      const actionInputObj = testRegex(gameInputs, actionInput);
+      const techComponent = createSubInputComponent(moveObj, actionInput);
+      return createInputComponent(actionInputObj, techComponent);
+    }
+
+    if (actionInput) {
+      // innerInput is the action input
+      // moveObj is the technique
+      const actionInputObj = testRegex(gameInputs, actionInput);
+      const techComponent = createSubInputComponent(moveObj);
+      return createInputComponent(actionInputObj, techComponent);
+    }
+    if (moveObj) return createInputComponent(moveObj);
     // else, return the input as it is
     else return input;
   }
 
-  function createInputComponent(obj, input) {
+  function createSubInputComponent(subInput, value) {
+    if (!subInput) return;
+    if (value)
+      return <SubTechInput value={value} inputObj={subInput} key={uuidv4()} />;
+    else return <SubTechInput inputObj={subInput} key={uuidv4()} />;
+  }
+
+  function createInputComponent(obj, techComponent) {
     // if there's no obj, return not found
     if (!obj) return "not found";
-    if (!input) return <TechInput inputObj={obj} key={uuidv4()} />;
-    if (input) return <TechInput input={input} inputObj={obj} key={uuidv4()} />;
+    if (!techComponent) return <TechInput inputObj={obj} key={uuidv4()} />;
+    if (techComponent)
+      return <TechInput tech={techComponent} inputObj={obj} key={uuidv4()} />;
   }
 
   function splitFollowUps(str) {
@@ -166,7 +205,6 @@ export const InputProvider = ({ children }) => {
   function dealWithParenthesis(input) {
     // Split the input string on any character that is not a letter, number, or parentheses
     const parts = _.split(input, /[^\w()]/);
-
     // Use map to iterate over the parts and wrap the ones that contain parentheses in a sub-array
     return _.map(parts, (part) => {
       if (/[()]/.test(part)) {
@@ -178,6 +216,7 @@ export const InputProvider = ({ children }) => {
   }
 
   function testIfNumber(str) {
+    if (!str) return false;
     const match = str.match(/\b\d\b/);
     if (match) return true;
   }
@@ -206,11 +245,10 @@ export const InputProvider = ({ children }) => {
     // =========================
     // TESTS
     // =========================
-    console.log(complexSolved);
     setOutput(moves);
   }, [rawInput]);
 
-  const value = { setRawInput, output };
+  const value = { rawInput, setRawInput, output };
 
   return (
     <InputContext.Provider value={value}>{children}</InputContext.Provider>

@@ -1,11 +1,11 @@
 import { useRef, useState } from "react";
 import { Tooltip } from "./Tooltip";
 
-export const TechInput = ({ inputObj }) => {
-  const { name } = inputObj;
+export const TechInput = ({ inputObj, tech }) => {
+  const { name, type } = inputObj;
   const [tooltipVisible, setTooltipVisible] = useState(false);
-  const haveImg = inputObj.url?.length > 0;
-  const haveStyle = inputObj.style?.length > 0;
+  const haveImg = inputObj.img !== "" || inputObj.img?.length > 0;
+  const haveStyle = typeof inputObj.style === "object";
   const elementRef = useRef(null);
 
   const showTooltip = () => {
@@ -23,68 +23,66 @@ export const TechInput = ({ inputObj }) => {
     }, 3000);
   };
 
-  if (!haveImg && !haveStyle)
+  if (!haveImg && !haveStyle) {
     return (
       <div
         onMouseOver={showTooltip}
         onMouseOut={hideTooltip}
         onClick={clickShowTooltip}
-        className="mech input-container"
+        className={`${type} ${tech ? "tech" : ""}`}
       >
         <div className="input-name" ref={elementRef}>
           {name}
         </div>
-        <Tooltip
+        {tech && tech}
+        {/* <Tooltip
           elRef={elementRef}
           obj={inputObj}
           visible={tooltipVisible}
           offset={45}
-        />
+        /> */}
       </div>
     );
+  }
 
   if (haveImg && !haveStyle) {
-    const { url } = inputObj;
+    const { img } = inputObj;
     return (
       <div
         onMouseOver={showTooltip}
         onMouseOut={hideTooltip}
         onClick={clickShowTooltip}
-        className="motion input-container"
+        className={`${type} ${tech ? "tech" : ""}`}
       >
-        <img ref={elementRef} src={url} alt={name} />
-        <Tooltip
+        {img}
+        {tech && tech}
+        {/* <Tooltip
           elRef={elementRef}
           obj={inputObj}
           visible={tooltipVisible}
           offset={85}
-        />
+        /> */}
       </div>
     );
   }
 
   if (haveImg && haveStyle) {
-    const { url, style } = inputObj;
-    const transform = `rotate(${style[0]}) scaleX(${style[1]})`;
+    const { img, style } = inputObj;
     return (
       <div
         onMouseOver={showTooltip}
         onMouseOut={hideTooltip}
         onClick={clickShowTooltip}
-        className="motion input-container"
+        className={`${type} ${tech ? "tech" : ""}`}
       >
-        <img
-          ref={elementRef}
-          src={url}
-          alt={name}
-          style={{ transform: transform }}
-        />
-        <Tooltip
+        <div style={style}>{img}</div>
+        {tech && tech}
+        {/* <Tooltip
           elRef={elementRef}
           obj={inputObj}
           visible={tooltipVisible}
           offset={65}
-        />
+        /> */}
       </div>
     );
   }

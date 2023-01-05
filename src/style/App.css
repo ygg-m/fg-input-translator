@@ -1,7 +1,7 @@
 .app-container {
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
+  overflow-x: hidden;
   background-color: #222;
   color: #777;
 
