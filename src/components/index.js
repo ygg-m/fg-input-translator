@@ -4,7 +4,6 @@ import "../style/input.css";
 import "../style/output.css";
 import "../style/tooltip.css";
 
-export { FollowUp } from "./FollowUp";
 export { GameSelect } from "./GameSelect";
 export { Header } from "./Header";
 export { Input } from "./Input.jsx";
