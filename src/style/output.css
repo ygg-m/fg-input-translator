@@ -38,7 +38,9 @@
 .movement {
   width: 2rem;
 }
-
+.special {
+  width: 2rem;
+}
 .movement {
   height: 100%;
 }
