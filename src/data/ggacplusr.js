@@ -111,7 +111,7 @@ const ggacplusr = [
   {
     name: "Dash",
     input: 66,
-    type: "mech",
+    type: "mech-icon",
     regex: /66|\(66\)/,
     description: "",
     img: <Dash />,
@@ -120,7 +120,7 @@ const ggacplusr = [
   {
     name: "Back Dash",
     input: 44,
-    type: "mech",
+    type: "mech-icon",
     regex: /44/,
     description: "",
     img: <Dash />,
@@ -129,7 +129,7 @@ const ggacplusr = [
   {
     name: "Double Jump",
     input: ["88", "dj."],
-    type: "mech",
+    type: "mech-icon",
     regex: /88|dj./,
     description: "",
     img: <Dash />,
@@ -144,6 +144,7 @@ const ggacplusr = [
     regex: /throw/,
     description: "4H or 6H within close proximity of an opponent",
     moreLink: "https://www.dustloop.com/w/GGACR/Mechanics#Throws",
+
     moreName: "Dustloop",
   },
   {
@@ -172,6 +173,17 @@ const ggacplusr = [
     description: "Whiff (not hit) the following move.",
     moreLink: "",
     moreName: "",
+  },
+  {
+    name: "High Jump Cancel / Super Jump Cancel",
+    input: ["hjc", "sjc"],
+    type: "mech",
+    regex: /hjc\.|sjc\./,
+    description:
+      "Any Downward Direction > Any Upward Direction while on the ground",
+    img: "",
+    moreLink: "https://www.dustloop.com/w/GGACR/Mechanics#High_Jump",
+    moreName: "Dustloop",
   },
   {
     name: "Jump Cancel",
@@ -225,31 +237,20 @@ const ggacplusr = [
     moreName: "",
   },
   {
-    name: "High Jump Cancel / Super Jump Cancel",
-    input: ["hjc", "sjc"],
+    name: "Air Dash Cancel",
+    input: "adc",
     type: "mech",
-    regex: /hjc\.|sjc\./,
-    description:
-      "Any Downward Direction > Any Upward Direction while on the ground",
-    img: "",
-    moreLink: "https://www.dustloop.com/w/GGACR/Mechanics#High_Jump",
-    moreName: "Dustloop",
-  },
-  {
-    name: "Dash Cancel",
-    input: "dc",
-    type: "mech",
-    regex: /dc/,
+    regex: /adc/,
     description: "",
     img: "",
     moreLink: "",
     moreName: "",
   },
   {
-    name: "Air Dash Cancel",
-    input: "adc",
+    name: "Dash Cancel",
+    input: "dc",
     type: "mech",
-    regex: /adc/,
+    regex: /dc/,
     description: "",
     img: "",
     moreLink: "",
@@ -279,7 +280,7 @@ const ggacplusr = [
   {
     name: "Instant Air Dash",
     input: "iad",
-    type: "mech",
+    type: "mech-icon",
     regex: /iad/,
     description: "",
     img: <IstantAirDash />,
@@ -290,7 +291,7 @@ const ggacplusr = [
     name: "Jump Install",
     input: "ji",
     type: "mech",
-    regex: /ji/,
+    regex: /ji\./,
     description: "",
     img: "",
     moreLink: "https://www.dustloop.com/w/GGACR/Movement#Jump_Install",
@@ -299,7 +300,7 @@ const ggacplusr = [
   {
     name: "Force Roman Cancel",
     input: "frc",
-    type: "mech",
+    type: "mech-icon",
     regex: /frc/,
     description: "3 Attack Buttons, Except for D, During Valid FRC Window",
     img: <ForceRomanCancel />,
@@ -309,7 +310,7 @@ const ggacplusr = [
   {
     name: "Roman Cancel",
     input: "rc",
-    type: "mech",
+    type: "mech-icon",
     regex: /rc/,
     description: "3 Attack Buttons, Except for D, After an Attack Connects",
     img: <RomanCancel />,
