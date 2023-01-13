@@ -151,6 +151,7 @@ export const InputProvider = ({ children }) => {
   }
 
   function splitFollowUps(input) {
+    console.log(input);
     const regex = /((?<!-.)->|>|~|,)/g;
     const output = input.map((el) => {
       let repeatResult = []; // stores the repeat pattern result
@@ -173,7 +174,7 @@ export const InputProvider = ({ children }) => {
       else return removeBlankSpaces(el.split(regex));
     });
     // flatten everything
-    return output;
+    return _.flatten(output);
   }
 
   function wrapCombos(arr) {
@@ -337,11 +338,15 @@ export const InputProvider = ({ children }) => {
         pushCurrentToResult();
         result.push([isRelease]);
         i += 2;
-      } else if (isOptional) {
+      }
+      //
+      else if (isOptional) {
         pushCurrentToResult();
         result.push([isOptional]);
         i += isOptional.length - 1;
-      } else if (isHold) {
+      }
+      //
+      else if (isHold) {
         pushCurrentToResult();
         const beforeInput = [str[i - 1], str[i - 2]].join("");
         const followUpRegex = /((?<!-.)->|>|~|,)/g;
@@ -350,11 +355,15 @@ export const InputProvider = ({ children }) => {
         if (!testFollowUp) result[result.length - 1] += isHold;
         else result.push([isHold]);
         i += 2;
-      } else if (isRepeat) {
+      }
+      //
+      else if (isRepeat) {
         pushCurrentToResult();
         result.push([isRepeat]);
         i += isRepeat.length - 1;
-      } else currentString += char;
+      }
+      //
+      else currentString += char;
     }
     pushCurrentToResult();
     return result;
@@ -391,7 +400,7 @@ export const InputProvider = ({ children }) => {
     // TESTS
     // =========================
 
-    console.log(wrappedComplex);
+    console.log(arr);
     setOutput(moves);
   }, [rawInput]);
 
