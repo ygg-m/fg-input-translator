@@ -153,11 +153,27 @@ export const InputProvider = ({ children }) => {
   function splitFollowUps(input) {
     const regex = /((?<!-.)->|>|~|,)/g;
     const output = input.map((el) => {
+      let repeatResult = []; // stores the repeat pattern result
+
+      // check if it's an array
       if (Array.isArray(el))
-        return el.map((e) => removeBlankSpaces(e.split(regex)));
+        return el.map((e) => {
+          // // check if it's a repeat pattern that starts with '['
+          // // and ends with a number
+          // const lastChar = e[e.length - 1];
+          // const isRepeat = e[0] === "[" && /\d+/.test(lastChar);
+          // if (isRepeat) {
+          //   console.log("repeat");
+          // }
+
+          // if it's not a repeat pattern, return the string splitted
+          return removeBlankSpaces(e.split(regex));
+        });
+      // if it's not an array, return the string splitted
       else return removeBlankSpaces(el.split(regex));
     });
-    return _.flattenDeep(output);
+    // flatten everything
+    return output;
   }
 
   function wrapCombos(arr) {
@@ -220,17 +236,16 @@ export const InputProvider = ({ children }) => {
 
   function splitArrayByRegex(arr, regexes) {
     if (!Array.isArray(arr)) return arr;
-
     const newArray = arr.map((item) => {
       // check if it's an array
       const isArray = Array.isArray(item);
       if (isArray) {
-        const result = item.map((e) => {
+        const result = item.map((e, i) => {
           // check if it's an array again
           const isInnerArray = Array.isArray(e);
           if (isInnerArray) return splitArrayByRegex(e, regexes);
           // if array is empty, return the item, which should be ''
-          if (e.length === 0) return e;
+          else if (e.length === 0) return e;
           // else, split the array based on the regex
           else return splitByRegex(e, regexes);
         });
@@ -331,7 +346,8 @@ export const InputProvider = ({ children }) => {
         const beforeInput = [str[i - 1], str[i - 2]].join("");
         const followUpRegex = /((?<!-.)->|>|~|,)/g;
         const testFollowUp = followUpRegex.test(beforeInput);
-        if (testFollowUp) result.push(isHold);
+
+        if (!testFollowUp) result[result.length - 1] += isHold;
         else result.push([isHold]);
         i += 2;
       } else if (isRepeat) {
@@ -375,7 +391,7 @@ export const InputProvider = ({ children }) => {
     // TESTS
     // =========================
 
-    console.log(wrappedCombos);
+    console.log(wrappedComplex);
     setOutput(moves);
   }, [rawInput]);
 
