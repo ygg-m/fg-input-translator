@@ -69,7 +69,7 @@ const ggacplusr = [
     name: "Repeat",
     input: "[X]xN or [X > 236X]xN",
     type: "mech-complex",
-    regex: /\[(.+)\]x(\d+)/,
+    regex: /\]x\d+/,
     description: "Repeat move or sequence N amount of times.",
     img: "",
   },
