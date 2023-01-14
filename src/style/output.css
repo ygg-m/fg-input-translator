@@ -23,7 +23,44 @@
   border-radius: 0.8rem;
 }
 
+.optional-container,
+.repeat-container,
+.hold,
+.release,
+.multi-hit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-color: #222;
+  padding: 0.3rem 0.5rem;
+  border-radius: 0.5rem;
+}
 
+.tech-tag {
+  font-size: 0.75rem;
+  opacity: 1;
+  position: absolute;
+  bottom: -7px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: fit-content;
+  z-index: 1;
+  padding: 1px 0.5rem 2px;
+  border-radius: 1rem;
+  background-color: #333;
+  outline: 1px solid #222;
+  transition: 200ms;
+}
+
+*:hover > .tech-tag {
+  opacity: 0.2;
+}
+
+.tech-tag:hover {
+  opacity: 1;
+}
 
 .combo-container svg g path,
 .movement > * > svg > g > path {
@@ -47,16 +84,7 @@
 .mech-icon {
   width: 2rem;
 }
-.mech-complex {
-  min-width: 5rem;
-}
 
-.mech {
-  min-width: 2rem;
-  background-color: #222;
-  border-radius: 1rem;
-  padding: 0.1rem 0.5rem;
-}
 /* .follow-up > svg > path,
 .follow-up > svg > g > path {
   fill: #333;

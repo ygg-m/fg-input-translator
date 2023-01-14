@@ -4,6 +4,11 @@ export const Tooltip = ({ elRef, obj, visible, offset }) => {
   const haveKnowMore = moreLink?.length > 0;
   const haveKnowMoreName = moreName?.length > 0;
 
+  const state = {
+    x: 0,
+    y: 0,
+  };
+
   return (
     <div
       className={

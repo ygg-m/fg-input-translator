@@ -1,4 +1,4 @@
-import { GameSelect, Header, Input, Output } from "./components/index";
+import { Footer, GameSelect, Header, Input, Output } from "./components/index";
 import { InputProvider } from "./contexts/index";
 import "./style/App.css";
 
@@ -13,6 +13,7 @@ function App() {
           <Output />
         </InputProvider>
       </div>
+      <Footer />
     </div>
   );
 }

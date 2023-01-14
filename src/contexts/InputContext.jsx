@@ -24,18 +24,32 @@ export const InputProvider = ({ children }) => {
     });
   }
 
+  function checkIsRepeat(input) {
+    const lastElement = input[input.length - 1];
+    const regex = /x\d+/;
+    const isRepeat = input[0] === "[" && regex.test(lastElement);
+    return isRepeat;
+  }
+
   function checkInputArray(array) {
     // map the array
     const newArray = array.map((input) => {
       // checkers
-      const isRepeat = input[0] === "[";
+      const isRepeat = checkIsRepeat(input);
       const isOptional = input[0] === "(";
       const isCombo = Array.isArray(input);
+      const isMultipleHits = /\(\b\d\b\)/.test(input);
+      const isRelease = input[0] === "]" && input[2] === "[";
+      const isHold = input[0] === "[" && input[2] === "]";
       const notSingleButton = input.lenght > 2;
 
+      // returns
       if (!notSingleButton) {
+        if (isRelease) return createRelease(input);
+        if (isHold) return createHold(input);
         if (isRepeat) return createRepeat(input);
         if (isOptional) return createOptional(input);
+        if (isMultipleHits) return createMultiHit(input);
       }
 
       if (isCombo) return createCombo(input);
@@ -45,18 +59,65 @@ export const InputProvider = ({ children }) => {
     return newArray;
   }
 
-  function createRepeat(array) {
+  function createRelease(array) {
+    const clean = array.map((e) => cleanComplexMech(e));
     return (
-      <div className="repeat-container" key={uuidv4()}>
-        {array.map((e) => createInput(e))}
+      <div className="combo-container" key={uuidv4()}>
+        <div className="release" key={uuidv4()}>
+          {clean.map((e) => createInput(e))}
+        </div>{" "}
+      </div>
+    );
+  }
+
+  function createHold(array) {
+    const clean = array.map((e) => cleanComplexMech(e));
+    return (
+      <div className="combo-container" key={uuidv4()}>
+        <div className="hold" key={uuidv4()}>
+          {clean.map((e) => createInput(e))}
+        </div>{" "}
+      </div>
+    );
+  }
+
+  function createMultiHit(array) {
+    const clean = array.map((e) => cleanComplexMech(e));
+    return (
+      <div className="combo-container" key={uuidv4()}>
+        <div className="multi-hit" key={uuidv4()}>
+          {clean.map((e) => createInput(e))}
+        </div>
+      </div>
+    );
+  }
+
+  function createRepeat(array) {
+    const clean = array.map((e) => cleanComplexMech(e));
+    const tech = gameInputs.filter((e) => e.name === "Repeat")[0];
+    return (
+      <div className="combo-container" key={uuidv4()}>
+        <div className="repeat-container" key={uuidv4()}>
+          {clean.map((e) => createInput(e))}
+          <div className="tech-tag" key={uuidv4()}>
+            {tech.name} {array[array.length - 1]}
+          </div>
+        </div>
       </div>
     );
   }
 
   function createOptional(array) {
+    const clean = array.map((e) => cleanComplexMech(e));
+    const tech = gameInputs.filter((e) => e.name === "Optional")[0];
     return (
-      <div className="optional-container" key={uuidv4()}>
-        {array.map((e) => createInput(e))}
+      <div className="combo-container" key={uuidv4()}>
+        <div className="optional-container" key={uuidv4()}>
+          {clean.map((e) => createInput(e))}
+          <div className="tech-tag" key={uuidv4()}>
+            {tech.name}
+          </div>
+        </div>
       </div>
     );
   }
@@ -69,18 +130,25 @@ export const InputProvider = ({ children }) => {
     );
   }
 
-  function solveWrappedMechs(input) {
-    if (input.includes("#")) return input.replace(/[#]/g, "");
-    if (input.includes("-")) return input.replace(/[-]/g, "");
-    if (input.includes("(")) return input.replace(/[\(\)]/g, "");
-    if (input.includes("[")) {
-      const newArr = input.replace(/[\[\]]/g, "");
+  function cleanComplexMech(input) {
+    const hasParenthesis = input.includes("(") || input.includes(")");
+    const hasBrackets = input.includes("[") || input.includes("]");
+    const hasMinus = input.includes("-");
+    const hasHashtag = input.includes("#");
+    // returns
+    if (hasHashtag) return input.replace(/[#]/g, "");
+    if (hasMinus) return input.replace(/[-]/g, "");
+    if (hasParenthesis) return input.replace(/[\(\)]/g, "");
+    if (hasBrackets) {
+      const newInput = input.replace(/[\[\]]/g, "");
       // if the input have more than 2 characters at this point,
       // it must be a Single / Multiple Hits so it'll return "xN"
-      if (newArr.length > 2) return newArr.slice(-2);
+      if (newInput.length > 2) return newInput.slice(-2);
       // else return it
-      else return newArr;
+      else return newInput;
     }
+    //
+    else return input;
   }
 
   function inputExtract(move, input) {
@@ -98,7 +166,7 @@ export const InputProvider = ({ children }) => {
     ];
 
     for (let mech of wrappedMechs) {
-      if (name === mech) return solveWrappedMechs(input);
+      if (name === mech) return cleanComplexMech(input);
     }
   }
 
@@ -113,18 +181,12 @@ export const InputProvider = ({ children }) => {
     // if the move is valid, create the component with the object
     // if actionInput in longer than 1 that means it's most probably a "xN"
     // or check is to see if it's a single digit number so it means it's a single/multi hit
-    if (actionInput?.length > 1 || testIfNumber(actionInput)) {
-      const actionInputObj = testRegex(gameInputs, actionInput);
-      const techComponent = createSubInputComponent(moveObj, actionInput);
-      return createInputComponent(actionInputObj, techComponent);
-    }
 
     if (actionInput) {
       // innerInput is the action input
       // moveObj is the technique
       const actionInputObj = testRegex(gameInputs, actionInput);
-      const techComponent = createSubInputComponent(moveObj);
-      return createInputComponent(actionInputObj, techComponent);
+      return createInputComponent(actionInputObj);
     }
     if (moveObj) return createInputComponent(moveObj);
     // else, return the input as it is
@@ -151,7 +213,6 @@ export const InputProvider = ({ children }) => {
   }
 
   function splitFollowUps(input) {
-    console.log(input);
     const regex = /((?<!-.)->|>|~|,)/g;
     const output = input.map((el) => {
       let repeatResult = []; // stores the repeat pattern result
@@ -241,18 +302,21 @@ export const InputProvider = ({ children }) => {
       // check if it's an array
       const isArray = Array.isArray(item);
       if (isArray) {
-        const result = item.map((e, i) => {
+        const result = item.map((e) => {
           // check if it's an array again
           const isInnerArray = Array.isArray(e);
           if (isInnerArray) return splitArrayByRegex(e, regexes);
           // if array is empty, return the item, which should be ''
           else if (e.length === 0) return e;
           // else, split the array based on the regex
-          else return splitByRegex(e, regexes);
+          else {
+            return splitByRegex(e, regexes);
+          }
         });
         // flatten the result so it's cleaner
         return _.flatten(result);
       }
+
       // if "item" it's not an array, return it (should be a linkArrow)
       else return item;
     });
@@ -262,9 +326,7 @@ export const InputProvider = ({ children }) => {
   function splitMoves(arr) {
     // create unique regex
     const regexes = createRegex(gameInputs);
-
     const newArray = splitArrayByRegex(arr, regexes);
-
     return newArray;
   }
 
@@ -317,6 +379,25 @@ export const InputProvider = ({ children }) => {
     return result;
   }
 
+  function checkMultiHit(str, startIndex) {
+    if (str[startIndex] !== "(") return null;
+    const openIndex = str.indexOf("(", startIndex);
+    if (openIndex === -1) return null;
+
+    const input = str.substring(startIndex, startIndex + 3);
+    const regex = /\(\b\d\b\)/;
+    const isMultiHit = regex.test(input);
+
+    if (isMultiHit) return input;
+  }
+
+  function isAfterFollowUp(str, i) {
+    const beforeInput = [str[i - 1], str[i - 2]].join("");
+    const followUpRegex = /((?<!-.)->|>|~|,)/g;
+    const testFollowUp = followUpRegex.test(beforeInput);
+    return testFollowUp;
+  }
+
   function wrapSequences(str) {
     const result = [];
     let currentString = "";
@@ -333,10 +414,20 @@ export const InputProvider = ({ children }) => {
       const isHold = checkHoldInput(str, i);
       const isOptional = checkOptional(str, i);
       const isRepeat = checkRepeat(str, i);
+      const isMultiHit = checkMultiHit(str, i);
 
       if (isRelease) {
         pushCurrentToResult();
         result.push([isRelease]);
+        i += 2;
+      }
+      //
+      else if (isMultiHit) {
+        pushCurrentToResult();
+        const testFollowUp = isAfterFollowUp(str, i);
+
+        if (!testFollowUp) result[result.length - 1] += isMultiHit;
+        else result.push([isMultiHit]);
         i += 2;
       }
       //
@@ -348,9 +439,7 @@ export const InputProvider = ({ children }) => {
       //
       else if (isHold) {
         pushCurrentToResult();
-        const beforeInput = [str[i - 1], str[i - 2]].join("");
-        const followUpRegex = /((?<!-.)->|>|~|,)/g;
-        const testFollowUp = followUpRegex.test(beforeInput);
+        const testFollowUp = isAfterFollowUp(str, i);
 
         if (!testFollowUp) result[result.length - 1] += isHold;
         else result.push([isHold]);
@@ -400,7 +489,7 @@ export const InputProvider = ({ children }) => {
     // TESTS
     // =========================
 
-    console.log(arr);
+    console.log(wrappedComplex);
     setOutput(moves);
   }, [rawInput]);
 
