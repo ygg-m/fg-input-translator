@@ -55,11 +55,12 @@
 }
 
 *:hover > .tech-tag {
-  opacity: 0.2;
+  opacity: 0.5;
 }
 
 .tech-tag:hover {
   opacity: 1;
+  font-size: 1rem;
 }
 
 .combo-container svg g path,

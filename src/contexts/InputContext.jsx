@@ -82,11 +82,20 @@ export const InputProvider = ({ children }) => {
   }
 
   function createMultiHit(array) {
+    console.log(array);
     const clean = array.map((e) => cleanComplexMech(e));
+    const tech = gameInputs.filter(
+      (e) => e.name === "Single / Multiple Hits"
+    )[0];
+    const hits = cleanComplexMech(array[array.length - 1]);
+
     return (
       <div className="combo-container" key={uuidv4()}>
         <div className="multi-hit" key={uuidv4()}>
           {clean.map((e) => createInput(e))}
+          <div className="tech-tag" key={uuidv4()}>
+            {`${hits} Hits`}
+          </div>
         </div>
       </div>
     );
@@ -181,7 +190,6 @@ export const InputProvider = ({ children }) => {
     // if the move is valid, create the component with the object
     // if actionInput in longer than 1 that means it's most probably a "xN"
     // or check is to see if it's a single digit number so it means it's a single/multi hit
-
     if (actionInput) {
       // innerInput is the action input
       // moveObj is the technique
@@ -392,7 +400,8 @@ export const InputProvider = ({ children }) => {
   }
 
   function isAfterFollowUp(str, i) {
-    const beforeInput = [str[i - 1], str[i - 2]].join("");
+    const beforeInput = str.substring(i, i - 1);
+    console.log(beforeInput);
     const followUpRegex = /((?<!-.)->|>|~|,)/g;
     const testFollowUp = followUpRegex.test(beforeInput);
     return testFollowUp;
