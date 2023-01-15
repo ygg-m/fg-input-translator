@@ -101,7 +101,12 @@ export const InputProvider = ({ children }) => {
   }
 
   function createRepeat(array) {
-    const clean = array.map((e) => cleanComplexMech(e));
+    const clean = array.map((e) => {
+      const clear = cleanComplexMech(e);
+      const test = /x\d+/.test(clear);
+      if (!test) return clear;
+    });
+    console.log(clean);
     const tech = gameInputs.filter((e) => e.name === "Repeat")[0];
     return (
       <div className="combo-container" key={uuidv4()}>
