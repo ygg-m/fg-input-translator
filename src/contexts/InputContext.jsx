@@ -61,22 +61,32 @@ export const InputProvider = ({ children }) => {
 
   function createRelease(array) {
     const clean = array.map((e) => cleanComplexMech(e));
+    const tech = gameInputs.filter((e) => e.name === "Release")[0];
+
     return (
       <div className="combo-container" key={uuidv4()}>
         <div className="release" key={uuidv4()}>
           {clean.map((e) => createInput(e))}
-        </div>{" "}
+          <div className="tech-tag" key={uuidv4()}>
+            {tech.name}
+          </div>
+        </div>
       </div>
     );
   }
 
   function createHold(array) {
     const clean = array.map((e) => cleanComplexMech(e));
+    const tech = gameInputs.filter((e) => e.name === "Hold")[0];
+
     return (
       <div className="combo-container" key={uuidv4()}>
         <div className="hold" key={uuidv4()}>
           {clean.map((e) => createInput(e))}
-        </div>{" "}
+          <div className="tech-tag" key={uuidv4()}>
+            {tech.name}
+          </div>
+        </div>
       </div>
     );
   }
