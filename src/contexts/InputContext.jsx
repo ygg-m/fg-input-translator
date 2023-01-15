@@ -82,12 +82,11 @@ export const InputProvider = ({ children }) => {
   }
 
   function createMultiHit(array) {
-    console.log(array);
-    const clean = array.map((e) => cleanComplexMech(e));
+    const hits = cleanComplexMech(array[array.length - 1]);
+    const clean = array.filter((e) => !/\(\d+\)/.test(e));
     const tech = gameInputs.filter(
       (e) => e.name === "Single / Multiple Hits"
     )[0];
-    const hits = cleanComplexMech(array[array.length - 1]);
 
     return (
       <div className="combo-container" key={uuidv4()}>
@@ -401,7 +400,6 @@ export const InputProvider = ({ children }) => {
 
   function isAfterFollowUp(str, i) {
     const beforeInput = str.substring(i, i - 1);
-    console.log(beforeInput);
     const followUpRegex = /((?<!-.)->|>|~|,)/g;
     const testFollowUp = followUpRegex.test(beforeInput);
     return testFollowUp;
