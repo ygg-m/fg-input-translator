@@ -40,9 +40,8 @@ export const InputProvider = ({ children }) => {
         return createHold(item);
       } else return item;
     });
-    if (check) {
-      return newArr;
-    } else return false;
+    if (check) return newArr;
+    else return false;
   }
 
   function checkReleaseInCombo(arr) {
@@ -59,6 +58,27 @@ export const InputProvider = ({ children }) => {
     } else return false;
   }
 
+  function checkEddieInCombo(arr) {
+    let check = false;
+
+    if (!Array.isArray(arr)) return false;
+    const newArr = arr.map((item) => {
+      const isRegular = item[0] === "-" && item[item.length - 1] === "-";
+      const isVice = item[0] === "#" && item[item.length - 1] === "#";
+
+      if (isRegular && item.length > 1) {
+        check = true;
+        return createRegularEddie(item);
+      }
+      if (isVice && item.length > 1) {
+        check = true;
+        return createViceEddie(item);
+      } else return item;
+    });
+    if (check) return newArr;
+    else return false;
+  }
+
   function checkInputArray(array) {
     // map the array
     const newArray = array.map((input, i) => {
@@ -70,10 +90,13 @@ export const InputProvider = ({ children }) => {
       const isRelease = checkReleaseInCombo(input);
       const isHold = checkHoldInCombo(input);
       const notSingleButton = input.lenght > 2;
+      const isEddie = checkEddieInCombo(input);
+
       // returns
       if (!notSingleButton) {
         if (isRelease) return createRelease(input);
         if (isHold) return createCombo(isHold);
+        if (isEddie) return createCombo(isEddie);
         if (isRepeat) return createRepeat(input);
         if (isOptional) return createOptional(input);
         if (isMultipleHits) return createMultiHit(input);
@@ -81,15 +104,73 @@ export const InputProvider = ({ children }) => {
       if (isCombo) return createCombo(input);
       else return createInput(input);
     });
-    console.log(newArray);
     return newArray;
+  }
+
+  function createViceEddie(array) {
+    const tech = gameInputs.filter(
+      (e) => e.name === "Eddie Vice Shadow Release"
+    )[0];
+    if (!Array.isArray(array)) {
+      const clean = cleanComplexMech(array);
+      return (
+        <div className="release" key={uuidv4()}>
+          {createInput(clean)}
+          <div className="tech-tag" key={uuidv4()}>
+            Vice
+          </div>
+        </div>
+      );
+    } else {
+      const clean = array.filter((e) => !/\(\d+\)/.test(e));
+
+      return (
+        <div className="combo-container" key={uuidv4()}>
+          <div className="multi-hit" key={uuidv4()}>
+            {clean.map((e) => createInput(e))}
+            <div className="tech-tag" key={uuidv4()}>
+              {"Regular Shadow"}
+            </div>
+          </div>
+        </div>
+      );
+    }
+  }
+
+  function createRegularEddie(array) {
+    const tech = gameInputs.filter(
+      (e) => e.name === "Eddie Regular Shadow Release"
+    )[0];
+    if (!Array.isArray(array)) {
+      const clean = cleanComplexMech(array);
+      return (
+        <div className="release" key={uuidv4()}>
+          {createInput(clean)}
+          <div className="tech-tag" key={uuidv4()}>
+            Regular
+          </div>
+        </div>
+      );
+    } else {
+      const clean = array.filter((e) => !/\(\d+\)/.test(e));
+
+      return (
+        <div className="combo-container" key={uuidv4()}>
+          <div className="multi-hit" key={uuidv4()}>
+            {clean.map((e) => createInput(e))}
+            <div className="tech-tag" key={uuidv4()}>
+              {"Regular Shadow"}
+            </div>
+          </div>
+        </div>
+      );
+    }
   }
 
   function createRelease(array) {
     const tech = gameInputs.filter((e) => e.name === "Release")[0];
     if (!Array.isArray(array)) {
       const clean = cleanComplexMech(array);
-      console.log(clean);
       return (
         <div className="release" key={uuidv4()}>
           {createInput(clean)}
@@ -117,7 +198,6 @@ export const InputProvider = ({ children }) => {
     const tech = gameInputs.filter((e) => e.name === "Hold")[0];
     if (!Array.isArray(array)) {
       const clean = cleanComplexMech(array);
-      console.log(clean);
       return (
         <div className="hold" key={uuidv4()}>
           {createInput(clean)}
@@ -195,8 +275,6 @@ export const InputProvider = ({ children }) => {
   }
 
   function createCombo(array) {
-    console.log(array);
-
     return (
       <div className="combo-container" key={uuidv4()}>
         {array.map((e) => createInput(e))}
