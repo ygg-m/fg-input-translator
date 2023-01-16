@@ -19,7 +19,13 @@ export const Header = () => {
       <h1>Fight Game Input Translator</h1>
 
       <h3>
-        Translate <i>numpad notations</i> into <i>visual inputs</i>!
+        Translate{" "}
+        <i>
+          <a href="https://glossary.infil.net/?t=Numpad%20Notation">
+            numpad notations
+          </a>
+        </i>{" "}
+        into <i>visual inputs</i>!
       </h3>
     </header>
   );

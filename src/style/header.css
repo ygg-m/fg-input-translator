@@ -106,7 +106,13 @@ h3 > i {
   transition: 200ms;
 }
 
-h3 > i:hover {
+h3 > i > a {
+  color: #777;
+  transition: 300ms;
+}
+
+h3 > i:hover,
+h3 > i > a:hover {
   color: #46c2cb;
   text-shadow: 0 0 2rem #46c2cb;
 }
