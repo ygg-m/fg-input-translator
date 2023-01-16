@@ -31,41 +31,79 @@ export const InputProvider = ({ children }) => {
     return isRepeat;
   }
 
+  function checkHoldInCombo(arr) {
+    let check = false;
+    if (!Array.isArray(arr)) return false;
+    const newArr = arr.map((item) => {
+      if (item[0] === "[" && item[item.length - 1] === "]") {
+        check = true;
+        return createHold(item);
+      } else return item;
+    });
+    if (check) {
+      return newArr;
+    } else return false;
+  }
+
+  function checkReleaseInCombo(arr) {
+    let check = false;
+    if (!Array.isArray(arr)) return false;
+    const newArr = arr.map((item) => {
+      if (item[0] === "]" && item[item.length - 1] === "[") {
+        check = true;
+        return createRelease(item);
+      } else return item;
+    });
+    if (check) {
+      return newArr;
+    } else return false;
+  }
+
   function checkInputArray(array) {
     // map the array
-    const newArray = array.map((input) => {
+    const newArray = array.map((input, i) => {
       // checkers
       const isRepeat = checkIsRepeat(input);
       const isOptional = input[0] === "(";
       const isCombo = Array.isArray(input);
       const isMultipleHits = /\(\b\d\b\)/.test(input);
-      const isRelease = input[0] === "]" && input[2] === "[";
-      const isHold = input[0] === "[" && input[2] === "]";
+      const isRelease = checkReleaseInCombo(input);
+      const isHold = checkHoldInCombo(input);
       const notSingleButton = input.lenght > 2;
-
       // returns
       if (!notSingleButton) {
         if (isRelease) return createRelease(input);
-        if (isHold) return createHold(input);
+        if (isHold) return createCombo(isHold);
         if (isRepeat) return createRepeat(input);
         if (isOptional) return createOptional(input);
         if (isMultipleHits) return createMultiHit(input);
       }
-
       if (isCombo) return createCombo(input);
       else return createInput(input);
     });
-
+    console.log(newArray);
     return newArray;
   }
 
   function createRelease(array) {
-    const clean = array.map((e) => cleanComplexMech(e));
     const tech = gameInputs.filter((e) => e.name === "Release")[0];
+    if (!Array.isArray(array)) {
+      const clean = cleanComplexMech(array);
+      console.log(clean);
+      return (
+        <div className="release" key={uuidv4()}>
+          {createInput(clean)}
+          <div className="tech-tag" key={uuidv4()}>
+            {tech.name}
+          </div>
+        </div>
+      );
+    }
+    const clean = array.map((e) => cleanComplexMech(e));
 
     return (
       <div className="combo-container" key={uuidv4()}>
-        <div className="release" key={uuidv4()}>
+        <div className="hold" key={uuidv4()}>
           {clean.map((e) => createInput(e))}
           <div className="tech-tag" key={uuidv4()}>
             {tech.name}
@@ -76,8 +114,20 @@ export const InputProvider = ({ children }) => {
   }
 
   function createHold(array) {
-    const clean = array.map((e) => cleanComplexMech(e));
     const tech = gameInputs.filter((e) => e.name === "Hold")[0];
+    if (!Array.isArray(array)) {
+      const clean = cleanComplexMech(array);
+      console.log(clean);
+      return (
+        <div className="hold" key={uuidv4()}>
+          {createInput(clean)}
+          <div className="tech-tag" key={uuidv4()}>
+            {tech.name}
+          </div>
+        </div>
+      );
+    }
+    const clean = array.map((e) => cleanComplexMech(e));
 
     return (
       <div className="combo-container" key={uuidv4()}>
@@ -116,7 +166,6 @@ export const InputProvider = ({ children }) => {
       const test = /x\d+/.test(clear);
       if (!test) return clear;
     });
-    console.log(clean);
     const tech = gameInputs.filter((e) => e.name === "Repeat")[0];
     return (
       <div className="combo-container" key={uuidv4()}>
@@ -146,6 +195,8 @@ export const InputProvider = ({ children }) => {
   }
 
   function createCombo(array) {
+    console.log(array);
+
     return (
       <div className="combo-container" key={uuidv4()}>
         {array.map((e) => createInput(e))}
@@ -196,6 +247,7 @@ export const InputProvider = ({ children }) => {
   function createInput(input) {
     // if input is empty, return the input, which should be ('')
     if (!input) return input;
+    if (typeof input !== "string") return input;
     // try to get the move object by testing it's regex against the input
     const moveObj = testRegex(gameInputs, input);
     // action input will have the value of complex inputs like [x], (x), etc
@@ -213,13 +265,6 @@ export const InputProvider = ({ children }) => {
     if (moveObj) return createInputComponent(moveObj);
     // else, return the input as it is
     else return input;
-  }
-
-  function createSubInputComponent(subInput, value) {
-    if (!subInput) return;
-    if (value)
-      return <SubTechInput value={value} inputObj={subInput} key={uuidv4()} />;
-    else return <SubTechInput inputObj={subInput} key={uuidv4()} />;
   }
 
   function createInputComponent(obj, techComponent) {
@@ -242,14 +287,6 @@ export const InputProvider = ({ children }) => {
       // check if it's an array
       if (Array.isArray(el))
         return el.map((e) => {
-          // // check if it's a repeat pattern that starts with '['
-          // // and ends with a number
-          // const lastChar = e[e.length - 1];
-          // const isRepeat = e[0] === "[" && /\d+/.test(lastChar);
-          // if (isRepeat) {
-          //   console.log("repeat");
-          // }
-
           // if it's not a repeat pattern, return the string splitted
           return removeBlankSpaces(e.split(regex));
         });
@@ -364,7 +401,7 @@ export const InputProvider = ({ children }) => {
   }
 
   function checkHoldInput(str, i) {
-    const input = [str[i], str[i + 1], str[i + 2]].join("");
+    const input = str.substring(i, i + 3);
     const regex = /\[(.*?)\]/;
     const test = regex.test(input);
     if (test) return input;
@@ -462,7 +499,6 @@ export const InputProvider = ({ children }) => {
       else if (isHold) {
         pushCurrentToResult();
         const testFollowUp = isAfterFollowUp(str, i);
-
         if (!testFollowUp) result[result.length - 1] += isHold;
         else result.push([isHold]);
         i += 2;
@@ -511,7 +547,7 @@ export const InputProvider = ({ children }) => {
     // TESTS
     // =========================
 
-    console.log(wrappedComplex);
+    console.log(splittedMoves);
     setOutput(moves);
   }, [rawInput]);
 
