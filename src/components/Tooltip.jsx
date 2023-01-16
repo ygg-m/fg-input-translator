@@ -9,6 +9,8 @@ export const Tooltip = ({ elRef, obj, visible, offset }) => {
     y: 0,
   };
 
+  console.log(elRef?.current?.offsetTop + offset);
+
   return (
     <div
       className={

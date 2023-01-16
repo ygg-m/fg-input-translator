@@ -77,16 +77,19 @@
 }
 
 .follow-up {
+  position: relative;
   width: 3rem;
 }
 .movement,
 .special,
 .action,
 .mech-icon {
+  position: relative;
   width: 2rem;
 }
 
 .mech {
+  position: relative;
   background-color: #222;
   padding: 0 0.5rem 0.1rem;
   border-radius: 1rem;

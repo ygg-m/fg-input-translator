@@ -35,12 +35,12 @@ export const TechInput = ({ inputObj, tech }) => {
           {name}
         </div>
         {tech && tech}
-        {/* <Tooltip
+        <Tooltip
           elRef={elementRef}
           obj={inputObj}
           visible={tooltipVisible}
-          offset={45}
-        /> */}
+          offset={50}
+        />
       </div>
     );
   }
@@ -54,14 +54,16 @@ export const TechInput = ({ inputObj, tech }) => {
         onClick={clickShowTooltip}
         className={`${type} ${tech ? "tech" : ""}`}
       >
-        {img}
-        {tech && tech}
-        {/* <Tooltip
+        <div ref={elementRef}>
+          {img}
+          {tech && tech}
+        </div>
+        <Tooltip
           elRef={elementRef}
           obj={inputObj}
           visible={tooltipVisible}
-          offset={85}
-        /> */}
+          offset={50}
+        />
       </div>
     );
   }
@@ -75,14 +77,16 @@ export const TechInput = ({ inputObj, tech }) => {
         onClick={clickShowTooltip}
         className={`${type} ${tech ? "tech" : ""}`}
       >
-        <div style={style}>{img}</div>
+        <div style={style} ref={elementRef}>
+          {img}
+        </div>
         {tech && tech}
-        {/* <Tooltip
+        <Tooltip
           elRef={elementRef}
           obj={inputObj}
           visible={tooltipVisible}
-          offset={65}
-        /> */}
+          offset={50}
+        />
       </div>
     );
   }
