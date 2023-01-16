@@ -1,7 +1,7 @@
 import _ from "lodash";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { SubTechInput, TechInput } from "../components/index";
+import { HoldRelease, MultiHit, TechInput } from "../components/index";
 import { ggacplusr } from "../data/index";
 
 const InputContext = createContext();
@@ -9,6 +9,8 @@ const InputContext = createContext();
 export const useInput = () => useContext(InputContext);
 
 export const InputProvider = ({ children }) => {
+  const elementRef = useRef(null);
+
   // States
   // Input
   const [rawInput, setRawInput] = useState("");
@@ -186,25 +188,13 @@ export const InputProvider = ({ children }) => {
     const tech = gameInputs.filter((e) => e.name === "Release")[0];
     if (!Array.isArray(array)) {
       const clean = cleanComplexMech(array);
-      return (
-        <div className="release" key={uuidv4()}>
-          {createInput(clean)}
-          <div className="tech-tag" key={uuidv4()}>
-            {tech.name}
-          </div>
-        </div>
-      );
+      return <HoldRelease input={clean} tech={tech} />;
     }
     const clean = array.map((e) => cleanComplexMech(e));
 
     return (
       <div className="combo-container" key={uuidv4()}>
-        <div className="hold" key={uuidv4()}>
-          {clean.map((e) => createInput(e))}
-          <div className="tech-tag" key={uuidv4()}>
-            {tech.name}
-          </div>
-        </div>
+        <HoldRelease input={clean} tech={tech} />
       </div>
     );
   }
@@ -213,25 +203,13 @@ export const InputProvider = ({ children }) => {
     const tech = gameInputs.filter((e) => e.name === "Hold")[0];
     if (!Array.isArray(array)) {
       const clean = cleanComplexMech(array);
-      return (
-        <div className="hold" key={uuidv4()}>
-          {createInput(clean)}
-          <div className="tech-tag" key={uuidv4()}>
-            {tech.name}
-          </div>
-        </div>
-      );
+      return <HoldRelease input={clean} tech={tech} />;
     } else {
       const clean = array.map((e) => cleanComplexMech(e));
 
       return (
         <div className="combo-container" key={uuidv4()}>
-          <div className="hold" key={uuidv4()}>
-            {clean.map((e) => createInput(e))}
-            <div className="tech-tag" key={uuidv4()}>
-              {tech.name}
-            </div>
-          </div>
+          <HoldRelease input={clean} tech={tech} />
         </div>
       );
     }
@@ -246,24 +224,12 @@ export const InputProvider = ({ children }) => {
 
     if (!Array.isArray(array)) {
       const clean = cleanComplexMech(array);
-      return (
-        <div className="multi-hit" key={uuidv4()}>
-          {createInput(clean)}
-          <div className="tech-tag" key={uuidv4()}>
-            {`${hits} Hits`}
-          </div>
-        </div>
-      );
+      return <MultiHit input={clean} tech={tech} hits={hits} />;
     }
     const clean = array.filter((e) => !/\(\d+\)/.test(e));
     return (
       <div className="combo-container" key={uuidv4()}>
-        <div className="multi-hit" key={uuidv4()}>
-          {createInput(clean)}
-          <div className="tech-tag" key={uuidv4()}>
-            {`${hits} Hits`}
-          </div>
-        </div>
+        <MultiHit input={clean} tech={tech} hits={hits} />;
       </div>
     );
   }
@@ -290,6 +256,7 @@ export const InputProvider = ({ children }) => {
   function createOptional(array) {
     const clean = array.map((e) => cleanComplexMech(e));
     const tech = gameInputs.filter((e) => e.name === "Optional")[0];
+
     return (
       <div className="combo-container" key={uuidv4()}>
         <div className="optional-container" key={uuidv4()}>
@@ -660,7 +627,14 @@ export const InputProvider = ({ children }) => {
     setOutput(moves);
   }, [rawInput, gameInputs]);
 
-  const value = { rawInput, setRawInput, output, gameInputs, setGameInputs };
+  const value = {
+    rawInput,
+    setRawInput,
+    output,
+    gameInputs,
+    setGameInputs,
+    createInput,
+  };
 
   return (
     <InputContext.Provider value={value}>{children}</InputContext.Provider>
