@@ -7,8 +7,8 @@ function App() {
     <div className="app-container">
       <Header />
       <div className="input-container">
-        <GameSelect />
         <InputProvider>
+          <GameSelect />
           <Input />
           <Output />
         </InputProvider>

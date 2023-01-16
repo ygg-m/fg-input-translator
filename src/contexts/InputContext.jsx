@@ -658,9 +658,9 @@ export const InputProvider = ({ children }) => {
 
     console.log(splittedMoves);
     setOutput(moves);
-  }, [rawInput]);
+  }, [rawInput, gameInputs]);
 
-  const value = { rawInput, setRawInput, output };
+  const value = { rawInput, setRawInput, output, gameInputs, setGameInputs };
 
   return (
     <InputContext.Provider value={value}>{children}</InputContext.Provider>

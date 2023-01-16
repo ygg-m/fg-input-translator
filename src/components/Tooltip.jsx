@@ -3,6 +3,9 @@ export const Tooltip = ({ elRef, obj, visible, offset }) => {
   const haveDescription = description?.length > 0;
   const haveKnowMore = moreLink?.length > 0;
   const haveKnowMoreName = moreName?.length > 0;
+  const bottomOffset = elRef?.current?.offsetTop + offset;
+  const leftOffset =
+    elRef?.current?.offsetLeft + elRef?.current?.offsetWidth / 2;
 
   return (
     <div
@@ -10,8 +13,8 @@ export const Tooltip = ({ elRef, obj, visible, offset }) => {
         visible ? "tooltip-container show" : "tooltip-container hidden"
       }
       style={{
-        bottom: elRef?.current?.offsetTop + offset,
-        left: elRef?.current?.offsetLeft + elRef?.current?.offsetWidth / 2,
+        bottom: bottomOffset,
+        left: leftOffset,
       }}
     >
       <div className="tooltip">

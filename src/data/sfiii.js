@@ -10,9 +10,9 @@ import { Foward, Neutral } from "./index";
 // arrow links
 import { Cancel, Link, Next } from "./index";
 
-const ggacplusr = [
+const sfiii = [
   {
-    name: "Guilty Gear Accent Core + R",
+    name: "Street Fighter III",
     input: "",
     type: "",
     regex: "",
@@ -533,4 +533,4 @@ const ggacplusr = [
   },
 ];
 
-export { ggacplusr };
+export { sfiii };
