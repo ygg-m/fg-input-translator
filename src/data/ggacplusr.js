@@ -227,7 +227,7 @@ const ggacplusr = [
     moreName: "",
   },
   {
-    name: "High Jump / Super Jump",
+    name: "Super Jump",
     input: ["hj.", "sj."],
     type: "mech",
     regex: /hj\.|sj\.|sj/,
