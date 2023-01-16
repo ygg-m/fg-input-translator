@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import { useInput } from "../contexts/InputContext";
 import { ggacplusr, sfiii } from "../data/index";
 import { ReactComponent as Chevron } from "../images/ui/chevron-down.svg";
+
 export const GameSelect = () => {
   const { gameInputs, setGameInputs } = useInput();
   const [showList, setShowList] = useState(true);
@@ -30,7 +32,11 @@ export const GameSelect = () => {
           </div>
           <div className="games-container">
             {guiltyGear.map((game) => (
-              <div className="game" onClick={() => setGameInputs(game)}>
+              <div
+                className="game"
+                key={uuidv4()}
+                onClick={() => setGameInputs(game)}
+              >
                 {game[0].name}
               </div>
             ))}
@@ -42,7 +48,11 @@ export const GameSelect = () => {
           </div>
           <div className="games-container">
             {streetFighter.map((game) => (
-              <div className="game" onClick={() => setGameInputs(game)}>
+              <div
+                className="game"
+                key={uuidv4()}
+                onClick={() => setGameInputs(game)}
+              >
                 {game[0].name}
               </div>
             ))}

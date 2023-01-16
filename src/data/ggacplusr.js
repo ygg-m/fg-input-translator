@@ -15,7 +15,7 @@ const ggacplusr = [
     name: "Guilty Gear Accent Core + R",
     input: "",
     type: "",
-    regex: "",
+    regex: /(?!)/,
     description: "",
     img: "",
   },
