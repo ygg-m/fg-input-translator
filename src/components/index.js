@@ -1,3 +1,4 @@
+import "../style/footer.css";
 import "../style/gameselect.css";
 import "../style/header.css";
 import "../style/input.css";
