@@ -86,6 +86,12 @@
   width: 2rem;
 }
 
+.mech {
+  background-color: #222;
+  padding: 0 0.5rem 0.1rem;
+  border-radius: 1rem;
+}
+
 /* .follow-up > svg > path,
 .follow-up > svg > g > path {
   fill: #333;

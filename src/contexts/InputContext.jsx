@@ -79,6 +79,21 @@ export const InputProvider = ({ children }) => {
     else return false;
   }
 
+  function checkMultiHitInCombo(arr) {
+    let check = false;
+    const test = /\(\b\d\b\)/.test(arr);
+    let newArr = arr;
+    const hitNumber = arr[arr.length - 1];
+    const lastChar = arr[arr.length - 2];
+    if (test) {
+      check = true;
+      newArr.pop();
+      newArr.pop();
+      newArr.push(createMultiHit(lastChar, hitNumber));
+    }
+    return newArr;
+  }
+
   function checkInputArray(array) {
     // map the array
     const newArray = array.map((input, i) => {
@@ -86,7 +101,7 @@ export const InputProvider = ({ children }) => {
       const isRepeat = checkIsRepeat(input);
       const isOptional = input[0] === "(";
       const isCombo = Array.isArray(input);
-      const isMultipleHits = /\(\b\d\b\)/.test(input);
+      const isMultipleHits = checkMultiHitInCombo(input);
       const isRelease = checkReleaseInCombo(input);
       const isHold = checkHoldInCombo(input);
       const notSingleButton = input.lenght > 2;
@@ -99,7 +114,7 @@ export const InputProvider = ({ children }) => {
         if (isEddie) return createCombo(isEddie);
         if (isRepeat) return createRepeat(input);
         if (isOptional) return createOptional(input);
-        if (isMultipleHits) return createMultiHit(input);
+        if (isMultipleHits) return createCombo(isMultipleHits);
       }
       if (isCombo) return createCombo(input);
       else return createInput(input);
@@ -206,32 +221,45 @@ export const InputProvider = ({ children }) => {
           </div>
         </div>
       );
-    }
-    const clean = array.map((e) => cleanComplexMech(e));
+    } else {
+      const clean = array.map((e) => cleanComplexMech(e));
 
-    return (
-      <div className="combo-container" key={uuidv4()}>
-        <div className="hold" key={uuidv4()}>
-          {clean.map((e) => createInput(e))}
-          <div className="tech-tag" key={uuidv4()}>
-            {tech.name}
+      return (
+        <div className="combo-container" key={uuidv4()}>
+          <div className="hold" key={uuidv4()}>
+            {clean.map((e) => createInput(e))}
+            <div className="tech-tag" key={uuidv4()}>
+              {tech.name}
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
 
-  function createMultiHit(array) {
-    const hits = cleanComplexMech(array[array.length - 1]);
-    const clean = array.filter((e) => !/\(\d+\)/.test(e));
+  function createMultiHit(array, hitNumber) {
+    const hits = cleanComplexMech(hitNumber) || cleanComplexMech(array);
+    console.log(hits);
     const tech = gameInputs.filter(
       (e) => e.name === "Single / Multiple Hits"
     )[0];
 
+    if (!Array.isArray(array)) {
+      const clean = cleanComplexMech(array);
+      return (
+        <div className="multi-hit" key={uuidv4()}>
+          {createInput(clean)}
+          <div className="tech-tag" key={uuidv4()}>
+            {`${hits} Hits`}
+          </div>
+        </div>
+      );
+    }
+    const clean = array.filter((e) => !/\(\d+\)/.test(e));
     return (
       <div className="combo-container" key={uuidv4()}>
         <div className="multi-hit" key={uuidv4()}>
-          {clean.map((e) => createInput(e))}
+          {createInput(clean)}
           <div className="tech-tag" key={uuidv4()}>
             {`${hits} Hits`}
           </div>
@@ -275,11 +303,13 @@ export const InputProvider = ({ children }) => {
   }
 
   function createCombo(array) {
-    return (
-      <div className="combo-container" key={uuidv4()}>
-        {array.map((e) => createInput(e))}
-      </div>
-    );
+    if (!Array.isArray(array)) return createInput(array);
+    else
+      return (
+        <div className="combo-container" key={uuidv4()}>
+          {array.map((e) => createInput(e))}
+        </div>
+      );
   }
 
   function cleanComplexMech(input) {
@@ -325,7 +355,8 @@ export const InputProvider = ({ children }) => {
   function createInput(input) {
     // if input is empty, return the input, which should be ('')
     if (!input) return input;
-    if (typeof input !== "string") return input;
+    if (Array.isArray(input)) return checkInputArray(input);
+    if (typeof input === "object") return input;
     // try to get the move object by testing it's regex against the input
     const moveObj = testRegex(gameInputs, input);
     // action input will have the value of complex inputs like [x], (x), etc

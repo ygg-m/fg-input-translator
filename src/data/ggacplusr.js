@@ -143,8 +143,8 @@ const ggacplusr = [
     type: "mech",
     regex: /throw/,
     description: "4H or 6H within close proximity of an opponent",
+    img: "",
     moreLink: "https://www.dustloop.com/w/GGACR/Mechanics#Throws",
-
     moreName: "Dustloop",
   },
   {
@@ -153,6 +153,7 @@ const ggacplusr = [
     type: "mech",
     regex: /▷|land/,
     description: "Player must land at that point in the sequence.",
+    img: "",
     moreLink: "",
     moreName: "",
   },
@@ -162,6 +163,7 @@ const ggacplusr = [
     type: "mech",
     regex: /dl\.|dl|delay|slightdelay/,
     description: "Delay the following move.",
+    img: "",
     moreLink: "",
     moreName: "",
   },
@@ -171,6 +173,7 @@ const ggacplusr = [
     type: "mech",
     regex: /whiff|\(whiff\)/,
     description: "Whiff (not hit) the following move.",
+    img: "",
     moreLink: "",
     moreName: "",
   },
