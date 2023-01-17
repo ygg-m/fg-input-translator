@@ -16,9 +16,9 @@ import { Foward, Neutral } from "./index";
 // arrow links
 import { Cancel, Link, Next } from "./index";
 
-const ggacplusr = [
+const guiltyGear = [
   {
-    name: "Guilty Gear Accent Core + R",
+    name: "Guilty Gear",
     input: "",
     type: "",
     regex: /(?!)/,
@@ -561,4 +561,4 @@ const ggacplusr = [
   },
 ];
 
-export { ggacplusr };
+export { guiltyGear };

@@ -19,9 +19,9 @@ import { Foward, Neutral } from "./index";
 // arrow links
 import { Cancel, Link, Next } from "./index";
 
-const sfiii = [
+const streetFighter = [
   {
-    name: "Street Fighter III",
+    name: "Street Fighter",
     input: "",
     type: "",
     regex: /(?!)/,
@@ -566,4 +566,4 @@ const sfiii = [
   },
 ];
 
-export { sfiii };
+export { streetFighter };

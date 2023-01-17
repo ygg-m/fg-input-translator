@@ -47,40 +47,25 @@
 }
 
 /* list */
-.game-selector-container > .game-categories-container {
-  display: grid;
-  gap: 1rem;
-  justify-items: end;
-  text-align: right;
+.games-container {
+  display: flex;
+  justify-content: flex-end;
   margin-top: 1rem;
-}
-
-.game-selector-container.hide > .game-categories-container {
-  visibility: hidden;
-  opacity: 0;
-  height: 0;
   transition: 200ms;
 }
 
-.game-selector-container.show > .game-categories-container {
+.game-selector-container.show > .games-container {
   visibility: visible;
   opacity: 1;
   height: fit-content;
-  margin-bottom: 1rem;
-  transition: 200ms;
+  margin-top: 1rem;
 }
 
-.game-categories-container > .game-category {
-  display: grid;
-  gap: 0.5rem;
-}
-
-.game-categories-container > .game-category > .title {
-  color: #444;
-  font-size: 1.25rem;
-  font-weight: 400;
-  text-transform: uppercase;
-  font-style: italic;
+.game-selector-container.hide > .games-container {
+  visibility: hidden;
+  opacity: 0;
+  height: 0;
+  margin-top: 0;
 }
 
 .game-selector-container.show > .current-container > .current {

@@ -25,5 +25,5 @@ export { ReactComponent as Neutral } from "../images/inputs/Motion5.svg";
 export { ReactComponent as Foward } from "../images/inputs/Motion6.svg";
 export { ReactComponent as DragonPunch } from "../images/inputs/Motion623.svg";
 export { ReactComponent as Dash } from "../images/inputs/Motion66.svg";
-export { ggacplusr } from "./ggacplusr";
-export { sfiii } from "./sfiii";
+export { guiltyGear } from "./guiltygear";
+export { streetFighter } from "./streetFighter";

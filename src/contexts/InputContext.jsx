@@ -8,7 +8,7 @@ import {
   Repeat,
   TechInput,
 } from "../components/index";
-import { ggacplusr, sfiii } from "../data/index";
+import { guiltyGear, streetFighter } from "../data/index";
 
 const InputContext = createContext();
 
@@ -20,7 +20,7 @@ export const InputProvider = ({ children }) => {
   const [rawInput, setRawInput] = useState("");
   const [output, setOutput] = useState([]);
   const [gameInputs, setGameInputs] = useState();
-  const [gameList] = useState([ggacplusr, sfiii]);
+  const [gameList] = useState([guiltyGear, streetFighter]);
   const [inputList, setInputList] = useState([]);
   const [gameRegexes, setGameRegexes] = useState(createRegex(gameInputs));
 
@@ -580,8 +580,8 @@ export const InputProvider = ({ children }) => {
       const savedGameInputs = gameList.filter(
         (e) => e[0].name === savedGameName
       );
-      setGameInputs(savedGameInputs[0] || ggacplusr);
-    } else setGameInputs(ggacplusr);
+      setGameInputs(savedGameInputs[0] || guiltyGear);
+    } else setGameInputs(guiltyGear);
   }, []);
 
   useEffect(() => {
@@ -614,6 +614,7 @@ export const InputProvider = ({ children }) => {
     gameInputs,
     setGameInputs,
     createInput,
+    gameList,
   };
 
   return (
