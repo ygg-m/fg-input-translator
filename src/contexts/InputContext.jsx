@@ -1,7 +1,13 @@
 import _ from "lodash";
 import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { HoldRelease, MultiHit, TechInput } from "../components/index";
+import {
+  Eddie,
+  HoldRelease,
+  MultiHit,
+  Repeat,
+  TechInput,
+} from "../components/index";
 import { ggacplusr } from "../data/index";
 
 const InputContext = createContext();
@@ -27,6 +33,7 @@ export const InputProvider = ({ children }) => {
   }
 
   function checkIsRepeat(input) {
+    if (!input) return input;
     const lastElement = input[input.length - 1];
     const regex = /x\d+/;
     const isRepeat = input[0] === "[" && regex.test(lastElement);
@@ -99,6 +106,7 @@ export const InputProvider = ({ children }) => {
   function checkInputArray(array) {
     // map the array
     const newArray = array.map((input, i) => {
+      if (!input) return;
       // checkers
       const isRepeat = checkIsRepeat(input);
       const isOptional = input[0] === "(";
@@ -130,25 +138,13 @@ export const InputProvider = ({ children }) => {
     )[0];
     if (!Array.isArray(array)) {
       const clean = cleanComplexMech(array);
-      return (
-        <div className="release" key={uuidv4()}>
-          {createInput(clean)}
-          <div className="tech-tag" key={uuidv4()}>
-            Vice
-          </div>
-        </div>
-      );
+      return <Eddie input={clean} tech={tech} />;
     } else {
       const clean = array.filter((e) => !/\(\d+\)/.test(e));
 
       return (
         <div className="combo-container" key={uuidv4()}>
-          <div className="multi-hit" key={uuidv4()}>
-            {clean.map((e) => createInput(e))}
-            <div className="tech-tag" key={uuidv4()}>
-              {"Regular Shadow"}
-            </div>
-          </div>
+          <Eddie input={clean} tech={tech} />;
         </div>
       );
     }
@@ -160,25 +156,13 @@ export const InputProvider = ({ children }) => {
     )[0];
     if (!Array.isArray(array)) {
       const clean = cleanComplexMech(array);
-      return (
-        <div className="release" key={uuidv4()}>
-          {createInput(clean)}
-          <div className="tech-tag" key={uuidv4()}>
-            Regular
-          </div>
-        </div>
-      );
+      return <Eddie input={clean} tech={tech} />;
     } else {
       const clean = array.filter((e) => !/\(\d+\)/.test(e));
 
       return (
         <div className="combo-container" key={uuidv4()}>
-          <div className="multi-hit" key={uuidv4()}>
-            {clean.map((e) => createInput(e))}
-            <div className="tech-tag" key={uuidv4()}>
-              {"Regular Shadow"}
-            </div>
-          </div>
+          <Eddie input={clean} tech={tech} />;
         </div>
       );
     }
@@ -240,15 +224,11 @@ export const InputProvider = ({ children }) => {
       const test = /x\d+/.test(clear);
       if (!test) return clear;
     });
+    const repeats = array[array.length - 1];
     const tech = gameInputs.filter((e) => e.name === "Repeat")[0];
     return (
       <div className="combo-container" key={uuidv4()}>
-        <div className="repeat-container" key={uuidv4()}>
-          {clean.map((e) => createInput(e))}
-          <div className="tech-tag" key={uuidv4()}>
-            {tech.name} {array[array.length - 1]}
-          </div>
-        </div>
+        <Repeat input={clean} tech={tech} repeats={repeats} />
       </div>
     );
   }
@@ -259,12 +239,7 @@ export const InputProvider = ({ children }) => {
 
     return (
       <div className="combo-container" key={uuidv4()}>
-        <div className="optional-container" key={uuidv4()}>
-          {clean.map((e) => createInput(e))}
-          <div className="tech-tag" key={uuidv4()}>
-            {tech.name}
-          </div>
-        </div>
+        <HoldRelease input={clean} tech={tech} />
       </div>
     );
   }
@@ -590,12 +565,6 @@ export const InputProvider = ({ children }) => {
     }
     pushCurrentToResult();
     return result;
-  }
-
-  function testIfNumber(str) {
-    if (!str) return false;
-    const match = str.match(/\b\d\b/);
-    if (match) return true;
   }
 
   // Render Effects
