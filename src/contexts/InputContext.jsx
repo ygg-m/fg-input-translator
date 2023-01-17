@@ -21,8 +21,6 @@ export const InputProvider = ({ children }) => {
   const [output, setOutput] = useState([]);
   const [gameInputs, setGameInputs] = useState();
   const [gameList] = useState([guiltyGear, streetFighter]);
-  const [inputList, setInputList] = useState([]);
-  const [gameRegexes, setGameRegexes] = useState(createRegex(gameInputs));
 
   // Functions
   function testRegex(list, input) {
@@ -200,7 +198,6 @@ export const InputProvider = ({ children }) => {
 
   function createMultiHit(array, hitNumber) {
     const hits = cleanComplexMech(hitNumber) || cleanComplexMech(array);
-    console.log(hits);
     const tech = gameInputs.filter(
       (e) => e.name === "Single / Multiple Hits"
     )[0];
@@ -297,7 +294,7 @@ export const InputProvider = ({ children }) => {
     // if input is empty, return the input, which should be ('')
     if (!input) return input;
     if (Array.isArray(input)) return checkInputArray(input);
-    if (typeof input === "object") return input;
+    if (typeof input === "Symbol(react.element)") return input;
     // try to get the move object by testing it's regex against the input
     const moveObj = testRegex(gameInputs, input);
     // action input will have the value of complex inputs like [x], (x), etc
@@ -603,7 +600,6 @@ export const InputProvider = ({ children }) => {
     // TESTS
     // =========================
 
-    console.log(splittedMoves);
     setOutput(moves);
   }, [rawInput, gameInputs]);
 
