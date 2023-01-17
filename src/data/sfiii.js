@@ -4,7 +4,16 @@ import { Dash, ForceRomanCancel, IstantAirDash, RomanCancel } from "./index";
 // specials
 import { DragonPunch, FullCircle, HalfCircle, QuarterCircle } from "./index";
 // actions
-import { Dust, HeavySlash, Kick, Punch, Slash } from "./index";
+import {
+  AnyKick,
+  AnyPunch,
+  HeavyKick,
+  HeavyPunch,
+  LightKick,
+  LightPunch,
+  MediumKick,
+  MediumPunch,
+} from "./index";
 //moves
 import { Foward, Neutral } from "./index";
 // arrow links
@@ -412,7 +421,7 @@ const sfiii = [
     type: "action",
     regex: /lp/,
     description: "",
-    img: <Punch />,
+    img: <LightPunch />,
   },
   {
     name: "Medium Punch",
@@ -420,7 +429,7 @@ const sfiii = [
     type: "action",
     regex: /mp/,
     description: "",
-    img: <Punch />,
+    img: <MediumPunch />,
   },
   {
     name: "Heavy Punch",
@@ -428,7 +437,15 @@ const sfiii = [
     type: "action",
     regex: /hp/,
     description: "",
-    img: <Punch />,
+    img: <HeavyPunch />,
+  },
+  {
+    name: "Punch",
+    input: "p",
+    type: "action",
+    regex: /p/,
+    description: "",
+    img: <AnyPunch />,
   },
   {
     name: "Light Kick",
@@ -436,7 +453,7 @@ const sfiii = [
     type: "action",
     regex: /lk/,
     description: "",
-    img: <Kick />,
+    img: <LightKick />,
   },
   {
     name: "Medium Kick",
@@ -444,7 +461,7 @@ const sfiii = [
     type: "action",
     regex: /mk/,
     description: "",
-    img: <Kick />,
+    img: <MediumKick />,
   },
   {
     name: "Heavy Kick",
@@ -452,7 +469,15 @@ const sfiii = [
     type: "action",
     regex: /hk/,
     description: "",
-    img: <Kick />,
+    img: <HeavyKick />,
+  },
+  {
+    name: "Kick",
+    input: "k",
+    type: "action",
+    regex: /k/,
+    description: "",
+    img: <AnyKick />,
   },
 
   // -------------------------------------------------------------------------
