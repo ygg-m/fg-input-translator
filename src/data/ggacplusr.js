@@ -2,7 +2,13 @@
 // mechs
 import { Dash, ForceRomanCancel, IstantAirDash, RomanCancel } from "./index";
 // specials
-import { DragonPunch, FullCircle, HalfCircle, QuarterCircle } from "./index";
+import {
+  DragonPunch,
+  FullCircle,
+  HalfCircle,
+  Pretzel,
+  QuarterCircle,
+} from "./index";
 // actions
 import { Dust, HeavySlash, Kick, Punch, Slash } from "./index";
 //moves
@@ -331,6 +337,28 @@ const ggacplusr = [
   // -------------------------------------------------------------------------
   // specials
   // -------------------------------------------------------------------------
+  {
+    name: "Pretzel",
+    input: 1632143,
+    type: "special",
+    regex: /1632143/,
+    description: "",
+    img: <Pretzel />,
+    moreLink: "https://glossary.infil.net/?t=Pretzel%20Motion",
+    moreName: "Glossary",
+    style: {},
+  },
+  {
+    name: "Back Pretzel",
+    input: 3412361,
+    type: "special",
+    regex: /3412361/,
+    description: "",
+    img: <Pretzel />,
+    moreLink: "https://glossary.infil.net/?t=Pretzel%20Motion",
+    moreName: "Glossary",
+    style: { transform: "scaleX(-1)" },
+  },
   {
     name: "Full Circle Foward",
     input: 41236987,
