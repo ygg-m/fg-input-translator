@@ -48,11 +48,13 @@
 .tooltip-container.show {
   visibility: visible;
   opacity: 1;
+  transition: 200ms;
 }
 
 .tooltip-container.hidden {
   visibility: hidden;
   opacity: 0;
+  transition: 200ms;
 }
 
 .more-link {
