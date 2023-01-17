@@ -8,20 +8,19 @@ import {
   Repeat,
   TechInput,
 } from "../components/index";
-import { ggacplusr } from "../data/index";
+import { ggacplusr, sfiii } from "../data/index";
 
 const InputContext = createContext();
 
 export const useInput = () => useContext(InputContext);
 
 export const InputProvider = ({ children }) => {
-  const elementRef = useRef(null);
-
   // States
   // Input
   const [rawInput, setRawInput] = useState("");
   const [output, setOutput] = useState([]);
-  const [gameInputs, setGameInputs] = useState(ggacplusr);
+  const [gameInputs, setGameInputs] = useState();
+  const [gameList] = useState([ggacplusr, sfiii]);
   const [inputList, setInputList] = useState([]);
   const [gameRegexes, setGameRegexes] = useState(createRegex(gameInputs));
 
@@ -386,6 +385,7 @@ export const InputProvider = ({ children }) => {
   }
 
   function createRegex(moveList) {
+    if (!moveList) return;
     // create regexes based on movelist file
     const regexes = moveList.map((e) => e.regex);
 
@@ -442,6 +442,7 @@ export const InputProvider = ({ children }) => {
 
   function saveInLocalStorage() {
     localStorage.setItem("rawInput", rawInput);
+    if (gameInputs) localStorage.setItem("gameName", gameInputs[0]?.name);
   }
 
   function checkReleaseInput(str, i) {
@@ -569,8 +570,18 @@ export const InputProvider = ({ children }) => {
 
   // Render Effects
   useEffect(() => {
-    const retrievedArray = localStorage.getItem("rawInput");
-    setRawInput(retrievedArray);
+    // input
+    const savedRawInput = localStorage.getItem("rawInput");
+    setRawInput(savedRawInput || "");
+
+    // game
+    const savedGameName = localStorage.getItem("gameName");
+    if (savedGameName !== "undefined") {
+      const savedGameInputs = gameList.filter(
+        (e) => e[0].name === savedGameName
+      );
+      setGameInputs(savedGameInputs[0] || ggacplusr);
+    } else setGameInputs(ggacplusr);
   }, []);
 
   useEffect(() => {

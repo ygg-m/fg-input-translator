@@ -440,7 +440,7 @@ const sfiii = [
     img: <HeavyPunch />,
   },
   {
-    name: "Punch",
+    name: "Any Punch",
     input: "p",
     type: "action",
     regex: /p/,
@@ -472,7 +472,7 @@ const sfiii = [
     img: <HeavyKick />,
   },
   {
-    name: "Kick",
+    name: "Any Kick",
     input: "k",
     type: "action",
     regex: /k/,

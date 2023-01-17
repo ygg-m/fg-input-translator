@@ -6,9 +6,10 @@ import { ReactComponent as Chevron } from "../images/ui/chevron-down.svg";
 
 export const GameSelect = () => {
   const { gameInputs, setGameInputs } = useInput();
-  const [showList, setShowList] = useState(true);
+  const [showList, setShowList] = useState(false);
   const [guiltyGear] = useState([ggacplusr]);
   const [streetFighter] = useState([sfiii]);
+  if (!gameInputs) return;
   return (
     <div
       className={
@@ -35,7 +36,10 @@ export const GameSelect = () => {
               <div
                 className="game"
                 key={uuidv4()}
-                onClick={() => setGameInputs(game)}
+                onClick={() => {
+                  setShowList(false);
+                  setGameInputs(game);
+                }}
               >
                 {game[0].name}
               </div>
@@ -51,7 +55,10 @@ export const GameSelect = () => {
               <div
                 className="game"
                 key={uuidv4()}
-                onClick={() => setGameInputs(game)}
+                onClick={() => {
+                  setShowList(false);
+                  setGameInputs(game);
+                }}
               >
                 {game[0].name}
               </div>
