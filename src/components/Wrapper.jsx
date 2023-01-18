@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import { useInput } from "../contexts/InputContext";
 import { Tooltip } from "./Tooltip";
 
-export const HoldRelease = ({ input, tech }) => {
+export const Wrapper = ({ tech, input }) => {
   const [tooltipVisible, setTooltipVisible] = useState(false);
 
   const elementRef = useRef(null);
@@ -25,7 +25,7 @@ export const HoldRelease = ({ input, tech }) => {
   };
 
   return (
-    <div className="release" key={uuidv4()}>
+    <div className="wrapper" key={uuidv4()}>
       {createInput(input)}
       <div
         className="tech-tag"
@@ -41,7 +41,8 @@ export const HoldRelease = ({ input, tech }) => {
         elRef={elementRef}
         obj={tech}
         visible={tooltipVisible}
-        offset={0}
+        offset={85}
+        lOffset={-35}
       />
     </div>
   );

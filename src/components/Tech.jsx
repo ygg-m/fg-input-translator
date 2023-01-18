@@ -3,10 +3,8 @@ import { v4 as uuidv4 } from "uuid";
 import { useInput } from "../contexts/InputContext";
 import { Tooltip } from "./Tooltip";
 
-export const Eddie = ({ input, tech, hits }) => {
+export const Tech = ({ input, tech }) => {
   const [tooltipVisible, setTooltipVisible] = useState(false);
-
-  const isRegular = tech.name.includes("Regular");
 
   const elementRef = useRef(null);
   const { createInput } = useInput();
@@ -27,7 +25,7 @@ export const Eddie = ({ input, tech, hits }) => {
   };
 
   return (
-    <div className="multi-hit" key={uuidv4()}>
+    <div className="release" key={uuidv4()}>
       {createInput(input)}
       <div
         className="tech-tag"
@@ -37,7 +35,7 @@ export const Eddie = ({ input, tech, hits }) => {
         onMouseOut={hideTooltip}
         onClick={clickShowTooltip}
       >
-        {isRegular ? "Regular" : "Vice"}
+        {tech.name}
       </div>
       <Tooltip
         elRef={elementRef}

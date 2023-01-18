@@ -1,12 +1,12 @@
-export const Tooltip = ({ elRef, obj, visible, offset }) => {
+export const Tooltip = ({ elRef, obj, visible, offset, lOffset }) => {
   const { name, description, input, moreLink, moreName } = obj;
   const haveDescription = description?.length > 0;
   const haveKnowMore = moreLink?.length > 0;
   const haveKnowMoreName = moreName?.length > 0;
   const bottomOffset = elRef?.current?.offsetTop + offset;
+  if (lOffset === undefined) lOffset = 0;
   const leftOffset =
     elRef?.current?.offsetLeft + elRef?.current?.offsetWidth / 2;
-
   return (
     <div
       className={
@@ -14,7 +14,7 @@ export const Tooltip = ({ elRef, obj, visible, offset }) => {
       }
       style={{
         bottom: bottomOffset,
-        left: leftOffset,
+        left: leftOffset + lOffset,
       }}
     >
       <div className="tooltip">

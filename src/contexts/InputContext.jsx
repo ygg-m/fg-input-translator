@@ -3,10 +3,11 @@ import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import {
   Eddie,
-  HoldRelease,
   MultiHit,
   Repeat,
+  Tech,
   TechInput,
+  Wrapper,
 } from "../components/index";
 import { guiltyGear, streetFighter } from "../data/index";
 
@@ -66,22 +67,24 @@ export const InputProvider = ({ children }) => {
 
   function checkEddieInCombo(arr) {
     let check = false;
-
     if (!Array.isArray(arr)) return false;
     const newArr = arr.map((item) => {
       const isRegular = item[0] === "-" && item[item.length - 1] === "-";
       const isVice = item[0] === "#" && item[item.length - 1] === "#";
+      const isOptional = arr[0] === "(" && arr[2] === ")";
 
       if (isRegular && item.length > 1) {
         check = true;
+        if (isOptional) return createOptional(createRegularEddie(item));
         return createRegularEddie(item);
       }
       if (isVice && item.length > 1) {
         check = true;
+        if (isOptional) return createOptional(createViceEddie(item));
         return createViceEddie(item);
       } else return item;
     });
-    if (check) return newArr;
+    if (check) return newArr.map((e) => cleanComplexMech(e));
     else return false;
   }
 
@@ -133,10 +136,13 @@ export const InputProvider = ({ children }) => {
     const tech = gameInputs.filter(
       (e) => e.name === "Eddie Vice Shadow Release"
     )[0];
+
     if (!Array.isArray(array)) {
       const clean = cleanComplexMech(array);
       return <Eddie input={clean} tech={tech} />;
-    } else {
+    }
+    //
+    else {
       const clean = array.filter((e) => !/\(\d+\)/.test(e));
 
       return (
@@ -154,7 +160,9 @@ export const InputProvider = ({ children }) => {
     if (!Array.isArray(array)) {
       const clean = cleanComplexMech(array);
       return <Eddie input={clean} tech={tech} />;
-    } else {
+    }
+    //
+    else {
       const clean = array.filter((e) => !/\(\d+\)/.test(e));
 
       return (
@@ -169,13 +177,13 @@ export const InputProvider = ({ children }) => {
     const tech = gameInputs.filter((e) => e.name === "Release")[0];
     if (!Array.isArray(array)) {
       const clean = cleanComplexMech(array);
-      return <HoldRelease input={clean} tech={tech} />;
+      return <Tech input={clean} tech={tech} />;
     }
     const clean = array.map((e) => cleanComplexMech(e));
 
     return (
       <div className="combo-container" key={uuidv4()}>
-        <HoldRelease input={clean} tech={tech} />
+        <Tech input={clean} tech={tech} />
       </div>
     );
   }
@@ -184,13 +192,13 @@ export const InputProvider = ({ children }) => {
     const tech = gameInputs.filter((e) => e.name === "Hold")[0];
     if (!Array.isArray(array)) {
       const clean = cleanComplexMech(array);
-      return <HoldRelease input={clean} tech={tech} />;
+      return <Tech input={clean} tech={tech} />;
     } else {
       const clean = array.map((e) => cleanComplexMech(e));
 
       return (
         <div className="combo-container" key={uuidv4()}>
-          <HoldRelease input={clean} tech={tech} />
+          <Tech input={clean} tech={tech} />
         </div>
       );
     }
@@ -215,29 +223,46 @@ export const InputProvider = ({ children }) => {
   }
 
   function createRepeat(array) {
-    const clean = array.map((e) => {
-      const clear = cleanComplexMech(e);
-      const test = /x\d+/.test(clear);
-      if (!test) return clear;
-    });
-    const repeats = array[array.length - 1];
-    const tech = gameInputs.filter((e) => e.name === "Repeat")[0];
-    return (
-      <div className="combo-container" key={uuidv4()}>
-        <Repeat input={clean} tech={tech} repeats={repeats} />
-      </div>
-    );
+    if (Array.isArray(array)) {
+      const clean = array.map((e) => {
+        const clear = cleanComplexMech(e);
+        const test = /x\d+/.test(clear);
+        if (!test) return clear;
+      });
+
+      const repeats = array[array.length - 1];
+      const tech = gameInputs.filter((e) => e.name === "Repeat")[0];
+
+      return (
+        <div className="combo-container" key={uuidv4()}>
+          <Repeat input={clean} tech={tech} repeats={repeats} />
+        </div>
+      );
+    }
+    //
   }
 
   function createOptional(array) {
-    const clean = array.map((e) => cleanComplexMech(e));
-    const tech = gameInputs.filter((e) => e.name === "Optional")[0];
+    if (Array.isArray(array)) {
+      const clean = cleanComplexMech(array.join(""));
+      const tech = gameInputs.filter((e) => e.name === "Optional")[0];
 
-    return (
-      <div className="combo-container" key={uuidv4()}>
-        <HoldRelease input={clean} tech={tech} />
-      </div>
-    );
+      return (
+        <div className="combo-container" key={uuidv4()}>
+          <Wrapper input={clean} tech={tech} />
+        </div>
+      );
+    }
+    //
+    else {
+      const tech = gameInputs.filter((e) => e.name === "Optional")[0];
+      return (
+        <div className="complex-container" key={uuidv4()}>
+          {array}
+          <Wrapper tech={tech} />
+        </div>
+      );
+    }
   }
 
   function createCombo(array) {
@@ -251,6 +276,7 @@ export const InputProvider = ({ children }) => {
   }
 
   function cleanComplexMech(input) {
+    if (typeof input !== "string") return input;
     const hasParenthesis = input.includes("(") || input.includes(")");
     const hasBrackets = input.includes("[") || input.includes("]");
     const hasMinus = input.includes("-");
@@ -425,7 +451,7 @@ export const InputProvider = ({ children }) => {
       }
 
       // if "item" it's not an array, return it (should be a linkArrow)
-      else return item;
+      else return splitByRegex(item, regexes);
     });
     return newArray;
   }
@@ -434,7 +460,7 @@ export const InputProvider = ({ children }) => {
     // create unique regex
     const regexes = createRegex(gameInputs);
     const newArray = splitArrayByRegex(arr, regexes);
-    return newArray;
+    return _.flatten(newArray);
   }
 
   function saveInLocalStorage() {
@@ -589,17 +615,17 @@ export const InputProvider = ({ children }) => {
     const wrappedComplex = wrapSequences(cleanInputs);
     // split the string into an array separated on follow-ups
     const arr = splitFollowUps(wrappedComplex);
-    // wrap everything that's not a followup as a combo
-    const wrappedCombos = wrapCombos(arr);
     // split the moves
-    const splittedMoves = splitMoves(wrappedCombos);
+    const splittedMoves = splitMoves(arr);
+    // wrap everything that's not a followup as a combo
+    const wrappedCombos = wrapCombos(splittedMoves);
     // get moves components
-    const moves = checkInputArray(splittedMoves);
+    const moves = checkInputArray(wrappedCombos);
 
     // =========================
     // TESTS
     // =========================
-
+    console.log(wrappedCombos);
     setOutput(moves);
   }, [rawInput, gameInputs]);
 
