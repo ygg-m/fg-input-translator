@@ -36,6 +36,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 0.25rem;
   position: relative;
   background-color: #222;
   padding: 0.3rem 0.5rem;
@@ -43,6 +44,8 @@
 }
 
 .tech-tag {
+  color: #999;
+  text-align: center;
   font-size: 0.75rem;
   opacity: 1;
   position: absolute;

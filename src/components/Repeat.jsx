@@ -34,6 +34,7 @@ export const Repeat = ({ input, tech, repeats }) => {
         onMouseOver={showTooltip}
         onMouseOut={hideTooltip}
         onClick={clickShowTooltip}
+        style={{ width: "75px" }}
       >
         {tech.name} {repeats}
       </div>
