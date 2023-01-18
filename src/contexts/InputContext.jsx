@@ -32,6 +32,7 @@ export const InputProvider = ({ children }) => {
 
   function checkIsRepeat(input) {
     if (!input) return input;
+
     const lastElement = input[input.length - 1];
     const regex = /x\d+/;
     const isRepeat = input[0] === "[" && regex.test(lastElement);
@@ -139,7 +140,7 @@ export const InputProvider = ({ children }) => {
 
     if (!Array.isArray(array)) {
       const clean = cleanComplexMech(array);
-      return <Eddie input={clean} tech={tech} />;
+      return <Eddie input={clean} tech={tech} key={uuidv4()} />;
     }
     //
     else {
@@ -147,7 +148,7 @@ export const InputProvider = ({ children }) => {
 
       return (
         <div className="combo-container" key={uuidv4()}>
-          <Eddie input={clean} tech={tech} />;
+          <Eddie input={clean} tech={tech} key={uuidv4()} />;
         </div>
       );
     }
@@ -159,7 +160,7 @@ export const InputProvider = ({ children }) => {
     )[0];
     if (!Array.isArray(array)) {
       const clean = cleanComplexMech(array);
-      return <Eddie input={clean} tech={tech} />;
+      return <Eddie input={clean} tech={tech} key={uuidv4()} />;
     }
     //
     else {
@@ -167,7 +168,7 @@ export const InputProvider = ({ children }) => {
 
       return (
         <div className="combo-container" key={uuidv4()}>
-          <Eddie input={clean} tech={tech} />;
+          <Eddie input={clean} tech={tech} key={uuidv4()} />;
         </div>
       );
     }
@@ -177,13 +178,13 @@ export const InputProvider = ({ children }) => {
     const tech = gameInputs.filter((e) => e.name === "Release")[0];
     if (!Array.isArray(array)) {
       const clean = cleanComplexMech(array);
-      return <Tech input={clean} tech={tech} />;
+      return <Tech input={clean} tech={tech} key={uuidv4()} />;
     }
     const clean = array.map((e) => cleanComplexMech(e));
 
     return (
       <div className="combo-container" key={uuidv4()}>
-        <Tech input={clean} tech={tech} />
+        <Tech input={clean} tech={tech} key={uuidv4()} />
       </div>
     );
   }
@@ -192,13 +193,13 @@ export const InputProvider = ({ children }) => {
     const tech = gameInputs.filter((e) => e.name === "Hold")[0];
     if (!Array.isArray(array)) {
       const clean = cleanComplexMech(array);
-      return <Tech input={clean} tech={tech} />;
+      return <Tech input={clean} tech={tech} key={uuidv4()} />;
     } else {
       const clean = array.map((e) => cleanComplexMech(e));
 
       return (
         <div className="combo-container" key={uuidv4()}>
-          <Tech input={clean} tech={tech} />
+          <Tech input={clean} tech={tech} key={uuidv4()} />
         </div>
       );
     }
@@ -212,12 +213,12 @@ export const InputProvider = ({ children }) => {
 
     if (!Array.isArray(array)) {
       const clean = cleanComplexMech(array);
-      return <MultiHit input={clean} tech={tech} hits={hits} />;
+      return <MultiHit input={clean} tech={tech} hits={hits} key={uuidv4()} />;
     }
     const clean = array.filter((e) => !/\(\d+\)/.test(e));
     return (
       <div className="combo-container" key={uuidv4()}>
-        <MultiHit input={clean} tech={tech} hits={hits} />;
+        <MultiHit input={clean} tech={tech} hits={hits} key={uuidv4()} />;
       </div>
     );
   }
@@ -235,7 +236,7 @@ export const InputProvider = ({ children }) => {
 
       return (
         <div className="combo-container" key={uuidv4()}>
-          <Repeat input={clean} tech={tech} repeats={repeats} />
+          <Repeat input={clean} tech={tech} repeats={repeats} key={uuidv4()} />
         </div>
       );
     }
@@ -249,7 +250,7 @@ export const InputProvider = ({ children }) => {
 
       return (
         <div className="combo-container" key={uuidv4()}>
-          <Wrapper input={clean} tech={tech} />
+          <Wrapper input={clean} tech={tech} key={uuidv4()} />
         </div>
       );
     }
@@ -259,7 +260,7 @@ export const InputProvider = ({ children }) => {
       return (
         <div className="complex-container" key={uuidv4()}>
           {array}
-          <Wrapper tech={tech} />
+          <Wrapper tech={tech} key={uuidv4()} />
         </div>
       );
     }
@@ -379,30 +380,39 @@ export const InputProvider = ({ children }) => {
 
     let currentArray = [];
     let insideCombo = false;
-
     // map the array and test if matches the regex above
     // if it doesn't, return the item inside an array
     const subArrays = _.map(arr, (item, i) => {
       const isArray = Array.isArray(item);
       if (isArray) return item;
-
       if (!insideCombo) currentArray = [];
-
       const isFollowup = item.match(regex);
+
+      // TODO: corrigir último input não estar aparecendo
       if (!isFollowup) {
+        // se item não for um followup
         const isNextAFollowup = regex.test(arr[i + 1]);
+
         if (!isNextAFollowup && typeof arr[i + 1] !== "undefined") {
           currentArray.push(item);
           insideCombo = true;
           return "";
-        } else if (isNextAFollowup && insideCombo) {
+        }
+        // se for followup e estiver dentro de um combo
+        else if (
+          (isNextAFollowup && insideCombo) ||
+          typeof arr[i + 1] === "undefined"
+        ) {
           insideCombo = false;
           currentArray.push(item);
           return currentArray;
-        } else return [item];
-      } else return item;
+        }
+        // se não, retorna o item dentro de uma array (um item solo)
+        else return [item];
+      }
+      // se for followup
+      else return item;
     });
-
     // return the result
     return removeBlankSpaces(subArrays);
   }
@@ -625,7 +635,8 @@ export const InputProvider = ({ children }) => {
     // =========================
     // TESTS
     // =========================
-    console.log(wrappedCombos);
+    console.log(splittedMoves);
+
     setOutput(moves);
   }, [rawInput, gameInputs]);
 
