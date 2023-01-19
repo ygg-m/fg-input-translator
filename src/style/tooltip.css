@@ -1,3 +1,9 @@
+.react-tooltip-wrapper > * > :not(svg) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .react-tooltip {
   color: #999;
   z-index: 99;

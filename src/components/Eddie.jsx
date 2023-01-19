@@ -11,8 +11,8 @@ export const Eddie = ({ input, tech }) => {
   return (
     <div className="multi-hit" key={uuidv4()}>
       <TooltipWrapper tooltipId={name}>
-        <div className="tech-tag" key={uuidv4()}>
-          {isRegular ? "Regular" : "Vice"}
+        <div className="tech-tag" key={uuidv4()} style={{maxWidth:'60px'}}>
+          {isRegular ? "Regular Shadow" : "Vice Shadow"}
         </div>
       </TooltipWrapper>
       <Tooltip id={name} content={<TooltipContent obj={tech} />} clickable />
