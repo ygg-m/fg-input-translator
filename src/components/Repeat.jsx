@@ -9,7 +9,7 @@ export const Repeat = ({ input, tech, repeats }) => {
 
   return (
     <div className="repeat-container" key={uuidv4()}>
-      {createInput(input)}
+      <div className="combo">{createInput(input)}</div>
 
       <TooltipWrapper tooltipId={name}>
         <div className="tech-tag" key={uuidv4()} style={{ width: "75px" }}>

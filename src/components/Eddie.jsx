@@ -10,14 +10,13 @@ export const Eddie = ({ input, tech }) => {
 
   return (
     <div className="multi-hit" key={uuidv4()}>
-      {createInput(input)}
-
       <TooltipWrapper tooltipId={name}>
         <div className="tech-tag" key={uuidv4()}>
           {isRegular ? "Regular" : "Vice"}
         </div>
       </TooltipWrapper>
       <Tooltip id={name} content={<TooltipContent obj={tech} />} clickable />
+      {createInput(input)}
     </div>
   );
 };

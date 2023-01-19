@@ -9,13 +9,13 @@ export const Tech = ({ input, tech }) => {
 
   return (
     <div className="release" key={uuidv4()}>
-      {createInput(input)}
       <TooltipWrapper tooltipId={name}>
         <div className="tech-tag" key={uuidv4()} data-tip="tooltip">
           {tech.name}
         </div>
       </TooltipWrapper>
       <Tooltip id={name} content={<TooltipContent obj={tech} />} clickable />
+      {createInput(input)}
     </div>
   );
 };

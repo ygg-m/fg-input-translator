@@ -18,6 +18,7 @@
   min-height: 3rem;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.25rem;
   padding: 0.5rem 1rem;
   background-color: #333;
@@ -34,13 +35,22 @@
 .release,
 .multi-hit {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.25rem;
   position: relative;
   background-color: #222;
   padding: 0.3rem 0.5rem;
   border-radius: 0.5rem;
+}
+
+.optional-container > .combo,
+.repeat-container > .combo,
+.hold > .combo,
+.release > .combo,
+.multi-hit > .combo {
+  display: flex;
+  gap: 0.25rem;
 }
 
 .tech-tag {
@@ -48,15 +58,12 @@
   text-align: center;
   font-size: 0.75rem;
   opacity: 1;
-  position: absolute;
-  left: calc(50%);
-  transform: translate(-50%, 0);
+  /* left: calc(50%); */
+  /* transform: translate(-50%, 0); */
   width: fit-content;
   z-index: 1;
   padding: 1px 0.5rem 2px;
-  border-radius: 1rem;
-  background-color: #333;
-  outline: 1px solid #555;
+  background-color: #222;
   transition: 200ms;
 }
 
@@ -65,15 +72,22 @@
 .hold > .tech-tag,
 .release > .tech-tag,
 .multi-hit > .tech-tag {
-  bottom: -12px;
+  bottom: 0px;
 }
 
 .wrapper {
   width: 100%;
   height: 100%;
 }
+
+:not(.wrapper) > .react-tooltip-wrapper > .tech-tag {
+  bottom: -10px;
+  border-radius: 1rem;
+}
+
+.wrapper > .react-tooltip-wrapper,
 .wrapper > .tech-tag {
-  top: -12px;
+  order: -1;
 }
 
 *:hover > .tech-tag,
@@ -83,7 +97,7 @@
 
 .tech-tag:hover {
   opacity: 1;
-  scale: 1.3;
+  color: #46c2cb;
 }
 
 .combo-container svg g path,

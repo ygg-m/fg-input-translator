@@ -9,13 +9,13 @@ export const MultiHit = ({ input, tech, hits }) => {
 
   return (
     <div className="multi-hit" key={uuidv4()}>
-      {createInput(input)}
       <TooltipWrapper tooltipId={name}>
         <div className="tech-tag" key={uuidv4()}>
           {`${hits} Hits`}
         </div>
       </TooltipWrapper>
       <Tooltip id={name} content={<TooltipContent obj={tech} />} clickable />
+      {createInput(input)}
     </div>
   );
 };
