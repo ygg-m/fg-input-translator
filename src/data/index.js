@@ -26,4 +26,6 @@ export { ReactComponent as Foward } from "../images/inputs/Motion6.svg";
 export { ReactComponent as DragonPunch } from "../images/inputs/Motion623.svg";
 export { ReactComponent as Dash } from "../images/inputs/Motion66.svg";
 export { guiltyGear } from "./guiltygear";
+export { moveInputs } from "./moveInputs";
+export { specialInputs } from "./specialInputs";
 export { streetFighter } from "./streetFighter";
