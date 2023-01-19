@@ -138,6 +138,7 @@ export const InputProvider = ({ children }) => {
       if (isCombo) return createCombo(input);
       else return createInput(input);
     });
+
     return newArray;
   }
 
@@ -279,7 +280,7 @@ export const InputProvider = ({ children }) => {
     else
       return (
         <div className="combo-container" key={uuidv4()}>
-          {array.map((e) => createInput(e))}
+          {checkInputArray(array)}
         </div>
       );
   }
@@ -660,7 +661,7 @@ export const InputProvider = ({ children }) => {
     // wrap everything that's not a followup as a combo
     const wrappedCombos = wrapCombos(splittedMoves);
     // get moves components
-    const moves = checkInputArray(wrappedCombos);
+    const moves = checkInputArray(checkInputArray(wrappedCombos));
 
     // =========================
     // TESTS
