@@ -253,6 +253,7 @@ export const InputProvider = ({ children }) => {
   }
 
   function createOptional(array) {
+    console.log(array);
     if (Array.isArray(array)) {
       const clean = cleanComplexMech(array.join(""));
       const tech = allInputs.filter((e) => e.name === "Optional")[0];
