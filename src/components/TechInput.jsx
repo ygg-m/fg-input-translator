@@ -1,13 +1,10 @@
-import { useRef, useState } from "react";
 import { Tooltip, TooltipWrapper } from "react-tooltip";
 import { TooltipContent } from "./index";
 
 export const TechInput = ({ inputObj, tech }) => {
-  const { name, type, description } = inputObj;
-  const [tooltipVisible, setTooltipVisible] = useState(false);
+  const { name, type } = inputObj;
   const haveImg = inputObj.img !== "" || inputObj.img?.length > 0;
   const haveStyle = typeof inputObj.style === "object";
-  const elementRef = useRef(null);
 
   const Container = ({ children }) => {
     return <div className={`${type} ${tech ? "tech" : ""}`}>{children}</div>;
@@ -17,9 +14,7 @@ export const TechInput = ({ inputObj, tech }) => {
     return (
       <Container>
         <TooltipWrapper tooltipId={name}>
-          <div className="input-name" ref={elementRef}>
-            {name}
-          </div>
+          <div className="input-name">{name}</div>
           {tech && tech}
         </TooltipWrapper>
         <Tooltip
@@ -36,10 +31,8 @@ export const TechInput = ({ inputObj, tech }) => {
     return (
       <Container>
         <TooltipWrapper tooltipId={name}>
-          <div ref={elementRef} data-id="my-component" data-tip="hello world">
-            {img}
-            {tech && tech}
-          </div>
+          {img}
+          {tech && tech}
         </TooltipWrapper>
         <Tooltip
           id={name}
@@ -55,9 +48,7 @@ export const TechInput = ({ inputObj, tech }) => {
     return (
       <Container>
         <TooltipWrapper tooltipId={name}>
-          <div style={style} ref={elementRef}>
-            {img}
-          </div>
+          <div style={style}>{img}</div>
           {tech && tech}
         </TooltipWrapper>
         <Tooltip
