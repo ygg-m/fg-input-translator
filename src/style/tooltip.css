@@ -6,6 +6,8 @@
 
 .react-tooltip {
   color: #999;
+  background: #111;
+  border-radius: 0.5rem;
   z-index: 99;
   display: flex;
   flex-direction: column;
