@@ -1,3 +1,5 @@
+import { Tooltip as ReactTooltip } from "react-tooltip";
+
 export const Tooltip = ({ elRef, obj, visible, offset, lOffset }) => {
   const { name, description, input, moreLink, moreName } = obj;
   const haveDescription = description?.length > 0;

@@ -1,51 +1,28 @@
 import { useRef, useState } from "react";
+import { Tooltip, TooltipWrapper } from "react-tooltip";
 import { v4 as uuidv4 } from "uuid";
 import { useInput } from "../contexts/InputContext";
-import { Tooltip } from "./Tooltip";
+import { TooltipContent } from "./index";
 
 export const Eddie = ({ input, tech, hits }) => {
   const [tooltipVisible, setTooltipVisible] = useState(false);
+  const { name } = tech;
 
-  const isRegular = tech.name.includes("Regular");
+  const isRegular = name.includes("Regular");
 
   const elementRef = useRef(null);
   const { createInput } = useInput();
 
-  const showTooltip = () => {
-    setTooltipVisible(true);
-  };
-
-  const hideTooltip = () => {
-    setTooltipVisible(false);
-  };
-
-  const clickShowTooltip = () => {
-    showTooltip();
-    setTimeout(() => {
-      hideTooltip();
-    }, 3000);
-  };
-
   return (
     <div className="multi-hit" key={uuidv4()}>
       {createInput(input)}
-      <div
-        className="tech-tag"
-        key={uuidv4()}
-        ref={elementRef}
-        onMouseOver={showTooltip}
-        onMouseOut={hideTooltip}
-        onClick={clickShowTooltip}
-      >
-        {isRegular ? "Regular" : "Vice"}
-      </div>
-      <Tooltip
-        elRef={elementRef}
-        obj={tech}
-        visible={tooltipVisible}
-        offset={-20}
-        lOffset={-25}
-      />
+
+      <TooltipWrapper tooltipId={name}>
+        <div className="tech-tag" key={uuidv4()} ref={elementRef}>
+          {isRegular ? "Regular" : "Vice"}
+        </div>
+      </TooltipWrapper>
+      <Tooltip id={name} content={<TooltipContent obj={tech} />} clickable />
     </div>
   );
 };

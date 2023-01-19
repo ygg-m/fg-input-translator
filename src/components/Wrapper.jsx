@@ -1,49 +1,45 @@
 import { useRef, useState } from "react";
+import { Tooltip, TooltipWrapper } from "react-tooltip";
 import { v4 as uuidv4 } from "uuid";
 import { useInput } from "../contexts/InputContext";
-import { Tooltip } from "./Tooltip";
+import { TooltipContent } from "./index";
 
 export const Wrapper = ({ tech, input }) => {
-  const [tooltipVisible, setTooltipVisible] = useState(false);
-
+  const { name } = tech;
   const elementRef = useRef(null);
   const { createInput } = useInput();
 
-  const showTooltip = () => {
-    setTooltipVisible(true);
-  };
-
-  const hideTooltip = () => {
-    setTooltipVisible(false);
-  };
-
-  const clickShowTooltip = () => {
-    showTooltip();
-    setTimeout(() => {
-      hideTooltip();
-    }, 3000);
+  const TooltipContent = () => {
+    const { name, description, input, moreLink, moreName } = tech;
+    const haveDescription = description?.length > 0;
+    const haveKnowMore = moreLink?.length > 0;
+    const haveKnowMoreName = moreName?.length > 0;
+    return (
+      <div className="tooltip">
+        <span>{name}</span>
+        <div className="tooltip-input">
+          Input: <span>{input}</span>
+        </div>
+        {haveDescription && <span>{description}</span>}
+        {haveKnowMore && (
+          <a className="more-link" href={moreLink}>
+            {haveKnowMoreName ? `${moreName} →` : "Know More →"}
+          </a>
+        )}
+      </div>
+    );
   };
 
   return (
     <div className="wrapper" key={uuidv4()}>
       {createInput(input)}
-      <div
-        className="tech-tag"
-        key={uuidv4()}
-        ref={elementRef}
-        onMouseOver={showTooltip}
-        onMouseOut={hideTooltip}
-        onClick={clickShowTooltip}
-      >
-        {tech.name}
-      </div>
-      <Tooltip
-        elRef={elementRef}
-        obj={tech}
-        visible={tooltipVisible}
-        offset={85}
-        lOffset={-35}
-      />
+
+      <TooltipWrapper tooltipId={name}>
+        <div className="tech-tag" key={uuidv4()} ref={elementRef}>
+          {name}
+        </div>
+      </TooltipWrapper>
+      <Tooltip id={name} content={<TooltipContent obj={tech} />} clickable />
     </div>
   );
 };

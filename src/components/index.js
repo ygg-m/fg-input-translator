@@ -1,3 +1,4 @@
+import "react-tooltip/dist/react-tooltip.css";
 import "../style/footer.css";
 import "../style/gameselect.css";
 import "../style/header.css";
@@ -16,5 +17,6 @@ export { Repeat } from "./Repeat";
 export { SubTechInput } from "./SubTechInput";
 export { Tech } from "./Tech.jsx";
 export { TechInput } from "./TechInput";
+export { TooltipContent } from "./TooltipContent.jsx";
 export { UnknownInput } from "./UnknownInput.jsx";
 export { Wrapper } from "./Wrapper.jsx";
