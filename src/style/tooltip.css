@@ -2,5 +2,28 @@
   color: #999;
   z-index: 99;
   display: flex;
-  gap: 1rem;
+  flex-direction: column;
+}
+
+.tooltip-input > span {
+  color: #46c2cb;
+  font-weight: bold;
+}
+
+.more-link {
+  display: block;
+  text-align: center;
+  margin-top: 0.5rem;
+  color: #46c2cb;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  outline: #46c2cb;
+  border-radius: 0.5rem;
+  outline: solid 1px #46c2cb;
+  transition: 200ms;
+}
+
+.more-link:hover {
+  color: #333;
+  background-color: #46c2cb;
 }

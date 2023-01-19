@@ -3,11 +3,12 @@ export const TooltipContent = ({ obj }) => {
   const haveDescription = description?.length > 0;
   const haveKnowMore = moreLink?.length > 0;
   const haveKnowMoreName = moreName?.length > 0;
+  const isInputArray = Array.isArray(input);
   return (
-    <div className="tooltip">
+    <>
       <span>{name}</span>
       <div className="tooltip-input">
-        Input: <span>{input}</span>
+        Input: <span>{isInputArray ? input.join(", ") : input}</span>
       </div>
       {haveDescription && <span>{description}</span>}
       {haveKnowMore && (
@@ -15,6 +16,6 @@ export const TooltipContent = ({ obj }) => {
           {haveKnowMoreName ? `${moreName} →` : "Know More →"}
         </a>
       )}
-    </div>
+    </>
   );
 };
