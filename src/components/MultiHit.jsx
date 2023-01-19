@@ -1,48 +1,21 @@
-import { useRef, useState } from "react";
+import { Tooltip, TooltipWrapper } from "react-tooltip";
 import { v4 as uuidv4 } from "uuid";
 import { useInput } from "../contexts/InputContext";
-import { Tooltip } from "./Tooltip";
+import { TooltipContent } from "./index";
 
 export const MultiHit = ({ input, tech, hits }) => {
-  const [tooltipVisible, setTooltipVisible] = useState(false);
-
-  const elementRef = useRef(null);
+  const { name } = tech;
   const { createInput } = useInput();
-
-  const showTooltip = () => {
-    setTooltipVisible(true);
-  };
-
-  const hideTooltip = () => {
-    setTooltipVisible(false);
-  };
-
-  const clickShowTooltip = () => {
-    showTooltip();
-    setTimeout(() => {
-      hideTooltip();
-    }, 3000);
-  };
 
   return (
     <div className="multi-hit" key={uuidv4()}>
       {createInput(input)}
-      <div
-        className="tech-tag"
-        key={uuidv4()}
-        ref={elementRef}
-        onMouseOver={showTooltip}
-        onMouseOut={hideTooltip}
-        onClick={clickShowTooltip}
-      >
-        {`${hits} Hits`}
-      </div>
-      <Tooltip
-        elRef={elementRef}
-        obj={tech}
-        visible={tooltipVisible}
-        offset={0}
-      />
+      <TooltipWrapper tooltipId={name}>
+        <div className="tech-tag" key={uuidv4()}>
+          {`${hits} Hits`}
+        </div>
+      </TooltipWrapper>
+      <Tooltip id={name} content={<TooltipContent obj={tech} />} clickable />
     </div>
   );
 };
