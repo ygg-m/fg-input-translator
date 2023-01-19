@@ -9,7 +9,12 @@ import {
   TechInput,
   Wrapper,
 } from "../components/index";
-import { guiltyGear, streetFighter } from "../data/index";
+import {
+  guiltyGear,
+  moveInputs,
+  specialInputs,
+  streetFighter,
+} from "../data/index";
 
 const InputContext = createContext();
 
@@ -22,6 +27,8 @@ export const InputProvider = ({ children }) => {
   const [output, setOutput] = useState([]);
   const [gameInputs, setGameInputs] = useState();
   const [gameList] = useState([guiltyGear, streetFighter]);
+  const [allInputs, setAllInputs] = useState([]);
+  const [allRegexes, setAllRegexes] = useState();
 
   // Functions
   function testRegex(list, input) {
@@ -105,6 +112,7 @@ export const InputProvider = ({ children }) => {
   }
 
   function checkInputArray(array) {
+    if (!array) return;
     // map the array
     const newArray = array.map((input, i) => {
       if (!input) return;
@@ -134,7 +142,7 @@ export const InputProvider = ({ children }) => {
   }
 
   function createViceEddie(array) {
-    const tech = gameInputs.filter(
+    const tech = allInputs.filter(
       (e) => e.name === "Eddie Vice Shadow Release"
     )[0];
 
@@ -155,7 +163,7 @@ export const InputProvider = ({ children }) => {
   }
 
   function createRegularEddie(array) {
-    const tech = gameInputs.filter(
+    const tech = allInputs.filter(
       (e) => e.name === "Eddie Regular Shadow Release"
     )[0];
     if (!Array.isArray(array)) {
@@ -175,7 +183,7 @@ export const InputProvider = ({ children }) => {
   }
 
   function createRelease(array) {
-    const tech = gameInputs.filter((e) => e.name === "Release")[0];
+    const tech = allInputs.filter((e) => e.name === "Release")[0];
     if (!Array.isArray(array)) {
       const clean = cleanComplexMech(array);
       return <Tech input={clean} tech={tech} key={uuidv4()} />;
@@ -190,7 +198,7 @@ export const InputProvider = ({ children }) => {
   }
 
   function createHold(array) {
-    const tech = gameInputs.filter((e) => e.name === "Hold")[0];
+    const tech = allInputs.filter((e) => e.name === "Hold")[0];
     if (!Array.isArray(array)) {
       const clean = cleanComplexMech(array);
       return <Tech input={clean} tech={tech} key={uuidv4()} />;
@@ -207,7 +215,7 @@ export const InputProvider = ({ children }) => {
 
   function createMultiHit(array, hitNumber) {
     const hits = cleanComplexMech(hitNumber) || cleanComplexMech(array);
-    const tech = gameInputs.filter(
+    const tech = allInputs.filter(
       (e) => e.name === "Single / Multiple Hits"
     )[0];
 
@@ -232,7 +240,7 @@ export const InputProvider = ({ children }) => {
       });
 
       const repeats = array[array.length - 1];
-      const tech = gameInputs.filter((e) => e.name === "Repeat")[0];
+      const tech = allInputs.filter((e) => e.name === "Repeat")[0];
 
       return (
         <div className="combo-container" key={uuidv4()}>
@@ -246,7 +254,7 @@ export const InputProvider = ({ children }) => {
   function createOptional(array) {
     if (Array.isArray(array)) {
       const clean = cleanComplexMech(array.join(""));
-      const tech = gameInputs.filter((e) => e.name === "Optional")[0];
+      const tech = allInputs.filter((e) => e.name === "Optional")[0];
 
       return (
         <div className="combo-container" key={uuidv4()}>
@@ -256,7 +264,7 @@ export const InputProvider = ({ children }) => {
     }
     //
     else {
-      const tech = gameInputs.filter((e) => e.name === "Optional")[0];
+      const tech = allInputs.filter((e) => e.name === "Optional")[0];
       return (
         <div className="complex-container" key={uuidv4()}>
           {array}
@@ -323,7 +331,7 @@ export const InputProvider = ({ children }) => {
     if (Array.isArray(input)) return checkInputArray(input);
     if (typeof input === "Symbol(react.element)") return input;
     // try to get the move object by testing it's regex against the input
-    const moveObj = testRegex(gameInputs, input);
+    const moveObj = testRegex(allInputs, input);
     // action input will have the value of complex inputs like [x], (x), etc
     const actionInput = inputExtract(moveObj, input);
 
@@ -333,7 +341,7 @@ export const InputProvider = ({ children }) => {
     if (actionInput) {
       // innerInput is the action input
       // moveObj is the technique
-      const actionInputObj = testRegex(gameInputs, actionInput);
+      const actionInputObj = testRegex(allInputs, actionInput);
       return createInputComponent(actionInputObj);
     }
     if (moveObj) return createInputComponent(moveObj);
@@ -372,6 +380,7 @@ export const InputProvider = ({ children }) => {
   }
 
   function wrapCombos(arr) {
+    if (!arr) return;
     // wrap combos around an array
     // so it become sepparated from follow-ups
 
@@ -417,10 +426,13 @@ export const InputProvider = ({ children }) => {
     return removeBlankSpaces(subArrays);
   }
 
-  function createRegex(moveList) {
-    if (!moveList) return;
+  function createRegex() {
     // create regexes based on movelist file
-    const regexes = moveList.map((e) => e.regex);
+    const regexes = allInputs.map((e) => {
+      if (!e) return "";
+      return e.regex;
+    });
+    if (!regexes.length > 0) return;
 
     // return a unique regex based on the regexes
     return new RegExp(`(
@@ -468,7 +480,8 @@ export const InputProvider = ({ children }) => {
 
   function splitMoves(arr) {
     // create unique regex
-    const regexes = createRegex(gameInputs);
+    const regexes = createRegex();
+    if (!regexes) return;
     const newArray = splitArrayByRegex(arr, regexes);
     return _.flatten(newArray);
   }
@@ -602,6 +615,7 @@ export const InputProvider = ({ children }) => {
   }
 
   // Render Effects
+
   useEffect(() => {
     // input
     const savedRawInput = localStorage.getItem("rawInput");
@@ -615,7 +629,23 @@ export const InputProvider = ({ children }) => {
       );
       setGameInputs(savedGameInputs[0] || guiltyGear);
     } else setGameInputs(guiltyGear);
+
+    // input list
+    if (gameInputs)
+      setAllInputs(_.flatten([gameInputs, specialInputs, moveInputs]));
+
+    // regexes
+    setAllRegexes(createRegex());
   }, []);
+
+  useEffect(() => {
+    // input list
+    if (gameInputs)
+      setAllInputs(_.flatten([gameInputs, specialInputs, moveInputs]));
+
+    // regexes
+    setAllRegexes(createRegex());
+  }, [gameInputs]);
 
   useEffect(() => {
     saveInLocalStorage();
@@ -635,10 +665,9 @@ export const InputProvider = ({ children }) => {
     // =========================
     // TESTS
     // =========================
-    console.log(splittedMoves);
 
     setOutput(moves);
-  }, [rawInput, gameInputs]);
+  }, [rawInput, allInputs]);
 
   const value = {
     rawInput,
