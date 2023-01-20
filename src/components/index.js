@@ -20,3 +20,4 @@ export { TechInput } from "./TechInput";
 export { TooltipContent } from "./TooltipContent.jsx";
 export { UnknownInput } from "./UnknownInput.jsx";
 export { Wrapper } from "./Wrapper.jsx";
+export { Optional } from "./Optional.jsx";

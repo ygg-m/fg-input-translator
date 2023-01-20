@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import {
   Eddie,
   MultiHit,
+  Optional,
   Repeat,
   Tech,
   TechInput,
@@ -97,17 +98,15 @@ export const InputProvider = ({ children }) => {
   }
 
   function checkMultiHitInCombo(arr) {
-    let check = false;
     const test = /\(\b\d\b\)/.test(arr);
     let newArr = arr;
-    const hitNumber = arr[arr.length - 1];
-    const lastChar = arr[arr.length - 2];
-    if (test) {
-      check = true;
-      newArr.pop();
-      newArr.pop();
-      newArr.push(createMultiHit(lastChar, hitNumber));
-    }
+    // const hitNumber = arr[arr.length - 1];
+    // const lastChar = arr[arr.length - 2];
+    // if (test) {
+    //   newArr.pop();
+    //   newArr.pop();
+    //   newArr.push(createMultiHit(lastChar, hitNumber));
+    // }
     return newArr;
   }
 
@@ -253,20 +252,25 @@ export const InputProvider = ({ children }) => {
   }
 
   function createOptional(array) {
-    console.log(array);
+    const tech = allInputs.filter((e) => e.name === "Optional")[0];
+
     if (Array.isArray(array)) {
-      const clean = cleanComplexMech(array.join(""));
-      const tech = allInputs.filter((e) => e.name === "Optional")[0];
+      const clean = array.filter((e) => {
+        if (e === ")") return;
+        if (e === "(") return;
+        else return e;
+      });
+
+      const inputs = checkInputArray(clean);
 
       return (
         <div className="combo-container" key={uuidv4()}>
-          <Wrapper input={clean} tech={tech} key={uuidv4()} />
+          <Wrapper input={inputs} tech={tech} key={uuidv4()} />
         </div>
       );
     }
     //
     else {
-      const tech = allInputs.filter((e) => e.name === "Optional")[0];
       return (
         <div className="complex-container" key={uuidv4()}>
           {array}
@@ -330,7 +334,7 @@ export const InputProvider = ({ children }) => {
   function createInput(input) {
     // if input is empty, return the input, which should be ('')
     if (!input) return input;
-    if (Array.isArray(input)) return checkInputArray(input);
+    if (Array.isArray(input)) return input.map((e) => createInput(e));
     if (typeof input === "Symbol(react.element)") return input;
     // try to get the move object by testing it's regex against the input
     const moveObj = testRegex(allInputs, input);
@@ -397,9 +401,8 @@ export const InputProvider = ({ children }) => {
       const isArray = Array.isArray(item);
       if (isArray) return item;
       if (!insideCombo) currentArray = [];
-      const isFollowup = item.match(regex);
 
-      // TODO: corrigir último input não estar aparecendo
+      const isFollowup = item.match(regex);
       if (!isFollowup) {
         // se item não for um followup
         const isNextAFollowup = regex.test(arr[i + 1]);
@@ -616,6 +619,142 @@ export const InputProvider = ({ children }) => {
     return result;
   }
 
+  function createMultiHit__NEW(array, index) {
+    const hits = cleanComplexMech(array[index]);
+    const input = array[index - 1];
+    const tech = allInputs.filter(
+      (e) => e.name === "Single / Multiple Hits"
+    )[0];
+    return <MultiHit input={input} tech={tech} hits={hits} key={uuidv4()} />;
+  }
+
+  function readInputs(arr) {
+    if (!arr) return; // if there's nothing, stop
+
+    // declare General variables
+    let newArr = [];
+    let insideNormal = false;
+    let normalStartIndex;
+    let numberOfNormalChars = 0;
+    // declare Parenthesis variables
+    let insideParenthesis = false;
+    let startParenthesisIndex;
+    let numberOfParenthesisChars = 0;
+    // declare Brackets variables
+    let insideBrackets = false;
+    let startBracketsIndex;
+    let numberOfBracketsChars = 0;
+
+    for (let [index, item] of arr.entries()) {
+      const isArray = Array.isArray(item);
+
+      // 'COMBO' ARRAY ============================================
+      if (isArray) {
+        // declare 'combo' array variables
+        let currentArr = item;
+        let currentWrapper = [];
+
+        for (let [i, e] of item.entries()) {
+          // iterate through 'combo' arrays
+          const isMultiHit = /\(\b\d\b\)/.test(e); // check for '(N)' pattern
+          const parenthesisStart = /\(/.test(e); // check for '('
+          const parenthesisEnd = /\)/.test(e); // check for ')'
+          const bracketsStart = /\[/.test(e); // check for '['
+          const bracketEnd = /\]/.test(e); // check for ']'
+
+          // ↓ MULTIHIT ----------------------------------------
+          if (isMultiHit) {
+            const input = createMultiHit__NEW(item, i);
+            currentArr.splice(i - 1, 1, input); // remove previous input that should be repeated
+            currentArr.splice(i, 1); // remove the repeat input
+            newArr.push(createInput(currentArr)); // push the component
+          }
+          // ----------------------------------------------- end
+          //
+          // ↓ Start of Praenthesis checker ------------------------
+          else if (parenthesisStart && !insideParenthesis) {
+            insideParenthesis = true; // activate flag
+            startParenthesisIndex = i; // get the start index
+            numberOfParenthesisChars++; // increase the character count inside the array
+          }
+          // ↓ end Parenthesis Wrapper
+          else if (parenthesisEnd && insideParenthesis) {
+            insideParenthesis = false; // turn the flag off
+            numberOfParenthesisChars++; //  increase the character count inside the array
+
+            const inputs = createInput(currentWrapper); // create the input components
+            const wrappedInputs = <Optional key={uuidv4()}>{inputs}</Optional>; // wrap the inputs inside the Optional
+
+            currentArr.splice(
+              // makes changes to 'currentArr'
+              startParenthesisIndex, // the start index to delete the elements
+              numberOfParenthesisChars, // the number of elements to be deleted from the array
+              wrappedInputs // the element to substitute the deleted elements
+            ); // substitute the array elements for the inputs components
+
+            numberOfParenthesisChars = 0; // reset
+            currentWrapper = []; // reset
+            newArr.push(createInput(currentArr)); // push the component while creating the other inputs
+          }
+          // ↓ continue inside wrapper
+          else if (insideParenthesis) {
+            currentWrapper.push(e); // push the character into the current array
+            numberOfParenthesisChars++; // increase the character count inside the array
+          }
+          // ----------------------------------------------- end
+          //
+          // ↓ Start of Brackets checker ------------------------
+          else if (bracketsStart && !insideBrackets) {
+            insideBrackets = true; // activate flag
+            startBracketsIndex = i; // get the start index
+            numberOfBracketsChars++; // increase the character count inside the array
+          }
+          // ↓ end Wrapper
+          else if (bracketEnd && insideBrackets) {
+            const nextChar = item[i + 1];
+            const isRepeat = /\d+/.test(nextChar);
+
+            if (isRepeat) {
+              const inputs = createInput(currentWrapper); // create the input components
+              const repeatWrap = (
+                <Repeat repeats={nextChar} key={uuidv4()}>
+                  {inputs}
+                </Repeat>
+              );
+
+              console.log(currentWrapper);
+
+              currentArr.splice(
+                // makes changes to 'currentArr'
+                startBracketsIndex, // the start index to delete the elements
+                numberOfBracketsChars, // the number of elements to be deleted from the array
+                repeatWrap
+              );
+              newArr.push(createInput(repeatWrap)); // push the component
+            }
+
+            insideBrackets = false;
+          }
+          // ↓ continue inside wrapper
+          else if (insideBrackets) {
+            currentWrapper.push(e);
+            numberOfBracketsChars++;
+          }
+          // ----------------------------------------------- end
+          //
+        }
+
+        // =========================
+      }
+      //
+      else {
+        newArr.splice(index, 1, createInput(item));
+      }
+    }
+
+    return newArr;
+  }
+
   // Render Effects
 
   useEffect(() => {
@@ -631,13 +770,6 @@ export const InputProvider = ({ children }) => {
       );
       setGameInputs(savedGameInputs[0] || guiltyGear);
     } else setGameInputs(guiltyGear);
-
-    // input list
-    if (gameInputs)
-      setAllInputs(_.flatten([gameInputs, specialInputs, moveInputs]));
-
-    // regexes
-    setAllRegexes(createRegex());
   }, []);
 
   useEffect(() => {
@@ -664,11 +796,13 @@ export const InputProvider = ({ children }) => {
     // get moves components
     const moves = checkInputArray(checkInputArray(wrappedCombos));
 
+    const newLogic = readInputs(wrappedCombos);
+    console.log(newLogic);
     // =========================
     // TESTS
     // =========================
 
-    setOutput(moves);
+    setOutput(newLogic);
   }, [rawInput, allInputs]);
 
   const value = {
@@ -679,6 +813,7 @@ export const InputProvider = ({ children }) => {
     setGameInputs,
     createInput,
     gameList,
+    allInputs,
   };
 
   return (

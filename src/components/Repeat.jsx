@@ -3,20 +3,25 @@ import { v4 as uuidv4 } from "uuid";
 import { useInput } from "../contexts/InputContext";
 import { TooltipContent } from "./index";
 
-export const Repeat = ({ input, tech, repeats }) => {
-  const { name } = tech;
-  const { createInput } = useInput();
+export const Repeat = ({ children, repeats }) => {
+  const { allInputs } = useInput();
+
+  const tech = allInputs.filter((e) => e.name === "Repeat");
+  console.log(tech);
 
   return (
-    <div className="repeat-container" key={uuidv4()}>
-      <div className="combo">{createInput(input)}</div>
-
-      <TooltipWrapper tooltipId={name}>
+    <div className="repeat" key={uuidv4()}>
+      {children}
+      <TooltipWrapper tooltipId={tech.name}>
         <div className="tech-tag" key={uuidv4()} style={{ width: "75px" }}>
-          {tech.name} {repeats}
+          Repeat {repeats}
         </div>
       </TooltipWrapper>
-      <Tooltip id={name} content={<TooltipContent obj={tech} />} clickable />
+      <Tooltip
+        id={tech.name}
+        content={<TooltipContent obj={tech} />}
+        clickable
+      />
     </div>
   );
 };

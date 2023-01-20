@@ -11,7 +11,7 @@ export const MultiHit = ({ input, tech, hits }) => {
     <div className="multi-hit" key={uuidv4()}>
       <TooltipWrapper tooltipId={name}>
         <div className="tech-tag" key={uuidv4()}>
-          {`${hits} Hits`}
+          {hits === "1" ? `${hits} Hit` : `${hits} Hits`}
         </div>
       </TooltipWrapper>
       <Tooltip id={name} content={<TooltipContent obj={tech} />} clickable />
