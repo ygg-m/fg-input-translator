@@ -3,12 +3,9 @@ import { v4 as uuidv4 } from "uuid";
 import { useInput } from "../contexts/InputContext";
 import { TooltipContent } from "./index";
 
-export const Repeat = ({ children, repeats }) => {
+export const Repeat = ({ repeats, children }) => {
   const { allInputs } = useInput();
-
   const tech = allInputs.filter((e) => e.name === "Repeat");
-  console.log(tech);
-
   return (
     <div className="repeat" key={uuidv4()}>
       {children}

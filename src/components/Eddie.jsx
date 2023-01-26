@@ -4,14 +4,15 @@ import { useInput } from "../contexts/InputContext";
 import { TooltipContent } from "./index";
 
 export const Eddie = ({ input, tech }) => {
+  const { createInput } = useInput();
+  if (!input || !tech) return;
   const { name } = tech;
   const isRegular = name.includes("Regular");
-  const { createInput } = useInput();
 
   return (
     <div className="multi-hit" key={uuidv4()}>
       <TooltipWrapper tooltipId={name}>
-        <div className="tech-tag" key={uuidv4()} style={{maxWidth:'60px'}}>
+        <div className="tech-tag" key={uuidv4()} style={{ maxWidth: "60px" }}>
           {isRegular ? "Regular Shadow" : "Vice Shadow"}
         </div>
       </TooltipWrapper>

@@ -4,13 +4,12 @@ import { useInput } from "../contexts/InputContext";
 import { TooltipContent } from "./index";
 
 export const Wrapper = ({ tech, input }) => {
-  const { name } = tech;
   const { createInput } = useInput();
-
+  if (!tech || !input) return;
+  const { name } = tech;
   return (
     <div className="wrapper" key={uuidv4()}>
       {createInput(input)}
-
       <TooltipWrapper tooltipId={name}>
         <div className="tech-tag" key={uuidv4()}>
           {name}

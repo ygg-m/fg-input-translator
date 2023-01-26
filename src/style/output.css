@@ -53,6 +53,16 @@
   gap: 0.25rem;
 }
 
+.optional-container,
+.repeat-container,
+.hold,
+.release,
+.multi-hit {
+  display: flex;
+  flex-direction: row;
+  gap: 0.25rem;
+}
+
 .tech-tag {
   color: #999;
   text-align: center;

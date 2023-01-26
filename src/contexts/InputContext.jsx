@@ -1,5 +1,12 @@
-import _ from "lodash";
-import { createContext, useContext, useEffect, useRef, useState } from "react";
+import _, { wrap } from "lodash";
+import {
+  createContext,
+  createElement,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { v4 as uuidv4 } from "uuid";
 import {
   Eddie,
@@ -11,10 +18,13 @@ import {
   Wrapper,
 } from "../components/index";
 import {
+  followUp,
   guiltyGear,
+  kingOfFighters,
   moveInputs,
   specialInputs,
   streetFighter,
+  wrapMechs,
 } from "../data/index";
 
 const InputContext = createContext();
@@ -27,7 +37,7 @@ export const InputProvider = ({ children }) => {
   const [rawInput, setRawInput] = useState("");
   const [output, setOutput] = useState([]);
   const [gameInputs, setGameInputs] = useState();
-  const [gameList] = useState([guiltyGear, streetFighter]);
+  const [gameList] = useState([guiltyGear, streetFighter, kingOfFighters]);
   const [allInputs, setAllInputs] = useState([]);
   const [allRegexes, setAllRegexes] = useState();
 
@@ -755,6 +765,24 @@ export const InputProvider = ({ children }) => {
     return newArr;
   }
 
+  function evenNewerLogic(str) {
+    const newArr = [...str];
+    let matchedComponents = null;
+
+    wrapMechs.forEach((e) => {
+      const matches = str.matchAll(e.regex);
+      // console.log(matches);
+      for (const match of matches) {
+        const input = match[1];
+        const component = createElement(e.component, { key: uuidv4() });
+        console.log(match);
+        newArr.splice(match.index, match[0].length, component);
+      }
+    });
+    // console.log(testRegex(wrapMechs, str));
+    return newArr;
+  }
+
   // Render Effects
 
   useEffect(() => {
@@ -796,13 +824,16 @@ export const InputProvider = ({ children }) => {
     // get moves components
     const moves = checkInputArray(checkInputArray(wrappedCombos));
 
-    const newLogic = readInputs(wrappedCombos);
-    console.log(newLogic);
+    // const newLogic = readInputs(wrappedCombos);
+    // console.log(newLogic);
+    const evenNewerLogicResult = evenNewerLogic(cleanInputs);
+    // console.log(evenNewerLogicResult);
+
     // =========================
     // TESTS
     // =========================
 
-    setOutput(newLogic);
+    setOutput(moves);
   }, [rawInput, allInputs]);
 
   const value = {

@@ -4,8 +4,10 @@ import { useInput } from "../contexts/InputContext";
 import { TooltipContent } from "./index";
 
 export const Tech = ({ input, tech }) => {
-  const { name } = tech;
   const { createInput } = useInput();
+  if (!input || !tech) return;
+
+  const { name } = tech;
 
   return (
     <div className="release" key={uuidv4()}>
