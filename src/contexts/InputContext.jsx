@@ -22,6 +22,7 @@ import {
   guiltyGear,
   kingOfFighters,
   moveInputs,
+  persona,
   specialInputs,
   streetFighter,
   wrapMechs,
@@ -37,7 +38,12 @@ export const InputProvider = ({ children }) => {
   const [rawInput, setRawInput] = useState("");
   const [output, setOutput] = useState([]);
   const [gameInputs, setGameInputs] = useState();
-  const [gameList] = useState([guiltyGear, streetFighter, kingOfFighters]);
+  const [gameList] = useState([
+    guiltyGear,
+    streetFighter,
+    kingOfFighters,
+    persona,
+  ]);
   const [allInputs, setAllInputs] = useState([]);
   const [allRegexes, setAllRegexes] = useState();
 
@@ -833,7 +839,7 @@ export const InputProvider = ({ children }) => {
     // TESTS
     // =========================
 
-    setOutput(moves);
+    setOutput(evenNewerLogicResult);
   }, [rawInput, allInputs]);
 
   const value = {
