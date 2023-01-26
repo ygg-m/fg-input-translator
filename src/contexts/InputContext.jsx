@@ -1,4 +1,4 @@
-import _, { wrap } from "lodash";
+import _, { create, wrap } from "lodash";
 import {
   createContext,
   createElement,
@@ -385,6 +385,7 @@ export const InputProvider = ({ children }) => {
 
   function splitFollowUps(input) {
     const regex = /((?<!-.)->|>|~|,)/g;
+
     const output = input.map((el) => {
       let repeatResult = []; // stores the repeat pattern result
 
@@ -776,12 +777,22 @@ export const InputProvider = ({ children }) => {
     let matchedComponents = null;
 
     wrapMechs.forEach((e) => {
-      const matches = str.matchAll(e.regex);
-      // console.log(matches);
+      // iterate through wrappers
+      const matches = str.matchAll(e.regex); // get matches
       for (const match of matches) {
-        const input = match[1];
-        const component = createElement(e.component, { key: uuidv4() });
-        console.log(match);
+        // iterate through matches
+        const regex = /((?<!-.)->|>|~|,)/g;
+        const rawMoves = splitMoves(match[1].split(regex)); // input inside wrapper
+        const inputList = rawMoves.map((e) => createInput(e));
+        console.log(inputList);
+        // const splittedMoves = splitMoves(splittedFollowup);
+        // const input = splittedMoves.map((e) => createInput(e));
+        const techInput = match[2]; // input from tech ()
+        const component = (
+          <Wrapper key={uuidv4()} tech={e}>
+            {inputList}
+          </Wrapper>
+        );
         newArr.splice(match.index, match[0].length, component);
       }
     });
