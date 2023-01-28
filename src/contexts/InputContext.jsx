@@ -56,18 +56,22 @@ export const InputProvider = ({ children }) => {
   }
 
   function createCombo(array) {
-    const result = array.map((e) => {
-      let char;
-      if (typeof e === "string") {
-        followUp.forEach((followup) => {
-          const isFollowUp = followup.regex.test(e);
-          if (isFollowUp) char = [e];
-          else char = e;
-        });
+    const regex = /((?<!-.)->|>|~|,)/g;
+    let currentArr = [];
+    const result = [];
+    array.forEach((e) => {
+      console.log(e, typeof e);
+      if (regex.test(e)) {
+        result.push(
+          <div className="combo" key={uuidv4()}>
+            {createInput(currentArr)}
+          </div>
+        );
+        result.push(e);
+        currentArr = [];
+      } else {
+        currentArr.push(e);
       }
-      char = e;
-
-      return char;
     });
 
     return result;
@@ -165,7 +169,7 @@ export const InputProvider = ({ children }) => {
     return newArray;
   }
 
-  function splitMoves(arr, regex) {
+  function splitMoves(arr) {
     const regexes = createRegex(allInputs);
 
     // create unique regex
@@ -236,7 +240,6 @@ export const InputProvider = ({ children }) => {
         let currentMatch = [...match[0]];
 
         wrapMechs.forEach((el) => {
-          console.log(subWrapperMechs(el));
           if (e.name === el.name) return; // if checking the same wrap mech, return
           const innerMatches = match[0].matchAll(el.regex); // check if there's match from another wrap mech
           let innerIndexCount = 0; // index count to replace properly if there's multiple matches
@@ -367,9 +370,9 @@ export const InputProvider = ({ children }) => {
         else return splitMoves(e);
       })
     );
-    const inputList = removeStrings(createInput(splittedMoves));
+    const inputList = createCombo(splittedMoves);
 
-    console.log(createCombo(splittedMoves));
+    console.log();
 
     return inputList;
   }
