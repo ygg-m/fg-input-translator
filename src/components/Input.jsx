@@ -5,6 +5,7 @@ export const Input = () => {
 
   return (
     <input
+    className=''
       type="text"
       id="input"
       name="input"

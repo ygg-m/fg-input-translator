@@ -44,4 +44,5 @@ export { moveInputs } from "./moveInputs";
 export { persona } from "./persona";
 export { specialInputs } from "./specialInputs";
 export { streetFighter } from "./streetFighter";
+export { subWrapMechs } from "./subWrapMechs";
 export { wrapMechs } from "./wrapMechs";

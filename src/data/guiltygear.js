@@ -57,68 +57,11 @@ const guiltyGear = [
   // -------------------------------------------------------------------------
   // complex notations
   // -------------------------------------------------------------------------
-  {
-    name: "Eddie Regular Shadow Release",
-    input: "-X-",
-    type: "mech-complex",
-    regex: /-.*?-/,
-    description:
-      "Release button with regular shadow (236P/K/S/H). This notation is only for Eddie from Guilty Gear.",
-    img: "",
-    moreLink: "https://www.dustloop.com/w/GGACR/Eddie/Combos#Eddie_Notation",
-    moreName: "Dustloop",
-  },
-  {
-    name: "Eddie Vice Shadow Release",
-    input: "#X#",
-    type: "mech-complex",
-    regex: /#.*?#/,
-    description:
-      "Release button using vice shadow (214H). This notation is only for Eddie from Guilty Gear.",
-    img: "",
-    moreLink: "https://www.dustloop.com/w/GGACR/Eddie/Combos#Eddie_Notation",
-    moreName: "Dustloop",
-  },
-  {
-    name: "Repeat",
-    input: "[X]xN or [X > 236X]xN",
-    type: "mech-complex",
-    regex: /x\d+/,
-    description: "Repeat move or sequence N amount of times.",
-    img: "",
-  },
-  {
-    name: "Hold",
-    input: "[X]",
-    type: "mech-complex",
-    regex: /\[.\]/,
-    description: "Hold input.",
-    img: "",
-  },
-  {
-    name: "Release",
-    input: "]X[",
-    type: "mech-complex",
-    regex: /\].\[/,
-    description: "Release input.",
-    img: "",
-  },
-  {
-    name: "Single / Multiple Hits",
-    input: "(N)",
-    type: "mech-complex",
-    regex: /\(\b\d\b\)/,
-    description: "Hit a move N times or move must deal N amount of hits.",
-    img: "",
-  },
-  {
-    name: "Optional",
-    input: "(X) or (X > 236X)",
-    type: "mech-complex",
-    regex: /\(\)/,
-    description: "Move or sequence is optional.",
-    img: "",
-  },
+
+
+
+
+
   // -------------------------------------------------------------------------
   // mechs
   // -------------------------------------------------------------------------
