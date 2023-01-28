@@ -336,6 +336,8 @@ export const InputProvider = ({ children }) => {
           const matches = item.matchAll(e.regex); // get matches
 
           for (const match of matches) {
+            console.log(match);
+
             const input = createInput(match[1]);
             const techValue = match[2]; // input from tech ()
 
@@ -356,7 +358,7 @@ export const InputProvider = ({ children }) => {
               component
             );
 
-            indexCount += match[0].length - 1;
+            indexCount += match[0].length;
           }
         });
 
