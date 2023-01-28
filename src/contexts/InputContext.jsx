@@ -336,8 +336,6 @@ export const InputProvider = ({ children }) => {
           const matches = item.matchAll(e.regex); // get matches
 
           for (const match of matches) {
-            console.log(match);
-
             const input = createInput(match[1]);
             const techValue = match[2]; // input from tech ()
 
@@ -347,18 +345,13 @@ export const InputProvider = ({ children }) => {
               </Wrapper>
             );
 
-            if (e.name === "Single / Multiple Hits") {
-              currentItem.splice(match.index + 2, 1);
-              if (indexCount > 0) indexCount -= match[0].length - 1;
-            }
-
             currentItem.splice(
               match.index - indexCount,
               match[0].length,
               component
             );
 
-            indexCount += match[0].length;
+            indexCount += match[0].length - 1;
           }
         });
 
