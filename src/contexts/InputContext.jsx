@@ -60,14 +60,13 @@ export const InputProvider = ({ children }) => {
     let currentArr = [];
     const result = [];
     array.forEach((e) => {
-      console.log(e, typeof e);
       if (regex.test(e)) {
         result.push(
           <div className="combo" key={uuidv4()}>
             {createInput(currentArr)}
           </div>
         );
-        result.push(e);
+        result.push(createInput(e));
         currentArr = [];
       } else {
         currentArr.push(e);
@@ -371,8 +370,6 @@ export const InputProvider = ({ children }) => {
       })
     );
     const inputList = createCombo(splittedMoves);
-
-    console.log();
 
     return inputList;
   }
