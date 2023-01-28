@@ -59,7 +59,15 @@ export const InputProvider = ({ children }) => {
     const regex = /((?<!-.)->|>|~|,)/g;
     let currentArr = [];
     const result = [];
-    array.forEach((e) => {
+    for (const [i, e] of array.entries()) {
+      if (typeof array[i + 1] === "undefined") {
+        currentArr.push(e);
+        result.push(
+          <div className="combo" key={uuidv4()}>
+            {createInput(currentArr)}
+          </div>
+        );
+      }
       if (regex.test(e)) {
         result.push(
           <div className="combo" key={uuidv4()}>
@@ -71,7 +79,7 @@ export const InputProvider = ({ children }) => {
       } else {
         currentArr.push(e);
       }
-    });
+    }
 
     return result;
   }
