@@ -5,7 +5,7 @@ export const Input = () => {
 
   return (
     <input
-    className=''
+      className="py-2 px-4 z-1 w-full rounded-2xl border-4 border-neutral-800 outline-1 outline-neutral-700 bg-neutral-700 text-neutral-500"
       type="text"
       id="input"
       name="input"

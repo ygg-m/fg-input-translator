@@ -2,7 +2,6 @@ import "react-tooltip/dist/react-tooltip.css";
 import "../style/footer.css";
 import "../style/gameselect.css";
 import "../style/header.css";
-import "../style/input.css";
 import "../style/output.css";
 import "../style/tooltip.css";
 
