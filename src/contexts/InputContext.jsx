@@ -246,6 +246,8 @@ export const InputProvider = ({ children }) => {
       for (const match of matches) {
         let currentMatch = [...match[0]];
 
+        const innerSubWrap = subWrapperMechs(match[0]);
+
         wrapMechs.forEach((el) => {
           if (e.name === el.name) return; // if checking the same wrap mech, return
           const innerMatches = match[0].matchAll(el.regex); // check if there's match from another wrap mech
@@ -265,7 +267,7 @@ export const InputProvider = ({ children }) => {
 
         const regex = /((?<!-.)->|>|~|,)/g; // followup regexes
 
-        const current = joinStrings(currentMatch);
+        const current = joinStrings(innerSubWrap);
         const splitted = current.map((e) => {
           if (typeof e == "string") {
             if (regex.test(e)) return e.split(regex);
