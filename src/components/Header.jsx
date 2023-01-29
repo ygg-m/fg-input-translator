@@ -36,7 +36,7 @@ export const Header = () => {
       </div>
       <div className="relative logo-container duration-200 text-neutral-500 hover:text-cyan-500 hover:drop-shadow-[0_0_16px_rgba(34,211,238,0.25)]">
         <Logo />
-        <span className="absolute w-fit right-0 left-0 mx-auto bottom-[-8px] bg-neutral-900 text-neutral-500 uppercase text-xs rounded-full px-2 outline outline-1 outline-neutral-700">
+        <span className="absolute w-fit right-0 left-0 mx-auto bottom-[-8px] bg-neutral-500 font-bold text-neutral-800 uppercase text-xs rounded-full px-2 outline outline-3 outline-neutral-800">
           alpha
         </span>
       </div>
