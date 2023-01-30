@@ -1,5 +1,4 @@
 import "react-tooltip/dist/react-tooltip.css";
-import "../style/output.css";
 import "../style/tooltip.css";
 
 export { Eddie } from "./Eddie.jsx";
