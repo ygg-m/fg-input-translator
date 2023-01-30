@@ -221,9 +221,13 @@ export const InputProvider = ({ children }) => {
       // iterate through wrappers
       const matches = str.matchAll(e.regex); // get matches
       for (const match of matches) {
-        let currentMatch = [...match[0]];
-
-        // const innerSubWrap = subWrapperMechs(match[0]);
+        const innerSubWrap = subWrapperMechs(match[0]);
+        let currentMatch = _.flatten(
+          innerSubWrap.map((e) => {
+            if (typeof e === "string") return e.split("");
+            else return e;
+          })
+        );
 
         wrapMechs.forEach((el) => {
           if (e.name === el.name) return; // if checking the same wrap mech, return
@@ -245,6 +249,7 @@ export const InputProvider = ({ children }) => {
         const regex = /((?<!-.)->|>|~|,)/g; // followup regexes
 
         const current = joinStrings(currentMatch);
+        console.log(current);
         const splitted = current.map((e) => {
           if (typeof e == "string") {
             if (regex.test(e)) return e.split(regex);
@@ -262,8 +267,6 @@ export const InputProvider = ({ children }) => {
             {inputList}
           </Wrapper>
         );
-
-        console.log(newArr);
 
         newArr.splice(match.index - indexCount, match[0].length, component);
         indexCount += match[0].length - 1;
