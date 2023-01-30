@@ -3,28 +3,28 @@ import { v4 as uuidv4 } from "uuid";
 import { useInput } from "../contexts/InputContext";
 import { ReactComponent as ChevronIcon } from "../images/ui/chevron-down.svg";
 
-const GameName = ({ gameInputs }) => {
-  return (
-    <div className="border-r-neutral-700 border-r px-4 py-1">
-      {gameInputs[0]?.name}
-    </div>
-  );
-};
-
 const CurrentGame = ({ showList, setShowList, gameInputs }) => {
   return (
     <div
       className={
         showList
-          ? "duration-200 cursor-pointer select-none w-fit flex justify-center items-center self-end rounded-full border-1 border border-transparent hover:border-cyan-500 hover:text-cyan-500 bg-neutral-800"
-          : "duration-200 cursor-pointer select-none w-fit flex justify-center items-center self-end rounded-full bg-neutral-800 border-1 border border-neutral-700 hover:border-cyan-500 hover:text-cyan-500"
+          ? "duration-200 cursor-pointer select-none w-fit flex justify-center items-center self-end rounded-lg border-1 border border-neutral-700 hover:border-cyan-500 hover:text-cyan-500"
+          : "duration-200 cursor-pointer select-none w-fit flex justify-center items-center self-end rounded-lg border-1 border border-cyan-500 text-cyan-500 shadow-cyan"
       }
       onClick={() => setShowList(!showList)}
     >
       <div className="flex items-center">
         <GameName gameInputs={gameInputs} />
-        <Chevron />
+        <Chevron showList={showList} />
       </div>
+    </div>
+  );
+};
+
+const GameName = ({ gameInputs }) => {
+  return (
+    <div className="border-r-neutral-700 border-r px-4 py-1">
+      {gameInputs[0]?.name}
     </div>
   );
 };
@@ -54,7 +54,7 @@ const GameList = ({ gameList, showList, setShowList, setGameInputs }) => {
     >
       {gameList.map((game) => (
         <div
-          className="cursor-pointer duration-200 h-fit px-4 py-1 border border-1 border-transparent bg-neutral-800 rounded-full hover:border-cyan-500 hover:text-cyan-500"
+          className="cursor-pointer duration-200 h-fit py-1 px-2 hover:px-4 border border-1 border-neutral-800 rounded-lg hover:border-cyan-500 hover:text-cyan-500 hover:shadow-cyan"
           key={uuidv4()}
           onClick={() => {
             setShowList(false);
