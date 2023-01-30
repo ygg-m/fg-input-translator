@@ -1,5 +1,4 @@
 import "react-tooltip/dist/react-tooltip.css";
-import "../style/tooltip.css";
 
 export { Combo } from "./Combo.jsx";
 export { Footer } from "./Footer.jsx";
