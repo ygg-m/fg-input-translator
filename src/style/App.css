@@ -13,4 +13,5 @@
 .react-tooltip {
   background-color: #171717;
   border-radius: .5rem;
+  z-index: 50;
 }
