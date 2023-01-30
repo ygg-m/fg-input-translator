@@ -230,10 +230,10 @@ export const InputProvider = ({ children }) => {
           })
         );
 
+        let innerIndexCount = 0; // index count to replace properly if there's multiple matches
         wrapMechs.forEach((el) => {
           if (e.name === el.name) return; // if checking the same wrap mech, return
           const innerMatches = match[0].matchAll(el.regex); // check if there's match from another wrap mech
-          let innerIndexCount = 0; // index count to replace properly if there's multiple matches
 
           for (const innerMatch of innerMatches) {
             currentMatch.splice(
@@ -267,9 +267,16 @@ export const InputProvider = ({ children }) => {
             {inputList}
           </Wrapper>
         );
+        console.log(newArr);
 
-        newArr.splice(match.index - indexCount, match[0].length, component);
+        const splice = newArr.splice(
+          match.index - indexCount,
+          match[0].length - innerIndexCount,
+          component
+        );
         indexCount += match[0].length - 1;
+
+        console.log(splice);
       }
     });
 
