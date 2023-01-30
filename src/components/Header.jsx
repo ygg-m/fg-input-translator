@@ -6,7 +6,7 @@ import { ReactComponent as Paypal } from "../images/ui/paypal.svg";
 
 export const Header = () => {
   return (
-    <header className="cursor-default px-8 pb-8 w-screen flex flex-col gap-4 items-center justify-center border-b border-b-neutral-800 ">
+    <header className="cursor-default text-center px-8 pb-8 w-screen flex flex-col gap-4 items-center justify-center border-b border-b-neutral-800 ">
       <div className="flex items-center justify-center gap-4 pt-4 text-neutral-600">
         <a
           className="box-content flex w-8 h-8 text-base duration-200 border p-2 border-transparent rounded-lg hover:border-cyan-500 hover:text-cyan-500 hover:drop-shadow-[0_0_16px_rgba(34,211,238,1)]"
