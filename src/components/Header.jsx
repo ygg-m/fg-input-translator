@@ -37,7 +37,7 @@ export const Header = () => {
       <div className="relative logo-container duration-200 text-neutral-500 hover:text-cyan-500 hover:drop-shadow-[0_0_16px_rgba(34,211,238,0.25)]">
         <Logo />
         <span className="absolute w-fit right-0 left-0 mx-auto bottom-[-8px] bg-neutral-500 font-bold text-neutral-800 uppercase text-xs rounded-full px-2 outline outline-3 outline-neutral-800">
-          alpha
+          alpha <span className="lowercase">v</span>0.5
         </span>
       </div>
       <h1 className="text-4xl duration-200 font-bold text-neutral-500 hover:text-cyan-500 hover:drop-shadow-[0_0_16px_rgba(34,211,238,0.75)]">
@@ -48,7 +48,7 @@ export const Header = () => {
         Translate{" "}
         <span>
           <a
-            className="font-bold duration-200 border border-transparent rounded-lg pb-1 hover:px-3 hover:border-cyan-500  outline-cyan-500 hover:text-cyan-500 hover:drop-shadow-[0_0_16px_rgba(34,211,238,0.75)]"
+            className="font-bold underline decoration-neutral-700 hover:no-underline duration-200 border border-transparent rounded-lg pb-1 hover:px-3 hover:border-cyan-500  outline-cyan-500 hover:text-cyan-500 hover:drop-shadow-[0_0_16px_rgba(34,211,238,0.75)]"
             href="https://glossary.infil.net/?t=Numpad%20Notation"
           >
             numpad notations
