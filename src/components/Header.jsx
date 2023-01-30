@@ -48,7 +48,7 @@ export const Header = () => {
         Translate{" "}
         <span>
           <a
-            className="font-bold underline decoration-neutral-700 hover:no-underline duration-200 border border-transparent rounded-lg pb-1 hover:px-3 hover:border-cyan-500  outline-cyan-500 hover:text-cyan-500 hover:drop-shadow-[0_0_16px_rgba(34,211,238,0.75)]"
+            className="font-bold underline decoration-neutral-700 hover:no-underline duration-200 border border-transparent rounded-lg pb-1 hover:px-3 hover:border-cyan-500  outline-cyan-500 hover:text-cyan-500 hover:shadow-cyan"
             href="https://glossary.infil.net/?t=Numpad%20Notation"
           >
             numpad notations
