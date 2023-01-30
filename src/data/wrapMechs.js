@@ -11,7 +11,7 @@ const wrapMechs = [
     name: "Repeat",
     input: "[X]xN or [X > 236X]xN",
     type: "mech-complex",
-    regex: /\[(?!.*\[)([^\]]+)\]x(\d+)/g,
+    regex: /\[(?!.*\[)([^\]]+)\]x(\d{1})/g,
     description: "Repeat move or sequence N amount of times.",
     img: "",
   },
