@@ -1,27 +1,7 @@
-.game-selector-container {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-/* selector */
-.current-container {
-  cursor: pointer;
-  user-select: none;
-  width: fit-content;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  align-self: flex-end;
-  border-radius: 10rem;
-  background-color: #333;
-}
-
 .current {
   display: flex;
   align-items: center;
   border-radius: 10rem;
-  transition: 200ms;
 }
 
 .game {
@@ -36,14 +16,10 @@
   padding: 0 0.8rem 0 0.5rem;
   width: 2.5rem;
   border-left: 1px solid #555;
-  transition: 200ms;
 }
 .chevron > svg {
-  transition: 200ms;
 }
 .chevron > svg > path {
-  fill: #777;
-  transition: 200ms;
 }
 
 /* list */
@@ -51,7 +27,6 @@
   display: flex;
   justify-content: flex-end;
   margin-top: 1rem;
-  transition: 200ms;
 }
 
 .game-selector-container.show > .games-container {
