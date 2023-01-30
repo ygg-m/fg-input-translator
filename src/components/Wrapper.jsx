@@ -1,6 +1,5 @@
 import { Tooltip, TooltipWrapper } from "react-tooltip";
 import { v4 as uuidv4 } from "uuid";
-import { useInput } from "../contexts/InputContext";
 import { TooltipContent } from "./index";
 
 export const Wrapper = ({ tech, techValue, children }) => {
@@ -10,10 +9,16 @@ export const Wrapper = ({ tech, techValue, children }) => {
   const isMulti = name === "Single / Multiple Hits";
   const isSingleHit = techValue === "1";
   return (
-    <div className="wrapper" key={uuidv4()}>
-      <div className="inputs">{children}</div>
+    <div
+      className="bg-neutral-900 rounded-lg p-2 flex flex-col justify-center items-center"
+      key={uuidv4()}
+    >
+      <div className="flex gap-1 items-center justify-center">{children}</div>
       <TooltipWrapper tooltipId={name}>
-        <div className="tech-tag" key={uuidv4()}>
+        <div
+          className="text-sm duration-200 flex justify-center hover:scale-125 hover:z-10 hover:text-cyan-500 hover:shadow-cyan hover:bg-neutral-900 hover:px-2 py-1 rounded-md"
+          key={uuidv4()}
+        >
           {!isRepeat && !isMulti && name}
           {isMulti && isSingleHit && techValue + " Hit"}
           {isMulti && !isSingleHit && techValue + " Hits"}
