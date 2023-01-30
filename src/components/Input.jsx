@@ -7,14 +7,14 @@ export const Input = ({ inputObj, tech }) => {
   const haveStyle = typeof inputObj.style === "object";
 
   const Container = ({ children }) => {
-    return <div className="min-w-[2rem] z-20">{children}</div>;
+    return <div className="z-20 min-w-[2rem]">{children}</div>;
   };
 
   if (!haveImg && !haveStyle) {
     return (
       <Container>
         <TooltipWrapper tooltipId={name}>
-          <div className="w-fit px-2 rounded-full bg-neutral-900 select-none duration-200 outline outline-1 outline-neutral-800 hover:text-cyan-500 hover:outline-cyan-500">
+          <div className="w-fit select-none rounded-full bg-neutral-900 px-2 outline outline-1 outline-neutral-800 duration-200 hover:text-cyan-500 hover:outline-cyan-500">
             {name}
           </div>
           {tech && tech}
@@ -33,7 +33,9 @@ export const Input = ({ inputObj, tech }) => {
     return (
       <Container>
         <TooltipWrapper tooltipId={name}>
-          <div className="duration-200 hover:shadow-cyan text-neutral-500 hover:text-cyan-500">{img}</div>
+          <div className="hover:shadow-cyan text-neutral-500 duration-200 hover:text-cyan-500">
+            {img}
+          </div>
           {tech && tech}
         </TooltipWrapper>
         <Tooltip
@@ -50,7 +52,7 @@ export const Input = ({ inputObj, tech }) => {
     return (
       <Container>
         <TooltipWrapper tooltipId={name}>
-          <div style={style} className="duration-200 hover:shadow-cyan">
+          <div style={style} className="hover:shadow-cyan duration-200">
             {img}
           </div>
           {tech && tech}

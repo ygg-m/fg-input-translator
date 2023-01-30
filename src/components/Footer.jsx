@@ -1,9 +1,9 @@
 export const Footer = () => {
   return (
-    <div className="py-8 flex justify-center w-full">
+    <div className="flex w-full justify-center py-8">
       Made by{" "}
       <a
-        className="ml-2 font-bold underline decoration-neutral-700 hover:no-underline duration-200 border border-transparent rounded-lg pb-1 hover:px-3 hover:border-cyan-500  outline-cyan-500 hover:text-cyan-500 hover:shadow-cyan"
+        className="hover:shadow-cyan ml-2 rounded-lg border border-transparent pb-1 font-bold underline decoration-neutral-700 outline-cyan-500 duration-200 hover:border-cyan-500  hover:px-3 hover:text-cyan-500 hover:no-underline"
         href="https://linktr.ee/yggm"
       >
         Ygor Goulart

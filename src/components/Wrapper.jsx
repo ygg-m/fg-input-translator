@@ -10,13 +10,13 @@ export const Wrapper = ({ tech, techValue, children }) => {
   const isSingleHit = techValue === "1";
   return (
     <div
-      className="bg-neutral-900 duration-200 rounded-lg px-2 py-1 pt-1 flex flex-col gap-1 justify-center items-center hover:z-50 outline outline-1 outline-neutral-800 hover:outline-cyan-500"
+      className="flex flex-col items-center justify-center gap-1 rounded-lg bg-neutral-900 px-2 py-1 pt-1 outline outline-1 outline-neutral-800 duration-200 hover:z-50 hover:outline-cyan-500"
       key={uuidv4()}
     >
-      <div className="flex gap-1 items-center justify-center">{children}</div>
+      <div className="flex items-center justify-center gap-1">{children}</div>
       <TooltipWrapper tooltipId={name}>
         <div
-          className="text-sm duration-200 flex justify-center hover:text-cyan-500 hover:shadow-cyan select-none rounded-md"
+          className="hover:shadow-cyan flex select-none justify-center rounded-md text-sm duration-200 hover:text-cyan-500"
           key={uuidv4()}
         >
           {!isRepeat && !isMulti && name}

@@ -5,7 +5,7 @@ export const InputField = () => {
 
   return (
     <input
-      className="py-2 px-4 z-10 w-full duration-200 rounded-xl border-4 border-neutral-900 outline outline-1 outline-neutral-800 bg-neutral-800 text-neutral-500 focus:text-neutral-400 focus:outline-neutral-600"
+      className="z-10 w-full rounded-xl border-4 border-neutral-900 bg-neutral-800 py-2 px-4 text-neutral-500 outline outline-1 outline-neutral-800 duration-200 focus:text-neutral-400 focus:outline-neutral-600"
       type="text"
       id="input"
       name="input"

@@ -4,7 +4,7 @@ import { useInput } from "../contexts/InputContext";
 export const Output = () => {
   const { output } = useInput();
   return (
-    <div className="flex items-center justify-center flex-wrap gap-y-2 p-2 outline outline-1 outline-neutral-800 rounded-lg">
+    <div className="flex flex-wrap items-center justify-center gap-y-2 rounded-lg p-2 outline outline-1 outline-neutral-800">
       {output}
     </div>
   );

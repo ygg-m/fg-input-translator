@@ -31,9 +31,9 @@ export const TooltipContent = ({ obj }) => {
       </div>
       {haveDescription && <span className="italic">{description}</span>}
       {haveKnowMore && (
-        <div className="w-full flex justify-center">
+        <div className="flex w-full justify-center">
           <a
-            className="duration-200 mt-2 p-2 text-center outline outline-1 outline-neutral-700 hover:outline-cyan-500 rounded hover:text-cyan-500 font-bold hover:shadow-cyan hover:px-4"
+            className="hover:shadow-cyan mt-2 rounded p-2 text-center font-bold outline outline-1 outline-neutral-700 duration-200 hover:px-4 hover:text-cyan-500 hover:outline-cyan-500"
             href={moreLink}
           >
             {haveKnowMoreName ? `${moreName} →` : "Know More →"}

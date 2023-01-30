@@ -6,41 +6,41 @@ import { ReactComponent as Paypal } from "../images/ui/paypal.svg";
 
 export const Header = () => {
   return (
-    <header className="cursor-default text-center px-8 pb-8 w-screen flex flex-col gap-4 items-center justify-center border-b border-b-neutral-800 ">
+    <header className="flex w-screen cursor-default flex-col items-center justify-center gap-4 border-b border-b-neutral-800 px-8 pb-8 text-center ">
       <div className="flex items-center justify-center gap-4 pt-4 text-neutral-600">
         <a
-          className="box-content flex w-8 h-8 text-base duration-200 border p-2 border-transparent rounded-lg hover:border-cyan-500 hover:text-cyan-500 hover:drop-shadow-[0_0_16px_rgba(34,211,238,1)]"
+          className="box-content flex h-8 w-8 rounded-lg border border-transparent p-2 text-base duration-200 hover:border-cyan-500 hover:text-cyan-500 hover:drop-shadow-[0_0_16px_rgba(34,211,238,1)]"
           href="https://github.com/ygg-m/fg-input-translator"
         >
           <GitHub />
         </a>
         <a
-          className="flex w-8 h-8 text-base duration-200 box-content border p-2 border-transparent rounded-lg hover:border-cyan-500 hover:text-cyan-500 hover:drop-shadow-[0_0_16px_rgba(34,211,238,1)]"
+          className="box-content flex h-8 w-8 rounded-lg border border-transparent p-2 text-base duration-200 hover:border-cyan-500 hover:text-cyan-500 hover:drop-shadow-[0_0_16px_rgba(34,211,238,1)]"
           href="https://discord.gg/ZapfK82Fjk"
         >
           <Discord />
         </a>
         <span className="text-neutral-700">•</span>
         <a
-          className="flex w-8 h-8 text-base duration-200 box-content border p-2 border-transparent rounded-lg hover:border-cyan-500 hover:text-cyan-500 hover:drop-shadow-[0_0_16px_rgba(34,211,238,1)]"
+          className="box-content flex h-8 w-8 rounded-lg border border-transparent p-2 text-base duration-200 hover:border-cyan-500 hover:text-cyan-500 hover:drop-shadow-[0_0_16px_rgba(34,211,238,1)]"
           href="https://ko-fi.com/yggm_"
         >
           <Kofi />
         </a>
         <a
-          className="flex w-8 h-8 text-base duration-200 box-content border p-2 border-transparent rounded-lg hover:border-cyan-500 hover:text-cyan-500 hover:drop-shadow-[0_0_16px_rgba(34,211,238,1)]"
+          className="box-content flex h-8 w-8 rounded-lg border border-transparent p-2 text-base duration-200 hover:border-cyan-500 hover:text-cyan-500 hover:drop-shadow-[0_0_16px_rgba(34,211,238,1)]"
           href="https://ko-fi.com/yggm_"
         >
           <Paypal />
         </a>
       </div>
-      <div className="relative logo-container duration-200 text-neutral-500 hover:text-cyan-500 hover:drop-shadow-[0_0_16px_rgba(34,211,238,0.25)]">
+      <div className="logo-container relative text-neutral-500 duration-200 hover:text-cyan-500 hover:drop-shadow-[0_0_16px_rgba(34,211,238,0.25)]">
         <Logo />
-        <span className="absolute w-fit right-0 left-0 mx-auto bottom-[-8px] bg-neutral-500 font-bold text-neutral-800 uppercase text-xs rounded-full px-2 outline outline-3 outline-neutral-800">
+        <span className="outline-3 absolute right-0 left-0 bottom-[-8px] mx-auto w-fit rounded-full bg-neutral-500 px-2 text-xs font-bold uppercase text-neutral-800 outline outline-neutral-800">
           alpha <span className="lowercase">v</span>0.5
         </span>
       </div>
-      <h1 className="text-4xl duration-200 font-bold text-neutral-500 hover:text-cyan-500 hover:drop-shadow-[0_0_16px_rgba(34,211,238,0.75)]">
+      <h1 className="text-4xl font-bold text-neutral-500 duration-200 hover:text-cyan-500 hover:drop-shadow-[0_0_16px_rgba(34,211,238,0.75)]">
         Fight Game Input Translator
       </h1>
 
@@ -48,7 +48,7 @@ export const Header = () => {
         Translate{" "}
         <span>
           <a
-            className="font-bold underline decoration-neutral-700 hover:no-underline duration-200 border border-transparent rounded-lg pb-1 hover:px-3 hover:border-cyan-500  outline-cyan-500 hover:text-cyan-500 hover:shadow-cyan"
+            className="hover:shadow-cyan rounded-lg border border-transparent pb-1 font-bold underline decoration-neutral-700 outline-cyan-500 duration-200 hover:border-cyan-500  hover:px-3 hover:text-cyan-500 hover:no-underline"
             href="https://glossary.infil.net/?t=Numpad%20Notation"
           >
             numpad notations

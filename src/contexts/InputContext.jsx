@@ -250,12 +250,15 @@ export const InputProvider = ({ children }) => {
         const regex = /((?<!-.)->|>|~|,)/g; // followup regexes
 
         const current = joinStrings(currentMatch);
+
         const splitted = current.map((e) => {
-          if (typeof e == "string") {
+          if (typeof e === "string") {
             if (regex.test(e)) return e.split(regex);
             else return e;
           } else return e;
         });
+        console.log("current: ", current);
+        console.log("splitted: ", splitted);
 
         const clean = cleanRepeatArray(splitted, e); // remove the last element from the array
         const rawMoves = _.flatten([splitMoves(clean, allRegexes)]); // input inside wrapper
@@ -267,7 +270,6 @@ export const InputProvider = ({ children }) => {
             {inputList}
           </Wrapper>
         );
-        console.log(newArr);
 
         const splice = newArr.splice(
           match.index - indexCount,
@@ -275,8 +277,6 @@ export const InputProvider = ({ children }) => {
           component
         );
         indexCount += match[0].length - 1;
-
-        console.log(splice);
       }
     });
 

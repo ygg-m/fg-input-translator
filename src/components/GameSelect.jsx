@@ -14,8 +14,8 @@ export const GameSelect = () => {
       <div
         className={
           showList
-            ? "duration-200 cursor-pointer select-none w-fit flex justify-center items-center self-end rounded-lg border-1 border border-neutral-700 hover:border-cyan-500 hover:text-cyan-500"
-            : "duration-200 cursor-pointer select-none w-fit flex justify-center items-center self-end rounded-lg border-1 border border-cyan-500 text-cyan-500 shadow-cyan"
+            ? "border-1 flex w-fit cursor-pointer select-none items-center justify-center self-end rounded-lg border border-neutral-700 duration-200 hover:border-cyan-500 hover:text-cyan-500"
+            : "border-1 shadow-cyan flex w-fit cursor-pointer select-none items-center justify-center self-end rounded-lg border border-cyan-500 text-cyan-500 duration-200"
         }
         onClick={() => setShowList(!showList)}
       >
@@ -29,7 +29,7 @@ export const GameSelect = () => {
 
   const GameName = () => {
     return (
-      <div className="border-r-neutral-700 border-r px-4 py-1">
+      <div className="border-r border-r-neutral-700 px-4 py-1">
         {gameInputs[0]?.name}
       </div>
     );
@@ -40,8 +40,8 @@ export const GameSelect = () => {
       <div
         className={
           showList
-            ? "box-content duration-200 w-4 px-3 rotate-90 "
-            : "box-content duration-200 w-4 px-3"
+            ? "box-content w-4 rotate-90 px-3 duration-200 "
+            : "box-content w-4 px-3 duration-200"
         }
       >
         <ChevronIcon />
@@ -55,13 +55,13 @@ export const GameSelect = () => {
       <div
         className={
           showList
-            ? "duration-200 h-0 flex self-end gap-2 invisible opacity-0"
-            : "duration-200 h-fit flex self-end gap-2 visible opacity-100 mt-4"
+            ? "invisible flex h-0 gap-2 self-end opacity-0 duration-200"
+            : "visible mt-4 flex h-fit gap-2 self-end opacity-100 duration-200"
         }
       >
         {gameList.map((game) => (
           <div
-            className="cursor-pointer duration-200 h-fit py-1 px-2 hover:px-4 border border-1 border-neutral-800 rounded-lg hover:border-cyan-500 hover:text-cyan-500 hover:shadow-cyan"
+            className="border-1 hover:shadow-cyan h-fit cursor-pointer rounded-lg border border-neutral-800 py-1 px-2 duration-200 hover:border-cyan-500 hover:px-4 hover:text-cyan-500"
             key={uuidv4()}
             onClick={() => {
               setGameInputs(game);
@@ -77,7 +77,7 @@ export const GameSelect = () => {
 
   // main component
   return (
-    <div className={showList ? "w-full flex flex-col" : "w-full flex flex-col"}>
+    <div className={showList ? "flex w-full flex-col" : "flex w-full flex-col"}>
       <CurrentGame />
       <GameList />
     </div>
