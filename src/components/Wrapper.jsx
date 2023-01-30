@@ -10,7 +10,7 @@ export const Wrapper = ({ tech, techValue, children }) => {
   const isSingleHit = techValue === "1";
   return (
     <div
-      className="bg-neutral-900 rounded-lg px-2 py-1 pt-1 flex flex-col gap-1 justify-center items-center hover:z-50"
+      className="bg-neutral-900 duration-200 rounded-lg px-2 py-1 pt-1 flex flex-col gap-1 justify-center items-center hover:z-50 outline outline-1 outline-neutral-800 hover:outline-cyan-500"
       key={uuidv4()}
     >
       <div className="flex gap-1 items-center justify-center">{children}</div>
