@@ -3,6 +3,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Combo, Input, Wrapper } from "../components/index";
 import {
+  techPatterns,
   followUp,
   guiltyGear,
   kingOfFighters,
@@ -249,7 +250,6 @@ export const InputProvider = ({ children }) => {
         const regex = /((?<!-.)->|>|~|,)/g; // followup regexes
 
         const current = joinStrings(currentMatch);
-        console.log(current);
         const splitted = current.map((e) => {
           if (typeof e == "string") {
             if (regex.test(e)) return e.split(regex);
@@ -381,7 +381,11 @@ export const InputProvider = ({ children }) => {
   useEffect(() => {
     // input list
     if (gameInputs)
-      setAllInputs(_.flatten([gameInputs, specialInputs, moveInputs]));
+      setAllInputs(
+        _.flatten([gameInputs, followUp, techPatterns, specialInputs, moveInputs])
+      );
+
+    console.log(allInputs);
 
     // regexes
     setAllRegexes(createRegex(allInputs));
