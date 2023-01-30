@@ -3,7 +3,6 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Combo, Input, Wrapper } from "../components/index";
 import {
-  techPatterns,
   followUp,
   guiltyGear,
   kingOfFighters,
@@ -12,6 +11,7 @@ import {
   specialInputs,
   streetFighter,
   subWrapMechs,
+  techPatterns,
   wrapMechs,
 } from "../data/index";
 
@@ -358,7 +358,7 @@ export const InputProvider = ({ children }) => {
     );
     const inputList = createCombo(splittedMoves);
 
-    return inputList;
+    return createInput(inputList);
   }
 
   // Render Effects
@@ -382,10 +382,14 @@ export const InputProvider = ({ children }) => {
     // input list
     if (gameInputs)
       setAllInputs(
-        _.flatten([gameInputs, followUp, techPatterns, specialInputs, moveInputs])
+        _.flatten([
+          techPatterns,
+          gameInputs,
+          followUp,
+          specialInputs,
+          moveInputs,
+        ])
       );
-
-    console.log(allInputs);
 
     // regexes
     setAllRegexes(createRegex(allInputs));
