@@ -1,17 +1,62 @@
-import { useInput } from "../contexts/InputContext";
+import { Tooltip, TooltipWrapper } from "react-tooltip";
+import { TooltipContent } from "./index";
 
-export const Input = () => {
-  const { setRawInput, rawInput } = useInput();
+export const Input = ({ inputObj, tech }) => {
+  const { name } = inputObj;
+  const haveImg = inputObj.img !== "" || inputObj.img?.length > 0;
+  const haveStyle = typeof inputObj.style === "object";
 
-  return (
-    <input
-      className="py-2 px-4 z-10 w-full duration-200 rounded-xl border-4 border-neutral-900 outline outline-1 outline-neutral-800 bg-neutral-800 text-neutral-500 focus:text-neutral-400 focus:outline-neutral-600"
-      type="text"
-      id="input"
-      name="input"
-      placeholder="Insert input (try '236P' or '623P'!)"
-      onChange={(e) => setRawInput(e.target.value)}
-      value={rawInput}
-    />
-  );
+  const Container = ({ children }) => {
+    return <div className="w-4 h-4">{children}</div>;
+  };
+
+  if (!haveImg && !haveStyle) {
+    return (
+      <Container>
+        <TooltipWrapper tooltipId={name}>
+          <div className="w-full">{name}</div>
+          {tech && tech}
+        </TooltipWrapper>
+        <Tooltip
+          id={name}
+          content={<TooltipContent obj={inputObj} />}
+          clickable
+        />
+      </Container>
+    );
+  }
+
+  if (haveImg && !haveStyle) {
+    const { img } = inputObj;
+    return (
+      <Container>
+        <TooltipWrapper tooltipId={name}>
+          {img}
+          {tech && tech}
+        </TooltipWrapper>
+        <Tooltip
+          id={name}
+          content={<TooltipContent obj={inputObj} />}
+          clickable
+        />
+      </Container>
+    );
+  }
+
+  if (haveImg && haveStyle) {
+    const { img, style } = inputObj;
+    return (
+      <Container>
+        <TooltipWrapper tooltipId={name}>
+          <div style={style}>{img}</div>
+          {tech && tech}
+        </TooltipWrapper>
+        <Tooltip
+          id={name}
+          content={<TooltipContent obj={inputObj} />}
+          clickable
+        />
+      </Container>
+    );
+  }
 };

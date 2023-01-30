@@ -1,6 +1,12 @@
 import { TooltipProvider } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
-import { Footer, GameSelect, Header, Input, Output } from "./components/index";
+import {
+  Footer,
+  GameSelect,
+  Header,
+  InputField,
+  Output,
+} from "./components/index";
 import { InputProvider } from "./contexts/index";
 import "./style/App.css";
 
@@ -12,7 +18,7 @@ function App() {
         <TooltipProvider>
           <InputProvider>
             <GameSelect />
-            <Input />
+            <InputField />
             <Output />
           </InputProvider>
         </TooltipProvider>

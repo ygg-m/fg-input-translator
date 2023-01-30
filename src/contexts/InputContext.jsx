@@ -1,7 +1,7 @@
 import _ from "lodash";
 import { createContext, useContext, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { TechInput, Wrapper } from "../components/index";
+import { Combo, Input, Wrapper } from "../components/index";
 import {
   followUp,
   guiltyGear,
@@ -47,18 +47,10 @@ export const InputProvider = ({ children }) => {
     for (const [i, e] of array.entries()) {
       if (typeof array[i + 1] === "undefined") {
         currentArr.push(e);
-        result.push(
-          <div className="combo" key={uuidv4()}>
-            {createInput(currentArr)}
-          </div>
-        );
+        result.push(<Combo key={uuidv4()}>{createInput(currentArr)}</Combo>);
       }
       if (regex.test(e)) {
-        result.push(
-          <div className="combo" key={uuidv4()}>
-            {createInput(currentArr)}
-          </div>
-        );
+        result.push(<Combo key={uuidv4()}>{createInput(currentArr)}</Combo>);
         result.push(createInput(e));
         currentArr = [];
       } else {
@@ -84,9 +76,9 @@ export const InputProvider = ({ children }) => {
   function createInputComponent(obj, techComponent) {
     // if there's no obj, return not found
     if (!obj) return "not found";
-    if (!techComponent) return <TechInput inputObj={obj} key={uuidv4()} />;
+    if (!techComponent) return <Input inputObj={obj} key={uuidv4()} />;
     if (techComponent)
-      return <TechInput tech={techComponent} inputObj={obj} key={uuidv4()} />;
+      return <Input tech={techComponent} inputObj={obj} key={uuidv4()} />;
   }
 
   function removeBlankSpaces(arr) {
