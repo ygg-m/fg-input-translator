@@ -7,7 +7,7 @@ export const Input = ({ inputObj, tech }) => {
   const haveStyle = typeof inputObj.style === "object";
 
   const Container = ({ children }) => {
-    return <div className="min-w-[2rem]">{children}</div>;
+    return <div className="min-w-[2rem] z-20">{children}</div>;
   };
 
   if (!haveImg && !haveStyle) {
