@@ -57,8 +57,8 @@ const GameList = ({ gameList, showList, setShowList, setGameInputs }) => {
           className="cursor-pointer duration-200 h-fit py-1 px-2 hover:px-4 border border-1 border-neutral-800 rounded-lg hover:border-cyan-500 hover:text-cyan-500 hover:shadow-cyan"
           key={uuidv4()}
           onClick={() => {
-            setShowList(false);
             setGameInputs(game);
+            setShowList(false);
           }}
         >
           {game[0].name}
