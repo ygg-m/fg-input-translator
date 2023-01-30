@@ -8,7 +8,11 @@ export const TooltipContent = ({ obj }) => {
   let inputList;
   if (isInputArray) {
     inputList = input
-      .map((e) => <span key={uuidv4()}>{e}</span>)
+      .map((e) => (
+        <span className="font-bold text-cyan-500" key={uuidv4()}>
+          {e}
+        </span>
+      ))
       .map((e, i) => {
         return [e, i !== input.length - 1 ? " or " : ""];
       });
@@ -16,13 +20,21 @@ export const TooltipContent = ({ obj }) => {
 
   return (
     <>
-      <span>{name}</span>
-      <div className="tooltip-input">
-        Input: {isInputArray ? inputList : <span>{input}</span>}
+      <span className="font-bold text-cyan-500">{name}</span>
+      <div>
+        Input:{" "}
+        {isInputArray ? (
+          inputList
+        ) : (
+          <span className="font-bold text-cyan-500">{input}</span>
+        )}
       </div>
-      {haveDescription && <span>{description}</span>}
+      {haveDescription && <span className="italic">{description}</span>}
       {haveKnowMore && (
-        <a className="more-link" href={moreLink}>
+        <a
+          className="w-full duration-200 mt-2 p-2 text-center outline outline-1 outline-neutral-700 hover:outline-cyan-500 rounded hover:text-cyan-500 font-bold hover:shadow-cyan"
+          href={moreLink}
+        >
           {haveKnowMoreName ? `${moreName} →` : "Know More →"}
         </a>
       )}
