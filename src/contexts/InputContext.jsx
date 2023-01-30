@@ -170,12 +170,13 @@ export const InputProvider = ({ children }) => {
 
   function cleanRepeatArray(arr, tech) {
     const isRepeat = tech.name === "Repeat"; // check if it's a repeat
-    const isSeparated = /x\d+/.test(arr[arr.length - 1]);
+    const isSeparated = /\d+/.test(arr[arr.length - 1]);
+    const result = arr;
     if (isRepeat) {
-      if (isSeparated) arr.pop(); // remove the last element from the array
-      if (!isSeparated) arr[0].slice(0, -1);
-      return arr;
-    } else return arr;
+      if (isSeparated) result.splice(-1, 1); // remove the last element from the array
+      if (!isSeparated) result[0].slice(0, -1);
+      return result;
+    } else return result;
   }
 
   function removeStrings(arr) {
@@ -214,6 +215,18 @@ export const InputProvider = ({ children }) => {
     );
   }
 
+  function regexSplit(arr, regex) {
+    if (typeof arr === "string") {
+      return arr.split(regex);
+    } else
+      return arr.map((e) => {
+        if (typeof e === "string") {
+          if (regex.test(e)) return e.split(regex);
+          else return e;
+        } else return e;
+      });
+  }
+
   function wrapperMechs(str, list) {
     const newArr = [...str];
     let indexCount = 0;
@@ -246,24 +259,16 @@ export const InputProvider = ({ children }) => {
             indexCount -= innerMatch[0].length - 1;
           }
         });
-
         const regex = /((?<!-.)->|>|~|,)/g; // followup regexes
-
         const current = joinStrings(currentMatch);
+        const splitted = regexSplit(current, regex);
 
-        const splitted = current.map((e) => {
-          if (typeof e === "string") {
-            if (regex.test(e)) return e.split(regex);
-            else return e;
-          } else return e;
-        });
-        console.log("current: ", current);
-        console.log("splitted: ", splitted);
-
-        const clean = cleanRepeatArray(splitted, e); // remove the last element from the array
-        const rawMoves = _.flatten([splitMoves(clean, allRegexes)]); // input inside wrapper
+        const rawMoves = _.flatten([splitMoves(splitted, allRegexes)]); // input inside wrapper
+        const clean = cleanRepeatArray(rawMoves, e); // remove the last element from the array
         const inputList = removeStrings(rawMoves.map((e) => createInput(e))); // clean the array and create the inputs
         const techValue = match[2]; // input from tech ()
+
+        console.log(clean);
 
         const component = (
           <Wrapper key={uuidv4()} tech={e} techValue={techValue}>
