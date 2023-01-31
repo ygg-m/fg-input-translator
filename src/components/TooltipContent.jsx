@@ -19,7 +19,7 @@ export const TooltipContent = ({ obj }) => {
   }
 
   return (
-    <div className="flex flex-col text-neutral-400">
+    <div className="flex max-w-sm flex-col text-neutral-400">
       <span className="font-bold text-cyan-500">{name}</span>
       <div>
         Input:{" "}
