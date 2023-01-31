@@ -31,6 +31,16 @@ export const techPatterns = [
     moreName: "",
   },
   {
+    name: "or",
+    input: ["/", "or"],
+    type: "mech",
+    regex: /\/|or/,
+    description: "Execute the left or right command.",
+    img: "",
+    moreLink: "",
+    moreName: "",
+  },
+  {
     name: "Dash",
     input: 66,
     type: "mech-icon",
