@@ -60,10 +60,11 @@ export const techPatterns = [
   },
   {
     name: "Homing Jump",
-    input: ["88", "dj."],
-    type: "mech-icon",
-    regex: /homing jump/,
-    description: "Jump after the Dust attack hits.",
+    input: "homing jump",
+    type: "mech",
+    regex: /homingjump/,
+    description:
+      "Dust attacks will launch the target in the air. Homing Jump is when you jump right after the attack connects.",
     img: "",
     style: "",
     moreLink: "",
