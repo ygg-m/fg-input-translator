@@ -6,7 +6,7 @@ export const techPatterns = [
     type: "mech",
     regex: /gatlings/,
     description:
-      "Sequence of inputs that chain into one another easily. Check your character or game guide to see some examples.",
+      "Sequence of inputs that chain into one another easily. Check a guide to your character or game to see some examples.",
     img: "",
     moreLink: "",
     moreName: "",
