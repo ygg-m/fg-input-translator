@@ -16,6 +16,24 @@ const guiltyGear = [
     description: "",
     img: "",
   },
+
+
+  // -------------------------------------------------------------------------
+  // character specific
+  // -------------------------------------------------------------------------
+  // -------------------------------------------------------------------------
+  // A.B.A.
+  // -------------------------------------------------------------------------
+  {
+    name: "Bonding",
+    input: "63214H",
+    type: "character move",
+    regex: /keygrab|bonding/,
+    description: "Often called 'Keygrab'. It's a grab that make A.B.A. enter or leave Goku Moroha Mode.",
+    img: "",
+    moreLink: "https://www.dustloop.com/w/GGACR/A.B.A#Bonding",
+    moreName: "Dustloop",
+  },
   // -------------------------------------------------------------------------
   // mechs
   // -------------------------------------------------------------------------
