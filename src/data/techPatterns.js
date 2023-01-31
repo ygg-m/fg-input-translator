@@ -59,6 +59,18 @@ export const techPatterns = [
     style: { transform: "scaleX(-1)" },
   },
   {
+    name: "Anti Air",
+    input: ["anti-air", "anti air"],
+    type: "mech",
+    regex: /anti-air|antiair/,
+    description:
+      "Dust attacks will launch the target in the air. Homing Jump is when you jump right after the attack connects.",
+    img: "",
+    style: "",
+    moreLink: "",
+    moreName: "",
+  },
+  {
     name: "Homing Jump",
     input: "homing jump",
     type: "mech",
