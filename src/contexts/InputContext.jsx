@@ -179,10 +179,14 @@ export const InputProvider = ({ children }) => {
     } else return result;
   }
 
-  function removeStrings(arr) {
+  function removeWrapperInputs(arr) {
     return arr
       .map((e) => {
         if (typeof e !== "string") return e;
+        const match = e.match(/([^\(\)\[\]]+)/);
+        const isWrapperInput = e === "[" || e === "]" || e === "(" || e === ")";
+        if (match) return match[0];
+        if (!isWrapperInput) return e;
       })
       .filter((e) => typeof e !== "undefined");
   }
@@ -266,7 +270,9 @@ export const InputProvider = ({ children }) => {
 
         const rawMoves = _.flatten([splitMoves(splitted, allRegexes)]); // input inside wrapper
         const clean = cleanRepeatArray(rawMoves, e); // remove the last element from the array
-        const inputList = removeStrings(createInput(createInput(rawMoves))); // clean the array and create the inputs
+        const inputList = removeWrapperInputs(
+          createInput(createInput(rawMoves))
+        ); // clean the array and create the inputs
         const techValue = match[2]; // input from tech ()
 
         const component = (
