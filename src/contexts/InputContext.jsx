@@ -259,16 +259,15 @@ export const InputProvider = ({ children }) => {
             indexCount -= innerMatch[0].length - 1;
           }
         });
+
         const regex = /((?<!-.)->|>|~|,)/g; // followup regexes
         const current = joinStrings(currentMatch);
         const splitted = regexSplit(current, regex);
 
         const rawMoves = _.flatten([splitMoves(splitted, allRegexes)]); // input inside wrapper
         const clean = cleanRepeatArray(rawMoves, e); // remove the last element from the array
-        const inputList = removeStrings(rawMoves.map((e) => createInput(e))); // clean the array and create the inputs
+        const inputList = removeStrings(createInput(createInput(rawMoves))); // clean the array and create the inputs
         const techValue = match[2]; // input from tech ()
-
-        console.log(clean);
 
         const component = (
           <Wrapper key={uuidv4()} tech={e} techValue={techValue}>
