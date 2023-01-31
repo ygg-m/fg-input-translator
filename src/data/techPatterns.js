@@ -1,6 +1,17 @@
 import { Dash, IstantAirDash } from "./index";
 export const techPatterns = [
   {
+    name: "Gatlings",
+    input: "gatlings",
+    type: "mech",
+    regex: /gatlings/,
+    description:
+      "Sequence of inputs that chain into one another easily. Check your character or game guide to see some examples.",
+    img: "",
+    moreLink: "",
+    moreName: "",
+  },
+  {
     name: "Land",
     input: ["▷", "land"],
     type: "mech",

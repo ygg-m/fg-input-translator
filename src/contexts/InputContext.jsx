@@ -183,8 +183,9 @@ export const InputProvider = ({ children }) => {
     return arr
       .map((e) => {
         if (typeof e !== "string") return e;
-        const match = e.match(/([^\(\)\[\]]+)/);
-        const isWrapperInput = e === "[" || e === "]" || e === "(" || e === ")";
+        const match = e.match(/([^\(\)\[\](\]x)]+)/);
+        const isWrapperInput =
+          e === "[" || e === "]" || e === "(" || e === ")" || e === "]x";
         if (match) return match[0];
         if (!isWrapperInput) return e;
       })
@@ -274,6 +275,8 @@ export const InputProvider = ({ children }) => {
           createInput(createInput(rawMoves))
         ); // clean the array and create the inputs
         const techValue = match[2]; // input from tech ()
+
+        console.log(rawMoves);
 
         const component = (
           <Wrapper key={uuidv4()} tech={e} techValue={techValue}>
