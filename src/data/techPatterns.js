@@ -59,6 +59,17 @@ export const techPatterns = [
     style: { transform: "scaleX(-1)" },
   },
   {
+    name: "Homing Jump",
+    input: ["88", "dj."],
+    type: "mech-icon",
+    regex: /homing jump/,
+    description: "Jump after the Dust attack hits.",
+    img: "",
+    style: "",
+    moreLink: "",
+    moreName: "",
+  },
+  {
     name: "Double Jump",
     input: ["88", "dj."],
     type: "mech-icon",
