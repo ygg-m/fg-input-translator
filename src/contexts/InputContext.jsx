@@ -81,8 +81,8 @@ export const InputProvider = ({ children }) => {
   }
 
   function testRegex(list, input) {
-    if (!list[1].regex) return;
     return list.find((move) => {
+      if (!move) return;
       if (move.regex?.test(input)) return move;
     });
   }
