@@ -1,7 +1,7 @@
 import _ from "lodash";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { Input, Wrapper } from "../components/index";
+import { Combo, Input, Wrapper } from "../components/index";
 import {
   followUp,
   guiltyGear,
@@ -20,19 +20,42 @@ export const useInput = () => useContext(InputContext);
 
 export const InputProvider = ({ children }) => {
   // States
-  const [rawInput, setRawInput] = useState("");
-  const [imgInput, setImgInput] = useState();
+  const [rawInput, setRawInput] = useState(() => {
+    return localStorage.getItem("rawInput") || "";
+  });
 
-  const [output, setOutput] = useState([]);
-  const [gameInputs, setGameInputs] = useState();
   const [gameList] = useState([
     guiltyGear,
     streetFighter,
     kingOfFighters,
     persona,
   ]);
-  const [allInputs, setAllInputs] = useState([]);
+  const [gameInputs, setGameInputs] = useState(() => {
+    const savedGameName = localStorage.getItem("gameName");
+    const isUndefined = savedGameName !== "undefined";
+    if (isUndefined) {
+      const savedGameInputs = gameList.filter(
+        (e) => e[0].name === savedGameName
+      );
+      return savedGameInputs[0];
+    }
+    //
+    return guiltyGear;
+  });
+
+  const [allInputs, setAllInputs] = useState(
+    () =>
+      _.flatten([
+        techPatterns,
+        followUp,
+        gameInputs,
+        specialInputs,
+        moveInputs,
+      ]),
+    []
+  );
   const [allRegexes, setAllRegexes] = useState();
+  const [output, setOutput] = useState(() => readInputs(rawInput), [rawInput]);
   const [load, setLoad] = useState(false);
 
   // Functions
@@ -47,12 +70,15 @@ export const InputProvider = ({ children }) => {
 
     // game
     const savedGameName = localStorage.getItem("gameName");
-    if (savedGameName !== "undefined") {
+    const isUndefined = savedGameName !== "undefined";
+    if (isUndefined) {
       const savedGameInputs = gameList.filter(
         (e) => e[0].name === savedGameName
       );
-      setGameInputs(savedGameInputs[0] || guiltyGear);
-    } else setGameInputs(guiltyGear);
+      setGameInputs(savedGameInputs[0]);
+    }
+    //
+    else setGameInputs(guiltyGear);
   }
 
   function testRegex(list, input) {
@@ -62,8 +88,21 @@ export const InputProvider = ({ children }) => {
   }
 
   function createCombo(arr) {
-    const result = arr.map((item) => {
-      console.log(item);
+    let current = [];
+    const result = [];
+
+    arr.forEach((item, i) => {
+      const isFollowUp = item.props?.inputObj?.type === "follow-up";
+      const nextItem = arr[i + 1];
+      const wrappedItem = <Combo key={uuidv4()}>{current}</Combo>;
+      if (typeof nextItem === "undefined") result.push(wrappedItem);
+      if (isFollowUp) {
+        result.push(wrappedItem);
+        result.push(item);
+        current = [];
+      } else {
+        current.push(item);
+      }
     });
 
     return result;
@@ -237,8 +276,9 @@ export const InputProvider = ({ children }) => {
     const reWrap = wrap.map((e) => (typeof e === "string" ? wrapInputs(e) : e));
     const result = readArr(reWrap);
     const lastInputs = result.map((e) => createInput(e));
+    const combo = createCombo(lastInputs);
 
-    return lastInputs;
+    return combo;
   }
 
   // Render Effects
@@ -248,20 +288,21 @@ export const InputProvider = ({ children }) => {
 
   useEffect(() => {
     // input list
-    if (gameInputs)
-      setAllInputs(
-        _.flatten([
-          techPatterns,
-          followUp,
-          gameInputs,
-          specialInputs,
-          moveInputs,
-        ])
-      );
+    if (gameInputs) {
+      const inputList = _.flatten([
+        techPatterns,
+        followUp,
+        gameInputs,
+        specialInputs,
+        moveInputs,
+      ]);
+      setAllInputs(inputList);
+    }
 
     // regexes
-    setAllRegexes(createRegex(allInputs));
-  }, [gameInputs, load]);
+    const regexes = createRegex(allInputs);
+    setAllRegexes(regexes);
+  }, [gameInputs]);
 
   useEffect(() => {
     const result = readInputs(rawInput);
