@@ -30,20 +30,22 @@ export const InputProvider = ({ children }) => {
     kingOfFighters,
     persona,
   ]);
+
   const [gameInputs, setGameInputs] = useState(() => {
     const savedGameName = localStorage.getItem("gameName");
-    const isUndefined = savedGameName !== "undefined";
-    if (isUndefined) {
+    const isUndefined = savedGameName === null;
+
+    if (!isUndefined) {
       const savedGameInputs = gameList.filter(
         (e) => e[0].name === savedGameName
       );
       return savedGameInputs[0];
     }
     //
-    return guiltyGear;
+    else return guiltyGear;
   });
 
-  const [allInputs, setAllInputs] = useState(
+  const allInputs = useMemo(
     () =>
       _.flatten([
         techPatterns,
@@ -54,30 +56,13 @@ export const InputProvider = ({ children }) => {
       ]),
     []
   );
-  const [allRegexes, setAllRegexes] = useState();
+  const regexes = useMemo(() => createRegex(allInputs), [allInputs]);
   const [output, setOutput] = useState(() => readInputs(rawInput), [rawInput]);
 
   // Functions
   function saveInLocalStorage() {
     localStorage.setItem("rawInput", rawInput);
     if (gameInputs) localStorage.setItem("gameName", gameInputs[0]?.name);
-  }
-
-  function loadLocalStorage() {
-    const savedRawInput = localStorage.getItem("rawInput");
-    setRawInput(savedRawInput || "");
-
-    // game
-    const savedGameName = localStorage.getItem("gameName");
-    const isUndefined = savedGameName !== "undefined";
-    if (isUndefined) {
-      const savedGameInputs = gameList.filter(
-        (e) => e[0].name === savedGameName
-      );
-      setGameInputs(savedGameInputs[0]);
-    }
-    //
-    else setGameInputs(guiltyGear);
   }
 
   function testRegex(list, input) {
@@ -226,7 +211,7 @@ export const InputProvider = ({ children }) => {
   }
 
   function readString(str) {
-    const split = splitByRegex(str, allRegexes);
+    const split = splitByRegex(str, regexes);
     const inputs = createInput(split);
     const reInputs = createInput(inputs);
 
@@ -283,32 +268,10 @@ export const InputProvider = ({ children }) => {
 
   // Render Effects
   useEffect(() => {
-    loadLocalStorage();
-  }, []);
-
-  useEffect(() => {
-    // input list
-    if (gameInputs) {
-      const inputList = _.flatten([
-        techPatterns,
-        followUp,
-        gameInputs,
-        specialInputs,
-        moveInputs,
-      ]);
-      setAllInputs(inputList);
-    }
-
-    // regexes
-    const regexes = createRegex(allInputs);
-    setAllRegexes(regexes);
-  }, [gameInputs]);
-
-  useEffect(() => {
     const result = readInputs(rawInput);
     setOutput(result);
     saveInLocalStorage();
-  }, [rawInput, gameInputs, allRegexes]);
+  }, [rawInput, gameInputs, regexes]);
 
   const value = {
     rawInput,

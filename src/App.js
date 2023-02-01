@@ -12,9 +12,9 @@ import "./style/App.css";
 
 function App() {
   return (
-    <div className="bg-neutral-900 text-neutral-500 overflow-x-hidden h-screen">
+    <div className="h-screen overflow-x-hidden bg-neutral-900 text-neutral-500">
       <Header />
-      <div className="flex flex-col gap-4 w-full p-4 px-8">
+      <div className="flex w-full flex-col gap-4 p-4 px-8">
         <TooltipProvider>
           <InputProvider>
             <GameSelect />
