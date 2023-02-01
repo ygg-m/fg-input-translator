@@ -1,7 +1,7 @@
 <div align="center"> 
     <h1>Fighting Game Input Translator</h1>
     <h3>App that translates numerical inputs into more readable inputs.</h3>
-    <h3>236P becomes <img src="./assets/img/inputs/236.png" /> + <img src="./assets/img/inputs/PunchGeneric.png" /></h3>
+    <h3>236P becomes <img src="./assets/img/inputs/236.svg" /> + <img src="./assets/img/inputs/PunchGeneric.svg" /></h3>
 </div>
 
 # ✨ About this
