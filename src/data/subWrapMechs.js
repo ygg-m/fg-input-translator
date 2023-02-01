@@ -1,12 +1,5 @@
 export const subWrapMechs = [
-  {
-    name: "Single / Multiple Hits",
-    input: "(N)",
-    type: "mech-complex",
-    regex: /(.)\((\b\d\b)\)/g,
-    description: "Hit a move N times or move must deal N amount of hits.",
-    img: "",
-  },
+
   {
     name: "Regular",
     input: "-X-",

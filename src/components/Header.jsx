@@ -9,26 +9,26 @@ export const Header = () => {
     <header className="flex w-screen cursor-default flex-col items-center justify-center gap-4 border-b border-b-neutral-800 px-8 pb-8 text-center ">
       <div className="flex items-center justify-center gap-4 pt-4 text-neutral-600">
         <a
-          className="box-content flex h-8 w-8 rounded-lg border border-transparent p-2 text-base duration-200 hover:border-cyan-500 hover:text-cyan-500 hover:drop-shadow-[0_0_16px_rgba(34,211,238,1)]"
+          className="box-content flex h-8 w-8 justify-center rounded-lg border border-transparent p-2 text-base duration-200 hover:border-cyan-500 hover:text-cyan-500 hover:drop-shadow-[0_0_16px_rgba(34,211,238,1)]"
           href="https://github.com/ygg-m/fg-input-translator"
         >
           <GitHub />
         </a>
         <a
-          className="box-content flex h-8 w-8 rounded-lg border border-transparent p-2 text-base duration-200 hover:border-cyan-500 hover:text-cyan-500 hover:drop-shadow-[0_0_16px_rgba(34,211,238,1)]"
+          className="box-content flex h-8 w-8 justify-center rounded-lg border border-transparent p-2 text-base duration-200 hover:border-cyan-500 hover:text-cyan-500 hover:drop-shadow-[0_0_16px_rgba(34,211,238,1)]"
           href="https://discord.gg/ZapfK82Fjk"
         >
           <Discord />
         </a>
         <span className="text-neutral-700">•</span>
         <a
-          className="box-content flex h-8 w-8 rounded-lg border border-transparent p-2 text-base duration-200 hover:border-cyan-500 hover:text-cyan-500 hover:drop-shadow-[0_0_16px_rgba(34,211,238,1)]"
+          className="box-content flex h-8 w-8 justify-center rounded-lg border border-transparent p-2 text-base duration-200 hover:border-cyan-500 hover:text-cyan-500 hover:drop-shadow-[0_0_16px_rgba(34,211,238,1)]"
           href="https://ko-fi.com/yggm_"
         >
           <Kofi />
         </a>
         <a
-          className="box-content flex h-8 w-8 rounded-lg border border-transparent p-2 text-base duration-200 hover:border-cyan-500 hover:text-cyan-500 hover:drop-shadow-[0_0_16px_rgba(34,211,238,1)]"
+          className="box-content flex h-8 w-8 justify-center rounded-lg border border-transparent p-2 text-base duration-200 hover:border-cyan-500 hover:text-cyan-500 hover:drop-shadow-[0_0_16px_rgba(34,211,238,1)]"
           href="https://ko-fi.com/yggm_"
         >
           <Paypal />

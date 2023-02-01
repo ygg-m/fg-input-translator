@@ -12,6 +12,13 @@
 
 .react-tooltip {
   background-color: #171717;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   z-index: 50;
+  outline: 1px solid #333;
+  transition: 200ms;
+}
+
+.react-tooltip:hover {
+  outline-color: #06b6d4;
+  filter: drop-shadow(0 0 16px rgba(34, 211, 238, 0.25));
 }

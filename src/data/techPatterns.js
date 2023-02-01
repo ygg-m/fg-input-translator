@@ -55,7 +55,7 @@ export const techPatterns = [
     name: "Dash",
     input: 66,
     type: "mech-icon",
-    regex: /66|\(66\)|dash/,
+    regex: /66|dash/,
     description: "",
     img: <Dash />,
     style: {},
