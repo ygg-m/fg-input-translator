@@ -14,7 +14,7 @@ export const Input = ({ inputObj, tech }) => {
     return (
       <Container>
         <TooltipWrapper tooltipId={name}>
-          <div className="w-fit select-none rounded-full bg-neutral-900 px-2 outline outline-1 outline-neutral-800 duration-200 hover:text-cyan-500 hover:outline-cyan-500">
+          <div className="w-fit select-none rounded-md bg-neutral-900 px-2 outline outline-1 outline-neutral-800 duration-200 hover:text-cyan-500 hover:outline-cyan-500">
             {name}
           </div>
           {tech && tech}
