@@ -8,25 +8,6 @@ export const GameSelect = () => {
   const [showList, setShowList] = useState(false);
   if (!gameInputs) return;
 
-  // current game
-  const CurrentGame = () => {
-    return (
-      <div
-        className={
-          showList
-            ? "border-1 flex w-fit cursor-pointer select-none items-center justify-center self-end rounded-lg border border-neutral-700 duration-200 hover:border-cyan-500 hover:text-cyan-500"
-            : "border-1 shadow-cyan flex w-fit cursor-pointer select-none items-center justify-center self-end rounded-lg border border-cyan-500 text-cyan-500 duration-200"
-        }
-        onClick={() => setShowList(!showList)}
-      >
-        <div className="flex items-center">
-          <GameName />
-          <Chevron />
-        </div>
-      </div>
-    );
-  };
-
   const GameName = () => {
     return (
       <div className="border-r border-r-neutral-700 px-4 py-1">
@@ -35,28 +16,35 @@ export const GameSelect = () => {
     );
   };
 
-  const Chevron = () => {
-    return (
+  // main component
+  return (
+    <div className={showList ? "flex w-full flex-col" : "flex w-full flex-col"}>
       <div
         className={
           showList
-            ? "box-content w-4 rotate-90 px-3 duration-200 "
-            : "box-content w-4 px-3 duration-200"
+            ? "border-1 shadow-cyan flex w-fit cursor-pointer select-none items-center justify-center self-end rounded-lg border border-cyan-500 text-cyan-500 duration-200"
+            : "border-1 hover:shadow-cyan flex w-fit cursor-pointer select-none items-center justify-center self-end rounded-lg border border-neutral-700 duration-200 hover:border-cyan-500 hover:text-cyan-500"
         }
+        onClick={() => setShowList(!showList)}
       >
-        <ChevronIcon />
+        <div className="flex items-center">
+          <GameName />
+          <div
+            className={
+              showList
+                ? "box-content w-4 rotate-90 px-3 duration-200 "
+                : "box-content w-4 px-3 duration-200"
+            }
+          >
+            <ChevronIcon />
+          </div>
+        </div>
       </div>
-    );
-  };
-
-  // game list
-  const GameList = () => {
-    return (
       <div
         className={
           showList
-            ? "invisible flex h-0 gap-2 self-end opacity-0 duration-200"
-            : "visible mt-4 flex h-fit gap-2 self-end opacity-100 duration-200"
+            ? "visible mt-4 flex gap-2 self-end opacity-100 duration-200"
+            : "invisible flex h-0 gap-2 self-end  opacity-0 duration-200"
         }
       >
         {gameList.map((game) => (
@@ -72,14 +60,6 @@ export const GameSelect = () => {
           </div>
         ))}
       </div>
-    );
-  };
-
-  // main component
-  return (
-    <div className={showList ? "flex w-full flex-col" : "flex w-full flex-col"}>
-      <CurrentGame />
-      <GameList />
     </div>
   );
 };
