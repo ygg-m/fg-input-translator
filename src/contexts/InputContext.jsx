@@ -56,7 +56,6 @@ export const InputProvider = ({ children }) => {
   );
   const [allRegexes, setAllRegexes] = useState();
   const [output, setOutput] = useState(() => readInputs(rawInput), [rawInput]);
-  const [load, setLoad] = useState(false);
 
   // Functions
   function saveInLocalStorage() {
@@ -82,8 +81,9 @@ export const InputProvider = ({ children }) => {
   }
 
   function testRegex(list, input) {
+    if (!list[1].regex) return;
     return list.find((move) => {
-      if (move.regex.test(input)) return move;
+      if (move.regex?.test(input)) return move;
     });
   }
 
