@@ -5,7 +5,7 @@ const followUp = [
     name: "Cancel",
     input: ["->", "~"],
     type: "follow-up",
-    regex: /->|~/g,
+    regex: /(?<!-.)->|~/g,
     description:
       "Bypass the remaining time or frames in an action by proceeding directly into another action.",
     img: <Cancel />,

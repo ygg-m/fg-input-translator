@@ -10,8 +10,8 @@ const wrapMechs = [
   {
     name: "",
     input: "[X > 236X]",
-    type: "mech-complex",
-    regex: /\[(.*?)\][^x\d{1}]/g,
+    type: "combo",
+    regex: /\[(.*?)\](?!x\d)/g,
     description:
       "Group of inputs. Usually people use this to make a 'or' statement, where you can you one combo or another and still achieve the same ending.",
     img: "",

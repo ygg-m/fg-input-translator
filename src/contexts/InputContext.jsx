@@ -33,6 +33,7 @@ export const InputProvider = ({ children }) => {
   ]);
   const [allInputs, setAllInputs] = useState([]);
   const [allRegexes, setAllRegexes] = useState();
+  const [followUpRegexes] = useState(createRegex(followUp));
 
   // Functions
   function testRegex(list, input) {
@@ -113,8 +114,10 @@ export const InputProvider = ({ children }) => {
     if (!regexes.length > 0) return;
 
     // return a unique regex based on the regexes
-    return new RegExp(`(
-      ${regexes.map((regex) => regex.source).join("|")})`);
+    return new RegExp(
+      `(${regexes.map((regex) => regex.source).join("|")})`,
+      "g"
+    );
   }
 
   function splitByRegex(str, regex) {
@@ -233,12 +236,13 @@ export const InputProvider = ({ children }) => {
   }
 
   function wrapperMechs(str, list) {
+    let string = str;
     const newArr = [...str];
     let indexCount = 0;
 
     wrapMechs.forEach((e) => {
       // iterate through wrappers
-      const matches = str.matchAll(e.regex); // get matches
+      const matches = string.matchAll(e.regex); // get matches
       for (const match of matches) {
         const innerSubWrap = subWrapperMechs(match[0]);
         let currentMatch = _.flatten(
@@ -265,24 +269,25 @@ export const InputProvider = ({ children }) => {
           }
         });
 
-        const regex = /((?<!-.)->|>|~|,)/g; // followup regexes
-        const current = joinStrings(currentMatch);
-        const splitted = regexSplit(current, regex);
+        if (!newArr.join("").includes(match[0])) break; // prevents matches from the same thing
 
-        const rawMoves = _.flatten([splitMoves(splitted, allRegexes)]); // input inside wrapper
+        const current = joinStrings(currentMatch); // join all strings and objects
+        const splitted = regexSplit(current, followUpRegexes); // split the strings with followups
+
+        const rawMoves = _.flatten([splitMoves(splitted, followUpRegexes)]); // input inside wrapper
         const clean = cleanRepeatArray(rawMoves, e); // remove the last element from the array
         const inputList = removeWrapperInputs(
           createInput(createInput(rawMoves))
         ); // clean the array and create the inputs
         const techValue = match[2]; // input from tech ()
 
-        console.log(rawMoves);
-
         const component = (
           <Wrapper key={uuidv4()} tech={e} techValue={techValue}>
             {inputList}
           </Wrapper>
         );
+
+        console.log(newArr);
 
         const splice = newArr.splice(
           match.index - indexCount,
