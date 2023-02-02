@@ -1,7 +1,9 @@
 import { Tooltip, TooltipWrapper } from "react-tooltip";
+import { useInput } from "../contexts/InputContext";
 import { TooltipContent } from "./index";
 
 export const Input = ({ inputObj, tech }) => {
+  const { showTooltip } = useInput();
   const { name, type } = inputObj;
   const haveImg = inputObj.img !== "" || inputObj.img?.length > 0;
   const haveStyle = typeof inputObj.style === "object";
@@ -19,11 +21,13 @@ export const Input = ({ inputObj, tech }) => {
           </div>
           {tech && tech}
         </TooltipWrapper>
-        <Tooltip
-          id={name}
-          content={<TooltipContent obj={inputObj} />}
-          clickable
-        />
+        {showTooltip && (
+          <Tooltip
+            id={name}
+            content={<TooltipContent obj={inputObj} />}
+            clickable
+          />
+        )}
       </Container>
     );
   }
@@ -38,11 +42,14 @@ export const Input = ({ inputObj, tech }) => {
           </div>
           {tech && tech}
         </TooltipWrapper>
-        <Tooltip
-          id={name}
-          content={<TooltipContent obj={inputObj} />}
-          clickable
-        />
+
+        {showTooltip && (
+          <Tooltip
+            id={name}
+            content={<TooltipContent obj={inputObj} />}
+            clickable
+          />
+        )}
       </Container>
     );
   }
@@ -57,11 +64,14 @@ export const Input = ({ inputObj, tech }) => {
           </div>
           {tech && tech}
         </TooltipWrapper>
-        <Tooltip
-          id={name}
-          content={<TooltipContent obj={inputObj} />}
-          clickable
-        />
+
+        {showTooltip && (
+          <Tooltip
+            id={name}
+            content={<TooltipContent obj={inputObj} />}
+            clickable
+          />
+        )}
       </Container>
     );
   }

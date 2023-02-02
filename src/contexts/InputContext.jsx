@@ -58,12 +58,15 @@ export const InputProvider = ({ children }) => {
   );
   const regexes = useMemo(() => createRegex(allInputs), [allInputs]);
   const [output, setOutput] = useState(() => readInputs(rawInput), [rawInput]);
-  const [showTooltip, setShowTooltip] = useState(false);
+  const [showTooltip, setShowTooltip] = useState(() => {
+    return localStorage.getItem("showTooltip") === "true" ? true : false;
+  });
 
   // Functions
   function saveInLocalStorage() {
     localStorage.setItem("rawInput", rawInput);
     if (gameInputs) localStorage.setItem("gameName", gameInputs[0]?.name);
+    localStorage.setItem("showTooltip", showTooltip);
   }
 
   function testRegex(list, input) {
@@ -273,7 +276,7 @@ export const InputProvider = ({ children }) => {
     const result = readInputs(rawInput);
     setOutput(result);
     saveInLocalStorage();
-  }, [rawInput, gameInputs, regexes]);
+  }, [rawInput, gameInputs, regexes, showTooltip]);
 
   const value = {
     rawInput,

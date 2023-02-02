@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useInput } from "../contexts/InputContext";
+import { ReactComponent as CheckIcon } from "../images/ui/check.svg";
 import { ReactComponent as ChevronIcon } from "../images/ui/chevron-down.svg";
+import { ReactComponent as XMarkIcon } from "../images/ui/xmark.svg";
 
 export const GameSelect = () => {
-  const { gameInputs, setGameInputs, gameList } = useInput();
+  const { gameInputs, setGameInputs, gameList, showTooltip, setShowTooltip } =
+    useInput();
   const [showList, setShowList] = useState(false);
   if (!gameInputs) return;
 
@@ -18,25 +21,47 @@ export const GameSelect = () => {
 
   // main component
   return (
-    <div className={showList ? "flex w-full flex-col" : "flex w-full flex-col"}>
-      <div
-        className={
-          showList
-            ? "border-1 shadow-cyan flex w-fit cursor-pointer select-none items-center justify-center self-end rounded-lg border border-cyan-500 text-cyan-500 duration-200"
-            : "border-1 hover:shadow-cyan flex w-fit cursor-pointer select-none items-center justify-center self-end rounded-lg border border-neutral-700 duration-200 hover:border-cyan-500 hover:text-cyan-500"
-        }
-        onClick={() => setShowList(!showList)}
-      >
-        <div className="flex items-center">
-          <GameName />
-          <div
-            className={
-              showList
-                ? "box-content w-4 rotate-90 px-3 duration-200 "
-                : "box-content w-4 px-3 duration-200"
-            }
-          >
-            <ChevronIcon />
+    <div className="flex flex-col">
+      <div className="flex w-full justify-between">
+        <div
+          className={
+            showTooltip
+              ? "border-1 shadow-cyan flex w-fit cursor-pointer select-none items-center justify-center self-end rounded-lg border border-cyan-500 px-4 py-1 text-cyan-500 duration-200"
+              : "border-1 hover:shadow-cyan flex w-fit cursor-pointer select-none items-center justify-center self-end rounded-lg border border-neutral-700 px-4 py-1 duration-200 hover:border-cyan-500 hover:text-cyan-500"
+          }
+          onClick={() => setShowTooltip(!showTooltip)}
+        >
+          {showTooltip ? (
+            <span className="flex items-center gap-2">
+              <CheckIcon className="h-4 w-3" />
+              Tooltip
+            </span>
+          ) : (
+            <span className="flex items-center gap-2">
+              <XMarkIcon className="h-4 w-3" />
+              Tooltip
+            </span>
+          )}
+        </div>
+        <div
+          className={
+            showList
+              ? "border-1 shadow-cyan flex w-fit cursor-pointer select-none items-center justify-center self-end rounded-lg border border-cyan-500 text-cyan-500 duration-200"
+              : "border-1 hover:shadow-cyan flex w-fit cursor-pointer select-none items-center justify-center self-end rounded-lg border border-neutral-700 duration-200 hover:border-cyan-500 hover:text-cyan-500"
+          }
+          onClick={() => setShowList(!showList)}
+        >
+          <div className="flex items-center">
+            <GameName />
+            <div
+              className={
+                showList
+                  ? "box-content w-4 rotate-90 px-3 duration-200 "
+                  : "box-content w-4 px-3 duration-200"
+              }
+            >
+              <ChevronIcon />
+            </div>
           </div>
         </div>
       </div>
