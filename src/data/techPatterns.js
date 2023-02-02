@@ -126,6 +126,16 @@ export const techPatterns = [
     moreName: "",
   },
   {
+    name: "Ground",
+    input: "ground",
+    type: "mech",
+    regex: /ground/,
+    description: "The command should be executed while on the ground.",
+    img: "",
+    moreLink: "",
+    moreName: "",
+  },
+  {
     name: "Air Throw",
     input: "air throw",
     type: "mech",
@@ -166,7 +176,7 @@ export const techPatterns = [
     description: "Canceling a move with a jump.",
     img: "",
     moreLink: "https://glossary.infil.net/?t=Jump%20Cancel",
-    moreName: "Fighting Game Glossary",
+    moreName: "Glossary",
   },
   {
     name: "Crouch",
@@ -257,7 +267,7 @@ export const techPatterns = [
     description: "Hitting someone while they are in the startup of an attack. ",
     img: "",
     moreLink: "https://glossary.infil.net/?t=Counter%20Hit",
-    moreName: "Fighting Game Glossary",
+    moreName: "Glossary",
   },
   {
     name: "Anti Air",
@@ -268,7 +278,7 @@ export const techPatterns = [
       "Hitting someone who is jumping at you while you are on the ground.",
     img: "",
     moreLink: "https://glossary.infil.net/?t=Anti-Air",
-    moreName: "Fighting Game Glossary",
+    moreName: "Glossary",
   },
   {
     name: "Instant Air Dash",
