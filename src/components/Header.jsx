@@ -29,7 +29,7 @@ export const Header = () => {
         </a>
         <a
           className="box-content flex h-8 w-8 justify-center rounded-lg border border-transparent p-2 text-base duration-200 hover:border-cyan-500 hover:text-cyan-500 hover:drop-shadow-[0_0_16px_rgba(34,211,238,1)]"
-          href="https://ko-fi.com/yggm_"
+          href="https://www.paypal.com/donate/?business=3GPA48HHRS6Y6&no_recurring=0&item_name=Thank+you+so+much+for+your+kindness%21%0AYou%27re+helping+to+make+my+project+bright%21&currency_code=BRL"
         >
           <Paypal />
         </a>
