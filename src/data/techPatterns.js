@@ -8,8 +8,30 @@ export const techPatterns = [
     description:
       "Sequence of inputs that chain into one another easily. Check a guide to your character or game to see some examples.",
     img: "",
-    moreLink: "",
-    moreName: "",
+    moreLink: "https://glossary.infil.net/?t=Starter",
+    moreName: "Glossary",
+  },
+  {
+    name: "Starter",
+    input: "gatlings",
+    type: "mech",
+    regex: /starter/,
+    description:
+      "The first hit or combo before going to the main combo. Check a guide for your character to see some examples.",
+    img: "",
+    moreLink: "https://glossary.infil.net/?t=Starter",
+    moreName: "Glossary",
+  },
+  {
+    name: "Corner",
+    input: "gatlings",
+    type: "mech",
+    regex: /starter/,
+    description:
+      "The far left and far right edges of the screen in a 2D fighting game. Combos with this notation usually means you should ",
+    img: "",
+    moreLink: "https://glossary.infil.net/?t=Corner",
+    moreName: "Glossary",
   },
   {
     name: "Land",
@@ -20,6 +42,17 @@ export const techPatterns = [
     img: "",
     moreLink: "",
     moreName: "",
+  },
+  {
+    name: "Tiger Knee",
+    input: "tk",
+    type: "mech",
+    regex: /tk/,
+    description:
+      "A method to perform a special move in the air as fast as possible after you leave the ground. For example, in a 236P motion you would make 2369P.",
+    img: "",
+    moreLink: "https://glossary.infil.net/?t=Tiger%20Knee",
+    moreName: "Glossary",
   },
   {
     name: "Delay",
@@ -70,18 +103,6 @@ export const techPatterns = [
     style: { transform: "scaleX(-1)" },
   },
   {
-    name: "Anti Air",
-    input: ["anti-air", "anti air"],
-    type: "mech",
-    regex: /anti-air|antiair/,
-    description:
-      "Dust attacks will launch the target in the air. Homing Jump is when you jump right after the attack connects.",
-    img: "",
-    style: "",
-    moreLink: "",
-    moreName: "",
-  },
-  {
     name: "Homing Jump",
     input: "homing jump",
     type: "mech",
@@ -105,22 +126,34 @@ export const techPatterns = [
     moreName: "",
   },
   {
+    name: "Air Throw",
+    input: "air throw",
+    type: "mech",
+    regex: /airthrow/,
+    description:
+      "A throw that can be input in the air, and only works against airborne opponents. Check a guide for the game or character to see the throw inputs available.",
+    img: "",
+    moreLink: "https://glossary.infil.net/?t=Air%20Throw",
+    moreName: "Glossary",
+  },
+  {
     name: "Throw",
     input: "throw",
     type: "mech",
     regex: /throw/,
-    description: "4H or 6H within close proximity of an opponent",
+    description:
+      "A fast close-range move that cannot be blocked. Check a guide for the game to see the throw inputs available.",
     img: "",
     moreLink: "https://www.dustloop.com/w/GGACR/Mechanics#Throws",
     moreName: "Dustloop",
   },
   {
-    name: "High Jump Cancel / Super Jump Cancel",
+    name: "High Jump Cancel",
     input: ["hjc", "sjc"],
     type: "mech",
-    regex: /hjc\.|sjc\./,
+    regex: /hjc\.|sjc\.|hjc|sjc/,
     description:
-      "Any Downward Direction > Any Upward Direction while on the ground",
+      "Any Downward Direction then any Upward Direction while on the ground",
     img: "",
     moreLink: "https://www.dustloop.com/w/GGACR/Mechanics#High_Jump",
     moreName: "Dustloop",
@@ -228,9 +261,9 @@ export const techPatterns = [
   },
   {
     name: "Anti Air",
-    input: "aa",
+    input: ["anti-air", "anti air", "aa"],
     type: "mech",
-    regex: /aa/,
+    regex: /aa|anti-air|antiair/,
     description:
       "Hitting someone who is jumping at you while you are on the ground.",
     img: "",

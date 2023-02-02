@@ -21,6 +21,20 @@ const guiltyGear = [
   // character specific
   // -------------------------------------------------------------------------
   // -------------------------------------------------------------------------
+  // Anji Mito
+  // -------------------------------------------------------------------------
+  {
+    name: "3S Cancel",
+    input: "3sc",
+    type: "mech",
+    regex: /3sc/,
+    description:
+      "Anji's 3S normal has a special property where at frames 8-10, during the attack's start-up, it can be cancelled into 5S and 5H.",
+    img: "",
+    moreLink: "https://www.dustloop.com/w/GGACR/Anji_Mito/Combos#3S_Cancels",
+    moreName: "Dustloop",
+  },
+  // -------------------------------------------------------------------------
   // A.B.A.
   // -------------------------------------------------------------------------
   {
