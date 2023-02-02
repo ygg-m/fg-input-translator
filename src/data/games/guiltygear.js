@@ -1,9 +1,9 @@
 // image imports
 // mechs
-import { ForceRomanCancel, RomanCancel } from "./index";
+import { ForceRomanCancel, RomanCancel } from "../index";
 // specials
 // actions
-import { Dust, HeavySlash, Kick, Punch, Slash } from "./index";
+import { Dust, HeavySlash, Kick, Punch, Slash } from "../index";
 //moves
 // arrow links
 

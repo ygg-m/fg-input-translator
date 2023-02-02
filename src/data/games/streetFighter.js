@@ -10,7 +10,7 @@ import {
   LightPunch,
   MediumKick,
   MediumPunch,
-} from "./index";
+} from "../index";
 
 const streetFighter = [
   {

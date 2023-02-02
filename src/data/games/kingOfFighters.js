@@ -1,14 +1,5 @@
-// image imports
-// mechs
-import { Dash, ForceRomanCancel, IstantAirDash, RomanCancel } from "./index";
-// specials
-import { DragonPunch, FullCircle, HalfCircle, QuarterCircle } from "./index";
 // actions
-import { AnyKick, AnyPunch, SNK_A, SNK_B, SNK_C, SNK_D } from "./index";
-//moves
-import { Foward, Neutral } from "./index";
-// arrow links
-import { Cancel, Link, Next } from "./index";
+import { AnyKick, AnyPunch, SNK_A, SNK_B, SNK_C, SNK_D } from "../index";
 
 const kingOfFighters = [
   {

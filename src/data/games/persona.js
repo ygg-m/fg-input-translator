@@ -1,5 +1,5 @@
 // actions
-import { PersonaA, PersonaB, PersonaC, PersonaD } from "./index";
+import { PersonaA, PersonaB, PersonaC, PersonaD } from "../index";
 
 const persona = [
   {
@@ -15,9 +15,9 @@ const persona = [
   // -------------------------------------------------------------------------
   {
     name: "Light Punch",
-    input: "a",
+    input: "A",
     type: "action",
-    regex: /a/,
+    regex: /A/,
     description: "",
     img: <PersonaA />,
   },
