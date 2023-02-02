@@ -82,7 +82,7 @@ export const InputProvider = ({ children }) => {
       const wrappedItem = <Combo key={uuidv4()}>{current}</Combo>;
       if (typeof nextItem === "undefined") result.push(wrappedItem);
       if (isFollowUp) {
-        result.push(wrappedItem);
+        if (wrappedItem.length > 0) result.push(wrappedItem);
         result.push(item);
         current = [];
       } else {
