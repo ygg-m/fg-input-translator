@@ -118,6 +118,18 @@ const guiltyGear = [
     moreName: "Dustloop",
   },
   {
+    name: "FB Rin",
+    input: "fb rin",
+    type: "mech",
+    regex: /fbrin/,
+    character: "Anji Mito",
+    description:
+      "236S or 236H -> D. Anji's main use of meter. An important piece of combo filler as it ground bounces, and leads into H Fuujin for further followups.",
+    img: "",
+    moreLink: "https://www.dustloop.com/w/GGACR/Anji_Mito#FB_Rin",
+    moreName: "Dustloop",
+  },
+  {
     name: "H Rin",
     input: "h rin",
     type: "mech",
@@ -151,6 +163,18 @@ const guiltyGear = [
       "K during Autoguard. A horizontally advancing autoguard followup, made up of three low-level attacks followed by a single high level hit.",
     img: "",
     moreLink: "https://www.dustloop.com/w/GGACR/Anji_Mito#Sou",
+    moreName: "Dustloop",
+  },
+  {
+    name: "FB On",
+    input: "623D",
+    type: "mech",
+    regex: /fbon/,
+    character: "Anji Mito",
+    description:
+      "623D. Like normal On, but with much slower startup and much higher vertical reach.",
+    img: "",
+    moreLink: "https://www.dustloop.com/w/GGACR/Anji_Mito#FB_On",
     moreName: "Dustloop",
   },
   {
@@ -200,30 +224,7 @@ const guiltyGear = [
     moreLink: "https://www.dustloop.com/w/GGACR/Anji_Mito#Shin:_Nishiki",
     moreName: "Dustloop",
   },
-  {
-    name: "FB Rin",
-    input: "fb rin",
-    type: "mech",
-    regex: /fbrin/,
-    character: "Anji Mito",
-    description:
-      "236S or 236H -> D. Anji's main use of meter. An important piece of combo filler as it ground bounces, and leads into H Fuujin for further followups.",
-    img: "",
-    moreLink: "https://www.dustloop.com/w/GGACR/Anji_Mito#FB_Rin",
-    moreName: "Dustloop",
-  },
-  {
-    name: "FB On",
-    input: "fb on",
-    type: "mech",
-    regex: /fbon/,
-    character: "Anji Mito",
-    description:
-      "623D. Like normal On, but with much slower startup and much higher vertical reach.",
-    img: "",
-    moreLink: "https://www.dustloop.com/w/GGACR/Anji_Mito#FB_On",
-    moreName: "Dustloop",
-  },
+
   // -------------------------------------------------------------------------
   // A.B.A.
   // -------------------------------------------------------------------------

@@ -2,6 +2,7 @@ import { v4 as uuidv4 } from "uuid";
 export const TooltipContent = ({ obj }) => {
   const { name, description, input, moreLink, moreName } = obj;
   const haveDescription = description?.length > 0;
+  const haveCharacterName = obj.character?.length > 0;
   const haveKnowMore = moreLink?.length > 0;
   const haveKnowMoreName = moreName?.length > 0;
   const isInputArray = Array.isArray(input);
@@ -29,6 +30,12 @@ export const TooltipContent = ({ obj }) => {
           <span className="font-bold text-cyan-500">{input}</span>
         )}
       </div>
+      {haveCharacterName && (
+        <div>
+          Character:{" "}
+          <span className="font-bold text-cyan-500">{obj.character}</span>
+        </div>
+      )}
       {haveDescription && <span className="italic">{description}</span>}
       {haveKnowMore && (
         <div className="flex w-full justify-center">
