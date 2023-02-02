@@ -1,5 +1,21 @@
 const wrapMechs = [
   {
+    name: "Hold",
+    input: "[X]",
+    type: "mech-complex",
+    regex: /\[(.)\]/g,
+    description: "Hold input.",
+    img: "",
+  },
+  {
+    name: "Release",
+    input: "]X[",
+    type: "mech-complex",
+    regex: /\](.)\[/g,
+    description: "Release input.",
+    img: "",
+  },
+  {
     name: "Repeat",
     input: ["[X]xN", "[X > 236X]xN", "X*N", "{X}*N"],
     type: "mech-complex",
@@ -54,22 +70,6 @@ const wrapMechs = [
     img: "",
     moreLink: "https://www.dustloop.com/w/GGACR/Eddie/Combos#Eddie_Notation",
     moreName: "Dustloop",
-  },
-  {
-    name: "Hold",
-    input: "[X]",
-    type: "mech-complex",
-    regex: /\[(.)\]/g,
-    description: "Hold input.",
-    img: "",
-  },
-  {
-    name: "Release",
-    input: "]X[",
-    type: "mech-complex",
-    regex: /\](.)\[/g,
-    description: "Release input.",
-    img: "",
   },
 ];
 
