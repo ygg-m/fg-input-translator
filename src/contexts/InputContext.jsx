@@ -48,9 +48,9 @@ export const InputProvider = ({ children }) => {
   const allInputs = useMemo(
     () =>
       _.flatten([
-        gameInputs,
         techPatterns,
         followUp,
+        gameInputs,
         specialInputs,
         moveInputs,
       ]),

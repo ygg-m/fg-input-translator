@@ -169,6 +169,16 @@ export const techPatterns = [
     moreName: "Dustloop",
   },
   {
+    name: "Double Jump Cancel",
+    input: ["djc"],
+    type: "mech-icon",
+    regex: /djc\.|djc/,
+    description: "",
+    img: "",
+    moreLink: "",
+    moreName: "",
+  },
+  {
     name: "Jump Cancel",
     input: "jc.",
     type: "mech",
