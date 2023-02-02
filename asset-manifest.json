@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/fg-input-translator/static/css/main.c5e39538.css",
-    "main.js": "/fg-input-translator/static/js/main.b98462c7.js",
+    "main.css": "/fg-input-translator/static/css/main.0c1da939.css",
+    "main.js": "/fg-input-translator/static/js/main.72c31b8a.js",
     "static/js/787.9b8d6454.chunk.js": "/fg-input-translator/static/js/787.9b8d6454.chunk.js",
     "static/media/logo.svg": "/fg-input-translator/static/media/logo.f0f20d35bd495d274561f37d79625c82.svg",
     "static/media/ActionHeavySlash.svg": "/fg-input-translator/static/media/ActionHeavySlash.431c6b14ea836663d96f6202676b6cd5.svg",
@@ -48,14 +48,16 @@
     "static/media/kofi.svg": "/fg-input-translator/static/media/kofi.6124203e07ea0a9253c3494e28e89085.svg",
     "static/media/Motion5.svg": "/fg-input-translator/static/media/Motion5.828b26deba4893b52827efa073114e06.svg",
     "static/media/paypal.svg": "/fg-input-translator/static/media/paypal.a6302bd2e00428e0c023a4c96ece2f7b.svg",
+    "static/media/xmark.svg": "/fg-input-translator/static/media/xmark.3149f3a71eb662d05c9ad0fc4916d017.svg",
+    "static/media/check.svg": "/fg-input-translator/static/media/check.74811ad8e9abd0138c480420f9932245.svg",
     "static/media/chevron-down.svg": "/fg-input-translator/static/media/chevron-down.144400258cad217afb0b4cf721017c89.svg",
     "static/media/ArrowNext.svg": "/fg-input-translator/static/media/ArrowNext.648ffe87ca7d7a64a7505e4f764a0834.svg",
-    "main.c5e39538.css.map": "/fg-input-translator/static/css/main.c5e39538.css.map",
-    "main.b98462c7.js.map": "/fg-input-translator/static/js/main.b98462c7.js.map",
+    "main.0c1da939.css.map": "/fg-input-translator/static/css/main.0c1da939.css.map",
+    "main.72c31b8a.js.map": "/fg-input-translator/static/js/main.72c31b8a.js.map",
     "787.9b8d6454.chunk.js.map": "/fg-input-translator/static/js/787.9b8d6454.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c5e39538.css",
-    "static/js/main.b98462c7.js"
+    "static/css/main.0c1da939.css",
+    "static/js/main.72c31b8a.js"
   ]
 }
