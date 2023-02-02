@@ -180,12 +180,13 @@ export const InputProvider = ({ children }) => {
 
       for (let match of matches) {
         if (!result.join("").includes(match[0])) break; // prevents matches that already have been treaten
+        console.log(match);
 
         // match again with the mutated array to gey the new index
         const newRegexp = createRegexFromStr(match[0]);
         const resultStr = joinStrings(result, true);
         const rematch = newRegexp.exec(resultStr);
-
+        if (rematch === null) break;
         // key infos
         const length = match[0].length;
         const index = rematch.index - indexCount;
