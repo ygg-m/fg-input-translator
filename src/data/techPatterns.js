@@ -97,7 +97,7 @@ export const techPatterns = [
     name: "Double Jump",
     input: ["88", "dj."],
     type: "mech-icon",
-    regex: /88|dj./,
+    regex: /88|dj\./,
     description: "",
     img: <Dash />,
     style: { transform: "rotate(-90deg)" },

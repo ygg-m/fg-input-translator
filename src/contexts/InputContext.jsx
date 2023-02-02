@@ -84,14 +84,16 @@ export const InputProvider = ({ children }) => {
       const isFollowUp = item.props?.inputObj?.type === "follow-up";
       const nextItem = arr[i + 1];
       const wrappedItem = <Combo key={uuidv4()}>{current}</Combo>;
-      if (typeof nextItem === "undefined") result.push(wrappedItem);
+
+      console.log(result);
+
+      if (!isFollowUp) current.push(item);
+
       if (isFollowUp) {
-        if (wrappedItem.length > 0) result.push(wrappedItem);
+        if (wrappedItem.length !== "") result.push(wrappedItem);
         result.push(item);
         current = [];
-      } else {
-        current.push(item);
-      }
+      } else if (typeof nextItem === "undefined") result.push(wrappedItem);
     });
 
     return result;
@@ -191,6 +193,7 @@ export const InputProvider = ({ children }) => {
         const resultStr = joinStrings(result, true);
         const rematch = newRegexp.exec(resultStr);
         if (rematch === null) break;
+
         // key infos
         const length = match[0].length;
         const index = rematch.index - indexCount;

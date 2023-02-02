@@ -15,9 +15,9 @@ const persona = [
   // -------------------------------------------------------------------------
   {
     name: "Light Punch",
-    input: "A",
+    input: "a",
     type: "action",
-    regex: /A/,
+    regex: /a/,
     description: "",
     img: <PersonaA />,
   },
