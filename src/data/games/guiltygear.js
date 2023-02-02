@@ -28,6 +28,7 @@ const guiltyGear = [
     input: "3sc",
     type: "mech",
     regex: /3sc/,
+    character: "Anji Mito",
     description:
       "Anji's 3S normal has a special property where at frames 8-10, during the attack's start-up, it can be cancelled into 5S and 5H.",
     img: "",
@@ -39,6 +40,7 @@ const guiltyGear = [
     input: "shitsu",
     type: "mech",
     regex: /shitsu/,
+    character: "Anji Mito",
     description:
       "236P. A slow moving projectile that serves as one of Anji's most important specials.",
     img: "",
@@ -50,6 +52,7 @@ const guiltyGear = [
     input: "butterfly",
     type: "mech",
     regex: /butterfly/,
+    character: "Anji Mito",
     description: "First part of Shitsu.",
     img: "",
     moreLink: "https://www.dustloop.com/w/GGACR/Anji#Shitsu",
@@ -60,6 +63,7 @@ const guiltyGear = [
     input: "hawk",
     type: "mech",
     regex: /hawk/,
+    character: "Anji Mito",
     description: "Second part of Shitsu.",
     img: "",
     moreLink: "https://www.dustloop.com/w/GGACR/Anji#Shitsu",
@@ -70,6 +74,7 @@ const guiltyGear = [
     input: "s fuujin",
     type: "mech",
     regex: /sfuujin/,
+    character: "Anji Mito",
     description:
       "236S. Fuujin is arguably Anji's most important tool, and alongside his autoguards, what really defines his kit.",
     img: "",
@@ -81,6 +86,7 @@ const guiltyGear = [
     input: "h fuujin",
     type: "mech",
     regex: /hfuujin/,
+    character: "Anji Mito",
     description:
       "236H. Fuujin is arguably Anji's most important tool, and alongside his autoguards, what really defines his kit.",
     img: "",
@@ -92,6 +98,7 @@ const guiltyGear = [
     input: "k hop",
     type: "mech",
     regex: /khop/,
+    character: "Anji Mito",
     description:
       "236S or 236H -> K. The throw/anti-low option out of Fuujin. Anji leaps a great distance forwards before landing in neutral.",
     img: "",
@@ -103,6 +110,7 @@ const guiltyGear = [
     input: "k hop",
     type: "mech",
     regex: /khop/,
+    character: "Anji Mito",
     description:
       "236S or 236H -> S. The throw/anti-low option out of Fuujin. Anji leaps a great distance forwards before landing in neutral.",
     img: "",
@@ -114,6 +122,7 @@ const guiltyGear = [
     input: "h rin",
     type: "mech",
     regex: /hrin/,
+    character: "Anji Mito",
     description:
       "236S or 236H -> H. The overhead/autoguard/knockdown option out of Fuujin, notable for being a level six attack on block.",
     img: "",
@@ -125,6 +134,7 @@ const guiltyGear = [
     input: "kou",
     type: "mech",
     regex: /kou/,
+    character: "Anji Mito",
     description:
       "P during Autoguard. A rising autoguard followup that leads to a knockdown on full connect. Kou is lightning fast, at only four frames, meaning in certain situations it can be truly inescapable.",
     img: "",
@@ -136,6 +146,7 @@ const guiltyGear = [
     input: "sou",
     type: "mech",
     regex: /sou/,
+    character: "Anji Mito",
     description:
       "K during Autoguard. A horizontally advancing autoguard followup, made up of three low-level attacks followed by a single high level hit.",
     img: "",
@@ -147,6 +158,7 @@ const guiltyGear = [
     input: "on",
     type: "mech",
     regex: /on/,
+    character: "Anji Mito",
     description:
       "623H. A rising autoguard followup that leads to a knockdown on full connect.",
     img: "",
@@ -158,6 +170,7 @@ const guiltyGear = [
     input: "p kai",
     type: "mech",
     regex: /pkai/,
+    character: "Anji Mito",
     description:
       "214P. Kai represents a pair of advancing jumps, both of which hit overhead and can cross up opponents.",
     img: "",
@@ -169,6 +182,7 @@ const guiltyGear = [
     input: "k kai",
     type: "mech",
     regex: /kkai/,
+    character: "Anji Mito",
     description:
       "214K. Kai represents a pair of advancing jumps, both of which hit overhead and can cross up opponents.",
     img: "",
@@ -180,6 +194,7 @@ const guiltyGear = [
     input: "orb",
     type: "mech",
     regex: /orb/,
+    character: "Anji Mito",
     description: "j.214P. A common air combo ender.",
     img: "",
     moreLink: "https://www.dustloop.com/w/GGACR/Anji_Mito#Shin:_Nishiki",
@@ -190,6 +205,7 @@ const guiltyGear = [
     input: "fb rin",
     type: "mech",
     regex: /fbrin/,
+    character: "Anji Mito",
     description:
       "236S or 236H -> D. Anji's main use of meter. An important piece of combo filler as it ground bounces, and leads into H Fuujin for further followups.",
     img: "",
@@ -201,6 +217,7 @@ const guiltyGear = [
     input: "fb on",
     type: "mech",
     regex: /fbon/,
+    character: "Anji Mito",
     description:
       "623D. Like normal On, but with much slower startup and much higher vertical reach.",
     img: "",
@@ -215,6 +232,7 @@ const guiltyGear = [
     input: "63214H",
     type: "character move",
     regex: /keygrab|bonding/,
+    character: "A.B.A.",
     description:
       "Often called 'Keygrab'. It's a grab that make A.B.A. enter or leave Goku Moroha Mode.",
     img: "",
