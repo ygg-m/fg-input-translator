@@ -54,10 +54,11 @@ export const InputProvider = ({ children }) => {
         specialInputs,
         moveInputs,
       ]),
-    []
+    [gameInputs]
   );
   const regexes = useMemo(() => createRegex(allInputs), [allInputs]);
   const [output, setOutput] = useState(() => readInputs(rawInput), [rawInput]);
+  const [showTooltip, setShowTooltip] = useState(false);
 
   // Functions
   function saveInLocalStorage() {
@@ -283,6 +284,8 @@ export const InputProvider = ({ children }) => {
     createInput,
     gameList,
     allInputs,
+    showTooltip,
+    setShowTooltip,
   };
 
   return (
