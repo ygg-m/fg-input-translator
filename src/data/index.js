@@ -46,4 +46,5 @@ export { moveInputs } from "./moveInputs";
 export { specialInputs } from "./specialInputs";
 export { subWrapMechs } from "./subWrapMechs";
 export { techPatterns } from "./techPatterns";
+export { texts } from "./texts";
 export { wrapMechs } from "./wrapMechs";

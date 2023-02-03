@@ -6,6 +6,7 @@ export { GameSelect } from "./GameSelect";
 export { Header } from "./Header";
 export { Input } from "./Input";
 export { InputField } from "./InputField.jsx";
+export { Modal } from "./Modal.jsx";
 export { Output } from "./Output.jsx";
 export { SubTechInput } from "./SubTechInput";
 export { TooltipContent } from "./TooltipContent.jsx";
