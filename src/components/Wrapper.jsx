@@ -12,7 +12,7 @@ export const Wrapper = ({ tech, techValue, children }) => {
   const isSingleHit = techValue === "1";
   return (
     <div
-      className="flex flex-col items-center justify-center gap-1 rounded-lg bg-neutral-900 px-2 py-1 pt-1 outline outline-1 outline-neutral-800 duration-200 hover:z-50 hover:outline-cyan-500"
+      className="flex flex-col items-center justify-center gap-1 rounded-lg bg-neutral-900 px-2 py-1 pt-1 outline outline-1 outline-neutral-700 duration-200 hover:z-50 hover:outline-cyan-500"
       key={uuidv4()}
     >
       <div className="flex items-center justify-center gap-1">{children}</div>
