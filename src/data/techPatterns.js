@@ -1,8 +1,16 @@
 import { Dash, IstantAirDash } from "./index";
 export const techPatterns = [
   {
+    name: "Techs",
+    input: [],
+    type: "",
+    regex: /(?!)/g,
+    description: "",
+    img: "",
+  },
+  {
     name: "Gatlings",
-    input: "gatlings",
+    input: ["gatlings"],
     type: "mech",
     regex: /gatlings/,
     description:
@@ -13,7 +21,7 @@ export const techPatterns = [
   },
   {
     name: "Starter",
-    input: "gatlings",
+    input: ["starter"],
     type: "mech",
     regex: /starter/,
     description:
@@ -24,9 +32,9 @@ export const techPatterns = [
   },
   {
     name: "Corner",
-    input: "gatlings",
+    input: ["corner"],
     type: "mech",
-    regex: /starter/,
+    regex: /corner/,
     description:
       "The far left and far right edges of the screen in a 2D fighting game. Combos with this notation usually means you should ",
     img: "",
@@ -45,7 +53,7 @@ export const techPatterns = [
   },
   {
     name: "Tiger Knee",
-    input: "tk",
+    input: ["tk"],
     type: "mech",
     regex: /tk/,
     description:
@@ -86,7 +94,7 @@ export const techPatterns = [
   },
   {
     name: "Dash",
-    input: 66,
+    input: [66],
     type: "mech-icon",
     regex: /66|dash/,
     description: "",
@@ -95,7 +103,7 @@ export const techPatterns = [
   },
   {
     name: "Back Dash",
-    input: 44,
+    input: [44],
     type: "mech-icon",
     regex: /44/,
     description: "",
@@ -104,7 +112,7 @@ export const techPatterns = [
   },
   {
     name: "Homing Jump",
-    input: "homing jump",
+    input: ["homing jump"],
     type: "mech",
     regex: /homingjump/,
     description:
@@ -127,7 +135,7 @@ export const techPatterns = [
   },
   {
     name: "Ground",
-    input: "ground",
+    input: ["ground"],
     type: "mech",
     regex: /ground/,
     description: "The command should be executed while on the ground.",
@@ -137,7 +145,7 @@ export const techPatterns = [
   },
   {
     name: "Air Throw",
-    input: "air throw",
+    input: ["air throw"],
     type: "mech",
     regex: /airthrow/,
     description:
@@ -148,7 +156,7 @@ export const techPatterns = [
   },
   {
     name: "Throw",
-    input: "throw",
+    input: ["throw"],
     type: "mech",
     regex: /throw/,
     description:
@@ -180,7 +188,7 @@ export const techPatterns = [
   },
   {
     name: "Jump Cancel",
-    input: "jc.",
+    input: ["jc."],
     type: "mech",
     regex: /jc\.|jc/,
     description: "Canceling a move with a jump.",
@@ -190,7 +198,7 @@ export const techPatterns = [
   },
   {
     name: "Crouch",
-    input: "cr.",
+    input: ["cr."],
     type: "mech",
     regex: /cr\./,
     img: "",
@@ -200,7 +208,7 @@ export const techPatterns = [
   },
   {
     name: "Close",
-    input: "c.",
+    input: ["c."],
     type: "mech",
     regex: /c\./,
     img: "",
@@ -210,7 +218,7 @@ export const techPatterns = [
   },
   {
     name: "Standing Far",
-    input: "st.",
+    input: ["st."],
     type: "mech",
     regex: /st\./,
     description: "Player must be standing and far from target.",
@@ -220,7 +228,7 @@ export const techPatterns = [
   },
   {
     name: "Far",
-    input: "f.",
+    input: ["f."],
     type: "mech",
     regex: /f\./,
     description: "Player must be far from the target.",
@@ -241,7 +249,7 @@ export const techPatterns = [
   },
   {
     name: "Jump",
-    input: "j.",
+    input: ["j."],
     type: "mech",
     regex: /j\.|jump/,
     description: "",
@@ -251,7 +259,7 @@ export const techPatterns = [
   },
   {
     name: "Air Dash Cancel",
-    input: "adc",
+    input: ["adc"],
     type: "mech",
     regex: /adc/,
     description: "",
@@ -261,7 +269,7 @@ export const techPatterns = [
   },
   {
     name: "Dash Cancel",
-    input: "dc",
+    input: ["dc"],
     type: "mech",
     regex: /dc/,
     description: "",
@@ -271,7 +279,7 @@ export const techPatterns = [
   },
   {
     name: "Counter Hit",
-    input: "ch",
+    input: ["ch"],
     type: "mech",
     regex: /ch/,
     description: "Hitting someone while they are in the startup of an attack. ",
@@ -292,7 +300,7 @@ export const techPatterns = [
   },
   {
     name: "Instant Air Dash",
-    input: "iad",
+    input: ["iad"],
     type: "mech-icon",
     regex: /iad/,
     description: "",

@@ -1,7 +1,15 @@
 const wrapMechs = [
   {
+    name: "Complex Mechanics",
+    input: [],
+    type: "",
+    regex: /(?!)/g,
+    description: "",
+    img: "",
+  },
+  {
     name: "Hold",
-    input: "[X]",
+    input: ["[X]"],
     type: "mech-complex",
     regex: /\[(.)\]/g,
     description: "Hold input.",
@@ -9,7 +17,7 @@ const wrapMechs = [
   },
   {
     name: "Release",
-    input: "]X[",
+    input: ["]X["],
     type: "mech-complex",
     regex: /\](.)\[/g,
     description: "Release input.",
@@ -17,16 +25,15 @@ const wrapMechs = [
   },
   {
     name: "Repeat",
-    input: ["[X]xN", "[X > 236X]xN", "X*N", "{X}*N"],
+    input: ["[X]xN", "[X > 236X]xN"],
     type: "mech-complex",
-    regex:
-      /\[(?!.*\[)([^\]]+)\]x(\d{1})|(\{([^\}]+)\}\*(\d{1}))|(?!})(.)\*(\d{1})/g,
+    regex: /\[(?!.*\[)([^\]]+)\]x(\d{1})/g,
     description: "Repeat move or sequence N amount of times.",
     img: "",
   },
   {
     name: "",
-    input: "[X > 236X]",
+    input: ["[X > 236X]"],
     type: "combo",
     regex: /\[(.*?)\](?!x\d)/g,
     description:
@@ -50,8 +57,8 @@ const wrapMechs = [
     img: "",
   },
   {
-    name: "Regular",
-    input: "-X-",
+    name: "Regular Eddie",
+    input: ["-X-"],
     type: "mech-complex",
     regex: /-(.)-/g,
     description:
@@ -61,8 +68,8 @@ const wrapMechs = [
     moreName: "Dustloop",
   },
   {
-    name: "Vice",
-    input: "#X#",
+    name: "Vice Eddie",
+    input: ["#X#"],
     type: "mech-complex",
     regex: /#(.)#/g,
     description:

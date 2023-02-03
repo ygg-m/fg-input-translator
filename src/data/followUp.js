@@ -2,6 +2,15 @@ import { Cancel, Link, Next } from "./index";
 
 const followUp = [
   {
+    name: "Follow Ups",
+    input: [],
+    type: "",
+    regex: /(?!)/g,
+    description: "",
+    img: "",
+  },
+
+  {
     name: "Cancel",
     input: ["->", "~", ">>"],
     type: "follow-up",
@@ -12,7 +21,7 @@ const followUp = [
   },
   {
     name: "Normal Followup",
-    input: ">",
+    input: [">"],
     type: "follow-up",
     regex: />|＞/g,
     description: "Proceed from the previous move to the following move.",
@@ -20,7 +29,7 @@ const followUp = [
   },
   {
     name: "Link",
-    input: ",",
+    input: [","],
     type: "follow-up",
     regex: /,/g,
     description:

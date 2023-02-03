@@ -22,3 +22,16 @@
   outline-color: #06b6d4;
   filter: drop-shadow(0 0 16px rgba(34, 211, 238, 0.25));
 }
+
+.modal a {
+  outline: solid 1px #555;
+  margin: 0 .25rem;
+  border-radius: 0.2rem;
+  padding: 0.15rem 0.5rem;
+  transition: 200ms;
+}
+
+.modal a:hover {
+  outline: solid 1px rgba(34, 211, 238);
+  color: rgba(34, 211, 238);
+}

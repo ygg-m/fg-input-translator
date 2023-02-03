@@ -85,8 +85,6 @@ export const InputProvider = ({ children }) => {
       const nextItem = arr[i + 1];
       const wrappedItem = <Combo key={uuidv4()}>{current}</Combo>;
 
-      console.log(result);
-
       if (!isFollowUp) current.push(item);
 
       if (isFollowUp) {
@@ -186,8 +184,6 @@ export const InputProvider = ({ children }) => {
 
       for (let match of matches) {
         if (!result.join("").includes(match[0])) break; // prevents matches that already have been treaten
-        console.log(match);
-
         // match again with the mutated array to gey the new index
         const newRegexp = createRegexFromStr(match[0]);
         const resultStr = joinStrings(result, true);

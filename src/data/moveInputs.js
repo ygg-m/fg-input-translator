@@ -2,8 +2,17 @@ import { Foward, Neutral } from "./index";
 
 export const moveInputs = [
   {
+    name: "Move Inputs",
+    input: [],
+    type: "",
+    regex: /(?!)/,
+    description: "",
+    img: "",
+  },
+
+  {
     name: "Down Back",
-    input: 1,
+    input: [1],
     type: "movement",
     regex: /1/,
     description: "",
@@ -12,7 +21,7 @@ export const moveInputs = [
   },
   {
     name: "Down",
-    input: 2,
+    input: [2],
     type: "movement",
     regex: /2/,
     description: "",
@@ -21,7 +30,7 @@ export const moveInputs = [
   },
   {
     name: "Down Foward",
-    input: 3,
+    input: [3],
     type: "movement",
     regex: /3/,
     description: "",
@@ -30,7 +39,7 @@ export const moveInputs = [
   },
   {
     name: "Back",
-    input: 4,
+    input: [4],
     type: "movement",
     regex: /4/,
     description: "",
@@ -39,7 +48,7 @@ export const moveInputs = [
   },
   {
     name: "Stand",
-    input: 5,
+    input: [5],
     type: "movement",
     regex: /5/,
     description: "Neutral Stance.",
@@ -48,7 +57,7 @@ export const moveInputs = [
   },
   {
     name: "Foward",
-    input: 6,
+    input: [6],
     type: "movement",
     regex: /6/,
     description: "",
@@ -57,7 +66,7 @@ export const moveInputs = [
   },
   {
     name: "Up Back",
-    input: 7,
+    input: [7],
     type: "movement",
     regex: /7/,
     description: "",
@@ -66,7 +75,7 @@ export const moveInputs = [
   },
   {
     name: "Up",
-    input: 8,
+    input: [8],
     type: "movement",
     regex: /8/,
     description: "",
@@ -75,7 +84,7 @@ export const moveInputs = [
   },
   {
     name: "Up Foward",
-    input: 9,
+    input: [9],
     type: "movement",
     regex: /9/,
     description: "",

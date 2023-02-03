@@ -1,3 +1,6 @@
+import { v4 as uuidv4 } from "uuid";
+import { useModal } from "../contexts/ModalContext";
+import { texts } from "../data/index";
 import { ReactComponent as Discord } from "../images/ui/discord.svg";
 import { ReactComponent as GitHub } from "../images/ui/github.svg";
 import { ReactComponent as Kofi } from "../images/ui/kofi.svg";
@@ -5,6 +8,7 @@ import { ReactComponent as Logo } from "../images/ui/logo.svg";
 import { ReactComponent as Paypal } from "../images/ui/paypal.svg";
 
 export const Header = () => {
+  const { setModalData, setShowModal } = useModal();
   return (
     <header className="flex w-screen cursor-default flex-col items-center justify-center gap-4 border-b border-b-neutral-800 px-8 pb-8 text-center ">
       <div className="flex items-center justify-center gap-4 pt-4 text-neutral-600">
@@ -60,6 +64,23 @@ export const Header = () => {
         </span>
         !
       </h3>
+
+      <div className="flex gap-4">
+        {texts.map((e) => {
+          return (
+            <button
+              key={uuidv4()}
+              className="hover:shadow-cyan box-content flex justify-center rounded-lg border border-transparent border-neutral-700 py-1 px-4 text-base duration-200 hover:border-cyan-500 hover:px-6 hover:text-cyan-500"
+              onClick={() => {
+                setShowModal(true);
+                setModalData(e);
+              }}
+            >
+              {e.button}
+            </button>
+          );
+        })}
+      </div>
     </header>
   );
 };

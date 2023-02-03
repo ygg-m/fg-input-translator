@@ -8,8 +8,16 @@ import {
 
 export const specialInputs = [
   {
+    name: "Special Inputs",
+    input: [],
+    type: "",
+    regex: /(?!)/g,
+    description: "",
+    img: "",
+  },
+  {
     name: "Pretzel",
-    input: 1632143,
+    input: [1632143],
     type: "special",
     regex: /1632143/,
     description:
@@ -21,7 +29,7 @@ export const specialInputs = [
   },
   {
     name: "Reverse Pretzel",
-    input: 3412361,
+    input: [3412361],
     type: "special",
     regex: /3412361/,
     description:
@@ -33,7 +41,7 @@ export const specialInputs = [
   },
   {
     name: "360 / Full Circle Foward",
-    input: 41236987,
+    input: [41236987],
     type: "special",
     regex: /41236987/,
     description:
@@ -45,7 +53,7 @@ export const specialInputs = [
   },
   {
     name: "Reverse 360 / Full Circle Back",
-    input: 63214789,
+    input: [63214789],
     type: "special",
     regex: /63214789/,
     description:
@@ -57,7 +65,7 @@ export const specialInputs = [
   },
   {
     name: "Half Circle Foward",
-    input: 41236,
+    input: [41236],
     type: "special",
     regex: /41236|hcf/,
     description: "",
@@ -68,7 +76,7 @@ export const specialInputs = [
   },
   {
     name: "Half Circle Back",
-    input: 63214,
+    input: [63214],
     type: "special",
     regex: /63214|hcb/,
     description: "",
@@ -79,7 +87,7 @@ export const specialInputs = [
   },
   {
     name: "Quarter Circle Foward",
-    input: 236,
+    input: [236],
     type: "special",
     regex: /236|qcb/,
     description: "",
@@ -90,7 +98,7 @@ export const specialInputs = [
   },
   {
     name: "Quarter Circle Back",
-    input: 214,
+    input: [214],
     type: "special",
     regex: /214|qcf/,
     description: "",
@@ -101,7 +109,7 @@ export const specialInputs = [
   },
   {
     name: "DP Motion / Dragon Punch",
-    input: 623,
+    input: [623],
     type: "special",
     regex: /623/,
     description: "",
@@ -112,7 +120,7 @@ export const specialInputs = [
   },
   {
     name: "Reverse DP Motion / Reverse Dragon Punch",
-    input: 421,
+    input: [421],
     type: "special",
     regex: /421/,
     description: "",

@@ -15,7 +15,7 @@ import {
 const streetFighter = [
   {
     name: "Street Fighter",
-    input: "",
+    input: [],
     type: "",
     regex: /(?!)/,
     description: "",
@@ -26,7 +26,7 @@ const streetFighter = [
   // -------------------------------------------------------------------------
   {
     name: "Light Punch",
-    input: "lp",
+    input: ["lp"],
     type: "action",
     regex: /lp/,
     description: "",
@@ -34,7 +34,7 @@ const streetFighter = [
   },
   {
     name: "Medium Punch",
-    input: "mp",
+    input: ["mp"],
     type: "action",
     regex: /mp/,
     description: "",
@@ -42,7 +42,7 @@ const streetFighter = [
   },
   {
     name: "Heavy Punch",
-    input: "hp",
+    input: ["hp"],
     type: "action",
     regex: /hp/,
     description: "",
@@ -50,7 +50,7 @@ const streetFighter = [
   },
   {
     name: "Any Punch",
-    input: "p",
+    input: ["p"],
     type: "action",
     regex: /p/,
     description: "",
@@ -58,7 +58,7 @@ const streetFighter = [
   },
   {
     name: "Light Kick",
-    input: "lk",
+    input: ["lk"],
     type: "action",
     regex: /lk/,
     description: "",
@@ -66,7 +66,7 @@ const streetFighter = [
   },
   {
     name: "Medium Kick",
-    input: "mk",
+    input: ["mk"],
     type: "action",
     regex: /mk/,
     description: "",
@@ -74,7 +74,7 @@ const streetFighter = [
   },
   {
     name: "Heavy Kick",
-    input: "hk",
+    input: ["hk"],
     type: "action",
     regex: /hk/,
     description: "",
@@ -82,7 +82,7 @@ const streetFighter = [
   },
   {
     name: "Any Kick",
-    input: "k",
+    input: ["k"],
     type: "action",
     regex: /k/,
     description: "",
