@@ -1,7 +1,7 @@
 import {
   followUp,
   guiltyGear,
-  //   kingOfFighters,
+  kingOfFighters,
   moveInputs,
   //   persona,
   specialInputs,
@@ -45,6 +45,7 @@ export const texts = [
       wrapMechs,
       guiltyGear,
       streetFighter,
+      kingOfFighters,
     ],
   },
 ];

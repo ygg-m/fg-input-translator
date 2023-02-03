@@ -27,8 +27,8 @@ export const InputProvider = ({ children }) => {
   const [gameList] = useState([
     guiltyGear,
     streetFighter,
-    // kingOfFighters,
-    // persona,
+    kingOfFighters,
+    persona,
   ]);
 
   const [gameInputs, setGameInputs] = useState(() => {
