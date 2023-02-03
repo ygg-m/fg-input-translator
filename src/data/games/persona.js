@@ -4,7 +4,7 @@ import { PersonaA, PersonaB, PersonaC, PersonaD } from "../index";
 const persona = [
   {
     name: "Persona",
-    input: "",
+    input: [],
     type: "",
     regex: /(?!)/,
     description: "",
@@ -14,32 +14,32 @@ const persona = [
   // actions
   // -------------------------------------------------------------------------
   {
-    name: "Light Punch",
-    input: "a",
+    name: "A",
+    input: ["a"],
     type: "action",
     regex: /a/,
     description: "",
     img: <PersonaA />,
   },
   {
-    name: "Light Kick",
-    input: "b",
+    name: "B",
+    input: ["b"],
     type: "action",
     regex: /b/,
     description: "",
     img: <PersonaB />,
   },
   {
-    name: "Heavy Punch",
-    input: "c",
+    name: "C",
+    input: ["c"],
     type: "action",
     regex: /c/,
     description: "",
     img: <PersonaC />,
   },
   {
-    name: "Heavy Kick",
-    input: "d",
+    name: "D",
+    input: ["d"],
     type: "action",
     regex: /d/,
     description: "",

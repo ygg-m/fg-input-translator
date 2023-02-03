@@ -3,7 +3,7 @@ import {
   guiltyGear,
   kingOfFighters,
   moveInputs,
-  //   persona,
+  persona,
   specialInputs,
   streetFighter,
   techPatterns,
@@ -46,6 +46,7 @@ export const texts = [
       guiltyGear,
       streetFighter,
       kingOfFighters,
+      persona,
     ],
   },
 ];

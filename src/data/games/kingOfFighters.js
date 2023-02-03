@@ -4,7 +4,7 @@ import { AnyKick, AnyPunch, SNK_A, SNK_B, SNK_C, SNK_D } from "../index";
 const kingOfFighters = [
   {
     name: "The King of Fighters",
-    input: "",
+    input: [],
     type: "",
     regex: /(?!)/,
     description: "",
@@ -16,7 +16,7 @@ const kingOfFighters = [
   // -------------------------------------------------------------------------
   {
     name: "Max Mode",
-    input: "bc",
+    input: ["bc"],
     type: "",
     regex: /bc/,
     description:
@@ -27,7 +27,7 @@ const kingOfFighters = [
   },
   {
     name: "Desperation Move",
-    input: "dm",
+    input: ["dm"],
     type: "",
     regex: /dm/,
     description:
@@ -37,8 +37,8 @@ const kingOfFighters = [
     img: "",
   },
   {
-    name: "Super Desperation Move / Neo Max Super Special Move",
-    input: "sdm",
+    name: "Super Desperation",
+    input: ["sdm"],
     type: "",
     regex: /sdm/,
     description:
@@ -48,8 +48,8 @@ const kingOfFighters = [
     img: "",
   },
   {
-    name: "MAX2 / Hidden Super Desperation Move / Climax Super Special Move",
-    input: "hsdm",
+    name: "MAX2",
+    input: ["hsdm"],
     type: "",
     regex: /hsdm/,
     description:
@@ -60,7 +60,7 @@ const kingOfFighters = [
   },
   {
     name: "Super Cancel",
-    input: "sc",
+    input: ["sc"],
     type: "",
     regex: /sc/,
     description: "",
@@ -70,7 +70,7 @@ const kingOfFighters = [
   },
   {
     name: "Roll",
-    input: "ab",
+    input: ["ab"],
     type: "",
     regex: /ab/,
     description:
@@ -81,7 +81,7 @@ const kingOfFighters = [
   },
   {
     name: "Free Cancellable In...",
-    input: "fci",
+    input: ["fci"],
     type: "",
     regex: /fci/,
     description: "",
@@ -91,7 +91,7 @@ const kingOfFighters = [
   },
   {
     name: "Free Cancellable Out of...",
-    input: "fco",
+    input: ["fco"],
     type: "",
     regex: /fco/,
     description: "",
@@ -101,7 +101,7 @@ const kingOfFighters = [
   },
   {
     name: "On the Ground",
-    input: "otg",
+    input: ["otg"],
     type: "",
     regex: /otg/,
     description: "A move that may hit a knocked down opponent.",
@@ -111,7 +111,7 @@ const kingOfFighters = [
   },
   {
     name: "Hiper Hop",
-    input: "hh",
+    input: ["hh"],
     type: "",
     regex: /hh\./,
     description: "bb",
@@ -119,7 +119,7 @@ const kingOfFighters = [
   },
   {
     name: "Hop",
-    input: "h",
+    input: ["h"],
     type: "",
     regex: /h\./,
     description: "aa",
@@ -131,7 +131,7 @@ const kingOfFighters = [
   // -------------------------------------------------------------------------
   {
     name: "Light Punch",
-    input: "a",
+    input: ["a"],
     type: "action",
     regex: /a/,
     description: "",
@@ -139,7 +139,7 @@ const kingOfFighters = [
   },
   {
     name: "Light Kick",
-    input: "b",
+    input: ["b"],
     type: "action",
     regex: /b/,
     description: "",
@@ -147,7 +147,7 @@ const kingOfFighters = [
   },
   {
     name: "Heavy Punch",
-    input: "c",
+    input: ["c"],
     type: "action",
     regex: /c/,
     description: "",
@@ -155,7 +155,7 @@ const kingOfFighters = [
   },
   {
     name: "Heavy Kick",
-    input: "d",
+    input: ["d"],
     type: "action",
     regex: /d/,
     description: "",
@@ -163,7 +163,7 @@ const kingOfFighters = [
   },
   {
     name: "Any Kick",
-    input: "k",
+    input: ["k"],
     type: "action",
     regex: /k/,
     description: "",
@@ -171,7 +171,7 @@ const kingOfFighters = [
   },
   {
     name: "Any Punch",
-    input: "p",
+    input: ["p"],
     type: "action",
     regex: /p/,
     description: "",
