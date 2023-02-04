@@ -1,18 +1,6 @@
 // image imports
 import {TFH_A, TFH_B, TFH_C, TFH_D, TFH_ActionAny, TFH_ActionAnyTwo} from "../index"
 
-// actions
-import {
-  AnyKick,
-  AnyPunch,
-  HeavyKick,
-  HeavyPunch,
-  LightKick,
-  LightPunch,
-  MediumKick,
-  MediumPunch,
-} from "../index";
-
 const themsFightinHerds = [
   {
     name: "Them's Fightin' Herds",
