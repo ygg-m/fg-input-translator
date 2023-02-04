@@ -11,6 +11,7 @@ import {
   specialInputs,
   streetFighter,
   techPatterns,
+  themsFightinHerds,
   wrapMechs,
 } from "../data/index";
 
@@ -29,6 +30,7 @@ export const InputProvider = ({ children }) => {
     streetFighter,
     kingOfFighters,
     persona,
+    themsFightinHerds,
   ]);
 
   const [gameInputs, setGameInputs] = useState(() => {

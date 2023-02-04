@@ -7,6 +7,7 @@ import {
   specialInputs,
   streetFighter,
   techPatterns,
+  themsFightinHerds,
 } from "../data/index";
 
 import { wrapMechs } from "../data/wrapMechs.js";
@@ -47,6 +48,7 @@ export const texts = [
       streetFighter,
       kingOfFighters,
       persona,
+      themsFightinHerds,
     ],
   },
 ];
