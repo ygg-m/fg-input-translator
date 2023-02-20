@@ -1,15 +1,29 @@
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { useInput } from "../contexts/InputContext";
-import { ReactComponent as CheckIcon } from "../images/ui/check.svg";
-import { ReactComponent as ChevronIcon } from "../images/ui/chevron-down.svg";
-import { ReactComponent as XMarkIcon } from "../images/ui/xmark.svg";
+import { copyToClipboard } from "../helpers";
+
+import {
+  CheckIcon,
+  ChevronIcon,
+  ShareIcon,
+  XMarkIcon,
+} from "../images/ui/index";
 
 export const GameSelect = () => {
-  const { gameInputs, setGameInputs, gameList, showTooltip, setShowTooltip } =
-    useInput();
+  const {
+    gameInputs,
+    setGameInputs,
+    gameList,
+    showTooltip,
+    setShowTooltip,
+    rawInput,
+  } = useInput();
   const [showList, setShowList] = useState(false);
+  const [copied, setCopied] = useState(false);
   if (!gameInputs) return;
+  const { name } = gameInputs[0];
 
   const GameName = () => {
     return (
@@ -19,29 +33,52 @@ export const GameSelect = () => {
     );
   };
 
+  const shareClick = () => {
+    const gameName = name.replace(/ /g, "%20");
+    const inputs = rawInput.replace(/ /g, "%20");
+    copyToClipboard(
+      `https://ygg-m.github.io/fg-input-translator/${gameName}/${inputs}`
+    );
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   // main component
   return (
     <div className="flex flex-col">
       <div className="flex w-full justify-between">
-        <div
-          className={
-            showTooltip
-              ? "border-1 shadow-cyan flex w-fit cursor-pointer select-none items-center justify-center self-end rounded-lg border border-cyan-500 px-4 py-1 text-cyan-500 duration-200"
-              : "border-1 hover:shadow-cyan flex w-fit cursor-pointer select-none items-center justify-center self-end rounded-lg border border-neutral-700 px-4 py-1 duration-200 hover:border-cyan-500 hover:text-cyan-500"
-          }
-          onClick={() => setShowTooltip(!showTooltip)}
-        >
-          {showTooltip ? (
-            <span className="flex items-center gap-2">
+        <div className="flex gap-2">
+          <div
+            className={
+              showTooltip
+                ? "border-1 shadow-cyan flex w-fit cursor-pointer select-none items-center justify-center self-end rounded-lg border border-cyan-500 px-4 py-1 text-cyan-500 duration-200"
+                : "border-1 hover:shadow-cyan flex w-fit cursor-pointer select-none items-center justify-center self-end rounded-lg border border-neutral-700 px-4 py-1 duration-200 hover:border-cyan-500 hover:text-cyan-500"
+            }
+            onClick={() => setShowTooltip(!showTooltip)}
+          >
+            {showTooltip ? (
+              <span className="flex items-center gap-2">
+                <CheckIcon className="h-4 w-3" />
+                Tooltip
+              </span>
+            ) : (
+              <span className="flex items-center gap-2">
+                <XMarkIcon className="h-4 w-3" />
+                Tooltip
+              </span>
+            )}
+          </div>
+          <div
+            onClick={() => shareClick()}
+            className="border-1 hover:shadow-cyan flex w-fit cursor-pointer select-none items-center justify-center gap-2 self-end rounded-lg border border-neutral-700 px-4 py-1 duration-200 hover:border-cyan-500 hover:text-cyan-500"
+          >
+            {copied ? (
               <CheckIcon className="h-4 w-3" />
-              Tooltip
-            </span>
-          ) : (
-            <span className="flex items-center gap-2">
-              <XMarkIcon className="h-4 w-3" />
-              Tooltip
-            </span>
-          )}
+            ) : (
+              <ShareIcon className="h-4 w-3" />
+            )}
+            {copied ? "Copied!" : "Share"}
+          </div>
         </div>
         <div
           className={

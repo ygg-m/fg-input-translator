@@ -14,7 +14,7 @@ import {
 import { InputProvider } from "./contexts/index";
 
 import { ModalProvider } from "./contexts/index";
-import { Home } from "./Pages/index";
+import { Home, NotFound } from "./Pages/index";
 import "./style/App.css";
 
 function App() {
@@ -31,6 +31,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/:game/:input" element={<Home />} />
+                <Route path="*" element={<NotFound />} />
               </Routes>
             </InputProvider>
           </TooltipProvider>
