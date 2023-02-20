@@ -1,6 +1,12 @@
 // image imports
 // mechs
-import { ForceRomanCancel, RomanCancel } from "../index";
+import {
+  BlueRomanCancel,
+  ForceRomanCancel,
+  PurpleRomanCancel,
+  RomanCancel,
+  YellowRomanCancel,
+} from "../index";
 // specials
 // actions
 import { Dust, HeavySlash, Kick, Punch, Slash } from "../index";
@@ -261,6 +267,54 @@ const guiltyGear = [
     description: "3 Attack Buttons, Except for D, During Valid FRC Window",
     img: <ForceRomanCancel />,
     moreLink: "https://www.dustloop.com/w/GGACR/Mechanics#Force_Roman_Cancel",
+    moreName: "Dustloop",
+  },
+  {
+    name: "Red Roman Cancel",
+    input: ["rrc"],
+    type: "mech-icon",
+    regex: /rrc/i,
+    description:
+      "3 Attack Buttons, Except for D, while the opponent is in hitstun or blockstun.",
+    img: <RomanCancel />,
+    moreLink:
+      "https://www.dustloop.com/w/GGXRD-R2/Controls#:~:text=Red%20when%20Roman%20Canceling%20while%20the%20opponent%20is%20in%20hitstun%20or%20blockstun.%20Costs%2050%25%20Tension..",
+    moreName: "Dustloop",
+  },
+  {
+    name: "Yellow Roman Cancel",
+    input: ["yrc"],
+    type: "mech-icon",
+    regex: /yrc/i,
+    description:
+      "3 Attack Buttons, Except for D, while the opponent is in neither hitstun nor blockstun. Occurs during start-up and early active frames.",
+    img: <YellowRomanCancel />,
+    moreLink:
+      "https://www.dustloop.com/w/GGXRD-R2/Controls#:~:text=Yellow%20when%20Roman%20Canceling%20while%20the%20opponent%20is%20in%20neither%20hitstun%20nor%20blockstun.%20Occurs%20during%20start%2Dup%20and%20early%20active%20frames.%20Can%20also%20be%20performed%20in%20neutral%20or%20during%20movement%20options.%20Costs%2025%25%20Tension.",
+    moreName: "Dustloop",
+  },
+  {
+    name: "Purple Roman Cancel",
+    input: ["prc"],
+    type: "mech-icon",
+    regex: /prc/i,
+    description:
+      "3 Attack Buttons, while the opponent is in neither hitstun nor blockstun. Occurs during late active and recovery frames.",
+    img: <PurpleRomanCancel />,
+    moreLink:
+      "https://www.dustloop.com/w/GGXRD-R2/Controls#:~:text=Purple%20when%20Roman%20Canceling%20while%20the%20opponent%20is%20in%20neither%20hitstun%20nor%20blockstun.%20Occurs%20during%20late%20active%20and%20recovery%20frames.%20Costs%2050%25%20Tension.%0A(Some%20actions%2C%20such%20as%20specials%20with%20full%20invincibility%20on%20start%2Dup%20cannot%20be%20Yellow%20or%20Purple%20Roman%20Canceled.)",
+    moreName: "Dustloop",
+  },
+  {
+    name: "Blue Roman Cancel",
+    input: ["brc"],
+    type: "mech-icon",
+    regex: /brc/i,
+    description:
+      "3 Attack Buttons, Except for D, during neutral or basic movement.",
+    img: <BlueRomanCancel />,
+    moreLink:
+      "https://www.dustloop.com/w/GGST/Controls#:~:text=Blue%20during%20neutral%20or%20basic%20movement.%20Has%20the%20longest%20slowdown%20period%2C%20allowing%20you%20to%20respond%20to%20neutral%20situations%20or%20enable%20links%20not%20normally%20possible.%20Slowdown%20caused%20by%20the%20shockwave%20still%20continues%20even%20if%20the%20opponent%20gets%20hit.",
     moreName: "Dustloop",
   },
   {
