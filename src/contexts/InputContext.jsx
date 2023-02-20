@@ -260,8 +260,7 @@ export const InputProvider = ({ children }) => {
   }
 
   function readInputs(str) {
-    const cleanInputs = str;
-    const wrap = wrapInputs(cleanInputs);
+    const wrap = wrapInputs(str);
     const reWrap = wrap.map((e) => (typeof e === "string" ? wrapInputs(e) : e));
     const result = readArr(reWrap);
     const lastInputs = result.map((e) => createInput(e));
