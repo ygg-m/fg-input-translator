@@ -176,13 +176,23 @@ export const InputProvider = ({ children }) => {
   }
 
   function wrapInputs(str) {
-    let result = [...str];
+    const clean = str.toLowerCase().replace(/ /g, "");
+    let result = [...clean];
 
     wrapMechs.forEach((move) => {
       let indexCount = 0;
-      const matches = str.matchAll(move.regex);
+      const matches = clean.matchAll(move.regex);
 
+      // deal with comments
+      const isComment = move.name === "Comment";
+      const rawMatches = str.matchAll(move.regex);
+      let input;
       for (let match of matches) {
+        for (let rawMatch of rawMatches) {
+          if (isComment) input = rawMatch[1];
+          else input = match[1];
+        }
+
         if (!result.join("").includes(match[0])) break; // prevents matches that already have been treaten
         // match again with the mutated array to gey the new index
         const newRegexp = createRegexFromStr(match[0]);
@@ -193,11 +203,9 @@ export const InputProvider = ({ children }) => {
         // key infos
         const length = match[0].length;
         const index = rematch.index - indexCount;
-        const input = match[1];
         const techValue = match[2];
 
         // create component
-
         const component = {
           tech: move,
           techValue: techValue,
@@ -206,8 +214,6 @@ export const InputProvider = ({ children }) => {
 
         // replace match with component
         result.splice(index, length, component);
-
-        //
       }
     });
 
@@ -215,7 +221,8 @@ export const InputProvider = ({ children }) => {
   }
 
   function readString(str) {
-    const split = splitByRegex(str, regexes);
+    const clean = str.toLowerCase().replace(/ /g, "");
+    const split = splitByRegex(clean, regexes);
     const inputs = createInput(split);
     const reInputs = createInput(inputs);
 
@@ -231,7 +238,7 @@ export const InputProvider = ({ children }) => {
 
     if (tech.name === "Comment") result = inputs;
     else if (typeof inputs === "string") {
-      const wrap = wrapInputs(inputs);
+      const wrap = wrapInputs(inputs.replace(/ /g, ""));
       result = readArr(wrap);
     } else if (Array.isArray(inputs)) result = readArr(inputs);
 
