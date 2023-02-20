@@ -21,7 +21,7 @@ const followUp = [
   },
   {
     name: "Normal Followup",
-    input: [">"],
+    input: [">", "→"],
     type: "follow-up",
     regex: />|＞|→/g,
     description: "Proceed from the previous move to the following move.",
