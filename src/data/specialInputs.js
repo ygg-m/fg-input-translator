@@ -41,9 +41,9 @@ export const specialInputs = [
   },
   {
     name: "360 / Full Circle Foward",
-    input: [41236987],
+    input: [41236987, 4268],
     type: "special",
-    regex: /41236987/,
+    regex: /41236987|4268/,
     description:
       "Most games have a shortcut for this input; usually a 270-degree input will do.",
     moreLink: "https://glossary.infil.net/?t=360",
@@ -53,9 +53,9 @@ export const specialInputs = [
   },
   {
     name: "Reverse 360 / Full Circle Back",
-    input: [63214789],
+    input: [63214789, 6248],
     type: "special",
-    regex: /63214789/,
+    regex: /63214789|6248/,
     description:
       "Most games have a shortcut for this input; usually a 270-degree input will do.",
     moreLink: "https://glossary.infil.net/?t=360",
@@ -65,9 +65,9 @@ export const specialInputs = [
   },
   {
     name: "Half Circle Foward",
-    input: [41236],
+    input: [41236, 426, "hcf"],
     type: "special",
-    regex: /41236|hcf/,
+    regex: /41236|426|hcf/,
     description: "",
     moreLink: "https://glossary.infil.net/?t=Half%20Circle",
     moreName: "Glossary",
@@ -76,9 +76,9 @@ export const specialInputs = [
   },
   {
     name: "Half Circle Back",
-    input: [63214],
+    input: [63214, 624, "hcb"],
     type: "special",
-    regex: /63214|hcb/,
+    regex: /63214|624|hcb/,
     description: "",
     img: <HalfCircle />,
     moreLink: "https://glossary.infil.net/?t=Half%20Circle",
@@ -87,7 +87,7 @@ export const specialInputs = [
   },
   {
     name: "Quarter Circle Foward",
-    input: [236],
+    input: [236, "qcf"],
     type: "special",
     regex: /236|qcf/,
     description: "",
@@ -98,7 +98,7 @@ export const specialInputs = [
   },
   {
     name: "Quarter Circle Back",
-    input: [214],
+    input: [214, "qcb"],
     type: "special",
     regex: /214|qcb/,
     description: "",
