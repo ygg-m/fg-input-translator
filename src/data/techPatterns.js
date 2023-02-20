@@ -156,9 +156,9 @@ export const techPatterns = [
   },
   {
     name: "Throw",
-    input: ["throw"],
+    input: ["throw", "cl.6c", "cl.6d", "cl.4c", "cl.4d"],
     type: "mech",
-    regex: /throw/,
+    regex: /throw|cl.6c|cl.6d|cl.4c|cl.4d/,
     description:
       "A fast close-range move that cannot be blocked. Check a guide for the game to see the throw inputs available.",
     img: "",
