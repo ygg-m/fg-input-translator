@@ -176,7 +176,7 @@ export const InputProvider = ({ children }) => {
   }
 
   function wrapInputs(str) {
-    const clean = str.toLowerCase().replace(/ /g, "");
+    const clean = str.replace(/ /g, "").replace(/\+/g, "");
     let result = [...clean];
 
     wrapMechs.forEach((move) => {
@@ -221,7 +221,7 @@ export const InputProvider = ({ children }) => {
   }
 
   function readString(str) {
-    const clean = str.toLowerCase().replace(/ /g, "");
+    const clean = str.replace(/ /g, "").replace(/\+/g, "");
     const split = splitByRegex(clean, regexes);
     const inputs = createInput(split);
     const reInputs = createInput(inputs);
