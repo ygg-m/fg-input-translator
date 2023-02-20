@@ -230,13 +230,10 @@ export const InputProvider = ({ children }) => {
     let result;
 
     if (tech.name === "Comment") result = inputs;
-
     else if (typeof inputs === "string") {
       const wrap = wrapInputs(inputs);
       result = readArr(wrap);
-    }
-
-    else if (Array.isArray(inputs)) result = readArr(inputs);
+    } else if (Array.isArray(inputs)) result = readArr(inputs);
 
     const component = (
       <Wrapper key={uuidv4()} tech={tech} techValue={techValue}>
@@ -263,7 +260,7 @@ export const InputProvider = ({ children }) => {
   }
 
   function readInputs(str) {
-    const cleanInputs = str.toLowerCase().replace(/ /g, "");
+    const cleanInputs = str;
     const wrap = wrapInputs(cleanInputs);
     const reWrap = wrap.map((e) => (typeof e === "string" ? wrapInputs(e) : e));
     const result = readArr(reWrap);
