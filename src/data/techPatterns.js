@@ -208,9 +208,9 @@ export const techPatterns = [
   },
   {
     name: "Close",
-    input: ["c."],
+    input: ["c.", "cl."],
     type: "mech",
-    regex: /c\./,
+    regex: /c\.|cl\./,
     img: "",
     description: "Player must be close to the target.",
     moreLink: "",
