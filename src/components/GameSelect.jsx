@@ -111,7 +111,7 @@ export const GameSelect = () => {
       >
         {gameList.map((game) => (
           <div
-            className="border-1 hover:shadow-cyan h-fit cursor-pointer rounded-lg border border-neutral-800 py-1 px-2 duration-200 hover:border-cyan-500 hover:px-4 hover:text-cyan-500"
+            className="border-1 hover:shadow-cyan h-fit cursor-pointer rounded-lg border border-neutral-700 py-1 px-2 duration-200 hover:border-cyan-500 hover:px-4 hover:text-cyan-500"
             key={uuidv4()}
             onClick={() => {
               setGameInputs(game);
