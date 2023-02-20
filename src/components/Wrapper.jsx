@@ -10,6 +10,40 @@ export const Wrapper = ({ tech, techValue, children }) => {
   const isRepeat = name === "Repeat";
   const isMulti = name === "Single / Multiple Hits";
   const isSingleHit = techValue === "1";
+  const isComment = name === "Comment";
+
+  const TechName = () => {
+    return (
+      <>
+        {!isRepeat && !isMulti && name}
+        {isMulti && isSingleHit && techValue + " Hit"}
+        {isMulti && !isSingleHit && techValue + " Hits"}
+        {isRepeat && name + " x" + techValue}
+      </>
+    );
+  };
+
+  if (isComment)
+    return (
+      <div
+        className="flex flex-col items-center justify-center gap-1 rounded-lg bg-neutral-900 px-2 py-1 pt-1 outline outline-1 outline-neutral-700 duration-200 hover:z-50 hover:outline-cyan-500"
+        key={uuidv4()}
+      >
+        <TooltipWrapper tooltipId={name}>
+          <div className="flex items-center justify-center gap-1">
+            {children}
+          </div>
+        </TooltipWrapper>
+        {showTooltip && (
+          <Tooltip
+            id={name}
+            content={<TooltipContent obj={tech} />}
+            clickable
+          />
+        )}
+      </div>
+    );
+
   return (
     <div
       className="flex flex-col items-center justify-center gap-1 rounded-lg bg-neutral-900 px-2 py-1 pt-1 outline outline-1 outline-neutral-700 duration-200 hover:z-50 hover:outline-cyan-500"
@@ -21,10 +55,7 @@ export const Wrapper = ({ tech, techValue, children }) => {
           className="hover:shadow-cyan flex select-none justify-center rounded-md text-sm duration-200 hover:text-cyan-500"
           key={uuidv4()}
         >
-          {!isRepeat && !isMulti && name}
-          {isMulti && isSingleHit && techValue + " Hit"}
-          {isMulti && !isSingleHit && techValue + " Hits"}
-          {isRepeat && name + " x" + techValue}
+          <TechName />
         </div>
       </TooltipWrapper>
       {showTooltip && (

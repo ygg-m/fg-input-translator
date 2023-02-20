@@ -8,6 +8,15 @@ const wrapMechs = [
     img: "",
   },
   {
+    name: "Comment",
+    input: ["``X``"],
+    type: "mech-complex",
+    regex: /``(.*?)``/g,
+    description:
+      "Personalized Comment, used to add unique stuff to your notations without inputs getting in the way.",
+    img: "",
+  },
+  {
     name: "Hold",
     input: ["[X]"],
     type: "mech-complex",

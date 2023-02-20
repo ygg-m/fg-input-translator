@@ -229,11 +229,14 @@ export const InputProvider = ({ children }) => {
     const techValue = obj.techValue;
     let result;
 
-    if (typeof inputs === "string") {
+    if (tech.name === "Comment") result = inputs;
+
+    else if (typeof inputs === "string") {
       const wrap = wrapInputs(inputs);
       result = readArr(wrap);
     }
-    if (Array.isArray(inputs)) result = readArr(inputs);
+
+    else if (Array.isArray(inputs)) result = readArr(inputs);
 
     const component = (
       <Wrapper key={uuidv4()} tech={tech} techValue={techValue}>
