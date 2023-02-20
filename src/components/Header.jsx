@@ -70,7 +70,7 @@ export const Header = () => {
           return (
             <button
               key={uuidv4()}
-              className="hover:shadow-cyan box-content flex justify-center rounded-lg border border-transparent border-neutral-700 py-1 px-4 text-base duration-200 hover:border-cyan-500 hover:px-6 hover:text-cyan-500"
+              className="hover:shadow-cyan box-content flex justify-center rounded-lg border border-neutral-700 py-1 px-4 text-base duration-200 hover:border-cyan-500 hover:px-6 hover:text-cyan-500"
               onClick={() => {
                 setShowModal(true);
                 setModalData(e);
