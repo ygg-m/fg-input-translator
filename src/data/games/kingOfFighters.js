@@ -27,6 +27,30 @@ const kingOfFighters = [
   },
   {
     name: "Guard Cancel Blowback",
+    input: ["gccd"],
+    type: "",
+    regex: /gccd/,
+    description:
+      "Press C + D while in blockstun. It cancels the blockstun by a blow that knocks down the opponent. The Guard Cancel CD has short frames of invincibility at startup, but has a recovery.",
+    moreLink:
+      "https://www.dreamcancel.com/wiki/The_King_of_Fighters_2002_UM/Defense#:~:text=Guard%20Cancel%20(GC)-,Guard%20Cancel%20CD%2C%20GCCD%20(aka%20GC%20Blowback%2C%20Guard%20Attack,startup%2C%20but%20has%20a%20recovery.",
+    moreName: "Dream Cancel",
+    img: "",
+  },
+  {
+    name: "Guard Cancel Roll",
+    input: ["gcab"],
+    type: "",
+    regex: /gcab/,
+    description:
+      "By pressing only A + B or back + A + B back (to Guard Cancel Roll backwards), while in blockstun, it is possible to roll forward or backward. This roll is completely invincible and unthrowable, and has no frame of recovery.",
+    moreLink:
+      "https://www.dreamcancel.com/wiki/The_King_of_Fighters_2002_UM/Defense#:~:text=end%20of%20it.-,Guard%20Cancel%20AB%2C%20GCRoll%20(Break%20Roll/Guard%20Roll/Guard%20Cancel,while%20in%20blockstun%2C%20it%20is%20possible%20to%20roll%20forward%20or%20backward.,-This%20roll%20is",
+    moreName: "Dream Cancel",
+    img: "",
+  },
+  {
+    name: "Blowback",
     input: ["cd"],
     type: "",
     regex: /cd/,
@@ -79,6 +103,18 @@ const kingOfFighters = [
     moreName: "",
     img: "",
   },
+  {
+    name: "Shatter Strike",
+    input: ["ss"],
+    type: "",
+    regex: /ss/,
+    description:
+      "When used on opponents, it will cause to crumple. When used on aerial opponents, they will be sent to the back wall, and will cause a wall bounce. Regardless of how it lands, it can lead to additional follow-ups or combos if successful.",
+    moreLink: "https://snk.fandom.com/wiki/Shatter_Strike",
+    moreName: "SNK Wiki",
+    img: "",
+  },
+
   {
     name: "Roll",
     input: ["ab"],
