@@ -26,6 +26,17 @@ const kingOfFighters = [
     img: "",
   },
   {
+    name: "Guard Cancel Blowback",
+    input: ["cd"],
+    type: "",
+    regex: /cd/,
+    description:
+      "A technique in the King of Fighters series that lets you take an action while blocking for 1 bar of super meter.",
+    moreLink: "https://glossary.infil.net/?t=Guard%20Cancel",
+    moreName: "Glossary",
+    img: "",
+  },
+  {
     name: "Desperation Move",
     input: ["dm"],
     type: "",
@@ -48,10 +59,10 @@ const kingOfFighters = [
     img: "",
   },
   {
-    name: "MAX2",
-    input: ["hsdm"],
+    name: "MAX2 / Clímax",
+    input: ["hsdm", "clímax"],
     type: "",
-    regex: /hsdm/,
+    regex: /hsdm|clímax|climax/,
     description:
       "The most powerful Desperation Move. Introduced in King of Fighters 2002. You need to be at least 30% health to cast it and it costs 3 super meter levels to use it.",
     moreLink: "https://snk.fandom.com/wiki/MAX2",
