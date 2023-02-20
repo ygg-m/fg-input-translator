@@ -16,9 +16,9 @@ const kingOfFighters = [
   // -------------------------------------------------------------------------
   {
     name: "Max Mode",
-    input: ["bc"],
+    input: ["bc", "BC"],
     type: "",
-    regex: /bc/,
+    regex: /bc|BC/,
     description:
       "An install possible in many different King of Fighters titles that can lead to highly damaging combos.",
     moreLink: "https://glossary.infil.net/?t=Max%20Mode",
@@ -27,9 +27,9 @@ const kingOfFighters = [
   },
   {
     name: "Guard Cancel Blowback",
-    input: ["gccd"],
+    input: ["gccd", "GCCD"],
     type: "",
-    regex: /gccd/,
+    regex: /gccd|GCCD/,
     description:
       "Press C + D while in blockstun. It cancels the blockstun by a blow that knocks down the opponent. The Guard Cancel CD has short frames of invincibility at startup, but has a recovery.",
     moreLink:
@@ -39,9 +39,9 @@ const kingOfFighters = [
   },
   {
     name: "Guard Cancel Roll",
-    input: ["gcab"],
+    input: ["gcab", "GCAB"],
     type: "",
-    regex: /gcab/,
+    regex: /gcab|GCAB/,
     description:
       "By pressing only A + B or back + A + B back (to Guard Cancel Roll backwards), while in blockstun, it is possible to roll forward or backward. This roll is completely invincible and unthrowable, and has no frame of recovery.",
     moreLink:
@@ -51,9 +51,9 @@ const kingOfFighters = [
   },
   {
     name: "Blowback",
-    input: ["cd"],
+    input: ["cd", "CD"],
     type: "",
-    regex: /cd/,
+    regex: /cd|CD/,
     description:
       "A technique in the King of Fighters series that lets you take an action while blocking for 1 bar of super meter.",
     moreLink: "https://glossary.infil.net/?t=Guard%20Cancel",
@@ -62,9 +62,9 @@ const kingOfFighters = [
   },
   {
     name: "Desperation Move",
-    input: ["dm"],
+    input: ["dm", "DM"],
     type: "",
-    regex: /dm/,
+    regex: /dm|DM/,
     description:
       "What most King of Fighters games call their supers. It costs 1 super meter level to use it.",
     moreLink: "https://glossary.infil.net/?t=Desperation%20Move",
@@ -73,9 +73,9 @@ const kingOfFighters = [
   },
   {
     name: "Super Desperation",
-    input: ["sdm"],
+    input: ["sdm", "SDM"],
     type: "",
-    regex: /sdm/,
+    regex: /sdm|SDM/,
     description:
       "A more powerful Desperation Move, wich are the supers from King of Fighters. It costs 3 super meter levels to use it.",
     moreLink: "https://glossary.infil.net/?t=Neo%20Max",
@@ -84,9 +84,9 @@ const kingOfFighters = [
   },
   {
     name: "MAX2 / Clímax",
-    input: ["hsdm", "clímax"],
+    input: ["hsdm", "clímax", "climax"],
     type: "",
-    regex: /hsdm|clímax|climax/,
+    regex: /hsdm|clímax|climax/i,
     description:
       "The most powerful Desperation Move. Introduced in King of Fighters 2002. You need to be at least 30% health to cast it and it costs 3 super meter levels to use it.",
     moreLink: "https://snk.fandom.com/wiki/MAX2",
@@ -97,7 +97,7 @@ const kingOfFighters = [
     name: "Super Cancel",
     input: ["sc"],
     type: "",
-    regex: /sc/,
+    regex: /sc/i,
     description: "",
     moreLink: "",
     moreName: "",
@@ -107,7 +107,7 @@ const kingOfFighters = [
     name: "Shatter Strike",
     input: ["ss"],
     type: "",
-    regex: /ss/,
+    regex: /ss/i,
     description:
       "When used on opponents, it will cause to crumple. When used on aerial opponents, they will be sent to the back wall, and will cause a wall bounce. Regardless of how it lands, it can lead to additional follow-ups or combos if successful.",
     moreLink: "https://snk.fandom.com/wiki/Shatter_Strike",
@@ -117,9 +117,9 @@ const kingOfFighters = [
 
   {
     name: "Roll",
-    input: ["ab"],
+    input: ["ab", "AB"],
     type: "",
-    regex: /ab/,
+    regex: /ab|AB/,
     description:
       "4AB or 6AB. Pressing AB in neutral defaults to a forward roll.",
     moreLink: "",
@@ -130,7 +130,7 @@ const kingOfFighters = [
     name: "Free Cancellable In...",
     input: ["fci"],
     type: "",
-    regex: /fci/,
+    regex: /fci|FCI/,
     description: "",
     moreLink: "",
     moreName: "",
@@ -140,7 +140,7 @@ const kingOfFighters = [
     name: "Free Cancellable Out of...",
     input: ["fco"],
     type: "",
-    regex: /fco/,
+    regex: /fco|FCO/,
     description: "",
     moreLink: "",
     moreName: "",
@@ -150,7 +150,7 @@ const kingOfFighters = [
     name: "On the Ground",
     input: ["otg"],
     type: "",
-    regex: /otg/,
+    regex: /otg/i,
     description: "A move that may hit a knocked down opponent.",
     moreLink: "",
     moreName: "",
@@ -160,7 +160,7 @@ const kingOfFighters = [
     name: "Hiper Hop",
     input: ["hh"],
     type: "",
-    regex: /hh\./,
+    regex: /hh\./i,
     description: "bb",
     img: "",
   },
@@ -168,7 +168,7 @@ const kingOfFighters = [
     name: "Hop",
     input: ["h"],
     type: "",
-    regex: /h\./,
+    regex: /h\./i,
     description: "aa",
     img: "",
   },
@@ -178,49 +178,49 @@ const kingOfFighters = [
   // -------------------------------------------------------------------------
   {
     name: "Light Punch",
-    input: ["a"],
+    input: ["A"],
     type: "action",
-    regex: /a|A/,
+    regex: /A/,
     description: "",
     img: <SNK_A />,
   },
   {
     name: "Light Kick",
-    input: ["b"],
+    input: ["B"],
     type: "action",
-    regex: /b|B/,
+    regex: /B/,
     description: "",
     img: <SNK_B />,
   },
   {
     name: "Heavy Punch",
-    input: ["c"],
+    input: ["C"],
     type: "action",
-    regex: /c|C/,
+    regex: /C/,
     description: "",
     img: <SNK_C />,
   },
   {
     name: "Heavy Kick",
-    input: ["d"],
+    input: ["D"],
     type: "action",
-    regex: /d|D/,
+    regex: /D/,
     description: "",
     img: <SNK_D />,
   },
   {
     name: "Any Kick",
-    input: ["k"],
+    input: ["K"],
     type: "action",
-    regex: /k|K/,
+    regex: /K/,
     description: "",
     img: <AnyKick />,
   },
   {
     name: "Any Punch",
-    input: ["p"],
+    input: ["P"],
     type: "action",
-    regex: /p|P/,
+    regex: /P/,
     description: "",
     img: <AnyPunch />,
   },
