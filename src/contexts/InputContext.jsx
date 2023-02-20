@@ -1,5 +1,6 @@
 import _ from "lodash";
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { useParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { Combo, Input, Wrapper } from "../components/index";
 import {
@@ -19,9 +20,11 @@ const InputContext = createContext();
 export const useInput = () => useContext(InputContext);
 
 export const InputProvider = ({ children }) => {
+  // route  params
+  const { input, game } = useParams();
   // States
   const [rawInput, setRawInput] = useState(() => {
-    return localStorage.getItem("rawInput") || "";
+    return input || localStorage.getItem("rawInput") || "";
   });
 
   const [gameList] = useState([
@@ -34,6 +37,8 @@ export const InputProvider = ({ children }) => {
   const [gameInputs, setGameInputs] = useState(() => {
     const savedGameName = localStorage.getItem("gameName");
     const isUndefined = savedGameName === null;
+
+    if (game) return gameList.filter((e) => e[0].name === game)[0];
 
     if (!isUndefined) {
       const savedGameInputs = gameList.filter(
