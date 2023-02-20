@@ -9,7 +9,6 @@ const followUp = [
     description: "",
     img: "",
   },
-
   {
     name: "Cancel",
     input: ["->", "~", ">>"],
