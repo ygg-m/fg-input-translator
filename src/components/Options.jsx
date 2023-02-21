@@ -181,7 +181,7 @@ export const Options = () => {
     };
 
     return (
-      <div className="dropdown relative z-50 inline-block">
+      <div className="dropdown relative z-40 inline-block">
         <Button />
         <div className="dropdown-menu invisible origin-top-right -translate-y-2 scale-95 transform opacity-0 transition-all duration-200">
           <div
