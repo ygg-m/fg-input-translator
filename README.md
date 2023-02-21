@@ -23,5 +23,5 @@ The website is hosted by `GitHub Pages` at: https://ygg-m.github.io/fg-input-tra
 - [x] Complex Combo Inputs
 - [x] Variables (like air, dash, etc) with Combo Inputs
 - [x] Unique Inputs
-- [ ] Add support to different games
-- [ ] Make Inputs easily shareable
+- [x] Add support to different games
+- [x] Make Inputs easily shareable
