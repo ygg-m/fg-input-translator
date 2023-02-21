@@ -10,6 +10,10 @@
   filter: drop-shadow(0 0 16px rgba(34, 211, 238, 0.75));
 }
 
+.focus\:shadow-cyan:focus {
+  filter: drop-shadow(0 0 16px rgba(34, 211, 238, 0.75));
+}
+
 .react-tooltip {
   background-color: #171717;
   border-radius: 0.5rem;
@@ -25,7 +29,7 @@
 
 .modal a {
   outline: solid 1px #555;
-  margin: 0 .25rem;
+  margin: 0 0.25rem;
   border-radius: 0.2rem;
   padding: 0.15rem 0.5rem;
   transition: 200ms;
@@ -34,4 +38,11 @@
 .modal a:hover {
   outline: solid 1px rgba(34, 211, 238);
   color: rgba(34, 211, 238);
+}
+
+.dropdown:focus-within .dropdown-menu,
+.dropdown .dropdown-menu:hover {
+  opacity: 1;
+  transform: translate(0) scale(1);
+  visibility: visible;
 }
