@@ -323,9 +323,9 @@ export const techPatterns = [
   },
   {
     name: "Instant Air Dash",
-    input: ["iad"],
+    input: ["IAD"],
     type: "mech-icon",
-    regex: /iad/,
+    regex: /IAD|iad/i,
     description: "",
     img: <IstantAirDash />,
     moreLink: "https://www.dustloop.com/w/GGACR/Movement#Air_Movement",
