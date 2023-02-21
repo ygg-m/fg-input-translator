@@ -26,18 +26,6 @@ const persona = [
     img: "",
   },
   {
-    name: "Throw",
-    input: ["CD"],
-    type: "",
-    regex: /CD/i,
-    description:
-      "Short range attack that can not be blocked. Players can escape a throw by inputting a throw right after they are thrown.",
-    moreLink:
-      "https://www.dustloop.com/w/P4AU/Controls#:~:text=Short%20range%20attack,done%20while%20airborne!",
-    moreName: "Dustloop",
-    img: "",
-  },
-  {
     name: "Sweep",
     input: ["2AB", "Sweep"],
     type: "",
@@ -133,7 +121,7 @@ const persona = [
     img: "",
   },
   {
-    name: "Evasive Action",
+    name: "Hop",
     input: ["2AC"],
     type: "",
     regex: /2AC/i,
