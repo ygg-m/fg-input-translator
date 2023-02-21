@@ -38,7 +38,7 @@ const persona = [
   },
   {
     name: "All out Attack",
-    input: ["AB"],
+    input: ["AB", "AoA"],
     type: "",
     regex: /AB|AoA/i,
     description:
@@ -110,9 +110,9 @@ const persona = [
   },
   {
     name: "Furious Action",
-    input: ["BD"],
+    input: ["BD", "FA"],
     type: "",
-    regex: /BD/i,
+    regex: /BD|FA/i,
     description:
       "Attack that is fully invincible and is used to stop an overly offensive opponent.",
     moreLink:
@@ -122,9 +122,9 @@ const persona = [
   },
   {
     name: "Hop",
-    input: ["2AC"],
+    input: ["2AC", "h."],
     type: "",
-    regex: /2AC/i,
+    regex: /2AC|h\./i,
     description: "Short hop that has a few interesting properties.",
     moreLink:
       "https://www.dustloop.com/w/P4AU/Controls#:~:text=Short%20hop%20that,Victory%20Cry%20combos",
