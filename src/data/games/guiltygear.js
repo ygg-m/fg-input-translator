@@ -327,6 +327,16 @@ const guiltyGear = [
     moreLink: "https://www.dustloop.com/w/GGACR/Mechanics#Roman_Cancel",
     moreName: "Dustloop",
   },
+  {
+    name: "Wall Splat",
+    input: ["WS"],
+    type: "mech-icon",
+    regex: /WS/i,
+    description: "3 Attack Buttons, Except for D, After an Attack Connects",
+    img: <RomanCancel />,
+    moreLink: "https://www.dustloop.com/w/GGACR/Mechanics#Roman_Cancel",
+    moreName: "Dustloop",
+  },
   // -------------------------------------------------------------------------
   // actions
   // -------------------------------------------------------------------------

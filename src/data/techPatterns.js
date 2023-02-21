@@ -52,6 +52,17 @@ export const techPatterns = [
     moreName: "",
   },
   {
+    name: "Wall Splat",
+    input: ["WS"],
+    type: "mech-icon",
+    regex: /WS/i,
+    description:
+      "Attacking someone into a wall; if you use the right move, they will splat against the wall and crumble in front of it, open to more hits.",
+    img: "",
+    moreLink: "https://glossary.infil.net/?t=Wall%20Splat",
+    moreName: "Dustloop",
+  },
+  {
     name: "Instant Air Special",
     input: ["IAS"],
     type: "",
