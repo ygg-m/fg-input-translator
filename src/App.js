@@ -3,11 +3,11 @@ import { TooltipProvider } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
 import {
   Footer,
-  GameSelect,
   Header,
   InputComponents,
   InputField,
   Modal,
+  Options,
   Output,
 } from "./components/index";
 
