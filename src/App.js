@@ -25,7 +25,7 @@ function App() {
           <Modal />
           <Header />
         </ModalProvider>
-        <div className="flex w-full flex-col gap-4 p-4 px-8">
+        <div className="flex w-full flex-col items-center gap-4 p-4 px-8">
           <TooltipProvider>
             <InputProvider>
               <Routes>
