@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { useInput } from "../contexts/InputContext";
 import { copyToClipboard } from "../helpers";
@@ -22,6 +21,7 @@ export const GameSelect = () => {
   } = useInput();
   const [showList, setShowList] = useState(false);
   const [copied, setCopied] = useState(false);
+
   if (!gameInputs) return;
   const { name } = gameInputs[0];
 
@@ -29,6 +29,47 @@ export const GameSelect = () => {
     return (
       <div className="border-r border-r-neutral-700 px-4 py-1">
         {gameInputs[0]?.name}
+      </div>
+    );
+  };
+
+  const Tooltip = () => {
+    return (
+      <div
+        className={
+          showTooltip
+            ? "border-1 shadow-cyan flex w-fit cursor-pointer select-none items-center justify-center self-end rounded-lg border border-cyan-500 px-4 py-1 text-cyan-500 duration-200"
+            : "border-1 hover:shadow-cyan flex w-fit cursor-pointer select-none items-center justify-center self-end rounded-lg border border-neutral-700 px-4 py-1 duration-200 hover:border-cyan-500 hover:text-cyan-500"
+        }
+        onClick={() => setShowTooltip(!showTooltip)}
+      >
+        {showTooltip ? (
+          <span className="flex items-center gap-2">
+            <CheckIcon className="h-4 w-3" />
+            Tooltip
+          </span>
+        ) : (
+          <span className="flex items-center gap-2">
+            <XMarkIcon className="h-4 w-3" />
+            Tooltip
+          </span>
+        )}
+      </div>
+    );
+  };
+
+  const CopyLink = () => {
+    return (
+      <div
+        onClick={() => shareClick()}
+        className="border-1 hover:shadow-cyan flex w-fit cursor-pointer select-none items-center justify-center gap-2 self-end rounded-lg border border-neutral-700 px-4 py-1 duration-200 hover:border-cyan-500 hover:text-cyan-500"
+      >
+        {copied ? (
+          <CheckIcon className="h-4 w-3" />
+        ) : (
+          <ShareIcon className="h-4 w-3" />
+        )}
+        {copied ? "Copied!" : "Copy Link"}
       </div>
     );
   };
@@ -48,37 +89,8 @@ export const GameSelect = () => {
     <div className="flex flex-col">
       <div className="flex w-full justify-between">
         <div className="flex gap-2">
-          <div
-            className={
-              showTooltip
-                ? "border-1 shadow-cyan flex w-fit cursor-pointer select-none items-center justify-center self-end rounded-lg border border-cyan-500 px-4 py-1 text-cyan-500 duration-200"
-                : "border-1 hover:shadow-cyan flex w-fit cursor-pointer select-none items-center justify-center self-end rounded-lg border border-neutral-700 px-4 py-1 duration-200 hover:border-cyan-500 hover:text-cyan-500"
-            }
-            onClick={() => setShowTooltip(!showTooltip)}
-          >
-            {showTooltip ? (
-              <span className="flex items-center gap-2">
-                <CheckIcon className="h-4 w-3" />
-                Tooltip
-              </span>
-            ) : (
-              <span className="flex items-center gap-2">
-                <XMarkIcon className="h-4 w-3" />
-                Tooltip
-              </span>
-            )}
-          </div>
-          <div
-            onClick={() => shareClick()}
-            className="border-1 hover:shadow-cyan flex w-fit cursor-pointer select-none items-center justify-center gap-2 self-end rounded-lg border border-neutral-700 px-4 py-1 duration-200 hover:border-cyan-500 hover:text-cyan-500"
-          >
-            {copied ? (
-              <CheckIcon className="h-4 w-3" />
-            ) : (
-              <ShareIcon className="h-4 w-3" />
-            )}
-            {copied ? "Copied!" : "Share"}
-          </div>
+          <Tooltip />
+          <CopyLink />
         </div>
         <div
           className={
