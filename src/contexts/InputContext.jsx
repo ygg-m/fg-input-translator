@@ -1,5 +1,12 @@
 import _ from "lodash";
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { useParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { Combo, Input, Wrapper } from "../components/index";
@@ -63,6 +70,7 @@ export const InputProvider = ({ children }) => {
   );
   const regexes = useMemo(() => createRegex(allInputs), [allInputs]);
   const [output, setOutput] = useState(() => readInputs(rawInput), [rawInput]);
+  const outputRef = useRef(null);
   const [showTooltip, setShowTooltip] = useState(() => {
     return localStorage.getItem("showTooltip") === "true" ? true : false;
   });
@@ -299,6 +307,7 @@ export const InputProvider = ({ children }) => {
     allInputs,
     showTooltip,
     setShowTooltip,
+    outputRef,
   };
 
   return (
