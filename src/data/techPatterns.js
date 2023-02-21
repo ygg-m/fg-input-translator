@@ -192,12 +192,23 @@ export const techPatterns = [
     name: "High Jump Cancel",
     input: ["hjc", "sjc"],
     type: "mech",
-    regex: /hjc\.|sjc\.|hjc|sjc/,
+    regex: /[^s]hjc\.|sjc\.|[^s]hjc|sjc/,
     description:
       "Any Downward Direction then any Upward Direction while on the ground",
     img: "",
     moreLink: "https://www.dustloop.com/w/GGACR/Mechanics#High_Jump",
     moreName: "Dustloop",
+  },
+  {
+    name: "Short Jump Cancel",
+    input: ["shjc"],
+    type: "mech",
+    regex: /shjc\.|shjc/,
+    description: 
+      "Canceling a move with a short jump.",
+    img: "",
+    moreLink: "https://glossary.infil.net/?t=Jump%20Cancel",
+    moreName: "Glossary",
   },
   {
     name: "Double Jump Cancel",
