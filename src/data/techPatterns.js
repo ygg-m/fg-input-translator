@@ -52,6 +52,18 @@ export const techPatterns = [
     moreName: "",
   },
   {
+    name: "Instant Air Special",
+    input: ["IAS"],
+    type: "",
+    regex: /IAS/i,
+    description:
+      "Conceptually includes Tiger KneePerforming a special as soon as possible after becoming airborne. Usually, but not always, involves an input trick.",
+    moreLink:
+      "https://www.dustloop.com/w/Glossary#Instant_Air_Special:~:text=IAS%20noun%20%2C%20verb,j.236S%20input.",
+    moreName: "Dustloop",
+    img: "",
+  },
+  {
     name: "Tiger Knee",
     input: ["tk"],
     type: "mech",
