@@ -24,9 +24,9 @@ export const Options = () => {
     rawInput,
     outputRef,
   } = useInput();
+
   const [showList, setShowList] = useState(false);
-  const [copiedLink, setCopiedLink] = useState(false);
-  const [copiedImage, setCopiedImage] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   if (!gameInputs) return;
   const { name } = gameInputs[0];
@@ -63,13 +63,17 @@ export const Options = () => {
     const Button = () => {
       return (
         <button
-          className="border-1 hover:shadow-cyan focus:shadow-cyan flex w-fit cursor-pointer select-none items-center justify-center gap-3 rounded-lg border border-neutral-700 px-4 py-1 duration-200 hover:border-cyan-500 hover:text-cyan-500 focus:border-cyan-500 focus:text-cyan-500"
+          className={
+            copied
+              ? "border-1 shadow-cyan focus:shadow-cyan flex w-fit cursor-pointer select-none items-center justify-center gap-3 rounded-lg border border-cyan-500 px-4 py-1 text-cyan-500 duration-200 focus:border-cyan-500 focus:text-cyan-500"
+              : "border-1 hover:shadow-cyan focus:shadow-cyan flex w-fit cursor-pointer select-none items-center justify-center gap-3 rounded-lg border border-neutral-700 px-4 py-1 duration-200 hover:border-cyan-500 hover:text-cyan-500 focus:border-cyan-500 focus:text-cyan-500"
+          }
           type="button"
           aria-haspopup="true"
           aria-expanded="true"
           aria-controls="headlessui-menu-items-117"
         >
-          <span>Share</span>
+          <span>{copied ? "Copied!" : "Share"}</span>
           <ChevronIcon className="box-content w-4" />
         </button>
       );
@@ -82,33 +86,18 @@ export const Options = () => {
         copyToClipboard(
           `https://ygg-m.github.io/fg-input-translator/${gameName}/${inputs}`
         );
-        setCopiedLink(true);
-        setTimeout(() => setCopiedLink(false), 2000);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
       };
       return (
         <div
           onClick={() => handleClick()}
-          className={
-            copiedLink
-              ? "shadow-cyan flex cursor-pointer items-center gap-2 px-4 text-cyan-500"
-              : "hover:shadow-cyan flex cursor-pointer items-center gap-2 px-4 hover:text-cyan-500"
-          }
+          className="hover:shadow-cyan flex cursor-pointer items-center gap-2 px-4 hover:text-cyan-500"
         >
-          {copiedLink ? (
-            <>
-              <CheckIcon className="w-4" />
-              <p className="ml-2 truncate border-l border-neutral-700 py-2 pl-3">
-                Link Copied!
-              </p>
-            </>
-          ) : (
-            <>
-              <ShareIcon className="w-4" />
-              <p className="ml-2 truncate border-l border-neutral-700 py-2 pl-3">
-                Copy Link
-              </p>
-            </>
-          )}
+          <ShareIcon className="w-4" />
+          <p className="ml-2 truncate border-l border-neutral-700 py-2 pl-3">
+            Copy Link
+          </p>
         </div>
       );
     };
@@ -129,33 +118,18 @@ export const Options = () => {
           .catch(function (error) {
             console.error("oops, something went wrong!", error);
           });
-        setCopiedImage(true);
-        setTimeout(() => setCopiedImage(false), 2000);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
       }
       return (
         <div
           onClick={() => handleClick()}
-          className={
-            copiedImage
-              ? "shadow-cyan flex cursor-pointer items-center gap-2 px-4 text-cyan-500"
-              : "hover:shadow-cyan flex cursor-pointer items-center gap-2 px-4 hover:text-cyan-500"
-          }
+          className="hover:shadow-cyan flex cursor-pointer items-center gap-2 px-4 hover:text-cyan-500"
         >
-          {copiedImage ? (
-            <>
-              <CheckIcon className="w-4" />
-              <p className="ml-2 truncate border-l border-neutral-700 py-2 pl-3">
-                Image Copied!
-              </p>
-            </>
-          ) : (
-            <>
-              <ImageIcon className="w-4" />
-              <p className="ml-2 truncate border-l border-neutral-700 py-2 pl-3">
-                Copy Image (PNG)
-              </p>
-            </>
-          )}
+          <ImageIcon className="w-4" />
+          <p className="ml-2 truncate border-l border-neutral-700 py-2 pl-3">
+            Copy Image (PNG)
+          </p>
         </div>
       );
     };
