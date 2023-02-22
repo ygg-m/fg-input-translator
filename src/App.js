@@ -1,20 +1,10 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { TooltipProvider } from "react-tooltip";
-import "react-tooltip/dist/react-tooltip.css";
-import {
-  Footer,
-  Header,
-  InputComponents,
-  InputField,
-  Modal,
-  Options,
-  Output,
-} from "./components/index";
-
-import { InputProvider } from "./contexts/index";
-
-import { ModalProvider } from "./contexts/index";
+import { Footer, Header, Modal } from "./components/index";
+import { InputProvider, ModalProvider } from "./contexts/index";
 import { Home, NotFound } from "./Pages/index";
+
+import "react-tooltip/dist/react-tooltip.css";
 import "./style/App.css";
 
 function App() {
@@ -25,17 +15,15 @@ function App() {
           <Modal />
           <Header />
         </ModalProvider>
-        <div className="flex w-full flex-col items-center gap-4 p-4 px-8">
+        <InputProvider>
           <TooltipProvider>
-            <InputProvider>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/:game/:input" element={<Home />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </InputProvider>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/:game/:input" element={<Home />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
           </TooltipProvider>
-        </div>
+        </InputProvider>
         <Footer />
       </div>
     </Router>

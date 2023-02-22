@@ -10,6 +10,7 @@ import {
   ChevronIcon,
   DownloadIcon,
   ImageIcon,
+  PaintIcon,
   ShareIcon,
   XMarkIcon,
 } from "../images/ui/index";
@@ -23,6 +24,8 @@ export const Options = () => {
     setShowTooltip,
     rawInput,
     outputRef,
+    chroma,
+    setChroma,
   } = useInput();
 
   const [showList, setShowList] = useState(false);
@@ -45,8 +48,8 @@ export const Options = () => {
         onClick={() => setShowTooltip(!showTooltip)}
         className={
           showTooltip
-            ? "border-1 shadow-cyan flex w-fit cursor-pointer select-none items-center gap-3 self-end rounded-lg border border-cyan-500 px-4 py-1 text-cyan-500 duration-200"
-            : "border-1 hover:shadow-cyan flex w-fit cursor-pointer select-none items-center gap-3 self-end rounded-lg border border-neutral-700 px-4 py-1 duration-200 hover:border-cyan-500 hover:text-cyan-500"
+            ? "border-1 shadow-cyan flex w-fit cursor-pointer select-none items-center gap-3 self-end rounded-lg border border-cyan-500  px-4 py-1 text-cyan-500 duration-200"
+            : "border-1 hover:shadow-cyan flex w-fit cursor-pointer select-none items-center gap-3 self-end rounded-lg border border-neutral-700  px-4 py-1 duration-200 hover:border-cyan-500 hover:text-cyan-500"
         }
       >
         {showTooltip ? (
@@ -55,6 +58,26 @@ export const Options = () => {
           <XMarkIcon className="h-4 w-3" />
         )}
         Show Tooltip
+      </div>
+    );
+  };
+
+  const Chroma = () => {
+    return (
+      <div
+        onClick={() => setChroma(!chroma)}
+        className={
+          chroma
+            ? "border-1 shadow-cyan flex w-fit cursor-pointer select-none items-center gap-3 self-end rounded-lg border border-cyan-500  px-4 py-1 text-cyan-500 duration-200"
+            : "border-1 hover:shadow-cyan flex w-fit cursor-pointer select-none items-center gap-3 self-end rounded-lg border border-neutral-700  px-4 py-1 duration-200 hover:border-cyan-500 hover:text-cyan-500"
+        }
+      >
+        {chroma ? (
+          <CheckIcon className="h-4 w-3" />
+        ) : (
+          <PaintIcon className="h-4 w-3" />
+        )}
+        Chroma
       </div>
     );
   };
@@ -159,7 +182,7 @@ export const Options = () => {
         <Button />
         <div className="dropdown-menu invisible origin-top-right -translate-y-2 scale-95 transform opacity-0 transition-all duration-200">
           <div
-            className="absolute left-0 mt-2 w-56 origin-top-right divide-y divide-neutral-700 rounded-md border border-neutral-700 bg-neutral-900 shadow-lg outline-none"
+            className="absolute left-0 mt-2 w-56 origin-top-right divide-y divide-neutral-700 rounded-md border border-neutral-700 bg-neutral-900 text-neutral-400  shadow-lg outline-none"
             aria-labelledby="headlessui-menu-button-1"
             id="headlessui-menu-items-117"
             role="menu"
@@ -175,17 +198,18 @@ export const Options = () => {
 
   // main component
   return (
-    <div className="flex w-full flex-col">
+    <div className="flex w-full flex-col rounded-lg bg-neutral-900 p-1">
       <div className="flex w-full justify-between">
         <div className="flex gap-2">
           <Tooltip />
+          <Chroma />
           <Options />
         </div>
         <div
           className={
             showList
-              ? "border-1 shadow-cyan flex w-fit cursor-pointer select-none items-center justify-center self-end rounded-lg border border-cyan-500 text-cyan-500 duration-200"
-              : "border-1 hover:shadow-cyan flex w-fit cursor-pointer select-none items-center justify-center self-end rounded-lg border border-neutral-700 duration-200 hover:border-cyan-500 hover:text-cyan-500"
+              ? "border-1 shadow-cyan flex w-fit cursor-pointer select-none items-center justify-center self-end rounded-lg border border-cyan-500  text-cyan-500 duration-200"
+              : "border-1 hover:shadow-cyan flex w-fit cursor-pointer select-none items-center justify-center self-end rounded-lg border border-neutral-700  duration-200 hover:border-cyan-500 hover:text-cyan-500"
           }
           onClick={() => setShowList(!showList)}
         >
@@ -212,7 +236,7 @@ export const Options = () => {
       >
         {gameList.map((game) => (
           <div
-            className="border-1 hover:shadow-cyan h-fit cursor-pointer rounded-lg border border-neutral-700 py-1 px-2 duration-200 hover:border-cyan-500 hover:px-4 hover:text-cyan-500"
+            className="border-1 hover:shadow-cyan h-fit cursor-pointer rounded-lg border border-neutral-700  py-1 px-2 duration-200 hover:border-cyan-500 hover:px-4 hover:text-cyan-500"
             key={uuidv4()}
             onClick={() => {
               setGameInputs(game);

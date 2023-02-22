@@ -33,7 +33,7 @@ export const InputProvider = ({ children }) => {
   const [rawInput, setRawInput] = useState(() => {
     return input || localStorage.getItem("rawInput") || "";
   });
-
+  const [chroma, setChroma] = useState(false);
   const [gameList] = useState([
     guiltyGear,
     streetFighter,
@@ -308,6 +308,8 @@ export const InputProvider = ({ children }) => {
     showTooltip,
     setShowTooltip,
     outputRef,
+    chroma,
+    setChroma,
   };
 
   return (
