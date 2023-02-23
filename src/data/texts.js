@@ -1,4 +1,5 @@
 import {
+  blazblue,
   followUp,
   guiltyGear,
   kingOfFighters,
@@ -46,6 +47,7 @@ export const texts = [
       guiltyGear,
       streetFighter,
       kingOfFighters,
+      blazblue,
       persona,
     ],
   },
