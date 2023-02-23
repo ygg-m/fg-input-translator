@@ -17,5 +17,3 @@ export const Output = () => {
       </div>
     );
 };
-
-// "bg-[#32cd33]"
