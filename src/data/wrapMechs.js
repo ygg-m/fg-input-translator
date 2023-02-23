@@ -34,15 +34,32 @@ const wrapMechs = [
   },
   {
     name: "Repeat",
-    input: ["[X]xN", "[X > 236X]xN"],
+    input: ["[move]xN", "{sequence}xN"],
     type: "mech-complex",
     regex: /\[(?!.*\[)([^\]]+)\]x(\d{1})/g,
     description: "Repeat move or sequence N amount of times.",
     img: "",
   },
   {
+    name: "Repeat",
+    input: ["[move]xN", "{sequence}xN"],
+    type: "mech-complex",
+    regex: /\{(?!.*\{})([^\}]+)\}x(\d{1})/g,
+    description: "Repeat move or sequence N amount of times.",
+    img: "",
+  },
+  {
+    name: "Float",
+    input: ["fl.{move}", "fl.{sequence}"],
+    type: "mech-complex",
+    regex: /fl\.\{(?!.*\{})([^\}]+)\}/g,
+    description:
+      "Sequence is done during float. For characters like Izanami from Blazblue who instead of a double jump, can float by pressing jump while in the air.",
+    img: "",
+  },
+  {
     name: "",
-    input: ["[X > 236X]"],
+    input: ["move", "[sequence]"],
     type: "combo",
     regex: /\[(.*?)\](?!x\d)/g,
     description:
@@ -53,8 +70,25 @@ const wrapMechs = [
     name: "Optional",
     input: ["(X)", "(X > 236X)"],
     type: "mech-complex",
-    regex: /\((?!\d{1}\))(.*?)\)/g,
+    regex: / \((?!\d{1}\))(.*?)\)/g,
     description: "Move or sequence is optional.",
+    img: "",
+  },
+  {
+    name: "Optional",
+    input: ["(X)", "(X > 236X)"],
+    type: "mech-complex",
+    regex: /(?<=[ >→~,])\((?!\d{1}\))(.*?)\)/g,
+    description: "Move or sequence is optional.",
+    img: "",
+  },
+  {
+    name: "During Last Move",
+    input: ["move(move)"],
+    type: "mech-complex",
+    regex: /\((?!\d{1}\))(.*?)\)/g,
+    description:
+      "Move is done during another move. This is different from '(move) = Move is optional' as there is no space in between and no > or , notation before the parenthesis.",
     img: "",
   },
   {
