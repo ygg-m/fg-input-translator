@@ -11,6 +11,7 @@ import { useParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { Combo, Input, Wrapper } from "../components/index";
 import {
+  blazblue,
   followUp,
   guiltyGear,
   kingOfFighters,
@@ -38,6 +39,7 @@ export const InputProvider = ({ children }) => {
     guiltyGear,
     streetFighter,
     kingOfFighters,
+    blazblue,
     persona,
   ]);
 
@@ -189,7 +191,7 @@ export const InputProvider = ({ children }) => {
   }
 
   function wrapInputs(str) {
-    const clean = str.replace(/ /g, "").replace(/\+/g, "");
+    const clean = str.replace(/\+/g, "");
     let result = [...clean];
 
     wrapMechs.forEach((move) => {
