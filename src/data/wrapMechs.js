@@ -83,7 +83,7 @@ const wrapMechs = [
   },
   {
     name: "",
-    input: ["move", "[sequence]"],
+    input: ["[move]", "[sequence]"],
     type: "combo",
     regex: /\[(.*?)\](?!x\d)/g,
     description:
