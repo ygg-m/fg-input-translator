@@ -41,6 +41,7 @@ export { ReactComponent as SNK_B } from "../images/inputs/SNK_ActionBKick.svg";
 export { ReactComponent as SNK_C } from "../images/inputs/SNK_ActionCPunch.svg";
 export { ReactComponent as SNK_D } from "../images/inputs/SNK_ActionDKick.svg";
 export { followUp } from "./followUp";
+export { blazblue } from "./games/blazblue";
 export { guiltyGear } from "./games/guiltygear";
 export { kingOfFighters } from "./games/kingOfFighters";
 export { persona } from "./games/persona";

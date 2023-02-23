@@ -44,9 +44,33 @@ const wrapMechs = [
     name: "Repeat",
     input: ["[move]xN", "{sequence}xN"],
     type: "mech-complex",
-    regex: /\{(?!.*\{})([^\}]+)\}x(\d{1})/g,
+    regex: /\{(?!.*\{)([^\}]+)\}x(\d{1})/g,
     description: "Repeat move or sequence N amount of times.",
     img: "",
+  },
+  {
+    name: "Wolf Form",
+    input: ["w[move]", "w[sequence]"],
+    type: "mech-complex",
+    regex: /w\[(?!.*\[)([^\]]+)\]/g,
+    description:
+      "Valkenhayn (Blazblue) transforms into a wolf by pressing the D button. In wolf form, Valkenhayn gains a completely new moveset and movement properties and is generally a smaller target. This notations means the sequence must be made in Wolf Form.",
+    img: "",
+    moreLink:
+      "https://www.dustloop.com/w/BBCF/Valkenhayn_R._Hellsing#:~:text=Drive%3A%20Werewolf,a%20crouching%20hit.",
+    moreName: "Dustloop",
+  },
+  {
+    name: "Human Form",
+    input: ["h[move]", "h[sequence]"],
+    type: "mech-complex",
+    regex: /w\[(?!.*\[)([^\]]+)\]/g,
+    description:
+      "Valkenhayn (Blazblue) transforms into a wolf by pressing the D button. This notation means the sequence must be made in Human Form.",
+    img: "",
+    moreLink:
+      "https://www.dustloop.com/w/BBCF/Valkenhayn_R._Hellsing#:~:text=Drive%3A%20Werewolf,a%20crouching%20hit.",
+    moreName: "Dustloop",
   },
   {
     name: "Float",
@@ -64,6 +88,14 @@ const wrapMechs = [
     regex: /\[(.*?)\](?!x\d)/g,
     description:
       "Group of inputs. Usually people use this to make a 'or' statement, where you can you one combo or another and still achieve the same ending.",
+    img: "",
+  },
+  {
+    name: "Whiffed Move",
+    input: ["(move)w"],
+    type: "mech-complex",
+    regex: /\((?!\d{1}\))(.*?)\)w/g,
+    description: "Whiff (not hit) the move.",
     img: "",
   },
   {

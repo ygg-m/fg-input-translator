@@ -185,8 +185,8 @@ export const techPatterns = [
     description:
       "A fast close-range move that cannot be blocked. Check a guide for the game to see the throw inputs available.",
     img: "",
-    moreLink: "https://www.dustloop.com/w/GGACR/Mechanics#Throws",
-    moreName: "Dustloop",
+    moreLink: "https://glossary.infil.net/?t=Throw",
+    moreName: "Glossary",
   },
   {
     name: "High Jump Cancel",
