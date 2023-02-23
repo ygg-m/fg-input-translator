@@ -15,6 +15,17 @@ const kingOfFighters = [
   // mechanics
   // -------------------------------------------------------------------------
   {
+    name: "Throw",
+    input: ["cl.6c", "cl.6d", "cl.4c", "cl.4d"],
+    type: "mech",
+    regex: /cl.6c|cl.6d|cl.4c|cl.4d/i,
+    description:
+      "A fast close-range move that cannot be blocked. Check a guide for the game to see the throw inputs available.",
+    img: "",
+    moreLink: "https://glossary.infil.net/?t=Throw",
+    moreName: "Glossary",
+  },
+  {
     name: "Max Mode",
     input: ["bc", "BC"],
     type: "",
