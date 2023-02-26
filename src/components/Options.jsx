@@ -114,13 +114,16 @@ export const Options = () => {
       };
       return (
         <div
-          onClick={() => handleClick()}
-          className="hover:shadow-cyan flex cursor-pointer items-center gap-2 px-4 hover:text-cyan-500"
+          // onClick={() => handleClick()}
+          className="flex cursor-default items-center gap-2 px-4 text-neutral-700"
         >
           <ShareIcon className="w-4" />
           <p className="ml-2 truncate border-l border-neutral-700 py-2 pl-3">
             Copy Link
           </p>
+          <span className="rounded-full px-2 text-sm outline outline-1 outline-neutral-700">
+            Soon
+          </span>
         </div>
       );
     };
@@ -151,8 +154,11 @@ export const Options = () => {
         >
           <ImageIcon className="w-4" />
           <p className="ml-2 truncate border-l border-neutral-700 py-2 pl-3">
-            Copy Image (PNG)
+            Copy Image
           </p>
+          <span className="rounded-full px-2 text-sm outline outline-1 outline-neutral-500 duration-200">
+            PNG
+          </span>
         </div>
       );
     };
@@ -171,8 +177,11 @@ export const Options = () => {
         >
           <DownloadIcon className="w-4" />
           <p className="ml-2 truncate border-l border-neutral-700 py-2 pl-3">
-            Download (PNG)
+            Download
           </p>
+          <span className="rounded-full px-2 text-sm outline outline-1 outline-neutral-500 duration-200">
+            PNG
+          </span>
         </div>
       );
     };

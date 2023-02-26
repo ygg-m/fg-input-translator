@@ -9,7 +9,7 @@ import "./style/App.css";
 
 function App() {
   return (
-    <Router basename={public.env.PUBLIC_URL}>
+    <Router basename={"/fg-input-translator"}>
       <div className="h-screen overflow-x-hidden bg-neutral-900 text-neutral-400">
         <ModalProvider>
           <Modal />
@@ -18,11 +18,8 @@ function App() {
         <InputProvider>
           <TooltipProvider>
             <Routes>
-              <Route path="/fg-input-translator" element={<Home />} />
-              <Route
-                path="/fg-input-translator/:game/:input"
-                element={<Home />}
-              />
+              <Route path="/" element={<Home />} />
+              <Route path="/:game/:input" element={<Home />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </TooltipProvider>

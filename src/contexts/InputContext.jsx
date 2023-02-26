@@ -30,7 +30,7 @@ export const useInput = () => useContext(InputContext);
 export const InputProvider = ({ children }) => {
   // route  params
   const { input, game } = useParams();
-  console.log(input, game);
+  console.log(`input: ${input}`, `game: ${game}`);
   // States
   const [rawInput, setRawInput] = useState(() => {
     return input || localStorage.getItem("rawInput") || "";
