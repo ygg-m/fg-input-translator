@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/fg-input-translator/static/css/main.4adc91cc.css",
-    "main.js": "/fg-input-translator/static/js/main.0ab31b29.js",
+    "main.js": "/fg-input-translator/static/js/main.43feb756.js",
     "static/js/787.9b8d6454.chunk.js": "/fg-input-translator/static/js/787.9b8d6454.chunk.js",
     "static/media/logo.svg": "/fg-input-translator/static/media/logo.f0f20d35bd495d274561f37d79625c82.svg",
     "static/media/ActionHeavySlash.svg": "/fg-input-translator/static/media/ActionHeavySlash.431c6b14ea836663d96f6202676b6cd5.svg",
@@ -60,11 +60,11 @@
     "static/media/chevron-down.svg": "/fg-input-translator/static/media/chevron-down.144400258cad217afb0b4cf721017c89.svg",
     "static/media/ArrowNext.svg": "/fg-input-translator/static/media/ArrowNext.648ffe87ca7d7a64a7505e4f764a0834.svg",
     "main.4adc91cc.css.map": "/fg-input-translator/static/css/main.4adc91cc.css.map",
-    "main.0ab31b29.js.map": "/fg-input-translator/static/js/main.0ab31b29.js.map",
+    "main.43feb756.js.map": "/fg-input-translator/static/js/main.43feb756.js.map",
     "787.9b8d6454.chunk.js.map": "/fg-input-translator/static/js/787.9b8d6454.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.4adc91cc.css",
-    "static/js/main.0ab31b29.js"
+    "static/js/main.43feb756.js"
   ]
 }
