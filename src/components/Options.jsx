@@ -102,10 +102,14 @@ export const Options = () => {
       );
     };
 
+    const parseLink = (str) => {
+      return str.replace(/ /g, "%20").replace(/`/g, "%60").replace(/'/g, "%27");
+    };
+
     const CopyLink = () => {
       const handleClick = () => {
-        const gameName = name.replace(/ /g, "%20");
-        const inputs = rawInput.replace(/ /g, "%20");
+        const gameName = parseLink(name);
+        const inputs = parseLink(rawInput);
         copyToClipboard(
           `https://ygg-m.github.io/fg-input-translator/#/${gameName}/${inputs}`
         );
