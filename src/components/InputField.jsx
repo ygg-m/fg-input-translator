@@ -1,7 +1,7 @@
 import { useInput } from "../contexts/InputContext";
 
 export const InputField = () => {
-  const { setRawInput, rawInput, chroma } = useInput();
+  const { setRawInput, rawInput } = useInput();
 
   return (
     <input

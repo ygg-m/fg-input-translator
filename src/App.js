@@ -9,24 +9,23 @@ import "./style/App.css";
 
 function App() {
   return (
-    <Router basename={"/fg-input-translator"}>
-      <div className="h-screen overflow-x-hidden bg-neutral-900 text-neutral-400">
-        <ModalProvider>
-          <Modal />
-          <Header />
-        </ModalProvider>
-        <InputProvider>
-          <TooltipProvider>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/:game/:input" element={<Home />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </TooltipProvider>
-        </InputProvider>
-        <Footer />
-      </div>
-    </Router>
+    <div className="h-screen overflow-x-hidden bg-neutral-900 text-neutral-400">
+      <ModalProvider>
+        <Modal />
+        <Header />
+      </ModalProvider>
+      <InputProvider>
+        <TooltipProvider>
+          <Home />
+          {/* <Routes> */}
+          {/* <Route path="/" element={<Home />} /> */}
+          {/* <Route path="/:game/:input" element={<Home />} /> */}
+          {/* <Route path="*" element={<NotFound />} /> */}
+          {/* </Routes> */}
+        </TooltipProvider>
+      </InputProvider>
+      <Footer />
+    </div>
   );
 }
 
