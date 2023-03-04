@@ -196,40 +196,41 @@ export const InputProvider = ({ children }) => {
     let result = [...clean];
 
     wrapMechs.forEach((move) => {
-      let indexCount = 0;
       const matches = clean.matchAll(move.regex);
 
       // deal with comments
       const isComment = move.name === "Comment";
       const rawMatches = str.matchAll(move.regex);
       let input;
+
       for (let match of matches) {
         for (let rawMatch of rawMatches) {
+          if (isComment) console.log(rawMatch);
           if (isComment) input = rawMatch[1];
           else input = match[1];
+
+          if (!result.join("").includes(match[0])) break; // prevents matches that already have been treaten
+          // match again with the mutated array to gey the new index
+          const newRegexp = createRegexFromStr(match[0]);
+          const resultStr = joinStrings(result, true);
+          const rematch = newRegexp.exec(resultStr);
+          if (rematch === null) break;
+
+          // key infos
+          const length = match[0].length;
+          const index = rematch.index;
+          const techValue = match[2];
+
+          // create component
+          const component = {
+            tech: move,
+            techValue: techValue,
+            inputs: input,
+          };
+
+          // replace match with component
+          result.splice(index, length, component);
         }
-
-        if (!result.join("").includes(match[0])) break; // prevents matches that already have been treaten
-        // match again with the mutated array to gey the new index
-        const newRegexp = createRegexFromStr(match[0]);
-        const resultStr = joinStrings(result, true);
-        const rematch = newRegexp.exec(resultStr);
-        if (rematch === null) break;
-
-        // key infos
-        const length = match[0].length;
-        const index = rematch.index - indexCount;
-        const techValue = match[2];
-
-        // create component
-        const component = {
-          tech: move,
-          techValue: techValue,
-          inputs: input,
-        };
-
-        // replace match with component
-        result.splice(index, length, component);
       }
     });
 
