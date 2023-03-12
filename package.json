@@ -1,6 +1,6 @@
 {
   "name": "fg-input-translator",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "homepage": "https://ygg-m.github.io/fg-input-translator",
   "private": true,
   "dependencies": {
