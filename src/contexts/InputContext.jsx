@@ -79,7 +79,7 @@ export const InputProvider = ({ children }) => {
   });
 
   // Functions
-  function saveInLocalStorage() {
+  function saveInLocalStorage(value, name) {
     localStorage.setItem("rawInput", rawInput);
     if (gameInputs) localStorage.setItem("gameName", gameInputs[0]?.name);
     localStorage.setItem("showTooltip", showTooltip);
@@ -205,7 +205,6 @@ export const InputProvider = ({ children }) => {
 
       for (let match of matches) {
         for (let rawMatch of rawMatches) {
-          if (isComment) console.log(rawMatch);
           if (isComment) input = rawMatch[1];
           else input = match[1];
 
@@ -314,6 +313,7 @@ export const InputProvider = ({ children }) => {
     outputRef,
     chroma,
     setChroma,
+    readInputs,
   };
 
   return (
