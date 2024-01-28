@@ -4,7 +4,7 @@ import { texts } from "../data/index";
 import { ReactComponent as Discord } from "../images/ui/discord.svg";
 import { ReactComponent as GitHub } from "../images/ui/github.svg";
 import { ReactComponent as Kofi } from "../images/ui/kofi.svg";
-import { ReactComponent as Logo } from "../images/ui/logo.svg";
+import { ReactComponent as Logo } from "../images/ui/Logo.svg";
 import { ReactComponent as Paypal } from "../images/ui/paypal.svg";
 
 export const Header = () => {
