@@ -20,6 +20,7 @@ import {
   specialInputs,
   streetFighter,
   techPatterns,
+  themsFightinHerds,
   wrapMechs,
 } from "../data/index";
 
@@ -42,6 +43,7 @@ export const InputProvider = ({ children }) => {
     kingOfFighters,
     blazblue,
     persona,
+    themsFightinHerds,
   ]);
 
   const [gameInputs, setGameInputs] = useState(() => {
