@@ -1,9 +1,10 @@
 {
   "files": {
     "main.css": "/fg-input-translator/static/css/main.8902e42e.css",
-    "main.js": "/fg-input-translator/static/js/main.388ee09f.js",
+    "main.js": "/fg-input-translator/static/js/main.24afd646.js",
     "static/js/787.9b8d6454.chunk.js": "/fg-input-translator/static/js/787.9b8d6454.chunk.js",
-    "static/media/logo.svg": "/fg-input-translator/static/media/logo.f0f20d35bd495d274561f37d79625c82.svg",
+    "static/media/Logo.svg": "/fg-input-translator/static/media/Logo.f0f20d35bd495d274561f37d79625c82.svg",
+    "static/media/TFH_ActionAnyTwo.svg": "/fg-input-translator/static/media/TFH_ActionAnyTwo.2632b1c60cdf6feb33fff69311093b07.svg",
     "static/media/ActionHeavySlash.svg": "/fg-input-translator/static/media/ActionHeavySlash.431c6b14ea836663d96f6202676b6cd5.svg",
     "static/media/UnknownInput.svg": "/fg-input-translator/static/media/UnknownInput.ac93d8e4eba52e7780c0f2be41e1cda4.svg",
     "static/media/MechForceRomanCancel.svg": "/fg-input-translator/static/media/MechForceRomanCancel.271116177c7be6ea4ad572eeee7639c2.svg",
@@ -14,12 +15,17 @@
     "static/media/Blazblue_ActionB.svg": "/fg-input-translator/static/media/Blazblue_ActionB.7a85f96db328e0ef21ab231ed46f9e47.svg",
     "static/media/Persona_ActionB.svg": "/fg-input-translator/static/media/Persona_ActionB.53ea0ee344e4e23c77e3719895b0f03c.svg",
     "static/media/ActionMediumKick.svg": "/fg-input-translator/static/media/ActionMediumKick.63a30f3cf66461a1a91b6201c26c80df.svg",
+    "static/media/TFH_ActionAny.svg": "/fg-input-translator/static/media/TFH_ActionAny.03e50428f49a81925b6049a736dfceef.svg",
     "static/media/ActionHeavyKick.svg": "/fg-input-translator/static/media/ActionHeavyKick.4ce934f5ce12e7130fd4a86398603056.svg",
     "static/media/ActionLightKick.svg": "/fg-input-translator/static/media/ActionLightKick.5223fd00bf4a140b0d6a20856ec8aa6e.svg",
+    "static/media/TFH_ActionB.svg": "/fg-input-translator/static/media/TFH_ActionB.75363905fedf37376d70d13750b3a791.svg",
     "static/media/ActionMediumPunch.svg": "/fg-input-translator/static/media/ActionMediumPunch.85e13a1180fbd3bb345d618f21c8aeaf.svg",
     "static/media/SNK_ActionAPunch.svg": "/fg-input-translator/static/media/SNK_ActionAPunch.f407c38455c4baa970088b5611bb58a2.svg",
     "static/media/ActionHeavyPunch.svg": "/fg-input-translator/static/media/ActionHeavyPunch.7b612fe6e92789273767dd3e0274160c.svg",
+    "static/media/TFH_ActionA.svg": "/fg-input-translator/static/media/TFH_ActionA.5a2e208d3ff7b6cc3c1b1910b922835f.svg",
     "static/media/ActionLightPunch.svg": "/fg-input-translator/static/media/ActionLightPunch.c86952f68f930e860582f56e835c7dc0.svg",
+    "static/media/TFH_ActionC.svg": "/fg-input-translator/static/media/TFH_ActionC.ac10e4406a604c2e57337b91c0a24e05.svg",
+    "static/media/TFH_ActionD.svg": "/fg-input-translator/static/media/TFH_ActionD.88d38bc29c6291a5d9c2b78c59086f3c.svg",
     "static/media/MechBlueRomanCancel.svg": "/fg-input-translator/static/media/MechBlueRomanCancel.5f761bcee430de4051020cdf11d410d0.svg",
     "static/media/MechPurpleRomanCancel.svg": "/fg-input-translator/static/media/MechPurpleRomanCancel.df1eead214204d4d9aa062d7d67bf498.svg",
     "static/media/MechRomanCancel.svg": "/fg-input-translator/static/media/MechRomanCancel.188da7e9f1ea5c762ab22edd013cd9c2.svg",
@@ -64,11 +70,11 @@
     "static/media/chevron-down.svg": "/fg-input-translator/static/media/chevron-down.144400258cad217afb0b4cf721017c89.svg",
     "static/media/ArrowNext.svg": "/fg-input-translator/static/media/ArrowNext.648ffe87ca7d7a64a7505e4f764a0834.svg",
     "main.8902e42e.css.map": "/fg-input-translator/static/css/main.8902e42e.css.map",
-    "main.388ee09f.js.map": "/fg-input-translator/static/js/main.388ee09f.js.map",
+    "main.24afd646.js.map": "/fg-input-translator/static/js/main.24afd646.js.map",
     "787.9b8d6454.chunk.js.map": "/fg-input-translator/static/js/787.9b8d6454.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.8902e42e.css",
-    "static/js/main.388ee09f.js"
+    "static/js/main.24afd646.js"
   ]
 }
