@@ -132,6 +132,17 @@ export const blazblue = [
     moreName: "Dustloop",
     img: "",
   },
+  // Naoto Kurogane
+  {
+    name: "Enhanced",
+    input: ["En"],
+    type: "",
+    regex: /En/i,
+    description: "Enhanced version of a special must be used.",
+    moreLink: "",
+    moreName: "",
+    img: "",
+  },
   {
     name: "Empty Handed",
     input: ["e"],
@@ -279,17 +290,6 @@ export const blazblue = [
     type: "",
     regex: /x/i,
     description: "Whiff (not hit) the move before.",
-    moreLink: "",
-    moreName: "",
-    img: "",
-  },
-  // Naoto Kurogane
-  {
-    name: "Enhanced",
-    input: ["En"],
-    type: "",
-    regex: /En/i,
-    description: "Enhanced version of a special must be used.",
     moreLink: "",
     moreName: "",
     img: "",
