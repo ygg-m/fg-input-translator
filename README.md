@@ -6,8 +6,7 @@
 
 # ✨ About this
 
-- You like fighting games but don't want to learn another language to understand what your friends are saying?
-- Type a numerical command or combo and translate it into more readable inputs, so you can use your time practicing those combos instead of trying to understand and get used something you don't want to!
+- Type a numerical command or combo and convert it into visual input.
 
 # 🚀 Access
 
