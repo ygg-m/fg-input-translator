@@ -31,6 +31,8 @@ const handlers = (confirm = true): TabsHandlers => ({
   onDeleteRow: vi.fn(),
   onMoveRow: vi.fn(),
   onClearTab: vi.fn(),
+  onShareRow: vi.fn(),
+  onShareTab: vi.fn(),
   confirm: vi.fn(() => confirm),
 });
 
@@ -214,5 +216,16 @@ describe("renderTabs", () => {
 
     view.focusRow(0);
     expect(document.activeElement).toBe(view.element.querySelector('[name="notation"]'));
+  });
+
+  it("offers sharing a single row and the whole tab", () => {
+    const h = handlers();
+    const { element } = renderTabs(document, model(), h);
+
+    action(element, "share-row", 2).click();
+    action(element, "share-tab").click();
+
+    expect(h.onShareRow).toHaveBeenCalledWith(2);
+    expect(h.onShareTab).toHaveBeenCalledTimes(1);
   });
 });

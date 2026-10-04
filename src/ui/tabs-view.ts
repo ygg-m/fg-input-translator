@@ -18,6 +18,8 @@ export interface TabsHandlers {
   onDeleteRow: (index: number) => void;
   onMoveRow: (index: number, delta: -1 | 1) => void;
   onClearTab: () => void;
+  onShareRow: (index: number) => void;
+  onShareTab: () => void;
   /** Asked before anything is deleted; the page passes window.confirm. */
   confirm: (message: string) => boolean;
 }
@@ -117,7 +119,10 @@ export function renderTabs(doc: Document, model: TabsModel, handlers: TabsHandle
       if (handlers.confirm(message)) handlers.onDeleteTab(active.id);
     });
 
-    actions.append(rename, left, right, remove);
+    const share = button(doc, "share-tab", "Share tab");
+    share.addEventListener("click", () => handlers.onShareTab());
+
+    actions.append(rename, left, right, share, remove);
     element.append(actions);
   }
 
@@ -160,7 +165,9 @@ export function renderTabs(doc: Document, model: TabsModel, handlers: TabsHandle
     remove.addEventListener("click", () => {
       if (handlers.confirm("Delete this row?")) handlers.onDeleteRow(rowIndex);
     });
-    controls.append(up, down, duplicate, remove);
+    const shareRow = button(doc, "share-row", "Copy link");
+    shareRow.addEventListener("click", () => handlers.onShareRow(rowIndex));
+    controls.append(up, down, duplicate, shareRow, remove);
 
     item.append(label, notation, output, controls);
     rowList.append(item);

@@ -28,12 +28,16 @@ import {
 } from "./core/tabs";
 import { toView } from "./core/view";
 import type { ViewNode } from "./core/view";
+import { decodeShare, encodeRowShare, encodeTabLink, usedDefinitions } from "./core/share";
+import { discardSharedTab, importSharedTab } from "./core/share-import";
+import type { ImportResult } from "./core/share-import";
 import { DEFAULT_GAME } from "./core/workspace";
 import type { Tab, Workspace } from "./core/workspace";
 import { registry } from "./data/index";
 import { createEditor } from "./ui/editor";
 import { renderView } from "./ui/render";
 import { renderSavedList } from "./ui/saved-list";
+import { renderShareBanner } from "./ui/share-banner";
 import { renderTabs } from "./ui/tabs-view";
 import type { TabsHandlers, TabsView } from "./ui/tabs-view";
 
@@ -53,6 +57,8 @@ const workspaceHost = document.querySelector<HTMLElement>("#workspace")!;
 const status = document.querySelector<HTMLElement>("#status")!;
 const savedSection = document.querySelector<HTMLElement>("#saved")!;
 const notices = document.querySelector<HTMLElement>("#notices")!;
+const shareBanner = document.querySelector<HTMLElement>("#share-banner")!;
+const shareMessage = document.querySelector<HTMLElement>("#share-message")!;
 
 for (const game of registry.games) {
   const option = document.createElement("option");
@@ -128,7 +134,7 @@ function renderNotices() {
 }
 
 const autosave = createAutosave(
-  () => saveWorkspace(storage, workspace),
+  () => saveWorkspace(storage, persistable()),
   (result) => {
     saveFailure = result.ok ? undefined : result.error;
     renderNotices();
@@ -212,6 +218,145 @@ function renderSaved() {
   );
 }
 
+// ---- sharing ---------------------------------------------------------------------
+/** A tab opened from a link: shown and editable, but not part of the saved data until the user saves it. */
+let pending: (ImportResult & { gameId: string }) | undefined;
+
+/** What gets written to storage: everything except an unsaved shared tab. */
+function persistable(): Workspace {
+  return pending ? discardSharedTab(workspace, pending.gameId, pending) : workspace;
+}
+
+const compressionAvailable =
+  typeof CompressionStream !== "undefined" && typeof DecompressionStream !== "undefined";
+const LONG_LINK = 2000;
+const baseUrl = () => location.href.split("#")[0]!;
+const clearHash = () => history.replaceState(null, "", location.pathname + location.search);
+
+function say(message: string, field?: HTMLInputElement) {
+  const line = document.createElement("p");
+  line.textContent = message;
+  shareMessage.replaceChildren(...(field ? [line, field] : [line]));
+  field?.focus();
+  field?.select();
+}
+
+async function deliver(hash: string, length: number) {
+  const url = baseUrl() + hash;
+  const warning = length > LONG_LINK ? " It is long, so some apps may cut it off." : "";
+  try {
+    await navigator.clipboard.writeText(url);
+    say("Link copied." + warning);
+  } catch {
+    // No clipboard access: show the link so it can be copied by hand.
+    const field = document.createElement("input");
+    field.readOnly = true;
+    field.value = url;
+    field.setAttribute("aria-label", "Share link");
+    say("Could not copy automatically; copy the link below." + warning, field);
+  }
+}
+
+const unsupported = "Sharing this needs a newer browser; a plain notation can still be shared from its row.";
+
+async function shareRow(index: number) {
+  const row = activeTab().rows[index];
+  if (!row) return;
+  const definitions = usedDefinitions([row], gameId(), registry, workspace.customLayers);
+  const plain = row.customizations.length === 0 && definitions.length === 0;
+  if (!plain && !compressionAvailable) return say(unsupported);
+  const { hash, length } = await encodeRowShare(gameId(), row, definitions);
+  await deliver(hash, length);
+}
+
+async function shareTab() {
+  if (!compressionAvailable) return say(unsupported);
+  const tab = activeTab();
+  const definitions = usedDefinitions(tab.rows, gameId(), registry, workspace.customLayers);
+  const { hash, length } = await encodeTabLink({
+    gameId: gameId(),
+    tab: { name: tab.name, rows: tab.rows },
+    definitions,
+  });
+  await deliver(hash, length);
+}
+
+function begin(id: string, tab: { name: string; rows: Row[] }, definitions: ImportResult["skipped"]) {
+  const imported = importSharedTab(workspace, id, tab, definitions);
+  workspace = imported.workspace;
+  pending = { ...imported, gameId: id };
+  autosave.notify();
+  renderAll();
+}
+
+async function openShare(hash: string) {
+  const games = registry.games.map((game) => ({ id: game.id, name: game.name }));
+  const result = await decodeShare(hash, games);
+  if (result.kind === "none") return;
+  clearHash();
+
+  if (result.kind === "error") {
+    say(`This link could not be opened: ${result.error.message}`);
+    return;
+  }
+
+  // Opening another link replaces an earlier unsaved one.
+  if (pending) {
+    workspace = discardSharedTab(workspace, pending.gameId, pending);
+    pending = undefined;
+  }
+  gameSelect.value = result.gameId;
+
+  if (result.kind === "tab") {
+    begin(result.gameId, result.tab, result.definitions);
+    return;
+  }
+  if (result.warning) {
+    const fallback = games.find((game) => game.id === DEFAULT_GAME)?.name ?? DEFAULT_GAME;
+    say(`The game "${result.warning.name}" is not available here, so this was opened in ${fallback}.`);
+  }
+  if (result.notation === "") {
+    apply(workspace);
+    renderAll();
+    return;
+  }
+  begin(result.gameId, { name: "Shared row", rows: [{ notation: result.notation, customizations: [] }] }, []);
+}
+
+function saveShared() {
+  pending = undefined;
+  apply(workspace);
+  renderAll();
+  say("Tab saved.");
+}
+
+function dismissShared() {
+  if (!pending) return;
+  workspace = discardSharedTab(workspace, pending.gameId, pending);
+  pending = undefined;
+  if (registry.games.some((game) => game.id === workspace.selectedGame)) gameSelect.value = workspace.selectedGame;
+  apply(workspace);
+  renderAll();
+}
+
+function renderShareBanner_() {
+  if (pending && !workspace.games[pending.gameId]?.tabs.some((tab) => tab.id === pending!.tabId)) {
+    pending = undefined; // the user deleted the shared tab themselves
+  }
+  const tab = pending && workspace.games[pending.gameId]?.tabs.find((t) => t.id === pending!.tabId);
+  shareBanner.replaceChildren(
+    ...(pending && tab
+      ? [
+          renderShareBanner(
+            document,
+            { tabName: tab.name, skipped: pending.skipped.length },
+            { onSave: saveShared, onDismiss: dismissShared },
+          ),
+        ]
+      : []),
+  );
+}
+
 const handlers: TabsHandlers = {
   onSelectTab: (tabId) => {
     apply(selectTab(workspace, gameId(), tabId));
@@ -270,6 +415,8 @@ const handlers: TabsHandlers = {
     apply(clearTab(workspace, gameId(), activeTab().id));
     renderAll();
   },
+  onShareRow: (index) => void shareRow(index),
+  onShareTab: () => void shareTab(),
   confirm: (message) => window.confirm(message),
 };
 
@@ -288,6 +435,7 @@ function renderAll() {
     handlers,
   );
   workspaceHost.replaceChildren(view.element);
+  renderShareBanner_();
   tab.rows.forEach((_, index) => renderRowOutput(index));
   updateStatus();
   renderSaved();
@@ -386,4 +534,6 @@ gameSelect.addEventListener("change", () => {
   apply(workspace);
   renderAll();
 });
+window.addEventListener("hashchange", () => void openShare(location.hash));
 renderAll();
+void openShare(location.hash);

@@ -33,7 +33,7 @@ export interface ResolvedRow {
 const isGroup = (node: Node): node is Group => "children" in node;
 
 // Document order, groups before their children.
-const flatten = (nodes: Node[]): Node[] =>
+export const flatten = (nodes: Node[]): Node[] =>
   nodes.flatMap((node) => (isGroup(node) ? [node, ...flatten(node.children)] : [node]));
 
 export function resolveRow(row: Row, definitions: TokenDefinition[]): ResolvedRow {
