@@ -2,6 +2,11 @@ import type { ViewNode } from "../core/view";
 
 export type AssetResolver = (assetId: string) => string | undefined;
 
+export interface RenderOptions {
+  /** Called with the innermost Token or group that was clicked, or activated with Enter or Space. */
+  onSelect?: (node: ViewNode) => void;
+}
+
 const textElement = (doc: Document, className: string, text: string) => {
   const element = doc.createElement("span");
   element.className = className;
@@ -70,7 +75,31 @@ function attachTooltip(owner: HTMLElement, node: ViewNode, doc: Document) {
   owner.append(tooltip);
 }
 
-function renderNode(node: ViewNode, doc: Document, assets: AssetResolver): HTMLElement {
+// Selection is ignored inside tooltips so their links keep working.
+function makeSelectable(element: HTMLElement, node: ViewNode, onSelect: (node: ViewNode) => void) {
+  const insideTooltip = (event: Event) =>
+    event.target instanceof Element && event.target.closest(".tooltip") !== null;
+
+  element.addEventListener("click", (event) => {
+    if (insideTooltip(event)) return;
+    event.stopPropagation();
+    onSelect(node);
+  });
+  element.addEventListener("keydown", (event) => {
+    if (event.target !== element) return;
+    if (event.key !== "Enter" && event.key !== " ") return;
+    event.preventDefault();
+    event.stopPropagation();
+    onSelect(node);
+  });
+}
+
+function renderNode(
+  node: ViewNode,
+  doc: Document,
+  assets: AssetResolver,
+  options: RenderOptions,
+): HTMLElement {
   if (node.kind === "group") {
     const group = doc.createElement("span");
     group.className = "group";
@@ -79,10 +108,11 @@ function renderNode(node: ViewNode, doc: Document, assets: AssetResolver): HTMLE
     const body = doc.createElement("span");
     body.className = "group-body";
     if (node.content !== undefined) body.append(textElement(doc, "group-content", node.content));
-    for (const child of node.children) body.append(renderNode(child, doc, assets));
+    for (const child of node.children) body.append(renderNode(child, doc, assets, options));
     group.append(body);
     mark(group, node);
     attachTooltip(group, node, doc);
+    if (options.onSelect) makeSelectable(group, node, options.onSelect);
     return group;
   }
 
@@ -92,12 +122,18 @@ function renderNode(node: ViewNode, doc: Document, assets: AssetResolver): HTMLE
   if (node.custom) element.append(textElement(doc, "custom-tag", "custom"));
   mark(element, node);
   attachTooltip(element, node, doc);
+  if (options.onSelect) makeSelectable(element, node, options.onSelect);
   return element;
 }
 
-export function renderView(nodes: ViewNode[], doc: Document, assets: AssetResolver): HTMLElement {
+export function renderView(
+  nodes: ViewNode[],
+  doc: Document,
+  assets: AssetResolver,
+  options: RenderOptions = {},
+): HTMLElement {
   const root = doc.createElement("div");
   root.className = "notation";
-  for (const node of nodes) root.append(renderNode(node, doc, assets));
+  for (const node of nodes) root.append(renderNode(node, doc, assets, options));
   return root;
 }

@@ -54,7 +54,15 @@ export function resolveRow(row: Row, definitions: TokenDefinition[]): ResolvedRo
     }
 
     const id = `${base.id}~${index}`;
-    derived.push({ ...base, ...customization.changes, id, aliases: [], basedOn: base.id });
+    derived.push({
+      ...base,
+      ...customization.changes,
+      id,
+      aliases: [],
+      basedOn: base.id,
+      // an edit on top of a saved definition is still only for this Row
+      ...(base.saved ? { saved: false } : {}),
+    });
     replacements.set(target, id);
   });
 
@@ -148,4 +156,8 @@ export function reassignToken(
   }
 
   return { ok: true, row: { ...row, notation, customizations } };
+}
+
+export function findCustomization(row: Row, anchor: Anchor): Customization | undefined {
+  return row.customizations.find((c) => sameAnchor(c.anchor, anchor));
 }

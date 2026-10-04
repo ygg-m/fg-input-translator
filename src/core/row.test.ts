@@ -1,6 +1,13 @@
 import { describe, expect, it } from "vitest";
 import { parse } from "./parse";
-import { anchorFor, customizeToken, reassignToken, resetToken, resolveRow } from "./row";
+import {
+  anchorFor,
+  customizeToken,
+  findCustomization,
+  reassignToken,
+  resetToken,
+  resolveRow,
+} from "./row";
 import type { Row } from "./row";
 import type { TokenDefinition } from "./types";
 
@@ -208,5 +215,32 @@ describe("resolveRow", () => {
         row: { notation: "2 3 6   K", customizations: [onQcf] },
       });
     });
+  });
+
+  it("treats an edit on top of a saved definition as this-row-only, not saved", () => {
+    const saved: TokenDefinition = {
+      id: "custom.g.P",
+      name: "Jab",
+      aliases: ["P"],
+      basedOn: "action.punch",
+      saved: true,
+    };
+
+    const resolved = resolveRow(
+      row("P", [{ anchor: { text: "P", occurrence: 0 }, basedOn: "custom.g.P", changes: { label: "x" } }]),
+      [saved],
+    );
+
+    const derived = resolved.definitions.find((d) => d.id === "custom.g.P~0")!;
+    expect(derived.basedOn).toBe("custom.g.P");
+    expect(derived.saved).toBeFalsy();
+  });
+
+  it("finds the customization at an anchor, if any", () => {
+    const mine = { anchor: { text: "P", occurrence: 1 }, basedOn: "action.punch", changes: { name: "A" } };
+    const r = row("P P", [mine]);
+
+    expect(findCustomization(r, { text: "P", occurrence: 1 })).toBe(mine);
+    expect(findCustomization(r, { text: "P", occurrence: 0 })).toBeUndefined();
   });
 });

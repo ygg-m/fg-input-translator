@@ -161,4 +161,56 @@ describe("renderView", () => {
     expect(saved!.querySelector(".custom-tag")!.textContent).toBe("custom");
     expect(saved!.querySelector(".tooltip-custom")!.textContent).toBe("Custom (saved)");
   });
+
+  describe("selection", () => {
+    const group = (children: ViewNode[]): ViewNode =>
+      ({
+        kind: "group",
+        text: "[P]",
+        start: 0,
+        end: 3,
+        definitionId: "mech.hold",
+        name: "Hold",
+        display: { mode: "label" },
+        label: "Hold",
+        accessibleName: "Hold",
+        unknown: false,
+        children,
+      }) as ViewNode;
+
+    it("reports a clicked Token or group, innermost only", () => {
+      const inner = token({ start: 1, end: 2 });
+      const outer = group([inner]);
+      const selected: ViewNode[] = [];
+      const root = renderView([outer], document, assets, { onSelect: (n) => selected.push(n) });
+
+      root.querySelector<HTMLElement>(".group .token")!.click();
+      root.querySelector<HTMLElement>(".group-label")!.click();
+
+      expect(selected).toEqual([inner, outer]);
+    });
+
+    it("selects with Enter and Space on a focused Token", () => {
+      const only = token();
+      const selected: ViewNode[] = [];
+      const root = renderView([only], document, assets, { onSelect: (n) => selected.push(n) });
+      const element = root.querySelector<HTMLElement>(".token")!;
+
+      for (const key of ["Enter", " ", "a"]) {
+        element.dispatchEvent(new KeyboardEvent("keydown", { key, bubbles: true, cancelable: true }));
+      }
+
+      expect(selected).toEqual([only, only]);
+    });
+
+    it("does not select when a tooltip link is clicked", () => {
+      const withLink = token({ more: { name: "Glossary", url: "https://example.com/" } });
+      const selected: ViewNode[] = [];
+      const root = renderView([withLink], document, assets, { onSelect: (n) => selected.push(n) });
+
+      root.querySelector<HTMLElement>(".tooltip a")!.click();
+
+      expect(selected).toEqual([]);
+    });
+  });
 });

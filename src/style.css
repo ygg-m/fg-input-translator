@@ -161,3 +161,96 @@ textarea {
   color: var(--accent);
   font-size: 0.75rem;
 }
+
+#status {
+  color: var(--muted);
+  min-height: 1.25rem;
+}
+
+h2 {
+  margin: 1rem 0 0;
+  font-size: 1rem;
+}
+
+.token,
+.group {
+  cursor: pointer;
+}
+
+.editor {
+  max-width: 28rem;
+  width: calc(100% - 2rem);
+  padding: 1rem;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--accent);
+  border-radius: 0.5rem;
+}
+
+.editor::backdrop {
+  background: rgb(0 0 0 / 0.6);
+}
+
+.editor form {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.editor label {
+  display: grid;
+  gap: 0.125rem;
+}
+
+.editor input,
+.editor select,
+.editor textarea {
+  width: 100%;
+  padding: 0.375rem;
+  background: var(--bg);
+  color: inherit;
+  border: 1px solid var(--border);
+  border-radius: 0.375rem;
+  font: inherit;
+}
+
+.editor-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.editor button,
+.saved-list button {
+  padding: 0.375rem 0.75rem;
+  background: var(--bg);
+  color: inherit;
+  border: 1px solid var(--border);
+  border-radius: 0.375rem;
+  font: inherit;
+  cursor: pointer;
+}
+
+.editor button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.editor-error {
+  margin: 0;
+  min-height: 1.25rem;
+  color: #fca5a5;
+}
+
+.saved-list ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.saved-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
