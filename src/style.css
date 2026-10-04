@@ -263,3 +263,77 @@ h2 {
   border-radius: 0.5rem;
   font-size: 0.875rem;
 }
+
+.workspace {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.tab,
+.workspace button,
+.workspace .tab-name {
+  padding: 0.375rem 0.75rem;
+  background: var(--surface);
+  color: inherit;
+  border: 1px solid var(--border);
+  border-radius: 0.375rem;
+  font: inherit;
+  cursor: pointer;
+}
+
+.tab[aria-selected="true"] {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.workspace button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.tab-actions,
+.row-actions,
+.workspace-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.rows {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.row {
+  display: grid;
+  gap: 0.375rem;
+  padding: 0.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+}
+
+.row input,
+.row textarea {
+  width: 100%;
+  padding: 0.375rem;
+  background: var(--bg);
+  color: inherit;
+  border: 1px solid var(--border);
+  border-radius: 0.375rem;
+  font: inherit;
+}
+
+.row-output {
+  min-height: 2.5rem;
+}
