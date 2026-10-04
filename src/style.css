@@ -1,0 +1,148 @@
+:root {
+  color-scheme: dark;
+  --bg: #171717;
+  --surface: #262626;
+  --border: #525252;
+  --accent: #22d3ee;
+  --text: #e5e5e5;
+  --muted: #a3a3a3;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, sans-serif;
+}
+
+main {
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 1rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.intro {
+  color: var(--muted);
+}
+
+label {
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+select,
+textarea {
+  width: 100%;
+  padding: 0.5rem;
+  background: var(--surface);
+  color: inherit;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  font: inherit;
+}
+
+#output {
+  margin-top: 1rem;
+}
+
+.notation {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+}
+
+.token,
+.group {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.token:focus-visible,
+.group:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 0.25rem;
+}
+
+.token-image {
+  height: 2rem;
+  width: auto;
+}
+
+.token-label,
+.token-text {
+  padding: 0 0.5rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 0.375rem;
+}
+
+.token.unknown .token-label {
+  border-style: dashed;
+  color: var(--muted);
+}
+
+.group {
+  flex-direction: column;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  background: var(--bg);
+}
+
+.group-label {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.group-body {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* Tooltips appear on hover and keyboard focus, with no script. */
+.tooltip {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 10;
+  min-width: 12rem;
+  max-width: 20rem;
+  margin-top: 0.25rem;
+  padding: 0.5rem;
+  background: var(--surface);
+  border: 1px solid var(--accent);
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.token:is(:hover, :focus-within) > .tooltip,
+.group:is(:hover, :focus-within):not(:has(.token:hover, .group:hover)) > .tooltip {
+  display: flex;
+}
+
+.tooltip-name {
+  font-weight: 600;
+}
+
+.tooltip a {
+  color: var(--accent);
+}
