@@ -1,0 +1,1331 @@
+{
+ "matching": [
+  {
+   "notation": "gatlings",
+   "ids": [
+    "base.gatlings"
+   ]
+  },
+  {
+   "notation": "starter",
+   "ids": [
+    "base.starter"
+   ]
+  },
+  {
+   "notation": "corner",
+   "ids": [
+    "base.corner"
+   ]
+  },
+  {
+   "notation": "▷",
+   "ids": [
+    "base.land"
+   ]
+  },
+  {
+   "notation": "land",
+   "ids": [
+    "base.land"
+   ]
+  },
+  {
+   "notation": "WS",
+   "ids": [
+    "base.wall-splat"
+   ]
+  },
+  {
+   "notation": "ws",
+   "ids": [
+    "base.wall-splat"
+   ]
+  },
+  {
+   "notation": "IAS",
+   "ids": [
+    "base.instant-air-special"
+   ]
+  },
+  {
+   "notation": "tk",
+   "ids": [
+    "base.tiger-knee"
+   ]
+  },
+  {
+   "notation": "dl.",
+   "ids": [
+    "base.delay"
+   ]
+  },
+  {
+   "notation": "dl",
+   "ids": [
+    "base.delay"
+   ]
+  },
+  {
+   "notation": "delayed",
+   "ids": [
+    "base.delay"
+   ]
+  },
+  {
+   "notation": "delay",
+   "ids": [
+    "base.delay"
+   ]
+  },
+  {
+   "notation": "slightdelay",
+   "ids": [
+    "base.delay"
+   ]
+  },
+  {
+   "notation": "whiff",
+   "ids": [
+    "base.whiff"
+   ]
+  },
+  {
+   "notation": "(whiff)",
+   "ids": [
+    "base.whiff"
+   ]
+  },
+  {
+   "notation": "/",
+   "ids": [
+    "base.or"
+   ]
+  },
+  {
+   "notation": "or",
+   "ids": [
+    "base.or"
+   ]
+  },
+  {
+   "notation": "66",
+   "ids": [
+    "base.dash"
+   ]
+  },
+  {
+   "notation": "dash",
+   "ids": [
+    "base.dash"
+   ]
+  },
+  {
+   "notation": "44",
+   "ids": [
+    "base.back-dash"
+   ]
+  },
+  {
+   "notation": "homingjump",
+   "ids": [
+    "base.homing-jump"
+   ]
+  },
+  {
+   "notation": "88",
+   "ids": [
+    "base.double-jump"
+   ]
+  },
+  {
+   "notation": "dj.",
+   "ids": [
+    "base.double-jump"
+   ]
+  },
+  {
+   "notation": "ground",
+   "ids": [
+    "base.ground"
+   ]
+  },
+  {
+   "notation": "airthrow",
+   "ids": [
+    "base.air-throw"
+   ]
+  },
+  {
+   "notation": "throw",
+   "ids": [
+    "base.throw"
+   ]
+  },
+  {
+   "notation": "cl.6c",
+   "ids": [
+    "base.throw"
+   ]
+  },
+  {
+   "notation": "cl.6d",
+   "ids": [
+    "base.throw"
+   ]
+  },
+  {
+   "notation": "cl.4c",
+   "ids": [
+    "base.throw"
+   ]
+  },
+  {
+   "notation": "cl.4d",
+   "ids": [
+    "base.throw"
+   ]
+  },
+  {
+   "notation": "sjc.",
+   "ids": [
+    "base.high-jump-cancel"
+   ]
+  },
+  {
+   "notation": "sjc",
+   "ids": [
+    "base.high-jump-cancel"
+   ]
+  },
+  {
+   "notation": "shjc.",
+   "ids": [
+    "base.short-jump-cancel"
+   ]
+  },
+  {
+   "notation": "shjc",
+   "ids": [
+    "base.short-jump-cancel"
+   ]
+  },
+  {
+   "notation": "djc.",
+   "ids": [
+    "base.double-jump-cancel"
+   ]
+  },
+  {
+   "notation": "djc",
+   "ids": [
+    "base.double-jump-cancel"
+   ]
+  },
+  {
+   "notation": "jc.",
+   "ids": [
+    "base.jump-cancel"
+   ]
+  },
+  {
+   "notation": "jc",
+   "ids": [
+    "base.jump-cancel"
+   ]
+  },
+  {
+   "notation": "cr.",
+   "ids": [
+    "base.crouch"
+   ]
+  },
+  {
+   "notation": "c.",
+   "ids": [
+    "base.close"
+   ]
+  },
+  {
+   "notation": "cl.",
+   "ids": [
+    "base.close"
+   ]
+  },
+  {
+   "notation": "st.",
+   "ids": [
+    "base.standing-far"
+   ]
+  },
+  {
+   "notation": "f.",
+   "ids": [
+    "base.far"
+   ]
+  },
+  {
+   "notation": "hj.",
+   "ids": [
+    "base.super-jump"
+   ]
+  },
+  {
+   "notation": "sj.",
+   "ids": [
+    "base.super-jump"
+   ]
+  },
+  {
+   "notation": "sj",
+   "ids": [
+    "base.super-jump"
+   ]
+  },
+  {
+   "notation": "j.",
+   "ids": [
+    "base.jump"
+   ]
+  },
+  {
+   "notation": "jump",
+   "ids": [
+    "base.jump"
+   ]
+  },
+  {
+   "notation": "adc",
+   "ids": [
+    "base.air-dash-cancel"
+   ]
+  },
+  {
+   "notation": "dc",
+   "ids": [
+    "base.dash-cancel"
+   ]
+  },
+  {
+   "notation": "ch",
+   "ids": [
+    "base.counter-hit"
+   ]
+  },
+  {
+   "notation": "aa",
+   "ids": [
+    "base.anti-air"
+   ]
+  },
+  {
+   "notation": "anti-air",
+   "ids": [
+    "base.anti-air"
+   ]
+  },
+  {
+   "notation": "antiair",
+   "ids": [
+    "base.anti-air"
+   ]
+  },
+  {
+   "notation": "IAD",
+   "ids": [
+    "base.instant-air-dash"
+   ]
+  },
+  {
+   "notation": "iad",
+   "ids": [
+    "base.instant-air-dash"
+   ]
+  },
+  {
+   "notation": "->",
+   "ids": [
+    "base.cancel"
+   ]
+  },
+  {
+   "notation": "~",
+   "ids": [
+    "base.cancel"
+   ]
+  },
+  {
+   "notation": ">>",
+   "ids": [
+    "base.cancel"
+   ]
+  },
+  {
+   "notation": ">",
+   "ids": [
+    "base.normal-followup"
+   ]
+  },
+  {
+   "notation": "＞",
+   "ids": [
+    "base.normal-followup"
+   ]
+  },
+  {
+   "notation": "→",
+   "ids": [
+    "base.normal-followup"
+   ]
+  },
+  {
+   "notation": ",",
+   "ids": [
+    "base.link"
+   ]
+  },
+  {
+   "notation": "1632143",
+   "ids": [
+    "base.pretzel"
+   ]
+  },
+  {
+   "notation": "3412361",
+   "ids": [
+    "base.reverse-pretzel"
+   ]
+  },
+  {
+   "notation": "41236987",
+   "ids": [
+    "base.360-full-circle-foward"
+   ]
+  },
+  {
+   "notation": "4268",
+   "ids": [
+    "base.360-full-circle-foward"
+   ]
+  },
+  {
+   "notation": "63214789",
+   "ids": [
+    "base.reverse-360-full-circle-back"
+   ]
+  },
+  {
+   "notation": "6248",
+   "ids": [
+    "base.reverse-360-full-circle-back"
+   ]
+  },
+  {
+   "notation": "41236",
+   "ids": [
+    "base.half-circle-foward"
+   ]
+  },
+  {
+   "notation": "426",
+   "ids": [
+    "base.half-circle-foward"
+   ]
+  },
+  {
+   "notation": "63214",
+   "ids": [
+    "base.half-circle-back"
+   ]
+  },
+  {
+   "notation": "624",
+   "ids": [
+    "base.half-circle-back"
+   ]
+  },
+  {
+   "notation": "236",
+   "ids": [
+    "base.quarter-circle-foward"
+   ]
+  },
+  {
+   "notation": "214",
+   "ids": [
+    "base.quarter-circle-back"
+   ]
+  },
+  {
+   "notation": "698",
+   "ids": [
+    "base.quarter-circle-up"
+   ]
+  },
+  {
+   "notation": "478",
+   "ids": [
+    "base.quarter-circle-up-back"
+   ]
+  },
+  {
+   "notation": "632",
+   "ids": [
+    "base.quarter-circle-down"
+   ]
+  },
+  {
+   "notation": "412",
+   "ids": [
+    "base.quarter-circle-down-back"
+   ]
+  },
+  {
+   "notation": "896",
+   "ids": [
+    "base.quarter-circle-up-foward"
+   ]
+  },
+  {
+   "notation": "874",
+   "ids": [
+    "base.quarter-circle-up-back-2"
+   ]
+  },
+  {
+   "notation": "623",
+   "ids": [
+    "base.dp-motion-dragon-punch"
+   ]
+  },
+  {
+   "notation": "421",
+   "ids": [
+    "base.reverse-dp-motion-reverse-dragon-punch"
+   ]
+  },
+  {
+   "notation": "1",
+   "ids": [
+    "base.down-back"
+   ]
+  },
+  {
+   "notation": "3",
+   "ids": [
+    "base.down-foward"
+   ]
+  },
+  {
+   "notation": "7",
+   "ids": [
+    "base.up-back"
+   ]
+  },
+  {
+   "notation": "9",
+   "ids": [
+    "base.up-foward"
+   ]
+  },
+  {
+   "notation": "uf",
+   "ids": [
+    "base.up-foward"
+   ]
+  },
+  {
+   "notation": "2",
+   "ids": [
+    "base.down"
+   ]
+  },
+  {
+   "notation": "d",
+   "ids": [
+    "tfh.magic"
+   ]
+  },
+  {
+   "notation": "4",
+   "ids": [
+    "base.back"
+   ]
+  },
+  {
+   "notation": "b",
+   "ids": [
+    "tfh.medium-attack"
+   ]
+  },
+  {
+   "notation": "5",
+   "ids": [
+    "base.stand"
+   ]
+  },
+  {
+   "notation": "6",
+   "ids": [
+    "base.foward"
+   ]
+  },
+  {
+   "notation": "f",
+   "ids": [
+    "base.foward"
+   ]
+  },
+  {
+   "notation": "8",
+   "ids": [
+    "base.up"
+   ]
+  },
+  {
+   "notation": "u",
+   "ids": [
+    "base.up"
+   ]
+  },
+  {
+   "notation": "a",
+   "ids": [
+    "tfh.light-attack"
+   ]
+  },
+  {
+   "notation": "c",
+   "ids": [
+    "tfh.heavy-attack"
+   ]
+  },
+  {
+   "notation": "x",
+   "ids": [
+    "tfh.any-attack"
+   ]
+  },
+  {
+   "notation": "xx",
+   "ids": [
+    "tfh.any-two-attack-buttons"
+   ]
+  },
+  {
+   "notation": "236a",
+   "ids": [
+    "base.quarter-circle-foward",
+    "tfh.light-attack"
+   ]
+  },
+  {
+   "notation": "236b",
+   "ids": [
+    "base.quarter-circle-foward",
+    "tfh.medium-attack"
+   ]
+  },
+  {
+   "notation": "236c",
+   "ids": [
+    "base.quarter-circle-foward",
+    "tfh.heavy-attack"
+   ]
+  },
+  {
+   "notation": "236d",
+   "ids": [
+    "base.quarter-circle-foward",
+    "tfh.magic"
+   ]
+  },
+  {
+   "notation": "214a",
+   "ids": [
+    "base.quarter-circle-back",
+    "tfh.light-attack"
+   ]
+  },
+  {
+   "notation": "214b",
+   "ids": [
+    "base.quarter-circle-back",
+    "tfh.medium-attack"
+   ]
+  },
+  {
+   "notation": "214c",
+   "ids": [
+    "base.quarter-circle-back",
+    "tfh.heavy-attack"
+   ]
+  },
+  {
+   "notation": "214d",
+   "ids": [
+    "base.quarter-circle-back",
+    "tfh.magic"
+   ]
+  },
+  {
+   "notation": "623a",
+   "ids": [
+    "base.dp-motion-dragon-punch",
+    "tfh.light-attack"
+   ]
+  },
+  {
+   "notation": "623b",
+   "ids": [
+    "base.dp-motion-dragon-punch",
+    "tfh.medium-attack"
+   ]
+  },
+  {
+   "notation": "623c",
+   "ids": [
+    "base.dp-motion-dragon-punch",
+    "tfh.heavy-attack"
+   ]
+  },
+  {
+   "notation": "623d",
+   "ids": [
+    "base.dp-motion-dragon-punch",
+    "tfh.magic"
+   ]
+  },
+  {
+   "notation": "41236a",
+   "ids": [
+    "base.half-circle-foward",
+    "tfh.light-attack"
+   ]
+  },
+  {
+   "notation": "41236b",
+   "ids": [
+    "base.half-circle-foward",
+    "tfh.medium-attack"
+   ]
+  },
+  {
+   "notation": "41236c",
+   "ids": [
+    "base.half-circle-foward",
+    "tfh.heavy-attack"
+   ]
+  },
+  {
+   "notation": "41236d",
+   "ids": [
+    "base.half-circle-foward",
+    "tfh.magic"
+   ]
+  },
+  {
+   "notation": "63214a",
+   "ids": [
+    "base.half-circle-back",
+    "tfh.light-attack"
+   ]
+  },
+  {
+   "notation": "63214b",
+   "ids": [
+    "base.half-circle-back",
+    "tfh.medium-attack"
+   ]
+  },
+  {
+   "notation": "63214c",
+   "ids": [
+    "base.half-circle-back",
+    "tfh.heavy-attack"
+   ]
+  },
+  {
+   "notation": "63214d",
+   "ids": [
+    "base.half-circle-back",
+    "tfh.magic"
+   ]
+  },
+  {
+   "notation": "2a",
+   "ids": [
+    "base.down",
+    "tfh.light-attack"
+   ]
+  },
+  {
+   "notation": "2b",
+   "ids": [
+    "base.down",
+    "tfh.medium-attack"
+   ]
+  },
+  {
+   "notation": "2c",
+   "ids": [
+    "base.down",
+    "tfh.heavy-attack"
+   ]
+  },
+  {
+   "notation": "2d",
+   "ids": [
+    "base.down",
+    "tfh.magic"
+   ]
+  },
+  {
+   "notation": "6a",
+   "ids": [
+    "base.foward",
+    "tfh.light-attack"
+   ]
+  },
+  {
+   "notation": "6b",
+   "ids": [
+    "base.foward",
+    "tfh.medium-attack"
+   ]
+  },
+  {
+   "notation": "6c",
+   "ids": [
+    "base.foward",
+    "tfh.heavy-attack"
+   ]
+  },
+  {
+   "notation": "6d",
+   "ids": [
+    "base.foward",
+    "tfh.magic"
+   ]
+  },
+  {
+   "notation": "4a",
+   "ids": [
+    "base.back",
+    "tfh.light-attack"
+   ]
+  },
+  {
+   "notation": "4b",
+   "ids": [
+    "base.back",
+    "tfh.medium-attack"
+   ]
+  },
+  {
+   "notation": "4c",
+   "ids": [
+    "base.back",
+    "tfh.heavy-attack"
+   ]
+  },
+  {
+   "notation": "4d",
+   "ids": [
+    "base.back",
+    "tfh.magic"
+   ]
+  },
+  {
+   "notation": "8a",
+   "ids": [
+    "base.up",
+    "tfh.light-attack"
+   ]
+  },
+  {
+   "notation": "8b",
+   "ids": [
+    "base.up",
+    "tfh.medium-attack"
+   ]
+  },
+  {
+   "notation": "8c",
+   "ids": [
+    "base.up",
+    "tfh.heavy-attack"
+   ]
+  },
+  {
+   "notation": "8d",
+   "ids": [
+    "base.up",
+    "tfh.magic"
+   ]
+  },
+  {
+   "notation": "5a",
+   "ids": [
+    "base.stand",
+    "tfh.light-attack"
+   ]
+  },
+  {
+   "notation": "5b",
+   "ids": [
+    "base.stand",
+    "tfh.medium-attack"
+   ]
+  },
+  {
+   "notation": "5c",
+   "ids": [
+    "base.stand",
+    "tfh.heavy-attack"
+   ]
+  },
+  {
+   "notation": "5d",
+   "ids": [
+    "base.stand",
+    "tfh.magic"
+   ]
+  },
+  {
+   "notation": "1a",
+   "ids": [
+    "base.down-back",
+    "tfh.light-attack"
+   ]
+  },
+  {
+   "notation": "1b",
+   "ids": [
+    "base.down-back",
+    "tfh.medium-attack"
+   ]
+  },
+  {
+   "notation": "1c",
+   "ids": [
+    "base.down-back",
+    "tfh.heavy-attack"
+   ]
+  },
+  {
+   "notation": "1d",
+   "ids": [
+    "base.down-back",
+    "tfh.magic"
+   ]
+  },
+  {
+   "notation": "3a",
+   "ids": [
+    "base.down-foward",
+    "tfh.light-attack"
+   ]
+  },
+  {
+   "notation": "3b",
+   "ids": [
+    "base.down-foward",
+    "tfh.medium-attack"
+   ]
+  },
+  {
+   "notation": "3c",
+   "ids": [
+    "base.down-foward",
+    "tfh.heavy-attack"
+   ]
+  },
+  {
+   "notation": "3d",
+   "ids": [
+    "base.down-foward",
+    "tfh.magic"
+   ]
+  },
+  {
+   "notation": "66a",
+   "ids": [
+    "base.dash",
+    "tfh.light-attack"
+   ]
+  },
+  {
+   "notation": "66b",
+   "ids": [
+    "base.dash",
+    "tfh.medium-attack"
+   ]
+  },
+  {
+   "notation": "66c",
+   "ids": [
+    "base.dash",
+    "tfh.heavy-attack"
+   ]
+  },
+  {
+   "notation": "66d",
+   "ids": [
+    "base.dash",
+    "tfh.magic"
+   ]
+  },
+  {
+   "notation": "j.a",
+   "ids": [
+    "base.jump",
+    "tfh.light-attack"
+   ]
+  },
+  {
+   "notation": "j.b",
+   "ids": [
+    "base.jump",
+    "tfh.medium-attack"
+   ]
+  },
+  {
+   "notation": "j.c",
+   "ids": [
+    "base.jump",
+    "tfh.heavy-attack"
+   ]
+  },
+  {
+   "notation": "j.d",
+   "ids": [
+    "base.jump",
+    "tfh.magic"
+   ]
+  },
+  {
+   "notation": "a > a",
+   "ids": [
+    "tfh.light-attack",
+    "base.normal-followup",
+    "tfh.light-attack"
+   ]
+  },
+  {
+   "notation": "a,a~a",
+   "ids": [
+    "tfh.light-attack",
+    "base.link",
+    "tfh.light-attack",
+    "base.cancel",
+    "tfh.light-attack"
+   ]
+  },
+  {
+   "notation": "a > b",
+   "ids": [
+    "tfh.light-attack",
+    "base.normal-followup",
+    "tfh.medium-attack"
+   ]
+  },
+  {
+   "notation": "a,b~a",
+   "ids": [
+    "tfh.light-attack",
+    "base.link",
+    "tfh.medium-attack",
+    "base.cancel",
+    "tfh.light-attack"
+   ]
+  },
+  {
+   "notation": "a > c",
+   "ids": [
+    "tfh.light-attack",
+    "base.normal-followup",
+    "tfh.heavy-attack"
+   ]
+  },
+  {
+   "notation": "a,c~a",
+   "ids": [
+    "tfh.light-attack",
+    "base.link",
+    "tfh.heavy-attack",
+    "base.cancel",
+    "tfh.light-attack"
+   ]
+  },
+  {
+   "notation": "5a > 2b > 236a",
+   "ids": [
+    "base.stand",
+    "tfh.light-attack",
+    "base.normal-followup",
+    "base.down",
+    "tfh.medium-attack",
+    "base.normal-followup",
+    "base.quarter-circle-foward",
+    "tfh.light-attack"
+   ]
+  },
+  {
+   "notation": "b > a",
+   "ids": [
+    "tfh.medium-attack",
+    "base.normal-followup",
+    "tfh.light-attack"
+   ]
+  },
+  {
+   "notation": "b,a~b",
+   "ids": [
+    "tfh.medium-attack",
+    "base.link",
+    "tfh.light-attack",
+    "base.cancel",
+    "tfh.medium-attack"
+   ]
+  },
+  {
+   "notation": "b > b",
+   "ids": [
+    "tfh.medium-attack",
+    "base.normal-followup",
+    "tfh.medium-attack"
+   ]
+  },
+  {
+   "notation": "b,b~b",
+   "ids": [
+    "tfh.medium-attack",
+    "base.link",
+    "tfh.medium-attack",
+    "base.cancel",
+    "tfh.medium-attack"
+   ]
+  },
+  {
+   "notation": "b > c",
+   "ids": [
+    "tfh.medium-attack",
+    "base.normal-followup",
+    "tfh.heavy-attack"
+   ]
+  },
+  {
+   "notation": "b,c~b",
+   "ids": [
+    "tfh.medium-attack",
+    "base.link",
+    "tfh.heavy-attack",
+    "base.cancel",
+    "tfh.medium-attack"
+   ]
+  },
+  {
+   "notation": "5b > 2b > 236b",
+   "ids": [
+    "base.stand",
+    "tfh.medium-attack",
+    "base.normal-followup",
+    "base.down",
+    "tfh.medium-attack",
+    "base.normal-followup",
+    "base.quarter-circle-foward",
+    "tfh.medium-attack"
+   ]
+  },
+  {
+   "notation": "c > a",
+   "ids": [
+    "tfh.heavy-attack",
+    "base.normal-followup",
+    "tfh.light-attack"
+   ]
+  },
+  {
+   "notation": "c,a~c",
+   "ids": [
+    "tfh.heavy-attack",
+    "base.link",
+    "tfh.light-attack",
+    "base.cancel",
+    "tfh.heavy-attack"
+   ]
+  },
+  {
+   "notation": "c > b",
+   "ids": [
+    "tfh.heavy-attack",
+    "base.normal-followup",
+    "tfh.medium-attack"
+   ]
+  },
+  {
+   "notation": "c,b~c",
+   "ids": [
+    "tfh.heavy-attack",
+    "base.link",
+    "tfh.medium-attack",
+    "base.cancel",
+    "tfh.heavy-attack"
+   ]
+  },
+  {
+   "notation": "c > c",
+   "ids": [
+    "tfh.heavy-attack",
+    "base.normal-followup",
+    "tfh.heavy-attack"
+   ]
+  },
+  {
+   "notation": "c,c~c",
+   "ids": [
+    "tfh.heavy-attack",
+    "base.link",
+    "tfh.heavy-attack",
+    "base.cancel",
+    "tfh.heavy-attack"
+   ]
+  },
+  {
+   "notation": "5c > 2b > 236c",
+   "ids": [
+    "base.stand",
+    "tfh.heavy-attack",
+    "base.normal-followup",
+    "base.down",
+    "tfh.medium-attack",
+    "base.normal-followup",
+    "base.quarter-circle-foward",
+    "tfh.heavy-attack"
+   ]
+  },
+  {
+   "notation": "2 3 6 P",
+   "ids": [
+    "base.quarter-circle-foward",
+    "unknown"
+   ]
+  },
+  {
+   "notation": "236P",
+   "ids": [
+    "base.quarter-circle-foward",
+    "unknown"
+   ]
+  }
+ ],
+ "differences": [
+  {
+   "notation": "ias",
+   "legacy": [
+    "unknown",
+    "tfh.light-attack",
+    "unknown"
+   ],
+   "current": [
+    "base.instant-air-special"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "hjc.",
+   "legacy": [
+    "unknown",
+    "base.jump-cancel"
+   ],
+   "current": [
+    "base.high-jump-cancel"
+   ],
+   "reason": "legacy-hjc-at-start"
+  },
+  {
+   "notation": "hjc",
+   "legacy": [
+    "unknown",
+    "base.jump-cancel"
+   ],
+   "current": [
+    "base.high-jump-cancel"
+   ],
+   "reason": "legacy-hjc-at-start"
+  },
+  {
+   "notation": "hcf",
+   "legacy": [
+    "tfh.heavy-attack"
+   ],
+   "current": [
+    "base.half-circle-foward"
+   ],
+   "reason": "legacy-unanchored-match"
+  },
+  {
+   "notation": "hcb",
+   "legacy": [
+    "tfh.medium-attack"
+   ],
+   "current": [
+    "base.half-circle-back"
+   ],
+   "reason": "legacy-unanchored-match"
+  },
+  {
+   "notation": "qcf",
+   "legacy": [
+    "tfh.heavy-attack"
+   ],
+   "current": [
+    "base.quarter-circle-foward"
+   ],
+   "reason": "legacy-unanchored-match"
+  },
+  {
+   "notation": "qcb",
+   "legacy": [
+    "tfh.medium-attack"
+   ],
+   "current": [
+    "base.quarter-circle-back"
+   ],
+   "reason": "legacy-unanchored-match"
+  },
+  {
+   "notation": "db",
+   "legacy": [
+    "tfh.magic",
+    "tfh.medium-attack"
+   ],
+   "current": [
+    "base.down-back"
+   ],
+   "reason": "legacy-unanchored-match"
+  },
+  {
+   "notation": "df",
+   "legacy": [
+    "tfh.magic",
+    "base.foward"
+   ],
+   "current": [
+    "base.down-foward"
+   ],
+   "reason": "legacy-unanchored-match"
+  },
+  {
+   "notation": "ub",
+   "legacy": [
+    "tfh.medium-attack"
+   ],
+   "current": [
+    "base.up-back"
+   ],
+   "reason": "legacy-unanchored-match"
+  }
+ ]
+}

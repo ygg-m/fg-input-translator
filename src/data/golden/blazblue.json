@@ -1,0 +1,2036 @@
+{
+ "matching": [
+  {
+   "notation": "gatlings",
+   "ids": [
+    "base.gatlings"
+   ]
+  },
+  {
+   "notation": "starter",
+   "ids": [
+    "base.starter"
+   ]
+  },
+  {
+   "notation": "corner",
+   "ids": [
+    "base.corner"
+   ]
+  },
+  {
+   "notation": "▷",
+   "ids": [
+    "base.land"
+   ]
+  },
+  {
+   "notation": "land",
+   "ids": [
+    "base.land"
+   ]
+  },
+  {
+   "notation": "WS",
+   "ids": [
+    "base.wall-splat"
+   ]
+  },
+  {
+   "notation": "ws",
+   "ids": [
+    "base.wall-splat"
+   ]
+  },
+  {
+   "notation": "IAS",
+   "ids": [
+    "base.instant-air-special"
+   ]
+  },
+  {
+   "notation": "ias",
+   "ids": [
+    "base.instant-air-special"
+   ]
+  },
+  {
+   "notation": "tk",
+   "ids": [
+    "base.tiger-knee"
+   ]
+  },
+  {
+   "notation": "dl.",
+   "ids": [
+    "base.delay"
+   ]
+  },
+  {
+   "notation": "dl",
+   "ids": [
+    "base.delay"
+   ]
+  },
+  {
+   "notation": "delayed",
+   "ids": [
+    "base.delay"
+   ]
+  },
+  {
+   "notation": "delay",
+   "ids": [
+    "base.delay"
+   ]
+  },
+  {
+   "notation": "slightdelay",
+   "ids": [
+    "base.delay"
+   ]
+  },
+  {
+   "notation": "whiff",
+   "ids": [
+    "base.whiff"
+   ]
+  },
+  {
+   "notation": "(whiff)",
+   "ids": [
+    "base.whiff"
+   ]
+  },
+  {
+   "notation": "/",
+   "ids": [
+    "base.or"
+   ]
+  },
+  {
+   "notation": "or",
+   "ids": [
+    "base.or"
+   ]
+  },
+  {
+   "notation": "66",
+   "ids": [
+    "base.dash"
+   ]
+  },
+  {
+   "notation": "dash",
+   "ids": [
+    "base.dash"
+   ]
+  },
+  {
+   "notation": "44",
+   "ids": [
+    "base.back-dash"
+   ]
+  },
+  {
+   "notation": "homingjump",
+   "ids": [
+    "base.homing-jump"
+   ]
+  },
+  {
+   "notation": "88",
+   "ids": [
+    "base.double-jump"
+   ]
+  },
+  {
+   "notation": "dj.",
+   "ids": [
+    "base.double-jump"
+   ]
+  },
+  {
+   "notation": "ground",
+   "ids": [
+    "base.ground"
+   ]
+  },
+  {
+   "notation": "airthrow",
+   "ids": [
+    "base.air-throw"
+   ]
+  },
+  {
+   "notation": "throw",
+   "ids": [
+    "base.throw"
+   ]
+  },
+  {
+   "notation": "cl.6c",
+   "ids": [
+    "base.throw"
+   ]
+  },
+  {
+   "notation": "cl.6d",
+   "ids": [
+    "base.throw"
+   ]
+  },
+  {
+   "notation": "cl.4c",
+   "ids": [
+    "base.throw"
+   ]
+  },
+  {
+   "notation": "cl.4d",
+   "ids": [
+    "base.throw"
+   ]
+  },
+  {
+   "notation": "sjc.",
+   "ids": [
+    "base.high-jump-cancel"
+   ]
+  },
+  {
+   "notation": "sjc",
+   "ids": [
+    "base.high-jump-cancel"
+   ]
+  },
+  {
+   "notation": "shjc.",
+   "ids": [
+    "base.short-jump-cancel"
+   ]
+  },
+  {
+   "notation": "shjc",
+   "ids": [
+    "base.short-jump-cancel"
+   ]
+  },
+  {
+   "notation": "djc.",
+   "ids": [
+    "base.double-jump-cancel"
+   ]
+  },
+  {
+   "notation": "djc",
+   "ids": [
+    "base.double-jump-cancel"
+   ]
+  },
+  {
+   "notation": "jc.",
+   "ids": [
+    "base.jump-cancel"
+   ]
+  },
+  {
+   "notation": "jc",
+   "ids": [
+    "base.jump-cancel"
+   ]
+  },
+  {
+   "notation": "cr.",
+   "ids": [
+    "base.crouch"
+   ]
+  },
+  {
+   "notation": "c.",
+   "ids": [
+    "base.close"
+   ]
+  },
+  {
+   "notation": "cl.",
+   "ids": [
+    "base.close"
+   ]
+  },
+  {
+   "notation": "st.",
+   "ids": [
+    "base.standing-far"
+   ]
+  },
+  {
+   "notation": "f.",
+   "ids": [
+    "base.far"
+   ]
+  },
+  {
+   "notation": "hj.",
+   "ids": [
+    "base.super-jump"
+   ]
+  },
+  {
+   "notation": "sj.",
+   "ids": [
+    "base.super-jump"
+   ]
+  },
+  {
+   "notation": "sj",
+   "ids": [
+    "base.super-jump"
+   ]
+  },
+  {
+   "notation": "j.",
+   "ids": [
+    "base.jump"
+   ]
+  },
+  {
+   "notation": "jump",
+   "ids": [
+    "base.jump"
+   ]
+  },
+  {
+   "notation": "adc",
+   "ids": [
+    "base.air-dash-cancel"
+   ]
+  },
+  {
+   "notation": "dc",
+   "ids": [
+    "base.dash-cancel"
+   ]
+  },
+  {
+   "notation": "ch",
+   "ids": [
+    "base.counter-hit"
+   ]
+  },
+  {
+   "notation": "aa",
+   "ids": [
+    "base.anti-air"
+   ]
+  },
+  {
+   "notation": "anti-air",
+   "ids": [
+    "base.anti-air"
+   ]
+  },
+  {
+   "notation": "antiair",
+   "ids": [
+    "base.anti-air"
+   ]
+  },
+  {
+   "notation": "IAD",
+   "ids": [
+    "base.instant-air-dash"
+   ]
+  },
+  {
+   "notation": "iad",
+   "ids": [
+    "base.instant-air-dash"
+   ]
+  },
+  {
+   "notation": "->",
+   "ids": [
+    "base.cancel"
+   ]
+  },
+  {
+   "notation": "~",
+   "ids": [
+    "base.cancel"
+   ]
+  },
+  {
+   "notation": ">>",
+   "ids": [
+    "base.cancel"
+   ]
+  },
+  {
+   "notation": ">",
+   "ids": [
+    "base.normal-followup"
+   ]
+  },
+  {
+   "notation": "＞",
+   "ids": [
+    "base.normal-followup"
+   ]
+  },
+  {
+   "notation": "→",
+   "ids": [
+    "base.normal-followup"
+   ]
+  },
+  {
+   "notation": ",",
+   "ids": [
+    "base.link"
+   ]
+  },
+  {
+   "notation": "1632143",
+   "ids": [
+    "base.pretzel"
+   ]
+  },
+  {
+   "notation": "3412361",
+   "ids": [
+    "base.reverse-pretzel"
+   ]
+  },
+  {
+   "notation": "41236987",
+   "ids": [
+    "base.360-full-circle-foward"
+   ]
+  },
+  {
+   "notation": "4268",
+   "ids": [
+    "base.360-full-circle-foward"
+   ]
+  },
+  {
+   "notation": "63214789",
+   "ids": [
+    "base.reverse-360-full-circle-back"
+   ]
+  },
+  {
+   "notation": "6248",
+   "ids": [
+    "base.reverse-360-full-circle-back"
+   ]
+  },
+  {
+   "notation": "41236",
+   "ids": [
+    "base.half-circle-foward"
+   ]
+  },
+  {
+   "notation": "426",
+   "ids": [
+    "base.half-circle-foward"
+   ]
+  },
+  {
+   "notation": "hcf",
+   "ids": [
+    "base.half-circle-foward"
+   ]
+  },
+  {
+   "notation": "63214",
+   "ids": [
+    "base.half-circle-back"
+   ]
+  },
+  {
+   "notation": "624",
+   "ids": [
+    "base.half-circle-back"
+   ]
+  },
+  {
+   "notation": "hcb",
+   "ids": [
+    "base.half-circle-back"
+   ]
+  },
+  {
+   "notation": "236",
+   "ids": [
+    "base.quarter-circle-foward"
+   ]
+  },
+  {
+   "notation": "qcf",
+   "ids": [
+    "base.quarter-circle-foward"
+   ]
+  },
+  {
+   "notation": "214",
+   "ids": [
+    "base.quarter-circle-back"
+   ]
+  },
+  {
+   "notation": "qcb",
+   "ids": [
+    "base.quarter-circle-back"
+   ]
+  },
+  {
+   "notation": "698",
+   "ids": [
+    "base.quarter-circle-up"
+   ]
+  },
+  {
+   "notation": "478",
+   "ids": [
+    "base.quarter-circle-up-back"
+   ]
+  },
+  {
+   "notation": "632",
+   "ids": [
+    "base.quarter-circle-down"
+   ]
+  },
+  {
+   "notation": "412",
+   "ids": [
+    "base.quarter-circle-down-back"
+   ]
+  },
+  {
+   "notation": "896",
+   "ids": [
+    "base.quarter-circle-up-foward"
+   ]
+  },
+  {
+   "notation": "874",
+   "ids": [
+    "base.quarter-circle-up-back-2"
+   ]
+  },
+  {
+   "notation": "623",
+   "ids": [
+    "base.dp-motion-dragon-punch"
+   ]
+  },
+  {
+   "notation": "421",
+   "ids": [
+    "base.reverse-dp-motion-reverse-dragon-punch"
+   ]
+  },
+  {
+   "notation": "1",
+   "ids": [
+    "base.down-back"
+   ]
+  },
+  {
+   "notation": "3",
+   "ids": [
+    "base.down-foward"
+   ]
+  },
+  {
+   "notation": "7",
+   "ids": [
+    "base.up-back"
+   ]
+  },
+  {
+   "notation": "ub",
+   "ids": [
+    "base.up-back"
+   ]
+  },
+  {
+   "notation": "9",
+   "ids": [
+    "base.up-foward"
+   ]
+  },
+  {
+   "notation": "uf",
+   "ids": [
+    "base.up-foward"
+   ]
+  },
+  {
+   "notation": "2",
+   "ids": [
+    "base.down"
+   ]
+  },
+  {
+   "notation": "d",
+   "ids": [
+    "base.down"
+   ]
+  },
+  {
+   "notation": "4",
+   "ids": [
+    "base.back"
+   ]
+  },
+  {
+   "notation": "b",
+   "ids": [
+    "base.back"
+   ]
+  },
+  {
+   "notation": "5",
+   "ids": [
+    "base.stand"
+   ]
+  },
+  {
+   "notation": "6",
+   "ids": [
+    "base.foward"
+   ]
+  },
+  {
+   "notation": "f",
+   "ids": [
+    "base.foward"
+   ]
+  },
+  {
+   "notation": "8",
+   "ids": [
+    "base.up"
+   ]
+  },
+  {
+   "notation": "u",
+   "ids": [
+    "base.up"
+   ]
+  },
+  {
+   "notation": "RC",
+   "ids": [
+    "bb.rapid-cancel"
+   ]
+  },
+  {
+   "notation": "rc",
+   "ids": [
+    "bb.rapid-cancel"
+   ]
+  },
+  {
+   "notation": "ODc",
+   "ids": [
+    "bb.overdrive-cancel"
+   ]
+  },
+  {
+   "notation": "ODC",
+   "ids": [
+    "bb.overdrive-cancel"
+   ]
+  },
+  {
+   "notation": "cOD",
+   "ids": [
+    "bb.overdrive-cancel"
+   ]
+  },
+  {
+   "notation": "OD",
+   "ids": [
+    "bb.overdrive"
+   ]
+  },
+  {
+   "notation": "EA",
+   "ids": [
+    "bb.exceed-accel"
+   ]
+  },
+  {
+   "notation": "!",
+   "ids": [
+    "bb.weak-tipper"
+   ]
+  },
+  {
+   "notation": "H0",
+   "ids": [
+    "bb.heat-up-lv0"
+   ]
+  },
+  {
+   "notation": "h0",
+   "ids": [
+    "bb.heat-up-lv0"
+   ]
+  },
+  {
+   "notation": "H1",
+   "ids": [
+    "bb.heat-up-lv1"
+   ]
+  },
+  {
+   "notation": "H2",
+   "ids": [
+    "bb.heat-up-lv2"
+   ]
+  },
+  {
+   "notation": "bf",
+   "ids": [
+    "bb.backfire"
+   ]
+  },
+  {
+   "notation": "m",
+   "ids": [
+    "bb.mantenbou"
+   ]
+  },
+  {
+   "notation": "M",
+   "ids": [
+    "bb.mantenbou"
+   ]
+  },
+  {
+   "notation": "En",
+   "ids": [
+    "bb.enhanced"
+   ]
+  },
+  {
+   "notation": "EN",
+   "ids": [
+    "bb.enhanced"
+   ]
+  },
+  {
+   "notation": "e",
+   "ids": [
+    "bb.empty-handed"
+   ]
+  },
+  {
+   "notation": "E",
+   "ids": [
+    "bb.empty-handed"
+   ]
+  },
+  {
+   "notation": "Staff1",
+   "ids": [
+    "bb.staff-1"
+   ]
+  },
+  {
+   "notation": "Staff2",
+   "ids": [
+    "bb.staff-2"
+   ]
+  },
+  {
+   "notation": "DP",
+   "ids": [
+    "bb.tsubame-gaeshi"
+   ]
+  },
+  {
+   "notation": "dp",
+   "ids": [
+    "bb.tsubame-gaeshi"
+   ]
+  },
+  {
+   "notation": "ItsuuA",
+   "ids": [
+    "bb.itsuu-a"
+   ]
+  },
+  {
+   "notation": "ItsuuB",
+   "ids": [
+    "bb.itsuu-b"
+   ]
+  },
+  {
+   "notation": "ItsuuC",
+   "ids": [
+    "bb.itsuu-c"
+   ]
+  },
+  {
+   "notation": "ItsuuD",
+   "ids": [
+    "bb.itsuu-d"
+   ]
+  },
+  {
+   "notation": "Ikkitsuukan",
+   "ids": [
+    "bb.ikkitsuukan"
+   ]
+  },
+  {
+   "notation": "x",
+   "ids": [
+    "bb.whiff"
+   ]
+  },
+  {
+   "notation": "X",
+   "ids": [
+    "bb.whiff"
+   ]
+  },
+  {
+   "notation": "236BBB",
+   "ids": [
+    "bb.banishing-fang-bash"
+   ]
+  },
+  {
+   "notation": "236BBC",
+   "ids": [
+    "bb.banishing-fang-raid"
+   ]
+  },
+  {
+   "notation": "d.",
+   "ids": [
+    "bb.drive-attack"
+   ]
+  },
+  {
+   "notation": "A",
+   "ids": [
+    "bb.a"
+   ]
+  },
+  {
+   "notation": "B",
+   "ids": [
+    "bb.b"
+   ]
+  },
+  {
+   "notation": "C",
+   "ids": [
+    "bb.c"
+   ]
+  },
+  {
+   "notation": "D",
+   "ids": [
+    "bb.d"
+   ]
+  },
+  {
+   "notation": "236A",
+   "ids": [
+    "base.quarter-circle-foward",
+    "bb.a"
+   ]
+  },
+  {
+   "notation": "236B",
+   "ids": [
+    "base.quarter-circle-foward",
+    "bb.b"
+   ]
+  },
+  {
+   "notation": "236C",
+   "ids": [
+    "base.quarter-circle-foward",
+    "bb.c"
+   ]
+  },
+  {
+   "notation": "236D",
+   "ids": [
+    "base.quarter-circle-foward",
+    "bb.d"
+   ]
+  },
+  {
+   "notation": "214A",
+   "ids": [
+    "base.quarter-circle-back",
+    "bb.a"
+   ]
+  },
+  {
+   "notation": "214B",
+   "ids": [
+    "base.quarter-circle-back",
+    "bb.b"
+   ]
+  },
+  {
+   "notation": "214C",
+   "ids": [
+    "base.quarter-circle-back",
+    "bb.c"
+   ]
+  },
+  {
+   "notation": "214D",
+   "ids": [
+    "base.quarter-circle-back",
+    "bb.d"
+   ]
+  },
+  {
+   "notation": "623A",
+   "ids": [
+    "base.dp-motion-dragon-punch",
+    "bb.a"
+   ]
+  },
+  {
+   "notation": "623B",
+   "ids": [
+    "base.dp-motion-dragon-punch",
+    "bb.b"
+   ]
+  },
+  {
+   "notation": "623C",
+   "ids": [
+    "base.dp-motion-dragon-punch",
+    "bb.c"
+   ]
+  },
+  {
+   "notation": "623D",
+   "ids": [
+    "base.dp-motion-dragon-punch",
+    "bb.d"
+   ]
+  },
+  {
+   "notation": "41236A",
+   "ids": [
+    "base.half-circle-foward",
+    "bb.a"
+   ]
+  },
+  {
+   "notation": "41236B",
+   "ids": [
+    "base.half-circle-foward",
+    "bb.b"
+   ]
+  },
+  {
+   "notation": "41236C",
+   "ids": [
+    "base.half-circle-foward",
+    "bb.c"
+   ]
+  },
+  {
+   "notation": "41236D",
+   "ids": [
+    "base.half-circle-foward",
+    "bb.d"
+   ]
+  },
+  {
+   "notation": "63214A",
+   "ids": [
+    "base.half-circle-back",
+    "bb.a"
+   ]
+  },
+  {
+   "notation": "63214B",
+   "ids": [
+    "base.half-circle-back",
+    "bb.b"
+   ]
+  },
+  {
+   "notation": "63214C",
+   "ids": [
+    "base.half-circle-back",
+    "bb.c"
+   ]
+  },
+  {
+   "notation": "63214D",
+   "ids": [
+    "base.half-circle-back",
+    "bb.d"
+   ]
+  },
+  {
+   "notation": "2A",
+   "ids": [
+    "base.down",
+    "bb.a"
+   ]
+  },
+  {
+   "notation": "2B",
+   "ids": [
+    "base.down",
+    "bb.b"
+   ]
+  },
+  {
+   "notation": "2C",
+   "ids": [
+    "base.down",
+    "bb.c"
+   ]
+  },
+  {
+   "notation": "2D",
+   "ids": [
+    "base.down",
+    "bb.d"
+   ]
+  },
+  {
+   "notation": "6A",
+   "ids": [
+    "base.foward",
+    "bb.a"
+   ]
+  },
+  {
+   "notation": "6B",
+   "ids": [
+    "base.foward",
+    "bb.b"
+   ]
+  },
+  {
+   "notation": "6C",
+   "ids": [
+    "base.foward",
+    "bb.c"
+   ]
+  },
+  {
+   "notation": "6D",
+   "ids": [
+    "base.foward",
+    "bb.d"
+   ]
+  },
+  {
+   "notation": "4A",
+   "ids": [
+    "base.back",
+    "bb.a"
+   ]
+  },
+  {
+   "notation": "4B",
+   "ids": [
+    "base.back",
+    "bb.b"
+   ]
+  },
+  {
+   "notation": "4C",
+   "ids": [
+    "base.back",
+    "bb.c"
+   ]
+  },
+  {
+   "notation": "4D",
+   "ids": [
+    "base.back",
+    "bb.d"
+   ]
+  },
+  {
+   "notation": "8A",
+   "ids": [
+    "base.up",
+    "bb.a"
+   ]
+  },
+  {
+   "notation": "8B",
+   "ids": [
+    "base.up",
+    "bb.b"
+   ]
+  },
+  {
+   "notation": "8C",
+   "ids": [
+    "base.up",
+    "bb.c"
+   ]
+  },
+  {
+   "notation": "8D",
+   "ids": [
+    "base.up",
+    "bb.d"
+   ]
+  },
+  {
+   "notation": "5A",
+   "ids": [
+    "base.stand",
+    "bb.a"
+   ]
+  },
+  {
+   "notation": "5B",
+   "ids": [
+    "base.stand",
+    "bb.b"
+   ]
+  },
+  {
+   "notation": "5C",
+   "ids": [
+    "base.stand",
+    "bb.c"
+   ]
+  },
+  {
+   "notation": "5D",
+   "ids": [
+    "base.stand",
+    "bb.d"
+   ]
+  },
+  {
+   "notation": "1A",
+   "ids": [
+    "base.down-back",
+    "bb.a"
+   ]
+  },
+  {
+   "notation": "1B",
+   "ids": [
+    "base.down-back",
+    "bb.b"
+   ]
+  },
+  {
+   "notation": "1C",
+   "ids": [
+    "base.down-back",
+    "bb.c"
+   ]
+  },
+  {
+   "notation": "1D",
+   "ids": [
+    "base.down-back",
+    "bb.d"
+   ]
+  },
+  {
+   "notation": "3A",
+   "ids": [
+    "base.down-foward",
+    "bb.a"
+   ]
+  },
+  {
+   "notation": "3B",
+   "ids": [
+    "base.down-foward",
+    "bb.b"
+   ]
+  },
+  {
+   "notation": "3C",
+   "ids": [
+    "base.down-foward",
+    "bb.c"
+   ]
+  },
+  {
+   "notation": "3D",
+   "ids": [
+    "base.down-foward",
+    "bb.d"
+   ]
+  },
+  {
+   "notation": "66A",
+   "ids": [
+    "base.dash",
+    "bb.a"
+   ]
+  },
+  {
+   "notation": "66B",
+   "ids": [
+    "base.dash",
+    "bb.b"
+   ]
+  },
+  {
+   "notation": "66C",
+   "ids": [
+    "base.dash",
+    "bb.c"
+   ]
+  },
+  {
+   "notation": "66D",
+   "ids": [
+    "base.dash",
+    "bb.d"
+   ]
+  },
+  {
+   "notation": "j.A",
+   "ids": [
+    "base.jump",
+    "bb.a"
+   ]
+  },
+  {
+   "notation": "j.B",
+   "ids": [
+    "base.jump",
+    "bb.b"
+   ]
+  },
+  {
+   "notation": "j.C",
+   "ids": [
+    "base.jump",
+    "bb.c"
+   ]
+  },
+  {
+   "notation": "j.D",
+   "ids": [
+    "base.jump",
+    "bb.d"
+   ]
+  },
+  {
+   "notation": "A > A",
+   "ids": [
+    "bb.a",
+    "base.normal-followup",
+    "bb.a"
+   ]
+  },
+  {
+   "notation": "A,A~A",
+   "ids": [
+    "bb.a",
+    "base.link",
+    "bb.a",
+    "base.cancel",
+    "bb.a"
+   ]
+  },
+  {
+   "notation": "A > B",
+   "ids": [
+    "bb.a",
+    "base.normal-followup",
+    "bb.b"
+   ]
+  },
+  {
+   "notation": "A,B~A",
+   "ids": [
+    "bb.a",
+    "base.link",
+    "bb.b",
+    "base.cancel",
+    "bb.a"
+   ]
+  },
+  {
+   "notation": "A > C",
+   "ids": [
+    "bb.a",
+    "base.normal-followup",
+    "bb.c"
+   ]
+  },
+  {
+   "notation": "A,C~A",
+   "ids": [
+    "bb.a",
+    "base.link",
+    "bb.c",
+    "base.cancel",
+    "bb.a"
+   ]
+  },
+  {
+   "notation": "5A > 2B > 236A",
+   "ids": [
+    "base.stand",
+    "bb.a",
+    "base.normal-followup",
+    "base.down",
+    "bb.b",
+    "base.normal-followup",
+    "base.quarter-circle-foward",
+    "bb.a"
+   ]
+  },
+  {
+   "notation": "B > A",
+   "ids": [
+    "bb.b",
+    "base.normal-followup",
+    "bb.a"
+   ]
+  },
+  {
+   "notation": "B,A~B",
+   "ids": [
+    "bb.b",
+    "base.link",
+    "bb.a",
+    "base.cancel",
+    "bb.b"
+   ]
+  },
+  {
+   "notation": "B > B",
+   "ids": [
+    "bb.b",
+    "base.normal-followup",
+    "bb.b"
+   ]
+  },
+  {
+   "notation": "B,B~B",
+   "ids": [
+    "bb.b",
+    "base.link",
+    "bb.b",
+    "base.cancel",
+    "bb.b"
+   ]
+  },
+  {
+   "notation": "B > C",
+   "ids": [
+    "bb.b",
+    "base.normal-followup",
+    "bb.c"
+   ]
+  },
+  {
+   "notation": "B,C~B",
+   "ids": [
+    "bb.b",
+    "base.link",
+    "bb.c",
+    "base.cancel",
+    "bb.b"
+   ]
+  },
+  {
+   "notation": "5B > 2B > 236B",
+   "ids": [
+    "base.stand",
+    "bb.b",
+    "base.normal-followup",
+    "base.down",
+    "bb.b",
+    "base.normal-followup",
+    "base.quarter-circle-foward",
+    "bb.b"
+   ]
+  },
+  {
+   "notation": "C > A",
+   "ids": [
+    "bb.c",
+    "base.normal-followup",
+    "bb.a"
+   ]
+  },
+  {
+   "notation": "C,A~C",
+   "ids": [
+    "bb.c",
+    "base.link",
+    "bb.a",
+    "base.cancel",
+    "bb.c"
+   ]
+  },
+  {
+   "notation": "C > B",
+   "ids": [
+    "bb.c",
+    "base.normal-followup",
+    "bb.b"
+   ]
+  },
+  {
+   "notation": "C,B~C",
+   "ids": [
+    "bb.c",
+    "base.link",
+    "bb.b",
+    "base.cancel",
+    "bb.c"
+   ]
+  },
+  {
+   "notation": "C > C",
+   "ids": [
+    "bb.c",
+    "base.normal-followup",
+    "bb.c"
+   ]
+  },
+  {
+   "notation": "C,C~C",
+   "ids": [
+    "bb.c",
+    "base.link",
+    "bb.c",
+    "base.cancel",
+    "bb.c"
+   ]
+  },
+  {
+   "notation": "5C > 2B > 236C",
+   "ids": [
+    "base.stand",
+    "bb.c",
+    "base.normal-followup",
+    "base.down",
+    "bb.b",
+    "base.normal-followup",
+    "base.quarter-circle-foward",
+    "bb.c"
+   ]
+  },
+  {
+   "notation": "2 3 6 P",
+   "ids": [
+    "base.quarter-circle-foward",
+    "unknown"
+   ]
+  },
+  {
+   "notation": "236P",
+   "ids": [
+    "base.quarter-circle-foward",
+    "unknown"
+   ]
+  }
+ ],
+ "differences": [
+  {
+   "notation": "hjc.",
+   "legacy": [
+    "unknown",
+    "base.jump-cancel"
+   ],
+   "current": [
+    "base.high-jump-cancel"
+   ],
+   "reason": "legacy-hjc-at-start"
+  },
+  {
+   "notation": "hjc",
+   "legacy": [
+    "unknown",
+    "base.jump-cancel"
+   ],
+   "current": [
+    "base.high-jump-cancel"
+   ],
+   "reason": "legacy-hjc-at-start"
+  },
+  {
+   "notation": "db",
+   "legacy": [
+    "bb.drive-attack"
+   ],
+   "current": [
+    "base.down-back"
+   ],
+   "reason": "legacy-unanchored-match"
+  },
+  {
+   "notation": "df",
+   "legacy": [
+    "bb.drive-attack"
+   ],
+   "current": [
+    "base.down-foward"
+   ],
+   "reason": "legacy-unanchored-match"
+  },
+  {
+   "notation": "odc",
+   "legacy": [
+    "unknown",
+    "base.dash-cancel"
+   ],
+   "current": [
+    "bb.overdrive-cancel"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "COD",
+   "legacy": [
+    "bb.c",
+    "bb.overdrive"
+   ],
+   "current": [
+    "bb.overdrive-cancel"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "cod",
+   "legacy": [
+    "unknown",
+    "base.down"
+   ],
+   "current": [
+    "bb.overdrive-cancel"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "OD Cancel",
+   "legacy": [
+    "bb.overdrive-cancel",
+    "unknown",
+    "bb.empty-handed",
+    "unknown"
+   ],
+   "current": [
+    "bb.overdrive-cancel"
+   ],
+   "reason": "whitespace-alias"
+  },
+  {
+   "notation": "OD CANCEL",
+   "legacy": [
+    "bb.overdrive-cancel",
+    "bb.a",
+    "unknown",
+    "bb.c",
+    "bb.empty-handed"
+   ],
+   "current": [
+    "bb.overdrive-cancel"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "od cancel",
+   "legacy": [
+    "unknown",
+    "base.dash-cancel",
+    "unknown",
+    "bb.empty-handed",
+    "unknown"
+   ],
+   "current": [
+    "bb.overdrive-cancel"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "od",
+   "legacy": [
+    "unknown",
+    "base.down"
+   ],
+   "current": [
+    "bb.overdrive"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "ea",
+   "legacy": [
+    "bb.empty-handed",
+    "unknown"
+   ],
+   "current": [
+    "bb.exceed-accel"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "h1",
+   "legacy": [
+    "unknown",
+    "base.down-back"
+   ],
+   "current": [
+    "bb.heat-up-lv1"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "h2",
+   "legacy": [
+    "unknown",
+    "base.down"
+   ],
+   "current": [
+    "bb.heat-up-lv2"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "BF",
+   "legacy": [
+    "bb.b",
+    "unknown"
+   ],
+   "current": [
+    "bb.backfire"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "en",
+   "legacy": [
+    "bb.empty-handed",
+    "unknown"
+   ],
+   "current": [
+    "bb.enhanced"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "STAFF1",
+   "legacy": [
+    "unknown",
+    "bb.a",
+    "unknown",
+    "base.down-back"
+   ],
+   "current": [
+    "bb.staff-1"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "staff1",
+   "legacy": [
+    "unknown",
+    "base.foward",
+    "base.foward",
+    "base.down-back"
+   ],
+   "current": [
+    "bb.staff-1"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "STAFF2",
+   "legacy": [
+    "unknown",
+    "bb.a",
+    "unknown",
+    "base.down"
+   ],
+   "current": [
+    "bb.staff-2"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "staff2",
+   "legacy": [
+    "unknown",
+    "base.foward",
+    "base.foward",
+    "base.down"
+   ],
+   "current": [
+    "bb.staff-2"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "Tsubame",
+   "legacy": [
+    "bb.mantenbou"
+   ],
+   "current": [
+    "bb.tsubame-gaeshi"
+   ],
+   "reason": "legacy-unanchored-match"
+  },
+  {
+   "notation": "TSUBAME",
+   "legacy": [
+    "unknown",
+    "bb.b",
+    "bb.a",
+    "bb.mantenbou"
+   ],
+   "current": [
+    "bb.tsubame-gaeshi"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "tsubame",
+   "legacy": [
+    "unknown",
+    "base.up-back",
+    "unknown",
+    "bb.mantenbou",
+    "bb.empty-handed"
+   ],
+   "current": [
+    "bb.tsubame-gaeshi"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "ITSUUA",
+   "legacy": [
+    "unknown",
+    "bb.a"
+   ],
+   "current": [
+    "bb.itsuu-a"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "itsuua",
+   "legacy": [
+    "unknown",
+    "base.up",
+    "base.up",
+    "unknown"
+   ],
+   "current": [
+    "bb.itsuu-a"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "ITSUUB",
+   "legacy": [
+    "unknown",
+    "bb.b"
+   ],
+   "current": [
+    "bb.itsuu-b"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "itsuub",
+   "legacy": [
+    "unknown",
+    "base.up",
+    "base.up-back"
+   ],
+   "current": [
+    "bb.itsuu-b"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "ITSUUC",
+   "legacy": [
+    "unknown",
+    "bb.c"
+   ],
+   "current": [
+    "bb.itsuu-c"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "itsuuc",
+   "legacy": [
+    "unknown",
+    "base.up",
+    "base.up",
+    "unknown"
+   ],
+   "current": [
+    "bb.itsuu-c"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "ITSUUD",
+   "legacy": [
+    "unknown",
+    "bb.d"
+   ],
+   "current": [
+    "bb.itsuu-d"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "itsuud",
+   "legacy": [
+    "unknown",
+    "base.up",
+    "base.up",
+    "base.down"
+   ],
+   "current": [
+    "bb.itsuu-d"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "IKKITSUUKAN",
+   "legacy": [
+    "unknown",
+    "bb.a",
+    "unknown"
+   ],
+   "current": [
+    "bb.ikkitsuukan"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "ikkitsuukan",
+   "legacy": [
+    "unknown",
+    "base.up",
+    "base.up",
+    "unknown"
+   ],
+   "current": [
+    "bb.ikkitsuukan"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "4Kote",
+   "legacy": [
+    "bb.empty-handed"
+   ],
+   "current": [
+    "bb.4-kote"
+   ],
+   "reason": "legacy-unanchored-match"
+  },
+  {
+   "notation": "4KOTE",
+   "legacy": [
+    "base.back",
+    "bb.empty-handed"
+   ],
+   "current": [
+    "bb.4-kote"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "4kote",
+   "legacy": [
+    "base.back",
+    "unknown",
+    "bb.empty-handed"
+   ],
+   "current": [
+    "bb.4-kote"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "6Kote",
+   "legacy": [
+    "bb.empty-handed"
+   ],
+   "current": [
+    "bb.6-kote"
+   ],
+   "reason": "legacy-unanchored-match"
+  },
+  {
+   "notation": "6KOTE",
+   "legacy": [
+    "base.foward",
+    "bb.empty-handed"
+   ],
+   "current": [
+    "bb.6-kote"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "6kote",
+   "legacy": [
+    "base.foward",
+    "unknown",
+    "bb.empty-handed"
+   ],
+   "current": [
+    "bb.6-kote"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "Kote Gaeshi",
+   "legacy": [
+    "unknown",
+    "bb.empty-handed",
+    "unknown",
+    "bb.empty-handed",
+    "unknown"
+   ],
+   "current": [
+    "bb.kote-gaeshi"
+   ],
+   "reason": "legacy-unanchored-match"
+  },
+  {
+   "notation": "KOTE GAESHI",
+   "legacy": [
+    "bb.empty-handed",
+    "bb.a",
+    "bb.empty-handed"
+   ],
+   "current": [
+    "bb.kote-gaeshi"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "kote gaeshi",
+   "legacy": [
+    "unknown",
+    "bb.empty-handed",
+    "unknown",
+    "bb.empty-handed",
+    "unknown"
+   ],
+   "current": [
+    "bb.kote-gaeshi"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "Daisharin(Overdrive)",
+   "legacy": [
+    "bb.empty-handed"
+   ],
+   "current": [
+    "bb.overdrive-2"
+   ],
+   "reason": "legacy-unanchored-match"
+  },
+  {
+   "notation": "DAISHARIN(OVERDRIVE)",
+   "legacy": [
+    "bb.d",
+    "bb.a",
+    "unknown",
+    "bb.a",
+    "bb.empty-handed",
+    "bb.d",
+    "bb.empty-handed"
+   ],
+   "current": [
+    "bb.overdrive-2"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "daisharin(overdrive)",
+   "legacy": [
+    "bb.drive-attack",
+    "unknown",
+    "bb.empty-handed",
+    "unknown",
+    "bb.drive-attack",
+    "unknown",
+    "bb.empty-handed",
+    "unknown"
+   ],
+   "current": [
+    "bb.overdrive-2"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "236bbb",
+   "legacy": [
+    "base.quarter-circle-foward",
+    "base.back",
+    "base.back",
+    "base.back"
+   ],
+   "current": [
+    "bb.banishing-fang-bash"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "236bbc",
+   "legacy": [
+    "base.quarter-circle-foward",
+    "base.back",
+    "base.back",
+    "unknown"
+   ],
+   "current": [
+    "bb.banishing-fang-raid"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "D.",
+   "legacy": [
+    "bb.d",
+    "unknown"
+   ],
+   "current": [
+    "bb.drive-attack"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  }
+ ]
+}
