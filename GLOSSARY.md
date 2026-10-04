@@ -28,6 +28,10 @@ _Avoid_: Edited token, modified token, override
 A Custom Token that the user has saved so it applies to every matching Notation in that Game, shadowing the Pure definition.
 _Avoid_: Saved override, user preset
 
+**Custom Layer**:
+The user's saved Custom Token Definitions for one Game, resolved on top of that Game without becoming a Game of their own.
+_Avoid_: Custom Game, user preset
+
 **Row**:
 One line holding a single Notation and the Tokens it produces.
 _Avoid_: Document, entry, line

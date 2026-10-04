@@ -64,9 +64,21 @@ export type ResolveResult =
   | { ok: true; definitions: TokenDefinition[] }
   | { ok: false; errors: GameError[] };
 
-export function resolveGame(gameId: string, registry: GameRegistry): ResolveResult {
+/** Saved Custom Token Definitions per Game id; each layer sits on top of its Game. */
+export type CustomLayers = Record<string, TokenDefinition[]>;
+
+export function resolveGame(
+  gameId: string,
+  registry: GameRegistry,
+  customLayers: CustomLayers = {},
+): ResolveResult {
   const layers: TokenDefinition[][] = [];
   const errors: GameError[] = [];
+  const custom = (customLayers[gameId] ?? []).map(normalizeDefinition);
+  if (custom.length > 0) {
+    layers.push(custom);
+    for (const error of validateLayer(custom)) errors.push({ ...error, gameId });
+  }
   const visited = new Set<string>();
   let id: string | undefined = gameId;
   while (id !== undefined) {

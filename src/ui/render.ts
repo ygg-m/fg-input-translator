@@ -52,6 +52,10 @@ function attachTooltip(owner: HTMLElement, node: ViewNode, doc: Document) {
   tooltip.id = `tooltip-${++tooltipCount}`;
   tooltip.setAttribute("role", "tooltip");
   tooltip.append(textElement(doc, "tooltip-name", node.name));
+  if (node.custom) {
+    const note = node.custom === "saved" ? "Custom (saved)" : "Custom (this row only)";
+    tooltip.append(textElement(doc, "tooltip-custom", note));
+  }
   if (node.description) tooltip.append(textElement(doc, "tooltip-description", node.description));
   if (node.more) {
     const link = doc.createElement("a");
@@ -85,6 +89,7 @@ function renderNode(node: ViewNode, doc: Document, assets: AssetResolver): HTMLE
   const element = doc.createElement("span");
   element.className = "token";
   element.append(renderDisplay(node, doc, assets));
+  if (node.custom) element.append(textElement(doc, "custom-tag", "custom"));
   mark(element, node);
   attachTooltip(element, node, doc);
   return element;

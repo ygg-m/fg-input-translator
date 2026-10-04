@@ -12,6 +12,8 @@ interface ViewBase {
   more?: MoreLink;
   accessibleName: string;
   unknown: boolean;
+  /** Set when the user changed this Token: for this Row only, or saved for the Game. */
+  custom?: "instance" | "saved";
 }
 
 export interface ViewToken extends ViewBase {
@@ -73,6 +75,7 @@ export function toView(nodes: Node[], definitions: TokenDefinition[]): ViewNode[
     if (definition.description !== undefined) extras.description = definition.description;
     const more = safeLink(definition.more);
     if (more) extras.more = more;
+    if (definition.basedOn !== undefined) extras.custom = definition.saved ? "saved" : "instance";
 
     if (isGroup(node)) {
       const label = fillTemplate(definition.label ?? definition.name, node.params);

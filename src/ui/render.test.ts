@@ -146,4 +146,19 @@ describe("renderView", () => {
     expect(unknown!.classList.contains("unknown")).toBe(true);
     expect(unknown!.getAttribute("aria-label")).toBe('Unknown: "xyz"');
   });
+
+  it("tags custom Tokens and says in the tooltip whether the change is saved", () => {
+    const root = renderView(
+      [token(), token({ custom: "instance" }), token({ custom: "saved" })],
+      document,
+      assets,
+    );
+
+    const [pure, instance, saved] = [...root.querySelectorAll(".token")];
+    expect(pure!.querySelector(".custom-tag")).toBeNull();
+    expect(instance!.querySelector(".custom-tag")!.textContent).toBe("custom");
+    expect(instance!.querySelector(".tooltip-custom")!.textContent).toBe("Custom (this row only)");
+    expect(saved!.querySelector(".custom-tag")!.textContent).toBe("custom");
+    expect(saved!.querySelector(".tooltip-custom")!.textContent).toBe("Custom (saved)");
+  });
 });

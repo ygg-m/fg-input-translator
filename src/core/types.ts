@@ -45,6 +45,10 @@ export interface TokenDefinition {
   label?: string;
   description?: string;
   more?: MoreLink;
+  /** For a custom definition: the Pure definition it was derived from. */
+  basedOn?: string;
+  /** For a custom definition: saved in the Custom Layer, not only for one Row. */
+  saved?: boolean;
   /** Match the aliases in any casing; the default is case-sensitive. */
   ignoreCase?: boolean;
   group?: GroupSyntax;

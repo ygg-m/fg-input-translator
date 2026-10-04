@@ -199,4 +199,31 @@ describe("resolveGame", () => {
 
     expect(resolveGame("g1", registry)).toEqual({ ok: true, definitions: [lower, baseX] });
   });
+
+  it("resolves a Custom Layer on top of its Game without touching other Games", () => {
+    const jab: TokenDefinition = {
+      id: "custom.g1.P",
+      name: "Jab",
+      aliases: ["P"],
+      basedOn: "base.punch",
+      saved: true,
+    };
+    const registry: GameRegistry = {
+      base: [basePunch],
+      games: [
+        { id: "g1", name: "Game One", definitions: [] },
+        { id: "g2", name: "Game Two", definitions: [] },
+      ],
+    };
+    const customLayers = { g1: [jab] };
+
+    expect(resolveGame("g1", registry, customLayers)).toEqual({
+      ok: true,
+      definitions: [jab, { ...basePunch, aliases: ["punch"] }],
+    });
+    expect(resolveGame("g2", registry, customLayers)).toEqual({
+      ok: true,
+      definitions: [basePunch],
+    });
+  });
 });

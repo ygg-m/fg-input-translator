@@ -159,4 +159,28 @@ describe("toView", () => {
       children: [{ kind: "group", label: "Repeat x2", children: [{ kind: "token", name: "Forward" }] }],
     });
   });
+
+  it("marks custom definitions as instance-only or saved, and leaves pure ones unmarked", () => {
+    const pure: TokenDefinition = { id: "a.pure", name: "Pure", aliases: ["a"] };
+    const instance: TokenDefinition = { id: "a.pure~0", name: "Mine", aliases: [], basedOn: "a.pure" };
+    const saved: TokenDefinition = {
+      id: "custom.g.b",
+      name: "Saved",
+      aliases: ["b"],
+      basedOn: "a.pure",
+      saved: true,
+    };
+    const definitions = [pure, instance, saved];
+    const nodes = [
+      { text: "a", start: 0, end: 1, definitionId: "a.pure" },
+      { text: "a", start: 1, end: 2, definitionId: "a.pure~0" },
+      { text: "b", start: 2, end: 3, definitionId: "custom.g.b" },
+    ];
+
+    const [first, second, third] = toView(nodes, definitions);
+
+    expect(first).not.toHaveProperty("custom");
+    expect(second).toMatchObject({ custom: "instance" });
+    expect(third).toMatchObject({ custom: "saved" });
+  });
 });
