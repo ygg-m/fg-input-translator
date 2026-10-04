@@ -28,6 +28,9 @@ import {
 } from "./core/tabs";
 import { toView } from "./core/view";
 import type { ViewNode } from "./core/view";
+import { buildExport, defaultSelection, parseExport, serializeExport } from "./core/export";
+import { applyImport, planImport } from "./core/export-import";
+import { buildIssueUrl } from "./core/issue-link";
 import { decodeShare, encodeRowShare, encodeTabLink, usedDefinitions } from "./core/share";
 import { discardSharedTab, importSharedTab } from "./core/share-import";
 import type { ImportResult } from "./core/share-import";
@@ -36,6 +39,8 @@ import type { Tab, Workspace } from "./core/workspace";
 import { registry } from "./data/index";
 import { createEditor } from "./ui/editor";
 import { renderView } from "./ui/render";
+import { createExportDialog } from "./ui/export-panel";
+import { createImportDialog } from "./ui/import-panel";
 import { renderSavedList } from "./ui/saved-list";
 import { renderShareBanner } from "./ui/share-banner";
 import { renderTabs } from "./ui/tabs-view";
@@ -357,6 +362,113 @@ function renderShareBanner_() {
   );
 }
 
+// ---- export and import --------------------------------------------------------------
+const REPO = "ygg-m/fg-input-translator";
+const knownGameIds = () => registry.games.map((game) => game.id);
+
+async function copyText(text: string, done: string) {
+  try {
+    await navigator.clipboard.writeText(text);
+    say(done);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function download(text: string) {
+  const url = URL.createObjectURL(new Blob([text], { type: "application/json" }));
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "fg-input-translator-export.json";
+  link.click();
+  URL.revokeObjectURL(url);
+  say("Export downloaded.");
+}
+
+/** Show a dialog; whichever of the buttons or the close event runs first removes it, once. */
+function showDialog(dialog: HTMLDialogElement) {
+  const cleanup = () => {
+    if (dialog.isConnected) dialog.remove();
+  };
+  dialog.addEventListener("close", cleanup);
+  document.body.append(dialog);
+  dialog.showModal();
+  return () => {
+    dialog.close();
+    cleanup();
+  };
+}
+
+function openExport() {
+  const model = {
+    games: registry.games
+      .map((game) => ({
+        id: game.id,
+        name: game.name,
+        tabs: (workspace.games[game.id]?.tabs ?? []).map((tab) => ({
+          id: tab.id,
+          name: tab.name,
+          rows: tab.rows.length,
+        })),
+        definitions: (workspace.customLayers[game.id] ?? []).map((d) => ({
+          id: d.id,
+          name: d.name,
+          aliases: d.aliases,
+        })),
+      }))
+      .filter((game) => game.tabs.length > 0 || game.definitions.length > 0),
+    selection: defaultSelection(workspace, registry, gameId()),
+  };
+
+  const close = showDialog(
+    createExportDialog(document, model, {
+      buildText: (selection) => serializeExport(buildExport(workspace, selection)),
+      onCopy: async (text) => {
+        const copied = await copyText(text, "Export copied.");
+        if (!copied) say("Could not copy automatically; select the text in the box and copy it.");
+      },
+      onDownload: download,
+      onRequest: async (text) => {
+        const { url, truncated } = buildIssueUrl(text, REPO);
+        if (truncated) await copyText(text, "The configuration was too long for the link, so it was copied: paste it into the issue.");
+        window.open(url, "_blank", "noopener,noreferrer");
+      },
+      onClose: () => close(),
+    }),
+  );
+}
+
+function openImport() {
+  const close = showDialog(
+    createImportDialog(document, {
+      check: (text) => {
+        const parsed = parseExport(text);
+        return parsed.ok
+          ? { ok: true, plan: planImport(workspace, parsed.envelope, knownGameIds()) }
+          : { ok: false, message: parsed.error.message };
+      },
+      onImport: (text, replace) => {
+        const parsed = parseExport(text);
+        if (!parsed.ok) return;
+        const { workspace: next, report } = applyImport(workspace, parsed.envelope, knownGameIds(), { replace });
+        // apply() records whatever game the dropdown shows, so switch it first.
+        if (knownGameIds().includes(next.selectedGame)) gameSelect.value = next.selectedGame;
+        apply(next);
+        renderAll();
+        close();
+        say(
+          `Imported ${report.tabsAdded} tab(s) and ${report.definitionsAdded + report.definitionsReplaced} saved definition(s)` +
+            (report.definitionsKept > 0 ? `; kept your own for ${report.definitionsKept}` : "") +
+            (report.skippedGames.length > 0 ? `; left out unknown games: ${report.skippedGames.join(", ")}` : "") +
+            ".",
+        );
+      },
+      onClose: () => close(),
+    }),
+  );
+}
+
 const handlers: TabsHandlers = {
   onSelectTab: (tabId) => {
     apply(selectTab(workspace, gameId(), tabId));
@@ -534,6 +646,8 @@ gameSelect.addEventListener("change", () => {
   apply(workspace);
   renderAll();
 });
+document.querySelector<HTMLButtonElement>("#export-button")!.addEventListener("click", openExport);
+document.querySelector<HTMLButtonElement>("#import-button")!.addEventListener("click", openImport);
 window.addEventListener("hashchange", () => void openShare(location.hash));
 renderAll();
 void openShare(location.hash);

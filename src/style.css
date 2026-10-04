@@ -379,3 +379,104 @@ h2 {
   border-radius: 0.375rem;
   font: inherit;
 }
+
+.toolbar {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.toolbar button,
+.export-actions button,
+.import-actions button {
+  padding: 0.375rem 0.75rem;
+  background: var(--surface);
+  color: inherit;
+  border: 1px solid var(--border);
+  border-radius: 0.375rem;
+  font: inherit;
+  cursor: pointer;
+}
+
+.export-actions button:disabled,
+.import-actions button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.export-dialog,
+.import-dialog {
+  width: min(40rem, calc(100% - 2rem));
+  padding: 1rem;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--accent);
+  border-radius: 0.5rem;
+}
+
+.export-dialog::backdrop,
+.import-dialog::backdrop {
+  background: rgb(0 0 0 / 0.6);
+}
+
+.export-dialog h2,
+.import-dialog h2 {
+  margin: 0 0 0.5rem;
+}
+
+.export-list {
+  display: grid;
+  gap: 0.5rem;
+  max-height: 14rem;
+  overflow: auto;
+}
+
+.export-list fieldset {
+  margin: 0;
+  border: 1px solid var(--border);
+  border-radius: 0.375rem;
+}
+
+.export-item {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.export-dialog textarea,
+.import-dialog textarea {
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  background: var(--bg);
+  color: inherit;
+  border: 1px solid var(--border);
+  border-radius: 0.375rem;
+  font: 0.8125rem ui-monospace, monospace;
+}
+
+.export-actions,
+.import-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.export-note {
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+.import-result {
+  display: grid;
+  gap: 0.375rem;
+  margin-top: 0.5rem;
+}
+
+.import-result p {
+  margin: 0;
+}
+
+.import-error {
+  color: #fca5a5;
+}

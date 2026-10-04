@@ -1,4 +1,4 @@
-import type { TokenChanges } from "./row";
+import type { Row, TokenChanges } from "./row";
 import type { Display, GroupSyntax, MoreLink, TokenDefinition } from "./types";
 import type { GameWorkspace, Tab, Workspace } from "./workspace";
 
@@ -31,12 +31,12 @@ const mapChanges = (workspace: Workspace, convert: (changes: TokenChanges) => To
   ),
 });
 
-const undefinedToNull = (changes: TokenChanges) =>
+export const undefinedToNull = (changes: TokenChanges) =>
   Object.fromEntries(
     Object.entries(changes).map(([key, value]) => [key, value === undefined ? null : value]),
   ) as TokenChanges;
 
-const nullToUndefined = (changes: TokenChanges) =>
+export const nullToUndefined = (changes: TokenChanges) =>
   Object.fromEntries(
     Object.entries(changes).map(([key, value]) => [key, value === null ? undefined : value]),
   ) as TokenChanges;
@@ -49,7 +49,7 @@ export function serialize(workspace: Workspace): string {
 // Stored, shared and imported data is untrusted: the first problem found is
 // reported with the path to it, and nothing is applied.
 
-class Invalid extends Error {
+export class Invalid extends Error {
   constructor(
     readonly path: string,
     message: string,
@@ -58,21 +58,21 @@ class Invalid extends Error {
   }
 }
 
-const join = (path: string, key: string) => (path === "" ? key : `${path}.${key}`);
-const at = (path: string, index: number) => `${path}[${index}]`;
+export const join = (path: string, key: string) => (path === "" ? key : `${path}.${key}`);
+export const at = (path: string, index: number) => `${path}[${index}]`;
 
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   typeof value === "object" && value !== null && !Array.isArray(value);
 
-const record = (value: unknown, path: string): Record<string, unknown> => {
+export const record = (value: unknown, path: string): Record<string, unknown> => {
   if (!isRecord(value)) throw new Invalid(path, "must be an object");
   return value;
 };
-const list = (value: unknown, path: string): unknown[] => {
+export const list = (value: unknown, path: string): unknown[] => {
   if (!Array.isArray(value)) throw new Invalid(path, "must be a list");
   return value;
 };
-const string = (value: unknown, path: string): string => {
+export const string = (value: unknown, path: string): string => {
   if (typeof value !== "string") throw new Invalid(path, "must be text");
   return value;
 };
@@ -139,7 +139,7 @@ function checkBoolean(value: unknown, path: string): boolean {
   return value;
 }
 
-function checkDefinition(value: unknown, path: string): TokenDefinition {
+export function checkDefinition(value: unknown, path: string): TokenDefinition {
   const raw = record(value, path);
   const definition: TokenDefinition = {
     id: string(raw.id, join(path, "id")),
@@ -178,7 +178,7 @@ function checkChanges(value: unknown, path: string): TokenChanges {
   return changes as TokenChanges;
 }
 
-function checkRow(value: unknown, path: string) {
+export function checkRow(value: unknown, path: string) {
   const raw = record(value, path);
   const row: { notation: string; label?: string; customizations: Workspace["games"][string]["tabs"][number]["rows"][number]["customizations"] } = {
     notation: string(raw.notation, join(path, "notation")),
@@ -278,3 +278,15 @@ export function deserialize(text: string): DeserializeResult {
     throw error;
   }
 }
+
+/** A Row ready for JSON: a cleared field (explicit undefined) is written as null. */
+export const encodeRow = (row: Row): Row => ({
+  ...row,
+  customizations: row.customizations.map((c) => ({ ...c, changes: undefinedToNull(c.changes) })),
+});
+
+/** The reverse of encodeRow, for a Row that has been validated. */
+export const decodeRow = (row: Row): Row => ({
+  ...row,
+  customizations: row.customizations.map((c) => ({ ...c, changes: nullToUndefined(c.changes) })),
+});
