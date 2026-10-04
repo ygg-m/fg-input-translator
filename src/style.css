@@ -254,3 +254,12 @@ h2 {
   align-items: center;
   gap: 0.75rem;
 }
+
+#notices p {
+  margin: 0 0 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--surface);
+  border: 1px solid var(--accent);
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+}

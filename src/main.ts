@@ -14,6 +14,10 @@ import type { Anchor, Row, TokenChanges } from "./core/row";
 import { toView } from "./core/view";
 import type { ViewNode } from "./core/view";
 import { registry } from "./data/index";
+import { createAutosave } from "./core/autosave";
+import { BACKUP_KEY, loadWorkspace, saveWorkspace } from "./core/persistence";
+import type { StorageLike } from "./core/persistence";
+import { DEFAULT_GAME, getActiveRow, setActiveRow } from "./core/workspace";
 import { createEditor } from "./ui/editor";
 import { renderView } from "./ui/render";
 import { renderSavedList } from "./ui/saved-list";
@@ -39,11 +43,102 @@ for (const game of registry.games) {
   option.textContent = game.name;
   gameSelect.append(option);
 }
-gameSelect.value = "guilty-gear";
+gameSelect.value = DEFAULT_GAME;
 
-// In memory for now; persistence comes in a later slice.
-let row: Row = { notation: notationInput.value, customizations: [] };
-let customLayers: CustomLayers = {};
+// ---- persistence -------------------------------------------------------------
+function openStorage(): StorageLike | undefined {
+  try {
+    return window.localStorage;
+  } catch {
+    return undefined; // some privacy modes throw just for touching it
+  }
+}
+const browserStorage = openStorage();
+const memoryOnly: StorageLike = (() => {
+  const data = new Map<string, string>();
+  return {
+    getItem: (key) => data.get(key) ?? null,
+    setItem: (key, value) => void data.set(key, value),
+    removeItem: (key) => void data.delete(key),
+  };
+})();
+const storage = browserStorage ?? memoryOnly;
+
+const loaded = loadWorkspace(
+  storage,
+  registry.games.map((game) => ({ id: game.id, name: game.name })),
+);
+if (!browserStorage) loaded.notices.push({ code: "storage-unavailable" });
+
+let workspace = loaded.workspace;
+const knownGame = registry.games.some((game) => game.id === workspace.selectedGame);
+gameSelect.value = knownGame ? workspace.selectedGame : DEFAULT_GAME;
+
+const hasSavedRow = workspace.games[gameSelect.value] !== undefined;
+let row: Row = hasSavedRow
+  ? getActiveRow(workspace, gameSelect.value)
+  : { notation: notationInput.value, customizations: [] }; // first visit keeps the example text
+let customLayers: CustomLayers = workspace.customLayers;
+notationInput.value = row.notation;
+
+const notices = document.querySelector<HTMLElement>("#notices")!;
+let saveFailure: string | undefined;
+
+function renderNotices() {
+  const messages: string[] = [];
+  for (const notice of loaded.notices) {
+    if (notice.code === "migrated") {
+      const { importedCombos, skipped, sessionRow } = notice.report;
+      messages.push(
+        `Imported your data from the previous version: ${importedCombos} saved combo(s)` +
+          (sessionRow ? " and your last notation" : "") +
+          (skipped > 0 ? `, ${skipped} damaged entr${skipped === 1 ? "y" : "ies"} skipped` : "") +
+          ". They are kept safe; browsing saved combos arrives with the tabs screen.",
+      );
+    } else if (notice.code === "unreadable") {
+      messages.push(
+        `Your saved data could not be read (${notice.message}). ` +
+          (notice.backedUp ? `A copy was kept under "${BACKUP_KEY}". ` : "No backup copy could be made. ") +
+          "The app started fresh.",
+      );
+    } else {
+      messages.push("This browser is not letting the app save, so changes will be lost when you close the page.");
+    }
+  }
+  if (saveFailure) {
+    messages.push(`Could not save your changes (${saveFailure}). They will be lost if you close this page.`);
+  }
+  notices.replaceChildren(
+    ...messages.map((text) => {
+      const line = document.createElement("p");
+      line.textContent = text;
+      return line;
+    }),
+  );
+}
+
+const autosave = createAutosave(
+  () => saveWorkspace(storage, workspace),
+  (result) => {
+    saveFailure = result.ok ? undefined : result.error;
+    renderNotices();
+  },
+);
+
+// Everything on screen is remembered through the workspace.
+function commit() {
+  workspace = setActiveRow(
+    { ...workspace, selectedGame: gameSelect.value, customLayers },
+    gameSelect.value,
+    row,
+  );
+  autosave.notify();
+}
+window.addEventListener("pagehide", () => autosave.flush());
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "hidden") autosave.flush();
+});
+renderNotices();
 
 function resolve(rowToShow: Row) {
   const game = resolveGame(gameSelect.value, registry, customLayers);
@@ -73,6 +168,7 @@ function render(preview?: Row) {
   savedSection.replaceChildren(
     renderSavedList(document, customLayers[gameId] ?? [], (id) => {
       customLayers = deleteDefinition(customLayers, gameId, id);
+      commit();
       render();
     }),
   );
@@ -102,6 +198,7 @@ function openEditor(node: ViewNode) {
   const setRow = (next: Row) => {
     row = next;
     notationInput.value = row.notation;
+    commit();
   };
 
   const dialog = createEditor(
@@ -161,9 +258,15 @@ function openEditor(node: ViewNode) {
   dialog.showModal();
 }
 
-gameSelect.addEventListener("change", () => render());
+gameSelect.addEventListener("change", () => {
+  row = getActiveRow(workspace, gameSelect.value);
+  notationInput.value = row.notation;
+  commit();
+  render();
+});
 notationInput.addEventListener("input", () => {
   row = { ...row, notation: notationInput.value };
+  commit();
   render();
 });
 render();
