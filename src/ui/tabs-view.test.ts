@@ -33,6 +33,8 @@ const handlers = (confirm = true): TabsHandlers => ({
   onClearTab: vi.fn(),
   onShareRow: vi.fn(),
   onShareTab: vi.fn(),
+  onCopyImage: vi.fn(),
+  onDownloadImage: vi.fn(),
   confirm: vi.fn(() => confirm),
 });
 
@@ -227,5 +229,16 @@ describe("renderTabs", () => {
 
     expect(h.onShareRow).toHaveBeenCalledWith(2);
     expect(h.onShareTab).toHaveBeenCalledTimes(1);
+  });
+
+  it("offers copying and downloading a row as an image", () => {
+    const h = handlers();
+    const { element } = renderTabs(document, model(), h);
+
+    action(element, "copy-image", 1).click();
+    action(element, "download-image", 2).click();
+
+    expect(h.onCopyImage).toHaveBeenCalledWith(1);
+    expect(h.onDownloadImage).toHaveBeenCalledWith(2);
   });
 });

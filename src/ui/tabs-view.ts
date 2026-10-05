@@ -20,6 +20,8 @@ export interface TabsHandlers {
   onClearTab: () => void;
   onShareRow: (index: number) => void;
   onShareTab: () => void;
+  onCopyImage: (index: number) => void;
+  onDownloadImage: (index: number) => void;
   /** Asked before anything is deleted; the page passes window.confirm. */
   confirm: (message: string) => boolean;
 }
@@ -167,7 +169,11 @@ export function renderTabs(doc: Document, model: TabsModel, handlers: TabsHandle
     });
     const shareRow = button(doc, "share-row", "Copy link");
     shareRow.addEventListener("click", () => handlers.onShareRow(rowIndex));
-    controls.append(up, down, duplicate, shareRow, remove);
+    const copyImage = button(doc, "copy-image", "Copy image");
+    copyImage.addEventListener("click", () => handlers.onCopyImage(rowIndex));
+    const downloadImage = button(doc, "download-image", "Download PNG");
+    downloadImage.addEventListener("click", () => handlers.onDownloadImage(rowIndex));
+    controls.append(up, down, duplicate, shareRow, copyImage, downloadImage, remove);
 
     item.append(label, notation, output, controls);
     rowList.append(item);

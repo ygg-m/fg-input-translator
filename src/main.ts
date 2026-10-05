@@ -31,18 +31,23 @@ import type { ViewNode } from "./core/view";
 import { buildExport, defaultSelection, parseExport, serializeExport } from "./core/export";
 import { applyImport, planImport } from "./core/export-import";
 import { buildIssueUrl } from "./core/issue-link";
+import { buildReference } from "./core/reference";
 import { decodeShare, encodeRowShare, encodeTabLink, usedDefinitions } from "./core/share";
 import { discardSharedTab, importSharedTab } from "./core/share-import";
 import type { ImportResult } from "./core/share-import";
 import { DEFAULT_GAME } from "./core/workspace";
 import type { Tab, Workspace } from "./core/workspace";
+import pkg from "../package.json";
 import { registry } from "./data/index";
+import { GLOSSARY_URL, about, credit, siteLinks, siteLogo } from "./data/site";
 import { createEditor } from "./ui/editor";
 import { renderView } from "./ui/render";
 import { createExportDialog } from "./ui/export-panel";
 import { createImportDialog } from "./ui/import-panel";
 import { renderSavedList } from "./ui/saved-list";
 import { renderShareBanner } from "./ui/share-banner";
+import { copyPng, downloadBlob, renderPng } from "./ui/image-export";
+import { createAboutDialog, createReferenceDialog, renderFooter, renderHeader } from "./ui/site-chrome";
 import { renderTabs } from "./ui/tabs-view";
 import type { TabsHandlers, TabsView } from "./ui/tabs-view";
 
@@ -469,6 +474,66 @@ function openImport() {
   );
 }
 
+// ---- images and site chrome ---------------------------------------------------------
+let chroma = false;
+const chromaButton = document.querySelector<HTMLButtonElement>("#chroma-button")!;
+chromaButton.addEventListener("click", () => {
+  chroma = !chroma;
+  chromaButton.setAttribute("aria-pressed", String(chroma));
+  workspaceHost.dataset.chroma = String(chroma);
+});
+
+/** Draw one row's token box to a PNG; says why when it cannot. */
+async function rowImage(index: number): Promise<Blob | undefined> {
+  const target = view.outputs[index]?.querySelector<HTMLElement>(".notation");
+  if (!target || target.childElementCount === 0) {
+    say("There is nothing to draw in this row yet.");
+    return undefined;
+  }
+  try {
+    return await renderPng(target, { chroma });
+  } catch (error) {
+    say(error instanceof Error ? error.message : "Could not draw this row as an image.");
+    return undefined;
+  }
+}
+
+const saveImage = (blob: Blob) =>
+  downloadBlob(blob, "combo-output.png", {
+    document,
+    createObjectURL: (b) => URL.createObjectURL(b),
+    revokeObjectURL: (url) => URL.revokeObjectURL(url),
+  });
+
+async function downloadRowImage(index: number) {
+  const blob = await rowImage(index);
+  if (!blob) return;
+  saveImage(blob);
+  say("Image downloaded.");
+}
+
+async function copyRowImage(index: number) {
+  const blob = await rowImage(index);
+  if (!blob) return;
+  const result = await copyPng(blob, {
+    clipboard: navigator.clipboard as never,
+    ClipboardItem: typeof ClipboardItem === "undefined" ? undefined : ClipboardItem,
+  });
+  if (result === "copied") say("Image copied.");
+  else {
+    saveImage(blob);
+    say("This browser would not copy the image, so it was downloaded instead.");
+  }
+}
+
+function openAbout() {
+  const close = showDialog(createAboutDialog(document, about, () => close()));
+}
+
+function openReference() {
+  const close = showDialog(createReferenceDialog(document, buildReference(registry), () => close()));
+}
+
 const handlers: TabsHandlers = {
   onSelectTab: (tabId) => {
     apply(selectTab(workspace, gameId(), tabId));
@@ -529,6 +594,8 @@ const handlers: TabsHandlers = {
   },
   onShareRow: (index) => void shareRow(index),
   onShareTab: () => void shareTab(),
+  onCopyImage: (index) => void copyRowImage(index),
+  onDownloadImage: (index) => void downloadRowImage(index),
   confirm: (message) => window.confirm(message),
 };
 
@@ -648,6 +715,14 @@ gameSelect.addEventListener("change", () => {
 });
 document.querySelector<HTMLButtonElement>("#export-button")!.addEventListener("click", openExport);
 document.querySelector<HTMLButtonElement>("#import-button")!.addEventListener("click", openImport);
+document.querySelector<HTMLElement>("#site-header")!.replaceChildren(
+  renderHeader(
+    document,
+    { version: pkg.version, logo: siteLogo, glossaryUrl: GLOSSARY_URL, links: siteLinks },
+    { onAbout: openAbout, onReference: openReference },
+  ),
+);
+document.querySelector<HTMLElement>("#site-footer")!.replaceChildren(renderFooter(document, credit));
 window.addEventListener("hashchange", () => void openShare(location.hash));
 renderAll();
 void openShare(location.hash);

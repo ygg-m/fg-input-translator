@@ -1,6 +1,6 @@
 # Legacy port notes
 
-The data under `src/data/` was converted from the legacy React app (`legacy/data/`) by a throwaway script that is not kept in the repo. This file records what the conversion decided, and how the new engine deliberately differs from the old one. The golden files in `src/data/golden/` are the executable form of it.
+The data under `src/data/` was converted from the previous React app by a throwaway script that is not kept in the repo. The old app's source is in git history: its last state is commit `d040b00` (for example `git show d040b00:src/data/games/blazblue.js`), and it was kept in a `legacy/` folder until it was removed once everything here reached parity. This file records what the conversion decided, and how the new engine deliberately differs from the old one. The golden files in `src/data/golden/` are the executable form of it.
 
 ## What was ported
 
