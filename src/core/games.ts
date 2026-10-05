@@ -74,11 +74,6 @@ export function resolveGame(
 ): ResolveResult {
   const layers: TokenDefinition[][] = [];
   const errors: GameError[] = [];
-  const custom = (customLayers[gameId] ?? []).map(normalizeDefinition);
-  if (custom.length > 0) {
-    layers.push(custom);
-    for (const error of validateLayer(custom)) errors.push({ ...error, gameId });
-  }
   const visited = new Set<string>();
   let id: string | undefined = gameId;
   while (id !== undefined) {
@@ -86,6 +81,13 @@ export function resolveGame(
     visited.add(id);
     const game = registry.games.find((g) => g.id === id);
     if (!game) return { ok: false, errors: [{ code: "unknown-game", gameId: id }] };
+
+    // Each game's saved definitions sit just above its own, so they also apply to the games based on it.
+    const custom = (customLayers[game.id] ?? []).map(normalizeDefinition);
+    if (custom.length > 0) {
+      layers.push(custom);
+      for (const error of validateLayer(custom)) errors.push({ ...error, gameId: game.id });
+    }
     const definitions = game.definitions.map(normalizeDefinition);
     layers.push(definitions);
     for (const error of validateLayer(definitions)) errors.push({ ...error, gameId: game.id });

@@ -57,6 +57,7 @@ describe("buildExport", () => {
     expect(envelope).toEqual({
       format: "fg-input-translator",
       version: 1,
+      customGames: [],
       tabs: [
         { gameId: "guilty-gear", tab: { name: "Sol", rows: [row("5P")] } },
         { gameId: "street-fighter", tab: { name: "Ken", rows: [row("623P")] } },
@@ -127,5 +128,60 @@ describe("defaultSelection", () => {
 
   it("is empty for a game with no tabs", () => {
     expect(defaultSelection(emptyWorkspace(), registry, "street-fighter")).toEqual({ tabs: [], definitions: [] });
+  });
+});
+
+describe("buildExport with custom games", () => {
+  const ws = (): Workspace => ({
+    ...emptyWorkspace(),
+    customGames: [
+      { id: "custom-a", name: "A", extends: "street-fighter" },
+      { id: "custom-b", name: "B", extends: "custom-a" },
+      { id: "custom-other", name: "Other" },
+    ],
+    customLayers: {
+      "custom-a": [saved("custom-a", "x", "A move")],
+      "custom-b": [saved("custom-b", "y", "B move")],
+    },
+    games: {
+      "custom-b": { activeTab: "tab-1", tabs: [{ id: "tab-1", name: "T", rows: [row("y")] }] },
+    },
+  });
+
+  it("carries the custom games the selection needs, ancestors first, and no others", () => {
+    const envelope = buildExport(ws(), {
+      tabs: [{ gameId: "custom-b", tabId: "tab-1" }],
+      definitions: [{ gameId: "custom-a", id: "custom.custom-a.x" }],
+    });
+
+    expect(envelope.customGames).toEqual([
+      { id: "custom-a", name: "A", extends: "street-fighter" },
+      { id: "custom-b", name: "B", extends: "custom-a" },
+    ]);
+  });
+
+  it("carries none for a selection of built-in games", () => {
+    expect(buildExport(workspace(), { tabs: [{ gameId: "guilty-gear", tabId: "tab-1" }], definitions: [] }).customGames).toEqual([]);
+  });
+
+  it("starts the default selection with the saved definitions of the custom games the rows use", () => {
+    const punch: TokenDefinition = { id: "base.punch", name: "Punch", aliases: ["P"] };
+    const registry: GameRegistry = { base: [punch], games: [{ id: "street-fighter", name: "SF", definitions: [] }] };
+    const withDefs: Workspace = {
+      ...ws(),
+      customLayers: {
+        "custom-a": [{ ...saved("custom-a", "x", "A move"), basedOn: "base.punch" }],
+        "custom-b": [{ ...saved("custom-b", "y", "B move"), basedOn: "base.punch" }],
+      },
+      games: { "custom-b": { activeTab: "tab-1", tabs: [{ id: "tab-1", name: "T", rows: [row("x y")] }] } },
+    };
+
+    expect(defaultSelection(withDefs, registry, "custom-b")).toEqual({
+      tabs: [{ gameId: "custom-b", tabId: "tab-1" }],
+      definitions: [
+        { gameId: "custom-a", id: "custom.custom-a.x" },
+        { gameId: "custom-b", id: "custom.custom-b.y" },
+      ],
+    });
   });
 });

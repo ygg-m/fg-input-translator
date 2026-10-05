@@ -1,9 +1,11 @@
 import type { GameRegistry } from "./games";
 import type { Row } from "./row";
-import { usedDefinitions } from "./share";
+import { customAncestry } from "./game-bundle";
+import { bundleFor } from "./share";
 import {
   Invalid,
   at,
+  checkCustomGames,
   checkDefinition,
   checkRow,
   decodeRow,
@@ -14,7 +16,7 @@ import {
   string,
 } from "./storage-format";
 import type { TokenDefinition } from "./types";
-import type { Workspace } from "./workspace";
+import type { CustomGame, Workspace } from "./workspace";
 
 export const EXPORT_FORMAT = "fg-input-translator";
 
@@ -22,6 +24,8 @@ export const EXPORT_FORMAT = "fg-input-translator";
 export interface ExportEnvelope {
   format: typeof EXPORT_FORMAT;
   version: 1;
+  /** The custom games the tabs and definitions belong to, ancestors first. */
+  customGames: CustomGame[];
   tabs: { gameId: string; tab: { name: string; rows: Row[] } }[];
   definitions: Record<string, TokenDefinition[]>;
 }
@@ -44,7 +48,16 @@ export function buildExport(workspace: Workspace, selection: ExportSelection): E
     if (definition) (definitions[gameId] ??= []).push(definition);
   }
 
-  return { format: EXPORT_FORMAT, version: 1, tabs, definitions };
+  // Every custom game involved comes along, with the custom games it is based on.
+  const involved = [...tabs.map((t) => t.gameId), ...Object.keys(definitions)];
+  const customGames: CustomGame[] = [];
+  for (const gameId of involved) {
+    for (const game of customAncestry(workspace.customGames, gameId)) {
+      if (!customGames.some((g) => g.id === game.id)) customGames.push(game);
+    }
+  }
+
+  return { format: EXPORT_FORMAT, version: 1, customGames, tabs, definitions };
 }
 
 export interface ExportError {
@@ -63,6 +76,7 @@ export function serializeExport(envelope: ExportEnvelope): string {
     {
       format: envelope.format,
       version: envelope.version,
+      ...(envelope.customGames.length > 0 ? { customGames: envelope.customGames } : {}),
       tabs: envelope.tabs.map(({ gameId, tab }) => ({
         gameId,
         tab: { name: tab.name, rows: tab.rows.map(encodeRow) },
@@ -110,7 +124,9 @@ function checkEnvelope(raw: Record<string, unknown>): ExportEnvelope {
     }),
   );
 
-  return { format: EXPORT_FORMAT, version: 1, tabs, definitions };
+  const customGames = raw.customGames === undefined ? [] : checkCustomGames(raw.customGames, "customGames");
+
+  return { format: EXPORT_FORMAT, version: 1, customGames, tabs, definitions };
 }
 
 export function parseExport(text: string): ParseExportResult {
@@ -169,14 +185,16 @@ export function defaultSelection(
   gameId: string,
 ): ExportSelection {
   const tabs = workspace.games[gameId]?.tabs ?? [];
-  const used = usedDefinitions(
-    tabs.flatMap((tab) => tab.rows),
-    gameId,
+  const bundle = bundleFor(
+    workspace,
     registry,
-    workspace.customLayers,
+    gameId,
+    tabs.flatMap((tab) => tab.rows),
   );
   return {
     tabs: tabs.map((tab) => ({ gameId, tabId: tab.id })),
-    definitions: used.map((definition) => ({ gameId, id: definition.id })),
+    definitions: Object.entries(bundle.definitions).flatMap(([id, layer]) =>
+      layer.map((definition) => ({ gameId: id, id: definition.id })),
+    ),
   };
 }

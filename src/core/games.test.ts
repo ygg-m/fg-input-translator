@@ -226,4 +226,52 @@ describe("resolveGame", () => {
       definitions: [basePunch],
     });
   });
+
+  describe("Custom Layers across a chain", () => {
+    const parentPunch: TokenDefinition = { id: "p.punch", name: "Parent Punch", aliases: ["P", "pp"] };
+    const registry: GameRegistry = {
+      base: [basePunch],
+      games: [
+        { id: "parent", name: "Parent", definitions: [parentPunch] },
+        { id: "child", name: "Child", extends: "parent", definitions: [] },
+      ],
+    };
+    const saved = (gameId: string, name: string): TokenDefinition => ({
+      id: `custom.${gameId}.P`,
+      name,
+      aliases: ["P"],
+      basedOn: "p.punch",
+      saved: true,
+    });
+
+    it("applies the saved definitions of the games a game is based on", () => {
+      const jab = saved("parent", "Parent Jab");
+
+      const result = resolveGame("child", registry, { parent: [jab] });
+
+      expect(result).toEqual({
+        ok: true,
+        definitions: [
+          jab,
+          { ...parentPunch, aliases: ["pp"] },
+          { ...basePunch, aliases: ["punch"] },
+        ],
+      });
+    });
+
+    it("lets the nearest game's saved definition win over a parent's", () => {
+      const parentJab = saved("parent", "Parent Jab");
+      const childJab = saved("child", "Child Jab");
+
+      const result = resolveGame("child", registry, { parent: [parentJab], child: [childJab] });
+
+      expect(result.ok && result.definitions.map((d) => d.name)).toEqual(["Child Jab", "Parent Punch", "Punch"]);
+    });
+
+    it("does not apply a child's saved definitions when resolving its parent", () => {
+      const result = resolveGame("parent", registry, { child: [saved("child", "Child Jab")] });
+
+      expect(result.ok && result.definitions.map((d) => d.name)).toEqual(["Parent Punch", "Punch"]);
+    });
+  });
 });

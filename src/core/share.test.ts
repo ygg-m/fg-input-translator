@@ -1,8 +1,10 @@
 import { describe, expect, it } from "vitest";
 import type { GameRegistry } from "./games";
-import { decodeShare, encodeRowLink, encodeRowShare, encodeTabLink, usedDefinitions } from "./share";
+import { bundleFor, decodeShare, encodeRowLink, encodeRowShare, encodeTabLink, usedDefinitions } from "./share";
 import type { SharedTab } from "./share";
 import type { TokenDefinition } from "./types";
+import { emptyWorkspace } from "./workspace";
+import type { Workspace } from "./workspace";
 
 const games = [
   { id: "guilty-gear", name: "Guilty Gear" },
@@ -83,16 +85,19 @@ const sharedTab = (): SharedTab => ({
       { notation: "5K", customizations: [] },
     ],
   },
-  definitions: [
-    {
-      id: "custom.street-fighter.lp",
-      name: "Jab",
-      aliases: ["lp"],
-      basedOn: "sf.light-punch",
-      saved: true,
-      more: { name: "Wiki", url: "https://example.com/jab" },
-    },
-  ],
+  customGames: [],
+  definitions: {
+    "street-fighter": [
+      {
+        id: "custom.street-fighter.lp",
+        name: "Jab",
+        aliases: ["lp"],
+        basedOn: "sf.light-punch",
+        saved: true,
+        more: { name: "Wiki", url: "https://example.com/jab" },
+      },
+    ],
+  },
 });
 
 describe("tab links", () => {
@@ -176,14 +181,15 @@ describe("damaged or hostile tab links", () => {
 
 describe("encodeRowShare", () => {
   it("uses the readable link for a plain row and a compressed tab when there is more to carry", async () => {
-    const plain = await encodeRowShare("street-fighter", { notation: "236P", customizations: [] }, []);
+    const none = { customGames: [], definitions: {} };
+    const plain = await encodeRowShare("street-fighter", { notation: "236P", customizations: [] }, none);
     expect(plain.hash).toBe(encodeRowLink("street-fighter", "236P"));
 
     const custom = {
       notation: "236P",
       customizations: [{ anchor: { text: "236", occurrence: 0 }, basedOn: "m", changes: { name: "Mine" } }],
     };
-    const withCustomization = await encodeRowShare("street-fighter", custom, []);
+    const withCustomization = await encodeRowShare("street-fighter", custom, none);
     expect(withCustomization.hash.startsWith("#/s/")).toBe(true);
     expect(await decodeShare(withCustomization.hash, games)).toMatchObject({
       kind: "tab",
@@ -192,8 +198,20 @@ describe("encodeRowShare", () => {
     });
 
     const jab: TokenDefinition = { id: "custom.g.P", name: "Jab", aliases: ["P"], basedOn: "base.punch", saved: true };
-    const withDefinition = await encodeRowShare("street-fighter", { notation: "P", customizations: [] }, [jab]);
+    const withDefinition = await encodeRowShare(
+      "street-fighter",
+      { notation: "P", customizations: [] },
+      { customGames: [], definitions: { "street-fighter": [jab] } },
+    );
     expect(withDefinition.hash.startsWith("#/s/")).toBe(true);
+
+    // A custom game does not exist for the recipient, so even a plain row travels with it.
+    const ofCustomGame = await encodeRowShare(
+      "custom-ryu",
+      { notation: "236P", customizations: [] },
+      { customGames: [{ id: "custom-ryu", name: "Ryu", extends: "street-fighter" }], definitions: {} },
+    );
+    expect(ofCustomGame.hash.startsWith("#/s/")).toBe(true);
   });
 });
 
@@ -210,10 +228,10 @@ describe("usedDefinitions", () => {
   const rows = (...notations: string[]) => notations.map((notation) => ({ notation, customizations: [] }));
 
   it("returns only the saved definitions the rows actually resolve to", () => {
-    expect(usedDefinitions(rows("P P"), "g1", registry, layers)).toEqual([jab]);
-    expect(usedDefinitions(rows("P", "K"), "g1", registry, layers)).toEqual([jab, roundhouse]);
-    expect(usedDefinitions(rows("2"), "g1", registry, layers)).toEqual([]);
-    expect(usedDefinitions(rows("P"), "g1", registry, {})).toEqual([]);
+    expect(usedDefinitions(rows("P P"), "g1", registry, layers)).toEqual({ g1: [jab] });
+    expect(usedDefinitions(rows("P", "K"), "g1", registry, layers)).toEqual({ g1: [jab, roundhouse] });
+    expect(usedDefinitions(rows("2"), "g1", registry, layers)).toEqual({});
+    expect(usedDefinitions(rows("P"), "g1", registry, {})).toEqual({});
   });
 
   it("still includes a saved definition that a row customization builds on", () => {
@@ -224,6 +242,87 @@ describe("usedDefinitions", () => {
       },
     ];
 
-    expect(usedDefinitions(customized, "g1", registry, layers)).toEqual([jab]);
+    expect(usedDefinitions(customized, "g1", registry, layers)).toEqual({ g1: [jab] });
+  });
+});
+
+describe("custom games in tab links", () => {
+  const customTab = (): SharedTab => ({
+    gameId: "custom-ryu",
+    tab: { name: "Training", rows: [{ notation: "lp", customizations: [] }] },
+    customGames: [
+      { id: "custom-base", name: "Base", extends: "street-fighter" },
+      { id: "custom-ryu", name: "Ryu", extends: "custom-base" },
+    ],
+    definitions: {
+      "custom-base": [{ id: "custom.custom-base.x", name: "X", aliases: ["x"], basedOn: "b", saved: true }],
+      "custom-ryu": [{ id: "custom.custom-ryu.lp", name: "Jab", aliases: ["lp"], basedOn: "b", saved: true }],
+    },
+  });
+
+  it("round-trips the game, the games it is based on, and their saved definitions", async () => {
+    const { hash } = await encodeTabLink(customTab());
+
+    expect(await decodeShare(hash, games)).toStrictEqual({ kind: "tab", ...customTab() });
+  });
+
+  it("refuses saved definitions for a game the link does not carry", async () => {
+    const tab = customTab();
+    tab.definitions["ghost-game"] = [];
+    tab.definitions["ghost-game"] = [{ id: "g", name: "G", aliases: ["g"], basedOn: "b", saved: true }];
+    const { hash } = await encodeTabLink(tab);
+
+    expect(await decodeShare(hash, games)).toMatchObject({
+      kind: "error",
+      error: { code: "invalid-shape", path: "customLayers.ghost-game" },
+    });
+  });
+});
+
+describe("bundleFor", () => {
+  const punch: TokenDefinition = { id: "base.punch", name: "Punch", aliases: ["P"] };
+  const registry: GameRegistry = {
+    base: [punch],
+    games: [{ id: "street-fighter", name: "SF", definitions: [] }],
+  };
+  const saved = (gameId: string, alias: string, name: string): TokenDefinition => ({
+    id: `custom.${gameId}.${alias}`,
+    name,
+    aliases: [alias],
+    basedOn: "base.punch",
+    saved: true,
+  });
+  const sfDef = saved("street-fighter", "S", "Mine on SF");
+  const aDef = saved("custom-a", "A", "A move");
+  const bDef = saved("custom-b", "B", "B move");
+  const workspace: Workspace = {
+    ...emptyWorkspace(),
+    customGames: [
+      { id: "custom-a", name: "A", extends: "street-fighter" },
+      { id: "custom-b", name: "B", extends: "custom-a" },
+    ],
+    customLayers: { "street-fighter": [sfDef], "custom-a": [aDef], "custom-b": [bDef] },
+  };
+  const rows = (notation: string) => [{ notation, customizations: [] }];
+
+  it("carries a custom game, its custom ancestors, and what they saved that the rows use", () => {
+    expect(bundleFor(workspace, registry, "custom-b", rows("S A B P"))).toEqual({
+      customGames: [
+        { id: "custom-a", name: "A", extends: "street-fighter" },
+        { id: "custom-b", name: "B", extends: "custom-a" },
+      ],
+      definitions: { "custom-a": [aDef], "custom-b": [bDef] },
+    });
+  });
+
+  it("leaves out your saved definitions for the built-in game it is based on", () => {
+    expect(bundleFor(workspace, registry, "custom-a", rows("S A")).definitions).toEqual({ "custom-a": [aDef] });
+  });
+
+  it("for a built-in game carries only that game's own saved definitions", () => {
+    expect(bundleFor(workspace, registry, "street-fighter", rows("S A"))).toEqual({
+      customGames: [],
+      definitions: { "street-fighter": [sfDef] },
+    });
   });
 });

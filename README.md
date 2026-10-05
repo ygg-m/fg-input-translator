@@ -14,6 +14,7 @@ The website is hosted by GitHub Pages at: https://ygg-m.github.io/fg-input-trans
 # 🧰 What you can do
 
 - **Pick a game**, because the same notation can mean different things in different games.
+- **Make your own games** ("Your games"): a name, optionally based on a built-in game or another of yours, with their own saved definitions and tabs. Sharing or exporting a tab carries its game along.
 - **Keep combos in tabs** for each game, with rows that have an optional label.
 - **Click any input to change how it looks** (name, image, text or emoji, caption, description, link), for that row or saved for the whole game, or switch it to another definition.
 - **Share** a row or a whole tab with a link. Plain notation links stay readable, and links from the previous version still open.
@@ -58,4 +59,4 @@ Plain HTML, CSS and TypeScript with Vite; the only runtime dependency is `html-t
 - [x] Support different games, with Tokens defined by data
 - [x] Click a Token to change what it shows
 - [x] Shareable links and exportable code
-- [ ] Custom Games (a user-defined game extending a built-in one)
+- [x] Custom Games (a user-defined game extending a built-in one)
