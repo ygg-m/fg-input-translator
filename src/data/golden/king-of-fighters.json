@@ -1,0 +1,1615 @@
+{
+ "matching": [
+  {
+   "notation": "gatlings",
+   "ids": [
+    "base.gatlings"
+   ]
+  },
+  {
+   "notation": "starter",
+   "ids": [
+    "base.starter"
+   ]
+  },
+  {
+   "notation": "corner",
+   "ids": [
+    "base.corner"
+   ]
+  },
+  {
+   "notation": "▷",
+   "ids": [
+    "base.land"
+   ]
+  },
+  {
+   "notation": "land",
+   "ids": [
+    "base.land"
+   ]
+  },
+  {
+   "notation": "WS",
+   "ids": [
+    "base.wall-splat"
+   ]
+  },
+  {
+   "notation": "ws",
+   "ids": [
+    "base.wall-splat"
+   ]
+  },
+  {
+   "notation": "IAS",
+   "ids": [
+    "base.instant-air-special"
+   ]
+  },
+  {
+   "notation": "ias",
+   "ids": [
+    "base.instant-air-special"
+   ]
+  },
+  {
+   "notation": "tk",
+   "ids": [
+    "base.tiger-knee"
+   ]
+  },
+  {
+   "notation": "dl.",
+   "ids": [
+    "base.delay"
+   ]
+  },
+  {
+   "notation": "dl",
+   "ids": [
+    "base.delay"
+   ]
+  },
+  {
+   "notation": "delayed",
+   "ids": [
+    "base.delay"
+   ]
+  },
+  {
+   "notation": "delay",
+   "ids": [
+    "base.delay"
+   ]
+  },
+  {
+   "notation": "slightdelay",
+   "ids": [
+    "base.delay"
+   ]
+  },
+  {
+   "notation": "whiff",
+   "ids": [
+    "base.whiff"
+   ]
+  },
+  {
+   "notation": "(whiff)",
+   "ids": [
+    "base.whiff"
+   ]
+  },
+  {
+   "notation": "/",
+   "ids": [
+    "base.or"
+   ]
+  },
+  {
+   "notation": "or",
+   "ids": [
+    "base.or"
+   ]
+  },
+  {
+   "notation": "66",
+   "ids": [
+    "base.dash"
+   ]
+  },
+  {
+   "notation": "dash",
+   "ids": [
+    "base.dash"
+   ]
+  },
+  {
+   "notation": "44",
+   "ids": [
+    "base.back-dash"
+   ]
+  },
+  {
+   "notation": "homingjump",
+   "ids": [
+    "base.homing-jump"
+   ]
+  },
+  {
+   "notation": "88",
+   "ids": [
+    "base.double-jump"
+   ]
+  },
+  {
+   "notation": "dj.",
+   "ids": [
+    "base.double-jump"
+   ]
+  },
+  {
+   "notation": "ground",
+   "ids": [
+    "base.ground"
+   ]
+  },
+  {
+   "notation": "airthrow",
+   "ids": [
+    "base.air-throw"
+   ]
+  },
+  {
+   "notation": "throw",
+   "ids": [
+    "base.throw"
+   ]
+  },
+  {
+   "notation": "sjc.",
+   "ids": [
+    "base.high-jump-cancel"
+   ]
+  },
+  {
+   "notation": "sjc",
+   "ids": [
+    "base.high-jump-cancel"
+   ]
+  },
+  {
+   "notation": "shjc.",
+   "ids": [
+    "base.short-jump-cancel"
+   ]
+  },
+  {
+   "notation": "shjc",
+   "ids": [
+    "base.short-jump-cancel"
+   ]
+  },
+  {
+   "notation": "djc.",
+   "ids": [
+    "base.double-jump-cancel"
+   ]
+  },
+  {
+   "notation": "djc",
+   "ids": [
+    "base.double-jump-cancel"
+   ]
+  },
+  {
+   "notation": "jc.",
+   "ids": [
+    "base.jump-cancel"
+   ]
+  },
+  {
+   "notation": "jc",
+   "ids": [
+    "base.jump-cancel"
+   ]
+  },
+  {
+   "notation": "cr.",
+   "ids": [
+    "base.crouch"
+   ]
+  },
+  {
+   "notation": "c.",
+   "ids": [
+    "base.close"
+   ]
+  },
+  {
+   "notation": "cl.",
+   "ids": [
+    "base.close"
+   ]
+  },
+  {
+   "notation": "st.",
+   "ids": [
+    "base.standing-far"
+   ]
+  },
+  {
+   "notation": "f.",
+   "ids": [
+    "base.far"
+   ]
+  },
+  {
+   "notation": "hj.",
+   "ids": [
+    "base.super-jump"
+   ]
+  },
+  {
+   "notation": "sj.",
+   "ids": [
+    "base.super-jump"
+   ]
+  },
+  {
+   "notation": "sj",
+   "ids": [
+    "base.super-jump"
+   ]
+  },
+  {
+   "notation": "j.",
+   "ids": [
+    "base.jump"
+   ]
+  },
+  {
+   "notation": "jump",
+   "ids": [
+    "base.jump"
+   ]
+  },
+  {
+   "notation": "adc",
+   "ids": [
+    "base.air-dash-cancel"
+   ]
+  },
+  {
+   "notation": "dc",
+   "ids": [
+    "base.dash-cancel"
+   ]
+  },
+  {
+   "notation": "ch",
+   "ids": [
+    "base.counter-hit"
+   ]
+  },
+  {
+   "notation": "aa",
+   "ids": [
+    "base.anti-air"
+   ]
+  },
+  {
+   "notation": "anti-air",
+   "ids": [
+    "base.anti-air"
+   ]
+  },
+  {
+   "notation": "antiair",
+   "ids": [
+    "base.anti-air"
+   ]
+  },
+  {
+   "notation": "IAD",
+   "ids": [
+    "base.instant-air-dash"
+   ]
+  },
+  {
+   "notation": "iad",
+   "ids": [
+    "base.instant-air-dash"
+   ]
+  },
+  {
+   "notation": "->",
+   "ids": [
+    "base.cancel"
+   ]
+  },
+  {
+   "notation": "~",
+   "ids": [
+    "base.cancel"
+   ]
+  },
+  {
+   "notation": ">>",
+   "ids": [
+    "base.cancel"
+   ]
+  },
+  {
+   "notation": ">",
+   "ids": [
+    "base.normal-followup"
+   ]
+  },
+  {
+   "notation": "＞",
+   "ids": [
+    "base.normal-followup"
+   ]
+  },
+  {
+   "notation": "→",
+   "ids": [
+    "base.normal-followup"
+   ]
+  },
+  {
+   "notation": ",",
+   "ids": [
+    "base.link"
+   ]
+  },
+  {
+   "notation": "1632143",
+   "ids": [
+    "base.pretzel"
+   ]
+  },
+  {
+   "notation": "3412361",
+   "ids": [
+    "base.reverse-pretzel"
+   ]
+  },
+  {
+   "notation": "41236987",
+   "ids": [
+    "base.360-full-circle-foward"
+   ]
+  },
+  {
+   "notation": "4268",
+   "ids": [
+    "base.360-full-circle-foward"
+   ]
+  },
+  {
+   "notation": "63214789",
+   "ids": [
+    "base.reverse-360-full-circle-back"
+   ]
+  },
+  {
+   "notation": "6248",
+   "ids": [
+    "base.reverse-360-full-circle-back"
+   ]
+  },
+  {
+   "notation": "41236",
+   "ids": [
+    "base.half-circle-foward"
+   ]
+  },
+  {
+   "notation": "426",
+   "ids": [
+    "base.half-circle-foward"
+   ]
+  },
+  {
+   "notation": "hcf",
+   "ids": [
+    "base.half-circle-foward"
+   ]
+  },
+  {
+   "notation": "63214",
+   "ids": [
+    "base.half-circle-back"
+   ]
+  },
+  {
+   "notation": "624",
+   "ids": [
+    "base.half-circle-back"
+   ]
+  },
+  {
+   "notation": "hcb",
+   "ids": [
+    "base.half-circle-back"
+   ]
+  },
+  {
+   "notation": "236",
+   "ids": [
+    "base.quarter-circle-foward"
+   ]
+  },
+  {
+   "notation": "qcf",
+   "ids": [
+    "base.quarter-circle-foward"
+   ]
+  },
+  {
+   "notation": "214",
+   "ids": [
+    "base.quarter-circle-back"
+   ]
+  },
+  {
+   "notation": "qcb",
+   "ids": [
+    "base.quarter-circle-back"
+   ]
+  },
+  {
+   "notation": "698",
+   "ids": [
+    "base.quarter-circle-up"
+   ]
+  },
+  {
+   "notation": "478",
+   "ids": [
+    "base.quarter-circle-up-back"
+   ]
+  },
+  {
+   "notation": "632",
+   "ids": [
+    "base.quarter-circle-down"
+   ]
+  },
+  {
+   "notation": "412",
+   "ids": [
+    "base.quarter-circle-down-back"
+   ]
+  },
+  {
+   "notation": "896",
+   "ids": [
+    "base.quarter-circle-up-foward"
+   ]
+  },
+  {
+   "notation": "874",
+   "ids": [
+    "base.quarter-circle-up-back-2"
+   ]
+  },
+  {
+   "notation": "623",
+   "ids": [
+    "base.dp-motion-dragon-punch"
+   ]
+  },
+  {
+   "notation": "421",
+   "ids": [
+    "base.reverse-dp-motion-reverse-dragon-punch"
+   ]
+  },
+  {
+   "notation": "1",
+   "ids": [
+    "base.down-back"
+   ]
+  },
+  {
+   "notation": "db",
+   "ids": [
+    "base.down-back"
+   ]
+  },
+  {
+   "notation": "3",
+   "ids": [
+    "base.down-foward"
+   ]
+  },
+  {
+   "notation": "df",
+   "ids": [
+    "base.down-foward"
+   ]
+  },
+  {
+   "notation": "7",
+   "ids": [
+    "base.up-back"
+   ]
+  },
+  {
+   "notation": "ub",
+   "ids": [
+    "base.up-back"
+   ]
+  },
+  {
+   "notation": "9",
+   "ids": [
+    "base.up-foward"
+   ]
+  },
+  {
+   "notation": "uf",
+   "ids": [
+    "base.up-foward"
+   ]
+  },
+  {
+   "notation": "2",
+   "ids": [
+    "base.down"
+   ]
+  },
+  {
+   "notation": "d",
+   "ids": [
+    "base.down"
+   ]
+  },
+  {
+   "notation": "4",
+   "ids": [
+    "base.back"
+   ]
+  },
+  {
+   "notation": "b",
+   "ids": [
+    "base.back"
+   ]
+  },
+  {
+   "notation": "5",
+   "ids": [
+    "base.stand"
+   ]
+  },
+  {
+   "notation": "6",
+   "ids": [
+    "base.foward"
+   ]
+  },
+  {
+   "notation": "f",
+   "ids": [
+    "base.foward"
+   ]
+  },
+  {
+   "notation": "8",
+   "ids": [
+    "base.up"
+   ]
+  },
+  {
+   "notation": "u",
+   "ids": [
+    "base.up"
+   ]
+  },
+  {
+   "notation": "bc",
+   "ids": [
+    "kof.max-mode"
+   ]
+  },
+  {
+   "notation": "BC",
+   "ids": [
+    "kof.max-mode"
+   ]
+  },
+  {
+   "notation": "gccd",
+   "ids": [
+    "kof.guard-cancel-blowback"
+   ]
+  },
+  {
+   "notation": "GCCD",
+   "ids": [
+    "kof.guard-cancel-blowback"
+   ]
+  },
+  {
+   "notation": "gcab",
+   "ids": [
+    "kof.guard-cancel-roll"
+   ]
+  },
+  {
+   "notation": "GCAB",
+   "ids": [
+    "kof.guard-cancel-roll"
+   ]
+  },
+  {
+   "notation": "cd",
+   "ids": [
+    "kof.blowback"
+   ]
+  },
+  {
+   "notation": "CD",
+   "ids": [
+    "kof.blowback"
+   ]
+  },
+  {
+   "notation": "dm",
+   "ids": [
+    "kof.desperation-move"
+   ]
+  },
+  {
+   "notation": "DM",
+   "ids": [
+    "kof.desperation-move"
+   ]
+  },
+  {
+   "notation": "clímax",
+   "ids": [
+    "kof.max2-cl-max"
+   ]
+  },
+  {
+   "notation": "climax",
+   "ids": [
+    "kof.max2-cl-max"
+   ]
+  },
+  {
+   "notation": "sc",
+   "ids": [
+    "kof.super-cancel"
+   ]
+  },
+  {
+   "notation": "ss",
+   "ids": [
+    "kof.shatter-strike"
+   ]
+  },
+  {
+   "notation": "SS",
+   "ids": [
+    "kof.shatter-strike"
+   ]
+  },
+  {
+   "notation": "ab",
+   "ids": [
+    "kof.roll"
+   ]
+  },
+  {
+   "notation": "AB",
+   "ids": [
+    "kof.roll"
+   ]
+  },
+  {
+   "notation": "fci",
+   "ids": [
+    "kof.free-cancellable-in"
+   ]
+  },
+  {
+   "notation": "FCI",
+   "ids": [
+    "kof.free-cancellable-in"
+   ]
+  },
+  {
+   "notation": "fco",
+   "ids": [
+    "kof.free-cancellable-out-of"
+   ]
+  },
+  {
+   "notation": "FCO",
+   "ids": [
+    "kof.free-cancellable-out-of"
+   ]
+  },
+  {
+   "notation": "otg",
+   "ids": [
+    "kof.on-the-ground"
+   ]
+  },
+  {
+   "notation": "OTG",
+   "ids": [
+    "kof.on-the-ground"
+   ]
+  },
+  {
+   "notation": "hh.",
+   "ids": [
+    "kof.hiper-hop"
+   ]
+  },
+  {
+   "notation": "HH.",
+   "ids": [
+    "kof.hiper-hop"
+   ]
+  },
+  {
+   "notation": "h.",
+   "ids": [
+    "kof.hop"
+   ]
+  },
+  {
+   "notation": "H.",
+   "ids": [
+    "kof.hop"
+   ]
+  },
+  {
+   "notation": "A",
+   "ids": [
+    "kof.light-punch"
+   ]
+  },
+  {
+   "notation": "B",
+   "ids": [
+    "kof.light-kick"
+   ]
+  },
+  {
+   "notation": "C",
+   "ids": [
+    "kof.heavy-punch"
+   ]
+  },
+  {
+   "notation": "D",
+   "ids": [
+    "kof.heavy-kick"
+   ]
+  },
+  {
+   "notation": "K",
+   "ids": [
+    "kof.any-kick"
+   ]
+  },
+  {
+   "notation": "P",
+   "ids": [
+    "kof.any-punch"
+   ]
+  },
+  {
+   "notation": "236A",
+   "ids": [
+    "base.quarter-circle-foward",
+    "kof.light-punch"
+   ]
+  },
+  {
+   "notation": "236B",
+   "ids": [
+    "base.quarter-circle-foward",
+    "kof.light-kick"
+   ]
+  },
+  {
+   "notation": "236C",
+   "ids": [
+    "base.quarter-circle-foward",
+    "kof.heavy-punch"
+   ]
+  },
+  {
+   "notation": "236D",
+   "ids": [
+    "base.quarter-circle-foward",
+    "kof.heavy-kick"
+   ]
+  },
+  {
+   "notation": "214A",
+   "ids": [
+    "base.quarter-circle-back",
+    "kof.light-punch"
+   ]
+  },
+  {
+   "notation": "214B",
+   "ids": [
+    "base.quarter-circle-back",
+    "kof.light-kick"
+   ]
+  },
+  {
+   "notation": "214C",
+   "ids": [
+    "base.quarter-circle-back",
+    "kof.heavy-punch"
+   ]
+  },
+  {
+   "notation": "214D",
+   "ids": [
+    "base.quarter-circle-back",
+    "kof.heavy-kick"
+   ]
+  },
+  {
+   "notation": "623A",
+   "ids": [
+    "base.dp-motion-dragon-punch",
+    "kof.light-punch"
+   ]
+  },
+  {
+   "notation": "623B",
+   "ids": [
+    "base.dp-motion-dragon-punch",
+    "kof.light-kick"
+   ]
+  },
+  {
+   "notation": "623C",
+   "ids": [
+    "base.dp-motion-dragon-punch",
+    "kof.heavy-punch"
+   ]
+  },
+  {
+   "notation": "623D",
+   "ids": [
+    "base.dp-motion-dragon-punch",
+    "kof.heavy-kick"
+   ]
+  },
+  {
+   "notation": "41236A",
+   "ids": [
+    "base.half-circle-foward",
+    "kof.light-punch"
+   ]
+  },
+  {
+   "notation": "41236B",
+   "ids": [
+    "base.half-circle-foward",
+    "kof.light-kick"
+   ]
+  },
+  {
+   "notation": "41236C",
+   "ids": [
+    "base.half-circle-foward",
+    "kof.heavy-punch"
+   ]
+  },
+  {
+   "notation": "41236D",
+   "ids": [
+    "base.half-circle-foward",
+    "kof.heavy-kick"
+   ]
+  },
+  {
+   "notation": "63214A",
+   "ids": [
+    "base.half-circle-back",
+    "kof.light-punch"
+   ]
+  },
+  {
+   "notation": "63214B",
+   "ids": [
+    "base.half-circle-back",
+    "kof.light-kick"
+   ]
+  },
+  {
+   "notation": "63214C",
+   "ids": [
+    "base.half-circle-back",
+    "kof.heavy-punch"
+   ]
+  },
+  {
+   "notation": "63214D",
+   "ids": [
+    "base.half-circle-back",
+    "kof.heavy-kick"
+   ]
+  },
+  {
+   "notation": "2A",
+   "ids": [
+    "base.down",
+    "kof.light-punch"
+   ]
+  },
+  {
+   "notation": "2B",
+   "ids": [
+    "base.down",
+    "kof.light-kick"
+   ]
+  },
+  {
+   "notation": "2C",
+   "ids": [
+    "base.down",
+    "kof.heavy-punch"
+   ]
+  },
+  {
+   "notation": "2D",
+   "ids": [
+    "base.down",
+    "kof.heavy-kick"
+   ]
+  },
+  {
+   "notation": "6A",
+   "ids": [
+    "base.foward",
+    "kof.light-punch"
+   ]
+  },
+  {
+   "notation": "6B",
+   "ids": [
+    "base.foward",
+    "kof.light-kick"
+   ]
+  },
+  {
+   "notation": "6C",
+   "ids": [
+    "base.foward",
+    "kof.heavy-punch"
+   ]
+  },
+  {
+   "notation": "6D",
+   "ids": [
+    "base.foward",
+    "kof.heavy-kick"
+   ]
+  },
+  {
+   "notation": "4A",
+   "ids": [
+    "base.back",
+    "kof.light-punch"
+   ]
+  },
+  {
+   "notation": "4B",
+   "ids": [
+    "base.back",
+    "kof.light-kick"
+   ]
+  },
+  {
+   "notation": "4C",
+   "ids": [
+    "base.back",
+    "kof.heavy-punch"
+   ]
+  },
+  {
+   "notation": "4D",
+   "ids": [
+    "base.back",
+    "kof.heavy-kick"
+   ]
+  },
+  {
+   "notation": "8A",
+   "ids": [
+    "base.up",
+    "kof.light-punch"
+   ]
+  },
+  {
+   "notation": "8B",
+   "ids": [
+    "base.up",
+    "kof.light-kick"
+   ]
+  },
+  {
+   "notation": "8C",
+   "ids": [
+    "base.up",
+    "kof.heavy-punch"
+   ]
+  },
+  {
+   "notation": "8D",
+   "ids": [
+    "base.up",
+    "kof.heavy-kick"
+   ]
+  },
+  {
+   "notation": "5A",
+   "ids": [
+    "base.stand",
+    "kof.light-punch"
+   ]
+  },
+  {
+   "notation": "5B",
+   "ids": [
+    "base.stand",
+    "kof.light-kick"
+   ]
+  },
+  {
+   "notation": "5C",
+   "ids": [
+    "base.stand",
+    "kof.heavy-punch"
+   ]
+  },
+  {
+   "notation": "5D",
+   "ids": [
+    "base.stand",
+    "kof.heavy-kick"
+   ]
+  },
+  {
+   "notation": "1A",
+   "ids": [
+    "base.down-back",
+    "kof.light-punch"
+   ]
+  },
+  {
+   "notation": "1B",
+   "ids": [
+    "base.down-back",
+    "kof.light-kick"
+   ]
+  },
+  {
+   "notation": "1C",
+   "ids": [
+    "base.down-back",
+    "kof.heavy-punch"
+   ]
+  },
+  {
+   "notation": "1D",
+   "ids": [
+    "base.down-back",
+    "kof.heavy-kick"
+   ]
+  },
+  {
+   "notation": "3A",
+   "ids": [
+    "base.down-foward",
+    "kof.light-punch"
+   ]
+  },
+  {
+   "notation": "3B",
+   "ids": [
+    "base.down-foward",
+    "kof.light-kick"
+   ]
+  },
+  {
+   "notation": "3C",
+   "ids": [
+    "base.down-foward",
+    "kof.heavy-punch"
+   ]
+  },
+  {
+   "notation": "3D",
+   "ids": [
+    "base.down-foward",
+    "kof.heavy-kick"
+   ]
+  },
+  {
+   "notation": "66A",
+   "ids": [
+    "base.dash",
+    "kof.light-punch"
+   ]
+  },
+  {
+   "notation": "66B",
+   "ids": [
+    "base.dash",
+    "kof.light-kick"
+   ]
+  },
+  {
+   "notation": "66C",
+   "ids": [
+    "base.dash",
+    "kof.heavy-punch"
+   ]
+  },
+  {
+   "notation": "66D",
+   "ids": [
+    "base.dash",
+    "kof.heavy-kick"
+   ]
+  },
+  {
+   "notation": "j.A",
+   "ids": [
+    "base.jump",
+    "kof.light-punch"
+   ]
+  },
+  {
+   "notation": "j.B",
+   "ids": [
+    "base.jump",
+    "kof.light-kick"
+   ]
+  },
+  {
+   "notation": "j.C",
+   "ids": [
+    "base.jump",
+    "kof.heavy-punch"
+   ]
+  },
+  {
+   "notation": "j.D",
+   "ids": [
+    "base.jump",
+    "kof.heavy-kick"
+   ]
+  },
+  {
+   "notation": "A > A",
+   "ids": [
+    "kof.light-punch",
+    "base.normal-followup",
+    "kof.light-punch"
+   ]
+  },
+  {
+   "notation": "A,A~A",
+   "ids": [
+    "kof.light-punch",
+    "base.link",
+    "kof.light-punch",
+    "base.cancel",
+    "kof.light-punch"
+   ]
+  },
+  {
+   "notation": "A > B",
+   "ids": [
+    "kof.light-punch",
+    "base.normal-followup",
+    "kof.light-kick"
+   ]
+  },
+  {
+   "notation": "A,B~A",
+   "ids": [
+    "kof.light-punch",
+    "base.link",
+    "kof.light-kick",
+    "base.cancel",
+    "kof.light-punch"
+   ]
+  },
+  {
+   "notation": "A > C",
+   "ids": [
+    "kof.light-punch",
+    "base.normal-followup",
+    "kof.heavy-punch"
+   ]
+  },
+  {
+   "notation": "A,C~A",
+   "ids": [
+    "kof.light-punch",
+    "base.link",
+    "kof.heavy-punch",
+    "base.cancel",
+    "kof.light-punch"
+   ]
+  },
+  {
+   "notation": "5A > 2B > 236A",
+   "ids": [
+    "base.stand",
+    "kof.light-punch",
+    "base.normal-followup",
+    "base.down",
+    "kof.light-kick",
+    "base.normal-followup",
+    "base.quarter-circle-foward",
+    "kof.light-punch"
+   ]
+  },
+  {
+   "notation": "B > A",
+   "ids": [
+    "kof.light-kick",
+    "base.normal-followup",
+    "kof.light-punch"
+   ]
+  },
+  {
+   "notation": "B,A~B",
+   "ids": [
+    "kof.light-kick",
+    "base.link",
+    "kof.light-punch",
+    "base.cancel",
+    "kof.light-kick"
+   ]
+  },
+  {
+   "notation": "B > B",
+   "ids": [
+    "kof.light-kick",
+    "base.normal-followup",
+    "kof.light-kick"
+   ]
+  },
+  {
+   "notation": "B,B~B",
+   "ids": [
+    "kof.light-kick",
+    "base.link",
+    "kof.light-kick",
+    "base.cancel",
+    "kof.light-kick"
+   ]
+  },
+  {
+   "notation": "B > C",
+   "ids": [
+    "kof.light-kick",
+    "base.normal-followup",
+    "kof.heavy-punch"
+   ]
+  },
+  {
+   "notation": "B,C~B",
+   "ids": [
+    "kof.light-kick",
+    "base.link",
+    "kof.heavy-punch",
+    "base.cancel",
+    "kof.light-kick"
+   ]
+  },
+  {
+   "notation": "5B > 2B > 236B",
+   "ids": [
+    "base.stand",
+    "kof.light-kick",
+    "base.normal-followup",
+    "base.down",
+    "kof.light-kick",
+    "base.normal-followup",
+    "base.quarter-circle-foward",
+    "kof.light-kick"
+   ]
+  },
+  {
+   "notation": "C > A",
+   "ids": [
+    "kof.heavy-punch",
+    "base.normal-followup",
+    "kof.light-punch"
+   ]
+  },
+  {
+   "notation": "C,A~C",
+   "ids": [
+    "kof.heavy-punch",
+    "base.link",
+    "kof.light-punch",
+    "base.cancel",
+    "kof.heavy-punch"
+   ]
+  },
+  {
+   "notation": "C > B",
+   "ids": [
+    "kof.heavy-punch",
+    "base.normal-followup",
+    "kof.light-kick"
+   ]
+  },
+  {
+   "notation": "C,B~C",
+   "ids": [
+    "kof.heavy-punch",
+    "base.link",
+    "kof.light-kick",
+    "base.cancel",
+    "kof.heavy-punch"
+   ]
+  },
+  {
+   "notation": "C > C",
+   "ids": [
+    "kof.heavy-punch",
+    "base.normal-followup",
+    "kof.heavy-punch"
+   ]
+  },
+  {
+   "notation": "C,C~C",
+   "ids": [
+    "kof.heavy-punch",
+    "base.link",
+    "kof.heavy-punch",
+    "base.cancel",
+    "kof.heavy-punch"
+   ]
+  },
+  {
+   "notation": "5C > 2B > 236C",
+   "ids": [
+    "base.stand",
+    "kof.heavy-punch",
+    "base.normal-followup",
+    "base.down",
+    "kof.light-kick",
+    "base.normal-followup",
+    "base.quarter-circle-foward",
+    "kof.heavy-punch"
+   ]
+  },
+  {
+   "notation": "2 3 6 P",
+   "ids": [
+    "base.quarter-circle-foward",
+    "kof.any-punch"
+   ]
+  },
+  {
+   "notation": "236P",
+   "ids": [
+    "base.quarter-circle-foward",
+    "kof.any-punch"
+   ]
+  }
+ ],
+ "differences": [
+  {
+   "notation": "cl.6c",
+   "legacy": [
+    "base.throw"
+   ],
+   "current": [
+    "kof.throw"
+   ],
+   "reason": "layer-precedence"
+  },
+  {
+   "notation": "cl.6d",
+   "legacy": [
+    "base.throw"
+   ],
+   "current": [
+    "kof.throw"
+   ],
+   "reason": "layer-precedence"
+  },
+  {
+   "notation": "cl.4c",
+   "legacy": [
+    "base.throw"
+   ],
+   "current": [
+    "kof.throw"
+   ],
+   "reason": "layer-precedence"
+  },
+  {
+   "notation": "cl.4d",
+   "legacy": [
+    "base.throw"
+   ],
+   "current": [
+    "kof.throw"
+   ],
+   "reason": "layer-precedence"
+  },
+  {
+   "notation": "hjc.",
+   "legacy": [
+    "unknown",
+    "base.jump-cancel"
+   ],
+   "current": [
+    "base.high-jump-cancel"
+   ],
+   "reason": "legacy-hjc-at-start"
+  },
+  {
+   "notation": "hjc",
+   "legacy": [
+    "unknown",
+    "base.jump-cancel"
+   ],
+   "current": [
+    "base.high-jump-cancel"
+   ],
+   "reason": "legacy-hjc-at-start"
+  },
+  {
+   "notation": "CL.6C",
+   "legacy": [
+    "kof.heavy-punch",
+    "unknown",
+    "base.foward",
+    "kof.heavy-punch"
+   ],
+   "current": [
+    "kof.throw"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "CL.6D",
+   "legacy": [
+    "kof.heavy-punch",
+    "unknown",
+    "base.foward",
+    "kof.heavy-kick"
+   ],
+   "current": [
+    "kof.throw"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "CL.4C",
+   "legacy": [
+    "kof.heavy-punch",
+    "unknown",
+    "base.back",
+    "kof.heavy-punch"
+   ],
+   "current": [
+    "kof.throw"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "CL.4D",
+   "legacy": [
+    "kof.heavy-punch",
+    "unknown",
+    "base.back",
+    "kof.heavy-kick"
+   ],
+   "current": [
+    "kof.throw"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "sdm",
+   "legacy": [
+    "kof.desperation-move"
+   ],
+   "current": [
+    "kof.super-desperation"
+   ],
+   "reason": "legacy-unanchored-match"
+  },
+  {
+   "notation": "SDM",
+   "legacy": [
+    "kof.desperation-move"
+   ],
+   "current": [
+    "kof.super-desperation"
+   ],
+   "reason": "legacy-unanchored-match"
+  },
+  {
+   "notation": "hsdm",
+   "legacy": [
+    "kof.desperation-move"
+   ],
+   "current": [
+    "kof.max2-cl-max"
+   ],
+   "reason": "legacy-unanchored-match"
+  },
+  {
+   "notation": "HSDM",
+   "legacy": [
+    "unknown",
+    "kof.desperation-move"
+   ],
+   "current": [
+    "kof.max2-cl-max"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "CLÍMAX",
+   "legacy": [
+    "kof.heavy-punch",
+    "unknown",
+    "kof.light-punch",
+    "unknown"
+   ],
+   "current": [
+    "kof.max2-cl-max"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "CLIMAX",
+   "legacy": [
+    "kof.heavy-punch",
+    "unknown",
+    "kof.light-punch",
+    "unknown"
+   ],
+   "current": [
+    "kof.max2-cl-max"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "SC",
+   "legacy": [
+    "unknown",
+    "kof.heavy-punch"
+   ],
+   "current": [
+    "kof.super-cancel"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  }
+ ]
+}

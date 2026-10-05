@@ -1,0 +1,1609 @@
+{
+ "matching": [
+  {
+   "notation": "gatlings",
+   "ids": [
+    "base.gatlings"
+   ]
+  },
+  {
+   "notation": "starter",
+   "ids": [
+    "base.starter"
+   ]
+  },
+  {
+   "notation": "corner",
+   "ids": [
+    "base.corner"
+   ]
+  },
+  {
+   "notation": "▷",
+   "ids": [
+    "base.land"
+   ]
+  },
+  {
+   "notation": "land",
+   "ids": [
+    "base.land"
+   ]
+  },
+  {
+   "notation": "WS",
+   "ids": [
+    "base.wall-splat"
+   ]
+  },
+  {
+   "notation": "ws",
+   "ids": [
+    "base.wall-splat"
+   ]
+  },
+  {
+   "notation": "IAS",
+   "ids": [
+    "base.instant-air-special"
+   ]
+  },
+  {
+   "notation": "ias",
+   "ids": [
+    "base.instant-air-special"
+   ]
+  },
+  {
+   "notation": "tk",
+   "ids": [
+    "base.tiger-knee"
+   ]
+  },
+  {
+   "notation": "dl.",
+   "ids": [
+    "base.delay"
+   ]
+  },
+  {
+   "notation": "dl",
+   "ids": [
+    "base.delay"
+   ]
+  },
+  {
+   "notation": "delayed",
+   "ids": [
+    "base.delay"
+   ]
+  },
+  {
+   "notation": "delay",
+   "ids": [
+    "base.delay"
+   ]
+  },
+  {
+   "notation": "slightdelay",
+   "ids": [
+    "base.delay"
+   ]
+  },
+  {
+   "notation": "whiff",
+   "ids": [
+    "base.whiff"
+   ]
+  },
+  {
+   "notation": "(whiff)",
+   "ids": [
+    "base.whiff"
+   ]
+  },
+  {
+   "notation": "/",
+   "ids": [
+    "base.or"
+   ]
+  },
+  {
+   "notation": "or",
+   "ids": [
+    "base.or"
+   ]
+  },
+  {
+   "notation": "66",
+   "ids": [
+    "base.dash"
+   ]
+  },
+  {
+   "notation": "dash",
+   "ids": [
+    "base.dash"
+   ]
+  },
+  {
+   "notation": "44",
+   "ids": [
+    "base.back-dash"
+   ]
+  },
+  {
+   "notation": "homingjump",
+   "ids": [
+    "base.homing-jump"
+   ]
+  },
+  {
+   "notation": "88",
+   "ids": [
+    "base.double-jump"
+   ]
+  },
+  {
+   "notation": "dj.",
+   "ids": [
+    "base.double-jump"
+   ]
+  },
+  {
+   "notation": "ground",
+   "ids": [
+    "base.ground"
+   ]
+  },
+  {
+   "notation": "airthrow",
+   "ids": [
+    "base.air-throw"
+   ]
+  },
+  {
+   "notation": "throw",
+   "ids": [
+    "base.throw"
+   ]
+  },
+  {
+   "notation": "cl.6c",
+   "ids": [
+    "base.throw"
+   ]
+  },
+  {
+   "notation": "cl.6d",
+   "ids": [
+    "base.throw"
+   ]
+  },
+  {
+   "notation": "cl.4c",
+   "ids": [
+    "base.throw"
+   ]
+  },
+  {
+   "notation": "cl.4d",
+   "ids": [
+    "base.throw"
+   ]
+  },
+  {
+   "notation": "sjc.",
+   "ids": [
+    "base.high-jump-cancel"
+   ]
+  },
+  {
+   "notation": "sjc",
+   "ids": [
+    "base.high-jump-cancel"
+   ]
+  },
+  {
+   "notation": "shjc.",
+   "ids": [
+    "base.short-jump-cancel"
+   ]
+  },
+  {
+   "notation": "shjc",
+   "ids": [
+    "base.short-jump-cancel"
+   ]
+  },
+  {
+   "notation": "djc.",
+   "ids": [
+    "base.double-jump-cancel"
+   ]
+  },
+  {
+   "notation": "djc",
+   "ids": [
+    "base.double-jump-cancel"
+   ]
+  },
+  {
+   "notation": "jc.",
+   "ids": [
+    "base.jump-cancel"
+   ]
+  },
+  {
+   "notation": "jc",
+   "ids": [
+    "base.jump-cancel"
+   ]
+  },
+  {
+   "notation": "cr.",
+   "ids": [
+    "base.crouch"
+   ]
+  },
+  {
+   "notation": "c.",
+   "ids": [
+    "base.close"
+   ]
+  },
+  {
+   "notation": "cl.",
+   "ids": [
+    "base.close"
+   ]
+  },
+  {
+   "notation": "st.",
+   "ids": [
+    "base.standing-far"
+   ]
+  },
+  {
+   "notation": "f.",
+   "ids": [
+    "base.far"
+   ]
+  },
+  {
+   "notation": "hj.",
+   "ids": [
+    "base.super-jump"
+   ]
+  },
+  {
+   "notation": "sj.",
+   "ids": [
+    "base.super-jump"
+   ]
+  },
+  {
+   "notation": "sj",
+   "ids": [
+    "base.super-jump"
+   ]
+  },
+  {
+   "notation": "j.",
+   "ids": [
+    "base.jump"
+   ]
+  },
+  {
+   "notation": "jump",
+   "ids": [
+    "base.jump"
+   ]
+  },
+  {
+   "notation": "adc",
+   "ids": [
+    "base.air-dash-cancel"
+   ]
+  },
+  {
+   "notation": "dc",
+   "ids": [
+    "base.dash-cancel"
+   ]
+  },
+  {
+   "notation": "ch",
+   "ids": [
+    "base.counter-hit"
+   ]
+  },
+  {
+   "notation": "aa",
+   "ids": [
+    "base.anti-air"
+   ]
+  },
+  {
+   "notation": "anti-air",
+   "ids": [
+    "base.anti-air"
+   ]
+  },
+  {
+   "notation": "antiair",
+   "ids": [
+    "base.anti-air"
+   ]
+  },
+  {
+   "notation": "IAD",
+   "ids": [
+    "base.instant-air-dash"
+   ]
+  },
+  {
+   "notation": "iad",
+   "ids": [
+    "base.instant-air-dash"
+   ]
+  },
+  {
+   "notation": "->",
+   "ids": [
+    "base.cancel"
+   ]
+  },
+  {
+   "notation": "~",
+   "ids": [
+    "base.cancel"
+   ]
+  },
+  {
+   "notation": ">>",
+   "ids": [
+    "base.cancel"
+   ]
+  },
+  {
+   "notation": ">",
+   "ids": [
+    "base.normal-followup"
+   ]
+  },
+  {
+   "notation": "＞",
+   "ids": [
+    "base.normal-followup"
+   ]
+  },
+  {
+   "notation": "→",
+   "ids": [
+    "base.normal-followup"
+   ]
+  },
+  {
+   "notation": ",",
+   "ids": [
+    "base.link"
+   ]
+  },
+  {
+   "notation": "1632143",
+   "ids": [
+    "base.pretzel"
+   ]
+  },
+  {
+   "notation": "3412361",
+   "ids": [
+    "base.reverse-pretzel"
+   ]
+  },
+  {
+   "notation": "41236987",
+   "ids": [
+    "base.360-full-circle-foward"
+   ]
+  },
+  {
+   "notation": "4268",
+   "ids": [
+    "base.360-full-circle-foward"
+   ]
+  },
+  {
+   "notation": "63214789",
+   "ids": [
+    "base.reverse-360-full-circle-back"
+   ]
+  },
+  {
+   "notation": "6248",
+   "ids": [
+    "base.reverse-360-full-circle-back"
+   ]
+  },
+  {
+   "notation": "41236",
+   "ids": [
+    "base.half-circle-foward"
+   ]
+  },
+  {
+   "notation": "426",
+   "ids": [
+    "base.half-circle-foward"
+   ]
+  },
+  {
+   "notation": "hcf",
+   "ids": [
+    "base.half-circle-foward"
+   ]
+  },
+  {
+   "notation": "63214",
+   "ids": [
+    "base.half-circle-back"
+   ]
+  },
+  {
+   "notation": "624",
+   "ids": [
+    "base.half-circle-back"
+   ]
+  },
+  {
+   "notation": "hcb",
+   "ids": [
+    "base.half-circle-back"
+   ]
+  },
+  {
+   "notation": "236",
+   "ids": [
+    "base.quarter-circle-foward"
+   ]
+  },
+  {
+   "notation": "qcf",
+   "ids": [
+    "base.quarter-circle-foward"
+   ]
+  },
+  {
+   "notation": "214",
+   "ids": [
+    "base.quarter-circle-back"
+   ]
+  },
+  {
+   "notation": "qcb",
+   "ids": [
+    "base.quarter-circle-back"
+   ]
+  },
+  {
+   "notation": "698",
+   "ids": [
+    "base.quarter-circle-up"
+   ]
+  },
+  {
+   "notation": "478",
+   "ids": [
+    "base.quarter-circle-up-back"
+   ]
+  },
+  {
+   "notation": "632",
+   "ids": [
+    "base.quarter-circle-down"
+   ]
+  },
+  {
+   "notation": "412",
+   "ids": [
+    "base.quarter-circle-down-back"
+   ]
+  },
+  {
+   "notation": "896",
+   "ids": [
+    "base.quarter-circle-up-foward"
+   ]
+  },
+  {
+   "notation": "874",
+   "ids": [
+    "base.quarter-circle-up-back-2"
+   ]
+  },
+  {
+   "notation": "623",
+   "ids": [
+    "base.dp-motion-dragon-punch"
+   ]
+  },
+  {
+   "notation": "421",
+   "ids": [
+    "base.reverse-dp-motion-reverse-dragon-punch"
+   ]
+  },
+  {
+   "notation": "1",
+   "ids": [
+    "base.down-back"
+   ]
+  },
+  {
+   "notation": "db",
+   "ids": [
+    "base.down-back"
+   ]
+  },
+  {
+   "notation": "3",
+   "ids": [
+    "base.down-foward"
+   ]
+  },
+  {
+   "notation": "df",
+   "ids": [
+    "base.down-foward"
+   ]
+  },
+  {
+   "notation": "7",
+   "ids": [
+    "base.up-back"
+   ]
+  },
+  {
+   "notation": "ub",
+   "ids": [
+    "base.up-back"
+   ]
+  },
+  {
+   "notation": "9",
+   "ids": [
+    "base.up-foward"
+   ]
+  },
+  {
+   "notation": "uf",
+   "ids": [
+    "base.up-foward"
+   ]
+  },
+  {
+   "notation": "2",
+   "ids": [
+    "base.down"
+   ]
+  },
+  {
+   "notation": "d",
+   "ids": [
+    "base.down"
+   ]
+  },
+  {
+   "notation": "4",
+   "ids": [
+    "base.back"
+   ]
+  },
+  {
+   "notation": "b",
+   "ids": [
+    "base.back"
+   ]
+  },
+  {
+   "notation": "5",
+   "ids": [
+    "base.stand"
+   ]
+  },
+  {
+   "notation": "6",
+   "ids": [
+    "base.foward"
+   ]
+  },
+  {
+   "notation": "f",
+   "ids": [
+    "base.foward"
+   ]
+  },
+  {
+   "notation": "8",
+   "ids": [
+    "base.up"
+   ]
+  },
+  {
+   "notation": "u",
+   "ids": [
+    "base.up"
+   ]
+  },
+  {
+   "notation": "FC",
+   "ids": [
+    "persona.fatal-counter"
+   ]
+  },
+  {
+   "notation": "2AB",
+   "ids": [
+    "persona.sweep"
+   ]
+  },
+  {
+   "notation": "sweep",
+   "ids": [
+    "persona.sweep"
+   ]
+  },
+  {
+   "notation": "SWEEP",
+   "ids": [
+    "persona.sweep"
+   ]
+  },
+  {
+   "notation": "AB",
+   "ids": [
+    "persona.all-out-attack"
+   ]
+  },
+  {
+   "notation": "AoA",
+   "ids": [
+    "persona.all-out-attack"
+   ]
+  },
+  {
+   "notation": "aoa",
+   "ids": [
+    "persona.all-out-attack"
+   ]
+  },
+  {
+   "notation": "OMC",
+   "ids": [
+    "persona.one-more-cancel"
+   ]
+  },
+  {
+   "notation": "omc",
+   "ids": [
+    "persona.one-more-cancel"
+   ]
+  },
+  {
+   "notation": "ACD",
+   "ids": [
+    "persona.burst-shadow-frenzy"
+   ]
+  },
+  {
+   "notation": "Burst",
+   "ids": [
+    "persona.burst-shadow-frenzy"
+   ]
+  },
+  {
+   "notation": "BD",
+   "ids": [
+    "persona.furious-action"
+   ]
+  },
+  {
+   "notation": "FA",
+   "ids": [
+    "persona.furious-action"
+   ]
+  },
+  {
+   "notation": "2AC",
+   "ids": [
+    "persona.hop"
+   ]
+  },
+  {
+   "notation": "h.",
+   "ids": [
+    "persona.hop"
+   ]
+  },
+  {
+   "notation": "H.",
+   "ids": [
+    "persona.hop"
+   ]
+  },
+  {
+   "notation": "AC",
+   "ids": [
+    "persona.evasive-action"
+   ]
+  },
+  {
+   "notation": "ac",
+   "ids": [
+    "persona.evasive-action"
+   ]
+  },
+  {
+   "notation": "A",
+   "ids": [
+    "persona.a"
+   ]
+  },
+  {
+   "notation": "B",
+   "ids": [
+    "persona.b"
+   ]
+  },
+  {
+   "notation": "C",
+   "ids": [
+    "persona.c"
+   ]
+  },
+  {
+   "notation": "D",
+   "ids": [
+    "persona.d"
+   ]
+  },
+  {
+   "notation": "236A",
+   "ids": [
+    "base.quarter-circle-foward",
+    "persona.a"
+   ]
+  },
+  {
+   "notation": "236B",
+   "ids": [
+    "base.quarter-circle-foward",
+    "persona.b"
+   ]
+  },
+  {
+   "notation": "236C",
+   "ids": [
+    "base.quarter-circle-foward",
+    "persona.c"
+   ]
+  },
+  {
+   "notation": "236D",
+   "ids": [
+    "base.quarter-circle-foward",
+    "persona.d"
+   ]
+  },
+  {
+   "notation": "214A",
+   "ids": [
+    "base.quarter-circle-back",
+    "persona.a"
+   ]
+  },
+  {
+   "notation": "214B",
+   "ids": [
+    "base.quarter-circle-back",
+    "persona.b"
+   ]
+  },
+  {
+   "notation": "214C",
+   "ids": [
+    "base.quarter-circle-back",
+    "persona.c"
+   ]
+  },
+  {
+   "notation": "214D",
+   "ids": [
+    "base.quarter-circle-back",
+    "persona.d"
+   ]
+  },
+  {
+   "notation": "623A",
+   "ids": [
+    "base.dp-motion-dragon-punch",
+    "persona.a"
+   ]
+  },
+  {
+   "notation": "623B",
+   "ids": [
+    "base.dp-motion-dragon-punch",
+    "persona.b"
+   ]
+  },
+  {
+   "notation": "623C",
+   "ids": [
+    "base.dp-motion-dragon-punch",
+    "persona.c"
+   ]
+  },
+  {
+   "notation": "623D",
+   "ids": [
+    "base.dp-motion-dragon-punch",
+    "persona.d"
+   ]
+  },
+  {
+   "notation": "41236A",
+   "ids": [
+    "base.half-circle-foward",
+    "persona.a"
+   ]
+  },
+  {
+   "notation": "41236B",
+   "ids": [
+    "base.half-circle-foward",
+    "persona.b"
+   ]
+  },
+  {
+   "notation": "41236C",
+   "ids": [
+    "base.half-circle-foward",
+    "persona.c"
+   ]
+  },
+  {
+   "notation": "41236D",
+   "ids": [
+    "base.half-circle-foward",
+    "persona.d"
+   ]
+  },
+  {
+   "notation": "63214A",
+   "ids": [
+    "base.half-circle-back",
+    "persona.a"
+   ]
+  },
+  {
+   "notation": "63214B",
+   "ids": [
+    "base.half-circle-back",
+    "persona.b"
+   ]
+  },
+  {
+   "notation": "63214C",
+   "ids": [
+    "base.half-circle-back",
+    "persona.c"
+   ]
+  },
+  {
+   "notation": "63214D",
+   "ids": [
+    "base.half-circle-back",
+    "persona.d"
+   ]
+  },
+  {
+   "notation": "2A",
+   "ids": [
+    "base.down",
+    "persona.a"
+   ]
+  },
+  {
+   "notation": "2B",
+   "ids": [
+    "base.down",
+    "persona.b"
+   ]
+  },
+  {
+   "notation": "2C",
+   "ids": [
+    "base.down",
+    "persona.c"
+   ]
+  },
+  {
+   "notation": "2D",
+   "ids": [
+    "base.down",
+    "persona.d"
+   ]
+  },
+  {
+   "notation": "6A",
+   "ids": [
+    "base.foward",
+    "persona.a"
+   ]
+  },
+  {
+   "notation": "6B",
+   "ids": [
+    "base.foward",
+    "persona.b"
+   ]
+  },
+  {
+   "notation": "6C",
+   "ids": [
+    "base.foward",
+    "persona.c"
+   ]
+  },
+  {
+   "notation": "6D",
+   "ids": [
+    "base.foward",
+    "persona.d"
+   ]
+  },
+  {
+   "notation": "4A",
+   "ids": [
+    "base.back",
+    "persona.a"
+   ]
+  },
+  {
+   "notation": "4B",
+   "ids": [
+    "base.back",
+    "persona.b"
+   ]
+  },
+  {
+   "notation": "4C",
+   "ids": [
+    "base.back",
+    "persona.c"
+   ]
+  },
+  {
+   "notation": "4D",
+   "ids": [
+    "base.back",
+    "persona.d"
+   ]
+  },
+  {
+   "notation": "8A",
+   "ids": [
+    "base.up",
+    "persona.a"
+   ]
+  },
+  {
+   "notation": "8B",
+   "ids": [
+    "base.up",
+    "persona.b"
+   ]
+  },
+  {
+   "notation": "8C",
+   "ids": [
+    "base.up",
+    "persona.c"
+   ]
+  },
+  {
+   "notation": "8D",
+   "ids": [
+    "base.up",
+    "persona.d"
+   ]
+  },
+  {
+   "notation": "5A",
+   "ids": [
+    "base.stand",
+    "persona.a"
+   ]
+  },
+  {
+   "notation": "5B",
+   "ids": [
+    "base.stand",
+    "persona.b"
+   ]
+  },
+  {
+   "notation": "5C",
+   "ids": [
+    "base.stand",
+    "persona.c"
+   ]
+  },
+  {
+   "notation": "5D",
+   "ids": [
+    "base.stand",
+    "persona.d"
+   ]
+  },
+  {
+   "notation": "1A",
+   "ids": [
+    "base.down-back",
+    "persona.a"
+   ]
+  },
+  {
+   "notation": "1B",
+   "ids": [
+    "base.down-back",
+    "persona.b"
+   ]
+  },
+  {
+   "notation": "1C",
+   "ids": [
+    "base.down-back",
+    "persona.c"
+   ]
+  },
+  {
+   "notation": "1D",
+   "ids": [
+    "base.down-back",
+    "persona.d"
+   ]
+  },
+  {
+   "notation": "3A",
+   "ids": [
+    "base.down-foward",
+    "persona.a"
+   ]
+  },
+  {
+   "notation": "3B",
+   "ids": [
+    "base.down-foward",
+    "persona.b"
+   ]
+  },
+  {
+   "notation": "3C",
+   "ids": [
+    "base.down-foward",
+    "persona.c"
+   ]
+  },
+  {
+   "notation": "3D",
+   "ids": [
+    "base.down-foward",
+    "persona.d"
+   ]
+  },
+  {
+   "notation": "66A",
+   "ids": [
+    "base.dash",
+    "persona.a"
+   ]
+  },
+  {
+   "notation": "66B",
+   "ids": [
+    "base.dash",
+    "persona.b"
+   ]
+  },
+  {
+   "notation": "66C",
+   "ids": [
+    "base.dash",
+    "persona.c"
+   ]
+  },
+  {
+   "notation": "66D",
+   "ids": [
+    "base.dash",
+    "persona.d"
+   ]
+  },
+  {
+   "notation": "j.A",
+   "ids": [
+    "base.jump",
+    "persona.a"
+   ]
+  },
+  {
+   "notation": "j.B",
+   "ids": [
+    "base.jump",
+    "persona.b"
+   ]
+  },
+  {
+   "notation": "j.C",
+   "ids": [
+    "base.jump",
+    "persona.c"
+   ]
+  },
+  {
+   "notation": "j.D",
+   "ids": [
+    "base.jump",
+    "persona.d"
+   ]
+  },
+  {
+   "notation": "A > A",
+   "ids": [
+    "persona.a",
+    "base.normal-followup",
+    "persona.a"
+   ]
+  },
+  {
+   "notation": "A,A~A",
+   "ids": [
+    "persona.a",
+    "base.link",
+    "persona.a",
+    "base.cancel",
+    "persona.a"
+   ]
+  },
+  {
+   "notation": "A > B",
+   "ids": [
+    "persona.a",
+    "base.normal-followup",
+    "persona.b"
+   ]
+  },
+  {
+   "notation": "A,B~A",
+   "ids": [
+    "persona.a",
+    "base.link",
+    "persona.b",
+    "base.cancel",
+    "persona.a"
+   ]
+  },
+  {
+   "notation": "A > C",
+   "ids": [
+    "persona.a",
+    "base.normal-followup",
+    "persona.c"
+   ]
+  },
+  {
+   "notation": "A,C~A",
+   "ids": [
+    "persona.a",
+    "base.link",
+    "persona.c",
+    "base.cancel",
+    "persona.a"
+   ]
+  },
+  {
+   "notation": "5A > 2B > 236A",
+   "ids": [
+    "base.stand",
+    "persona.a",
+    "base.normal-followup",
+    "base.down",
+    "persona.b",
+    "base.normal-followup",
+    "base.quarter-circle-foward",
+    "persona.a"
+   ]
+  },
+  {
+   "notation": "B > A",
+   "ids": [
+    "persona.b",
+    "base.normal-followup",
+    "persona.a"
+   ]
+  },
+  {
+   "notation": "B,A~B",
+   "ids": [
+    "persona.b",
+    "base.link",
+    "persona.a",
+    "base.cancel",
+    "persona.b"
+   ]
+  },
+  {
+   "notation": "B > B",
+   "ids": [
+    "persona.b",
+    "base.normal-followup",
+    "persona.b"
+   ]
+  },
+  {
+   "notation": "B,B~B",
+   "ids": [
+    "persona.b",
+    "base.link",
+    "persona.b",
+    "base.cancel",
+    "persona.b"
+   ]
+  },
+  {
+   "notation": "B > C",
+   "ids": [
+    "persona.b",
+    "base.normal-followup",
+    "persona.c"
+   ]
+  },
+  {
+   "notation": "B,C~B",
+   "ids": [
+    "persona.b",
+    "base.link",
+    "persona.c",
+    "base.cancel",
+    "persona.b"
+   ]
+  },
+  {
+   "notation": "5B > 2B > 236B",
+   "ids": [
+    "base.stand",
+    "persona.b",
+    "base.normal-followup",
+    "base.down",
+    "persona.b",
+    "base.normal-followup",
+    "base.quarter-circle-foward",
+    "persona.b"
+   ]
+  },
+  {
+   "notation": "C > A",
+   "ids": [
+    "persona.c",
+    "base.normal-followup",
+    "persona.a"
+   ]
+  },
+  {
+   "notation": "C,A~C",
+   "ids": [
+    "persona.c",
+    "base.link",
+    "persona.a",
+    "base.cancel",
+    "persona.c"
+   ]
+  },
+  {
+   "notation": "C > B",
+   "ids": [
+    "persona.c",
+    "base.normal-followup",
+    "persona.b"
+   ]
+  },
+  {
+   "notation": "C,B~C",
+   "ids": [
+    "persona.c",
+    "base.link",
+    "persona.b",
+    "base.cancel",
+    "persona.c"
+   ]
+  },
+  {
+   "notation": "C > C",
+   "ids": [
+    "persona.c",
+    "base.normal-followup",
+    "persona.c"
+   ]
+  },
+  {
+   "notation": "C,C~C",
+   "ids": [
+    "persona.c",
+    "base.link",
+    "persona.c",
+    "base.cancel",
+    "persona.c"
+   ]
+  },
+  {
+   "notation": "5C > 2B > 236C",
+   "ids": [
+    "base.stand",
+    "persona.c",
+    "base.normal-followup",
+    "base.down",
+    "persona.b",
+    "base.normal-followup",
+    "base.quarter-circle-foward",
+    "persona.c"
+   ]
+  },
+  {
+   "notation": "2 3 6 P",
+   "ids": [
+    "base.quarter-circle-foward",
+    "unknown"
+   ]
+  },
+  {
+   "notation": "236P",
+   "ids": [
+    "base.quarter-circle-foward",
+    "unknown"
+   ]
+  }
+ ],
+ "differences": [
+  {
+   "notation": "hjc.",
+   "legacy": [
+    "unknown",
+    "base.jump-cancel"
+   ],
+   "current": [
+    "base.high-jump-cancel"
+   ],
+   "reason": "legacy-hjc-at-start"
+  },
+  {
+   "notation": "hjc",
+   "legacy": [
+    "unknown",
+    "base.jump-cancel"
+   ],
+   "current": [
+    "base.high-jump-cancel"
+   ],
+   "reason": "legacy-hjc-at-start"
+  },
+  {
+   "notation": "fc",
+   "legacy": [
+    "base.foward",
+    "unknown"
+   ],
+   "current": [
+    "persona.fatal-counter"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "2ab",
+   "legacy": [
+    "base.down",
+    "unknown",
+    "base.back"
+   ],
+   "current": [
+    "persona.sweep"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "ab",
+   "legacy": [
+    "unknown",
+    "base.back"
+   ],
+   "current": [
+    "persona.all-out-attack"
+   ],
+   "reason": "legacy-unanchored-match"
+  },
+  {
+   "notation": "AOA",
+   "legacy": [
+    "persona.a",
+    "unknown",
+    "persona.a"
+   ],
+   "current": [
+    "persona.all-out-attack"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "ABC",
+   "legacy": [
+    "persona.all-out-attack",
+    "persona.c"
+   ],
+   "current": [
+    "persona.one-more-cancel"
+   ],
+   "reason": "longest-match"
+  },
+  {
+   "notation": "abc",
+   "legacy": [
+    "unknown",
+    "base.back",
+    "unknown"
+   ],
+   "current": [
+    "persona.one-more-cancel"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "acd",
+   "legacy": [
+    "persona.evasive-action",
+    "base.down"
+   ],
+   "current": [
+    "persona.burst-shadow-frenzy"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "BURST",
+   "legacy": [
+    "persona.b",
+    "unknown"
+   ],
+   "current": [
+    "persona.burst-shadow-frenzy"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "burst",
+   "legacy": [
+    "base.back",
+    "base.up",
+    "unknown"
+   ],
+   "current": [
+    "persona.burst-shadow-frenzy"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "GBurst",
+   "legacy": [
+    "persona.burst-shadow-frenzy"
+   ],
+   "current": [
+    "persona.max-burst-gold"
+   ],
+   "reason": "legacy-unanchored-match"
+  },
+  {
+   "notation": "GBURST",
+   "legacy": [
+    "unknown",
+    "persona.b",
+    "unknown"
+   ],
+   "current": [
+    "persona.max-burst-gold"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "gburst",
+   "legacy": [
+    "unknown",
+    "base.back",
+    "base.up",
+    "unknown"
+   ],
+   "current": [
+    "persona.max-burst-gold"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "BBurst",
+   "legacy": [
+    "persona.burst-shadow-frenzy"
+   ],
+   "current": [
+    "persona.defensive-burst-blue"
+   ],
+   "reason": "legacy-unanchored-match"
+  },
+  {
+   "notation": "BBURST",
+   "legacy": [
+    "persona.b",
+    "persona.b",
+    "unknown"
+   ],
+   "current": [
+    "persona.defensive-burst-blue"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "bburst",
+   "legacy": [
+    "base.back",
+    "base.back",
+    "base.up",
+    "unknown"
+   ],
+   "current": [
+    "persona.defensive-burst-blue"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "bd",
+   "legacy": [
+    "base.back",
+    "base.down"
+   ],
+   "current": [
+    "persona.furious-action"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "fa",
+   "legacy": [
+    "base.foward",
+    "unknown"
+   ],
+   "current": [
+    "persona.furious-action"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  },
+  {
+   "notation": "2ac",
+   "legacy": [
+    "base.down",
+    "persona.evasive-action"
+   ],
+   "current": [
+    "persona.hop"
+   ],
+   "reason": "legacy-case-insensitive-broken"
+  }
+ ]
+}

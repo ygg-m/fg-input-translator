@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#171717" />
+    <title>Fighting Game Input Translator</title>
+    <meta name="title" content="Fighting Game Input Translator" />
+    <meta name="description" content="Translate numpad notations to visual inputs!" />
+    <meta name="keywords" content="fighting game, numpad inputs, visual inputs, numpad translator" />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Ygor Goulart" />
+    <link rel="icon" href="./favicon.ico" />
+    <link rel="manifest" href="./manifest.json" />
+    <script type="module" src="/src/main.ts"></script>
+  </head>
+  <body>
+    <div id="site-header"></div>
+    <main>
+      <div id="notices" role="status"></div>
+
+      <label for="game">Game</label>
+      <select id="game"></select>
+      <div class="toolbar">
+        <button type="button" id="chroma-button" aria-pressed="false">Chroma</button>
+        <button type="button" id="export-button">Export</button>
+        <button type="button" id="import-button">Import</button>
+      </div>
+
+      <div id="share-banner"></div>
+      <section id="workspace"></section>
+      <div id="share-message" role="status"></div>
+      <p id="status" role="status"></p>
+
+      <h2>Saved definitions for this game</h2>
+      <section id="saved"></section>
+    </main>
+    <div id="site-footer"></div>
+  </body>
+</html>
