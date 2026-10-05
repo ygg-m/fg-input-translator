@@ -1,3 +1,5 @@
+import { effectiveRegistry } from "./custom-games";
+import { customAncestry } from "./game-bundle";
 import { resolveGame } from "./games";
 import type { CustomLayers, GameRegistry } from "./games";
 import { flatten, resolveRow } from "./row";
@@ -6,13 +8,18 @@ import { deserialize, serialize } from "./storage-format";
 import type { FormatError } from "./storage-format";
 import type { TokenDefinition } from "./types";
 import { DEFAULT_GAME } from "./workspace";
-import type { Workspace } from "./workspace";
+import type { CustomGame, Workspace } from "./workspace";
 
-/** One Tab as it travels in a link, with the saved definitions its Rows use. */
-export interface SharedTab {
+/** What travels with a Tab besides its Rows: the custom games it needs and the saved definitions its Rows use, per game. */
+export interface ShareBundle {
+  customGames: CustomGame[];
+  definitions: Record<string, TokenDefinition[]>;
+}
+
+/** One Tab as it travels in a link. */
+export interface SharedTab extends ShareBundle {
   gameId: string;
   tab: { name: string; rows: Row[] };
-  definitions: TokenDefinition[];
 }
 
 export type ShareError = {
@@ -96,7 +103,8 @@ async function inflate(bytes: Uint8Array): Promise<Uint8Array | undefined> {
 const toWorkspace = (shared: SharedTab): Workspace => ({
   version: 1,
   selectedGame: shared.gameId,
-  customLayers: shared.definitions.length > 0 ? { [shared.gameId]: shared.definitions } : {},
+  customGames: shared.customGames,
+  customLayers: Object.fromEntries(Object.entries(shared.definitions).filter(([, layer]) => layer.length > 0)),
   games: {
     [shared.gameId]: {
       activeTab: "tab-1",
@@ -132,15 +140,27 @@ async function decodeTab(payload: string): Promise<ShareResult> {
   const result = deserialize(new TextDecoder().decode(bytes));
   if (!result.ok) return { kind: "error", error: result.error };
 
-  const { games, customLayers } = result.workspace;
+  const { games, customLayers, customGames } = result.workspace;
   const gameIds = Object.keys(games);
   const game = gameIds.length === 1 ? games[gameIds[0]!] : undefined;
   if (!game || game.tabs.length !== 1) {
     return { kind: "error", error: { code: "invalid-shape", path: "games", message: "games must contain exactly one game with one tab" } };
   }
   const gameId = gameIds[0]!;
+
+  // Saved definitions may only belong to the shared game or to a custom game this link carries.
+  const allowed = new Set([gameId, ...customGames.map((g) => g.id)]);
+  const stray = Object.keys(customLayers).find((id) => !allowed.has(id));
+  if (stray !== undefined) {
+    const path = `customLayers.${stray}`;
+    return {
+      kind: "error",
+      error: { code: "invalid-shape", path, message: `${path} must be the shared game or a custom game in this link` },
+    };
+  }
+
   const { name, rows } = game.tabs[0]!;
-  return { kind: "tab", gameId, tab: { name, rows }, definitions: customLayers[gameId] ?? [] };
+  return { kind: "tab", gameId, tab: { name, rows }, customGames, definitions: customLayers };
 }
 
 // ---- reading any link ---------------------------------------------------------------
@@ -180,27 +200,31 @@ export async function decodeShare(
 export async function encodeRowShare(
   gameId: string,
   row: Row,
-  definitions: TokenDefinition[],
+  bundle: ShareBundle,
 ): Promise<{ hash: string; length: number }> {
-  if (row.customizations.length === 0 && definitions.length === 0) {
+  const carriesMore = bundle.customGames.length > 0 || Object.values(bundle.definitions).some((l) => l.length > 0);
+  if (row.customizations.length === 0 && !carriesMore) {
     const hash = encodeRowLink(gameId, row.notation);
     return { hash, length: hash.length };
   }
-  return encodeTabLink({ gameId, tab: { name: "Shared row", rows: [row] }, definitions });
+  return encodeTabLink({ gameId, tab: { name: "Shared row", rows: [row] }, ...bundle });
 }
 
-/** The saved definitions (in order) that these Rows actually use, directly or as a customization's base. */
+/**
+ * The saved definitions that these Rows actually use, directly or as a customization's base, per game.
+ * `scope` lists the games whose saved definitions may be included (the game itself by default).
+ */
 export function usedDefinitions(
   rows: Row[],
   gameId: string,
   registry: GameRegistry,
   customLayers: CustomLayers,
-): TokenDefinition[] {
-  const layer = customLayers[gameId] ?? [];
-  const game = layer.length > 0 ? resolveGame(gameId, registry, customLayers) : undefined;
-  if (!game?.ok) return [];
+  scope: string[] = [gameId],
+): Record<string, TokenDefinition[]> {
+  const saved = new Set(scope.flatMap((id) => (customLayers[id] ?? []).map((d) => d.id)));
+  const game = saved.size > 0 ? resolveGame(gameId, registry, customLayers) : undefined;
+  if (!game?.ok) return {};
 
-  const saved = new Set(layer.map((d) => d.id));
   const used = new Set<string>();
   for (const row of rows) {
     const resolved = resolveRow(row, game.definitions);
@@ -211,5 +235,29 @@ export function usedDefinitions(
       }
     }
   }
-  return layer.filter((d) => used.has(d.id));
+
+  const result: Record<string, TokenDefinition[]> = {};
+  for (const id of scope) {
+    const layer = (customLayers[id] ?? []).filter((d) => used.has(d.id));
+    if (layer.length > 0) result[id] = layer;
+  }
+  return result;
+}
+
+/**
+ * What a share link for these Rows must carry: the game's custom ancestry (none for a built-in game)
+ * and what those custom games saved. Your saved definitions for a built-in game it is based on stay home.
+ */
+export function bundleFor(
+  workspace: Workspace,
+  registry: GameRegistry,
+  gameId: string,
+  rows: Row[],
+): ShareBundle {
+  const customGames = customAncestry(workspace.customGames, gameId);
+  const scope = customGames.length > 0 ? customGames.map((g) => g.id) : [gameId];
+  return {
+    customGames,
+    definitions: usedDefinitions(rows, gameId, effectiveRegistry(registry, workspace), workspace.customLayers, scope),
+  };
 }

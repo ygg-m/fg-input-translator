@@ -5,6 +5,7 @@ import type { ExportEnvelope } from "./export";
 const envelope = (): ExportEnvelope => ({
   format: "fg-input-translator",
   version: 1,
+  customGames: [],
   tabs: [
     {
       gameId: "street-fighter",
@@ -74,6 +75,20 @@ describe("serializeExport and parseExport", () => {
     });
   });
 
+  it("lists custom games right after the version, only when there are any", () => {
+    expect(serializeExport(envelope())).not.toContain("customGames");
+
+    const withGames: ExportEnvelope = {
+      ...envelope(),
+      customGames: [{ id: "custom-ryu", name: "Ryu", extends: "street-fighter" }, { id: "custom-blank", name: "Blank" }],
+    };
+    const text = serializeExport(withGames);
+
+    expect(text.indexOf('"customGames"')).toBeGreaterThan(text.indexOf('"version"'));
+    expect(text.indexOf('"customGames"')).toBeLessThan(text.indexOf('"tabs"'));
+    expect(parseExport(text)).toStrictEqual({ ok: true, envelope: withGames });
+  });
+
   it("refuses a newer version", () => {
     expect(failure(JSON.stringify({ ...envelope(), version: 2 }))).toMatchObject({ code: "newer-version" });
   });
@@ -89,6 +104,13 @@ describe("serializeExport and parseExport", () => {
       "tabs[0].tab.rows[0].customizations[0].anchor.occurrence",
     ],
     ["definitions", (e: any) => void (e.definitions = []), "definitions"],
+    ["custom games list", (e: any) => void (e.customGames = {}), "customGames"],
+    ["custom game name", (e: any) => void (e.customGames = [{ id: "c", name: 5 }]), "customGames[0].name"],
+    [
+      "duplicate custom game ids",
+      (e: any) => void (e.customGames = [{ id: "c", name: "A" }, { id: "c", name: "B" }]),
+      "customGames[1].id",
+    ],
     ["definition list", (e: any) => void (e.definitions["street-fighter"] = {}), "definitions.street-fighter"],
     ["alias", (e: any) => void (e.definitions["street-fighter"][0].aliases = [1]), "definitions.street-fighter[0].aliases[0]"],
     [

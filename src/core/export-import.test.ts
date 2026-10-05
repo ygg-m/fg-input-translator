@@ -4,7 +4,7 @@ import { applyImport, planImport } from "./export-import";
 import type { Row } from "./row";
 import type { TokenDefinition } from "./types";
 import { emptyWorkspace } from "./workspace";
-import type { Workspace } from "./workspace";
+import type { CustomGame, Workspace } from "./workspace";
 
 const known = ["street-fighter", "guilty-gear"];
 
@@ -21,6 +21,7 @@ const saved = (gameId: string, alias: string, name: string): TokenDefinition => 
 const envelope = (overrides: Partial<ExportEnvelope> = {}): ExportEnvelope => ({
   format: "fg-input-translator",
   version: 1,
+  customGames: [],
   tabs: [
     { gameId: "street-fighter", tab: { name: "Ryu", rows: [row("236P")] } },
     { gameId: "guilty-gear", tab: { name: "Sol", rows: [row("5P"), row("2K")] } },
@@ -128,5 +129,58 @@ describe("saved definitions on import", () => {
     });
 
     expect(planImport(existing(), spaced, known).definitions[0]!.status).toBe("conflict");
+  });
+});
+
+describe("custom games in an import", () => {
+  const ryu: CustomGame = { id: "custom-ryu", name: "Ryu training", extends: "street-fighter" };
+  const withRyu = (extra: Partial<ExportEnvelope> = {}): ExportEnvelope =>
+    envelope({
+      customGames: [ryu],
+      tabs: [{ gameId: "custom-ryu", tab: { name: "Drills", rows: [row("lp")] } }],
+      definitions: { "custom-ryu": [saved("custom-ryu", "lp", "Jab")] },
+      ...extra,
+    });
+
+  it("previews the game that would be added, with its saved definitions as new", () => {
+    const plan = planImport(existing(), withRyu(), known);
+
+    expect(plan.games).toEqual([{ name: "Ryu training", status: "new" }]);
+    expect(plan.tabs.map((t) => t.finalName)).toEqual(["Drills"]);
+    expect(plan.definitions.map((d) => [d.definition.name, d.status])).toEqual([["Jab", "new"]]);
+    expect(plan.blocked).toBeUndefined();
+  });
+
+  it("adds the game, its saved definitions and its tabs, and selects it", () => {
+    const { workspace, report } = applyImport(existing(), withRyu(), known, { replace: [] });
+
+    expect(workspace.customGames).toEqual([{ id: "custom-ryu-training", name: "Ryu training", extends: "street-fighter" }]);
+    expect(workspace.customLayers["custom-ryu-training"]!.map((d) => d.name)).toEqual(["Jab"]);
+    expect(workspace.games["custom-ryu-training"]!.tabs.map((t) => t.name)).toEqual(["Drills"]);
+    expect(workspace.selectedGame).toBe("custom-ryu-training");
+    expect(report).toMatchObject({ tabsAdded: 1, gamesAdded: 1, definitionsAdded: 1, skippedGames: [] });
+  });
+
+  it("reuses an identical game you already have and adds only the tabs", () => {
+    const first = applyImport(existing(), withRyu(), known, { replace: [] }).workspace;
+
+    const plan = planImport(first, withRyu(), known);
+    const again = applyImport(first, withRyu(), known, { replace: [] });
+
+    expect(plan.games).toEqual([{ name: "Ryu training", status: "reuse" }]);
+    expect(plan.definitions).toEqual([]);
+    expect(again.workspace.customGames).toHaveLength(1);
+    expect(again.workspace.games["custom-ryu-training"]!.tabs.map((t) => t.name)).toEqual(["Drills", "Drills (2)"]);
+    expect(again.report).toMatchObject({ gamesAdded: 0, definitionsAdded: 0 });
+  });
+
+  it("changes nothing and says why when a game is based on one that does not exist", () => {
+    const broken = withRyu({ customGames: [{ id: "custom-ryu", name: "Ryu training", extends: "vanished" }] });
+    const before = existing();
+
+    expect(planImport(before, broken, known).blocked).toMatch(/vanished/);
+    const result = applyImport(before, broken, known, { replace: [] });
+    expect(result.workspace).toBe(before);
+    expect(result.report).toMatchObject({ tabsAdded: 0, gamesAdded: 0, blocked: expect.stringMatching(/vanished/) });
   });
 });

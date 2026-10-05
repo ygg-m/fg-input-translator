@@ -1,6 +1,6 @@
 import type { Row, TokenChanges } from "./row";
 import type { Display, GroupSyntax, MoreLink, TokenDefinition } from "./types";
-import type { GameWorkspace, Tab, Workspace } from "./workspace";
+import type { CustomGame, GameWorkspace, Tab, Workspace } from "./workspace";
 
 export interface FormatError {
   code: "invalid-json" | "invalid-shape" | "newer-version";
@@ -231,9 +231,30 @@ function checkGame(value: unknown, path: string): GameWorkspace {
   return { activeTab, tabs };
 }
 
+/** The user's games: a name, an optional parent, and an id that no other custom game uses. */
+export function checkCustomGames(value: unknown, path: string): CustomGame[] {
+  const seen = new Set<string>();
+  return list(value, path).map((item, i) => {
+    const gamePath = at(path, i);
+    const raw = record(item, gamePath);
+    const id = string(raw.id, join(gamePath, "id"));
+    if (seen.has(id)) throw new Invalid(join(gamePath, "id"), "must be unique");
+    seen.add(id);
+    const parent = raw.extends === undefined ? undefined : string(raw.extends, join(gamePath, "extends"));
+    return {
+      id,
+      name: string(raw.name, join(gamePath, "name")),
+      ...(parent !== undefined ? { extends: parent } : {}),
+    };
+  });
+}
+
 function checkWorkspace(value: unknown): Workspace {
   const raw = record(value, "workspace");
   if (raw.version !== 1) throw new Invalid("version", "must be 1");
+
+  // Data saved before custom games existed has no such list.
+  const customGames = raw.customGames === undefined ? [] : checkCustomGames(raw.customGames, "customGames");
 
   const customLayers = Object.fromEntries(
     Object.entries(record(raw.customLayers, "customLayers")).map(([gameId, layer]) => {
@@ -248,7 +269,13 @@ function checkWorkspace(value: unknown): Workspace {
     ]),
   );
 
-  return { version: 1, selectedGame: string(raw.selectedGame, "selectedGame"), customLayers, games };
+  return {
+    version: 1,
+    selectedGame: string(raw.selectedGame, "selectedGame"),
+    customGames,
+    customLayers,
+    games,
+  };
 }
 
 export function deserialize(text: string): DeserializeResult {

@@ -5,6 +5,10 @@ import type { Workspace } from "./workspace";
 const workspace = (): Workspace => ({
   version: 1,
   selectedGame: "street-fighter",
+  customGames: [
+    { id: "custom-ryu", name: "Ryu 日本 training", extends: "street-fighter" },
+    { id: "custom-blank", name: "Blank" },
+  ],
   customLayers: {
     "street-fighter": [
       {
@@ -80,6 +84,15 @@ describe("serialize and deserialize", () => {
       ["not an object", () => [], "workspace"],
       ["selectedGame", (r: any) => void (r.selectedGame = 3), "selectedGame"],
       ["games", (r: any) => void (r.games = []), "games"],
+      ["custom games list", (r: any) => void (r.customGames = {}), "customGames"],
+      ["custom game id", (r: any) => void (r.customGames[0].id = 5), "customGames[0].id"],
+      ["custom game name", (r: any) => void (r.customGames[0].name = 5), "customGames[0].name"],
+      ["custom game parent", (r: any) => void (r.customGames[0].extends = 5), "customGames[0].extends"],
+      [
+        "duplicate custom game ids",
+        (r: any) => void (r.customGames[1].id = r.customGames[0].id),
+        "customGames[1].id",
+      ],
       ["tabs", (r: any) => void (r.games["street-fighter"].tabs = {}), "games.street-fighter.tabs"],
       ["notation", (r: any) => void (row(r).notation = 7), `${prefix}.rows[0].notation`],
       ["row label", (r: any) => void (row(r).label = 7), `${prefix}.rows[0].label`],
@@ -130,6 +143,13 @@ describe("serialize and deserialize", () => {
       expect(bad({ mode: "image", asset: "A", transform: { rotate: "90" } }).path).toBe(
         "customLayers.street-fighter[0].display.transform.rotate",
       );
+    });
+
+    it("loads data saved before custom games existed, with none", () => {
+      const raw = JSON.parse(serialize(workspace()));
+      delete raw.customGames;
+
+      expect(deserialize(JSON.stringify(raw))).toMatchObject({ ok: true, workspace: { customGames: [] } });
     });
   });
 });

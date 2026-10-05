@@ -71,6 +71,10 @@ export function createImportDialog(doc: Document, handlers: ImportHandlers): HTM
     }
 
     const { plan } = checked;
+    if (plan.blocked) {
+      result.append(textElement(doc, "p", "import-error", plan.blocked));
+      return;
+    }
     const fresh = plan.definitions.filter((d) => d.status === "new").length;
     result.append(
       textElement(
@@ -80,6 +84,10 @@ export function createImportDialog(doc: Document, handlers: ImportHandlers): HTM
         `Will add ${plural(plan.tabs.length, "tab")} and ${plural(fresh, "new saved definition")}.`,
       ),
     );
+    for (const game of plan.games) {
+      const label = game.status === "new" ? "New game" : "Game you already have";
+      result.append(textElement(doc, "p", "import-game", `${label}: ${game.name}`));
+    }
     if (plan.skippedGames.length > 0) {
       result.append(
         textElement(doc, "p", "import-skipped", `Left out (game not available here): ${plan.skippedGames.join(", ")}.`),

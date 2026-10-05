@@ -49,4 +49,5 @@ A scope that layers game-specific Token Definitions over the shared base, so the
 _Avoid_: Movelist, preset
 
 **Custom Game**:
-A Game defined by the user, holding their own specific moves and combos.
+A Game the user creates: a name, an optional Game it is based on, its own saved definitions (its Custom Layer) and its own Tabs.
+_Avoid_: User game, custom character

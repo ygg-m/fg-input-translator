@@ -15,7 +15,7 @@ const row = (notation: string, label?: string) => ({
 describe("migrateLegacy", () => {
   it("gives an empty workspace when the old app left nothing", () => {
     expect(migrateLegacy({}, games)).toEqual({
-      workspace: { version: 1, selectedGame: "guilty-gear", customLayers: {}, games: {} },
+      workspace: { version: 1, selectedGame: "guilty-gear", customGames: [], customLayers: {}, games: {} },
       report: { sessionRow: false, importedCombos: 0, skipped: 0, listUnreadable: false },
     });
   });

@@ -16,6 +16,7 @@ const plan = (overrides: Partial<ImportPlan> = {}): ImportPlan => ({
     { gameId: "street-fighter", definition: jab, status: "conflict" },
     { gameId: "street-fighter", definition: mid, status: "new" },
   ],
+  games: [],
   skippedGames: [],
   ...overrides,
 });
@@ -119,5 +120,35 @@ describe("createImportDialog", () => {
 
     expect(dialog.querySelector("img")).toBeNull();
     expect(result(dialog).textContent).toContain(hostile);
+  });
+
+  it("names the games it would add or reuse", () => {
+    const { dialog } = setup(() => ({
+      ok: true,
+      plan: plan({
+        games: [
+          { name: "Ryu training", status: "new" },
+          { name: "Sol drills", status: "reuse" },
+        ],
+      }),
+    }));
+
+    paste(dialog, "{good}");
+
+    const text = result(dialog).textContent!;
+    expect(text).toContain("New game: Ryu training");
+    expect(text).toContain("Game you already have: Sol drills");
+  });
+
+  it("explains why a file cannot be imported at all, and keeps Import disabled", () => {
+    const { dialog } = setup(() => ({
+      ok: true,
+      plan: plan({ tabs: [], definitions: [], blocked: 'The game "x" is based on "y", which is missing.' }),
+    }));
+
+    paste(dialog, "{broken games}");
+
+    expect(result(dialog).textContent).toContain('based on "y"');
+    expect(importButton(dialog).disabled).toBe(true);
   });
 });

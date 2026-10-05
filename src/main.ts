@@ -1,6 +1,14 @@
 import "./style.css";
 import { createAutosave } from "./core/autosave";
 import { deleteDefinition, saveAsDefinition } from "./core/custom";
+import {
+  createGame,
+  deleteGame,
+  effectiveRegistry,
+  parentChoices,
+  renameGame,
+  setParent,
+} from "./core/custom-games";
 import { resolveGame } from "./core/games";
 import { BACKUP_KEY, loadWorkspace, saveWorkspace } from "./core/persistence";
 import type { StorageLike } from "./core/persistence";
@@ -32,9 +40,10 @@ import { buildExport, defaultSelection, parseExport, serializeExport } from "./c
 import { applyImport, planImport } from "./core/export-import";
 import { buildIssueUrl } from "./core/issue-link";
 import { buildReference } from "./core/reference";
-import { decodeShare, encodeRowShare, encodeTabLink, usedDefinitions } from "./core/share";
+import { bundleFor, decodeShare, encodeRowShare, encodeTabLink } from "./core/share";
+import type { SharedTab } from "./core/share";
 import { discardSharedTab, importSharedTab } from "./core/share-import";
-import type { ImportResult } from "./core/share-import";
+import type { SharedImport } from "./core/share-import";
 import { DEFAULT_GAME } from "./core/workspace";
 import type { Tab, Workspace } from "./core/workspace";
 import pkg from "../package.json";
@@ -43,6 +52,8 @@ import { GLOSSARY_URL, about, credit, siteLinks, siteLogo } from "./data/site";
 import { createEditor } from "./ui/editor";
 import { renderView } from "./ui/render";
 import { createExportDialog } from "./ui/export-panel";
+import { createGamesDialog, fillGamePicker } from "./ui/games-panel";
+import type { GamesModel } from "./ui/games-panel";
 import { createImportDialog } from "./ui/import-panel";
 import { renderSavedList } from "./ui/saved-list";
 import { renderShareBanner } from "./ui/share-banner";
@@ -70,12 +81,7 @@ const notices = document.querySelector<HTMLElement>("#notices")!;
 const shareBanner = document.querySelector<HTMLElement>("#share-banner")!;
 const shareMessage = document.querySelector<HTMLElement>("#share-message")!;
 
-for (const game of registry.games) {
-  const option = document.createElement("option");
-  option.value = game.id;
-  option.textContent = game.name;
-  gameSelect.append(option);
-}
+const builtInIds = registry.games.map((game) => game.id);
 
 // ---- persistence -------------------------------------------------------------
 function openStorage(): StorageLike | undefined {
@@ -104,9 +110,9 @@ if (!browserStorage) loaded.notices.push({ code: "storage-unavailable" });
 
 let workspace = loaded.workspace;
 let firstVisit = Object.keys(workspace.games).length === 0;
-gameSelect.value = registry.games.some((game) => game.id === workspace.selectedGame)
-  ? workspace.selectedGame
-  : DEFAULT_GAME;
+if (![...builtInIds, ...workspace.customGames.map((game) => game.id)].includes(workspace.selectedGame)) {
+  workspace = { ...workspace, selectedGame: DEFAULT_GAME };
+}
 
 let saveFailure: string | undefined;
 
@@ -157,7 +163,8 @@ document.addEventListener("visibilitychange", () => {
 renderNotices();
 
 // ---- workspace state ---------------------------------------------------------
-const gameId = () => gameSelect.value;
+// The workspace decides which game is selected; the dropdown is redrawn from it.
+const gameId = () => workspace.selectedGame;
 
 /** Every game always shows at least one tab. */
 function ensureGame() {
@@ -176,12 +183,12 @@ function activeTab(): Tab {
 
 /** Make a change to the workspace and remember it. */
 function apply(next: Workspace) {
-  workspace = { ...next, selectedGame: gameId() };
+  workspace = next;
   autosave.notify();
 }
 
 function resolve(row: Row) {
-  const game = resolveGame(gameId(), registry, workspace.customLayers);
+  const game = resolveGame(gameId(), effectiveRegistry(registry, workspace), workspace.customLayers);
   if (!game.ok) {
     return { ok: false as const, error: `Could not load this game: ${JSON.stringify(game.errors)}` };
   }
@@ -230,11 +237,11 @@ function renderSaved() {
 
 // ---- sharing ---------------------------------------------------------------------
 /** A tab opened from a link: shown and editable, but not part of the saved data until the user saves it. */
-let pending: (ImportResult & { gameId: string }) | undefined;
+let pending: Extract<SharedImport, { ok: true }> | undefined;
 
-/** What gets written to storage: everything except an unsaved shared tab. */
+/** What gets written to storage: everything except an unsaved shared tab (and a game only it brought). */
 function persistable(): Workspace {
-  return pending ? discardSharedTab(workspace, pending.gameId, pending) : workspace;
+  return pending ? discardSharedTab(workspace, pending) : workspace;
 }
 
 const compressionAvailable =
@@ -272,29 +279,40 @@ const unsupported = "Sharing this needs a newer browser; a plain notation can st
 async function shareRow(index: number) {
   const row = activeTab().rows[index];
   if (!row) return;
-  const definitions = usedDefinitions([row], gameId(), registry, workspace.customLayers);
-  const plain = row.customizations.length === 0 && definitions.length === 0;
+  const bundle = bundleFor(workspace, registry, gameId(), [row]);
+  const plain =
+    row.customizations.length === 0 && bundle.customGames.length === 0 && Object.keys(bundle.definitions).length === 0;
   if (!plain && !compressionAvailable) return say(unsupported);
-  const { hash, length } = await encodeRowShare(gameId(), row, definitions);
+  const { hash, length } = await encodeRowShare(gameId(), row, bundle);
   await deliver(hash, length);
 }
 
 async function shareTab() {
   if (!compressionAvailable) return say(unsupported);
   const tab = activeTab();
-  const definitions = usedDefinitions(tab.rows, gameId(), registry, workspace.customLayers);
+  const bundle = bundleFor(workspace, registry, gameId(), tab.rows);
   const { hash, length } = await encodeTabLink({
     gameId: gameId(),
     tab: { name: tab.name, rows: tab.rows },
-    definitions,
+    ...bundle,
   });
   await deliver(hash, length);
 }
 
-function begin(id: string, tab: { name: string; rows: Row[] }, definitions: ImportResult["skipped"]) {
-  const imported = importSharedTab(workspace, id, tab, definitions);
+const importProblem = {
+  "unknown-parent": "a game in it is based on one that is not in the link or in this app.",
+  cycle: "the games in it are based on each other in a loop.",
+  "unknown-game": "it is for a game that is not in the link or in this app.",
+} as const;
+
+function begin(shared: SharedTab) {
+  const imported = importSharedTab(workspace, shared, builtInIds);
+  if (!imported.ok) {
+    say(`This link could not be opened: ${importProblem[imported.reason]}`);
+    return;
+  }
   workspace = imported.workspace;
-  pending = { ...imported, gameId: id };
+  pending = imported;
   autosave.notify();
   renderAll();
 }
@@ -312,13 +330,12 @@ async function openShare(hash: string) {
 
   // Opening another link replaces an earlier unsaved one.
   if (pending) {
-    workspace = discardSharedTab(workspace, pending.gameId, pending);
+    workspace = discardSharedTab(workspace, pending);
     pending = undefined;
   }
-  gameSelect.value = result.gameId;
 
   if (result.kind === "tab") {
-    begin(result.gameId, result.tab, result.definitions);
+    begin(result);
     return;
   }
   if (result.warning) {
@@ -326,11 +343,16 @@ async function openShare(hash: string) {
     say(`The game "${result.warning.name}" is not available here, so this was opened in ${fallback}.`);
   }
   if (result.notation === "") {
-    apply(workspace);
+    apply({ ...workspace, selectedGame: result.gameId });
     renderAll();
     return;
   }
-  begin(result.gameId, { name: "Shared row", rows: [{ notation: result.notation, customizations: [] }] }, []);
+  begin({
+    gameId: result.gameId,
+    tab: { name: "Shared row", rows: [{ notation: result.notation, customizations: [] }] },
+    customGames: [],
+    definitions: {},
+  });
 }
 
 function saveShared() {
@@ -342,9 +364,8 @@ function saveShared() {
 
 function dismissShared() {
   if (!pending) return;
-  workspace = discardSharedTab(workspace, pending.gameId, pending);
+  workspace = discardSharedTab(workspace, pending);
   pending = undefined;
-  if (registry.games.some((game) => game.id === workspace.selectedGame)) gameSelect.value = workspace.selectedGame;
   apply(workspace);
   renderAll();
 }
@@ -369,7 +390,6 @@ function renderShareBanner_() {
 
 // ---- export and import --------------------------------------------------------------
 const REPO = "ygg-m/fg-input-translator";
-const knownGameIds = () => registry.games.map((game) => game.id);
 
 async function copyText(text: string, done: string) {
   try {
@@ -407,8 +427,8 @@ function showDialog(dialog: HTMLDialogElement) {
 
 function openExport() {
   const model = {
-    games: registry.games
-      .map((game) => ({
+    games: effectiveRegistry(registry, workspace)
+      .games.map((game) => ({
         id: game.id,
         name: game.name,
         tabs: (workspace.games[game.id]?.tabs ?? []).map((tab) => ({
@@ -450,20 +470,24 @@ function openImport() {
       check: (text) => {
         const parsed = parseExport(text);
         return parsed.ok
-          ? { ok: true, plan: planImport(workspace, parsed.envelope, knownGameIds()) }
+          ? { ok: true, plan: planImport(workspace, parsed.envelope, builtInIds) }
           : { ok: false, message: parsed.error.message };
       },
       onImport: (text, replace) => {
         const parsed = parseExport(text);
         if (!parsed.ok) return;
-        const { workspace: next, report } = applyImport(workspace, parsed.envelope, knownGameIds(), { replace });
-        // apply() records whatever game the dropdown shows, so switch it first.
-        if (knownGameIds().includes(next.selectedGame)) gameSelect.value = next.selectedGame;
+        const { workspace: next, report } = applyImport(workspace, parsed.envelope, builtInIds, { replace });
+        if (report.blocked) {
+          say(`Nothing was imported: ${report.blocked}`);
+          return;
+        }
         apply(next);
         renderAll();
         close();
         say(
-          `Imported ${report.tabsAdded} tab(s) and ${report.definitionsAdded + report.definitionsReplaced} saved definition(s)` +
+          `Imported ${report.tabsAdded} tab(s)` +
+            (report.gamesAdded > 0 ? `, ${report.gamesAdded} game(s)` : "") +
+            ` and ${report.definitionsAdded + report.definitionsReplaced} saved definition(s)` +
             (report.definitionsKept > 0 ? `; kept your own for ${report.definitionsKept}` : "") +
             (report.skippedGames.length > 0 ? `; left out unknown games: ${report.skippedGames.join(", ")}` : "") +
             ".",
@@ -534,6 +558,78 @@ function openReference() {
   const close = showDialog(createReferenceDialog(document, buildReference(registry), () => close()));
 }
 
+// ---- your games ---------------------------------------------------------------------
+function fillPicker() {
+  fillGamePicker(document, gameSelect, {
+    builtIn: registry.games.map(({ id, name }) => ({ id, name })),
+    custom: workspace.customGames.map(({ id, name }) => ({ id, name })),
+    selected: gameId(),
+  });
+}
+
+function gamesModel(): GamesModel {
+  return {
+    games: workspace.customGames.map((game) => ({
+      id: game.id,
+      name: game.name,
+      parent: game.extends,
+      parentChoices: parentChoices(workspace, registry, game.id),
+      blockedBy: workspace.customGames.filter((g) => g.extends === game.id).map((g) => g.name),
+    })),
+    newParentChoices: parentChoices(workspace, registry, undefined),
+  };
+}
+
+const parentProblem = {
+  "unknown-game": "That game no longer exists.",
+  "unknown-parent": "That base game no longer exists.",
+  cycle: "A game cannot be based on itself or on a game that is based on it.",
+} as const;
+
+function openGames() {
+  // Whatever changed is redrawn behind the dialog and in the dialog itself.
+  const changed = (message: string) => {
+    renderAll();
+    panel.update(gamesModel());
+    return message;
+  };
+
+  const panel = createGamesDialog(document, gamesModel(), {
+    onCreate: (name, parent) => {
+      const result = createGame(workspace, registry, { name, extends: parent });
+      if (!result.ok) {
+        return result.reason === "unknown-parent" ? parentProblem["unknown-parent"] : "Give the game a name first.";
+      }
+      apply(result.workspace);
+      return changed(`Created "${name}" and switched to it.`);
+    },
+    onRename: (id, name) => {
+      const next = renameGame(workspace, id, name);
+      if (next === workspace) return "Give the game a name first.";
+      apply(next);
+      return changed("Renamed.");
+    },
+    onSetParent: (id, parent) => {
+      const result = setParent(workspace, registry, id, parent);
+      if (!result.ok) {
+        panel.update(gamesModel()); // put the dropdown back to what is really saved
+        return parentProblem[result.reason];
+      }
+      apply(result.workspace);
+      return changed("Updated.");
+    },
+    onDelete: (id) => {
+      const result = deleteGame(workspace, id);
+      if (!result.ok) return "Other games are based on it, so it cannot be deleted yet.";
+      apply(result.workspace);
+      return changed("Deleted.");
+    },
+    confirm: (message) => window.confirm(message),
+    onClose: () => close(),
+  });
+  const close = showDialog(panel.dialog);
+}
+
 const handlers: TabsHandlers = {
   onSelectTab: (tabId) => {
     apply(selectTab(workspace, gameId(), tabId));
@@ -600,6 +696,7 @@ const handlers: TabsHandlers = {
 };
 
 function renderAll() {
+  fillPicker();
   ensureGame();
   const game = workspace.games[gameId()]!;
   const tab = activeTab();
@@ -710,9 +807,10 @@ function openEditor(rowIndex: number, node: ViewNode) {
 }
 
 gameSelect.addEventListener("change", () => {
-  apply(workspace);
+  apply({ ...workspace, selectedGame: gameSelect.value });
   renderAll();
 });
+document.querySelector<HTMLButtonElement>("#games-button")!.addEventListener("click", openGames);
 document.querySelector<HTMLButtonElement>("#export-button")!.addEventListener("click", openExport);
 document.querySelector<HTMLButtonElement>("#import-button")!.addEventListener("click", openImport);
 document.querySelector<HTMLElement>("#site-header")!.replaceChildren(
